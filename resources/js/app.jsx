@@ -1,5 +1,6 @@
 import './bootstrap';
-import '../css/app.css';
+import '../css/app.css';    //tailwindcss のエントリポイントを import
+import '../css/style.css';  // 生のcssを import
 
 import { createRoot } from 'react-dom/client';
 import { createInertiaApp } from '@inertiajs/react';
