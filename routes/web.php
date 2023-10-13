@@ -17,7 +17,7 @@ use Inertia\Inertia;
 */
 
 // ログイン関連
-Route::get('/', function () {
+Route::get('/welcome', function () {
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
@@ -48,3 +48,7 @@ Route::get('/admin/card/create', \App\Http\Controllers\Admin\Card\CreateControll
 Route::get('/admin/card/{id}', \App\Http\Controllers\Admin\Card\ShowController::class)->name('admin.card.show');
 Route::put('/admin/card/{id}', \App\Http\Controllers\Admin\Card\UpdateController::class)->name('admin.card.update');
 Route::delete('/admin/card/{id}', \App\Http\Controllers\Admin\Card\DestroyController::class)->name('admin.card.destroy');
+
+
+// game
+Route::get('/', \App\Http\Controllers\IndexController::class)->name('index');

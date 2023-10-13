@@ -1,0 +1,60 @@
+-- MySQL dump 10.13  Distrib 8.0.32, for Linux (x86_64)
+--
+-- Host: localhost    Database: yugioh_illustration_app
+-- ------------------------------------------------------
+-- Server version	8.0.32
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8mb4 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `cards`
+--
+
+DROP TABLE IF EXISTS `cards`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `cards` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `card_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `pack_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `list_number` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name_en` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name_ja` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name_ja_kana` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `frame_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `archetype` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `cards`
+--
+
+LOCK TABLES `cards` WRITE;
+/*!40000 ALTER TABLE `cards` DISABLE KEYS */;
+INSERT INTO `cards` VALUES (2,'92731385','pote','jp042','Tearlaments Kitkallos','ティアラメンツ・キトカロス','ティアラメンツ・キトカロス','fusion','Tearlaments','2023-09-29 07:10:56','2023-09-29 07:10:56'),(3,'00572850','pote','jp014','Tearlaments Scheiren','ティアラメンツ・シェイレーン','ティアラメンツ・シェイレーン','effect','Tearlaments','2023-09-29 07:12:22','2023-09-29 07:12:22'),(4,'37961969','pote','jp013','Tearlaments Havnis','ティアラメンツ・ハゥフニス','ティアラメンツ・ハゥフニス','effect','Tearlaments','2023-09-29 07:13:34','2023-09-29 07:13:34'),(5,'74078255','pote','jp012','Tearlaments Merrli','ティアラメンツ・メイルゥ','ティアラメンツ・メイルゥ','effect','Tearlaments','2023-09-29 07:14:20','2023-09-29 07:14:20'),(7,'84330567','dabl','jp039','Tearlaments Rulkallos','ティアラメンツ・ルルカロス','ティアラメンツ・ルルカロス','fusion','Tearlaments','2023-09-30 05:51:34','2023-09-30 05:51:34'),(8,'38436986','pote','jp071','Tearlaments Metanoise','壱世壊に軋む爪音','ティアラメンツ・メタノイズ','trap','Tearlaments','2023-09-30 05:56:19','2023-09-30 05:56:19'),(9,'34225426','phhy','jp061','Tearlaments Perlegia','嫋々たる漣歌姫の壱世壊','ティアラメンツ・ペルレギア','spell','Tearlaments','2023-09-30 05:58:09','2023-09-30 05:58:09'),(10,'74920585','pote','jp072','Tearlaments Sulliek','壱世壊に奏でる哀唱','ティアラメンツ・サリーク','trap','Tearlaments','2023-09-30 05:59:15','2023-09-30 05:59:15'),(11,'28226490','pote','jp043','Tearlaments Kaleido-Heart','ティアラメンツ・カレイドハート','ティアラメンツ・カレイドハート','fusion','Tearlaments','2023-09-30 06:01:17','2023-09-30 06:01:17'),(12,'04928565','phhy','jp008','Tearlaments Kashtira','ティアラメンツ・クシャトリラ','ティアラメンツ・クシャトリラ','effect','Kashtira','2023-09-30 06:02:13','2023-09-30 06:02:13'),(13,'48626373','phhy','jp046','Kashtira Arise-Heart','クシャトリラ・アライズハート','クシャトリラ・アライズハート','xyz','Kashtira','2023-09-30 06:03:05','2023-09-30 06:03:05'),(14,'32909498','dabl','jp012','Kashtira Fenrir','クシャトリラ・フェンリル','クシャトリラ・フェンリル','effect','Kashtira','2023-09-30 06:35:30','2023-10-01 19:38:58'),(15,'73542331','dabl','jp045','Kashtira Shangri-Ira','クシャトリラ・シャングリラ','クシャトリラ・シャングリラ','xyz','Kashtira','2023-09-30 06:36:20','2023-09-30 06:36:20'),(16,'68304193','dabl','jp013','Kashtira Unicorn','クシャトリラ・ユニコーン','クシャトリラ・ユニコーン','effect','Kashtira','2023-09-30 06:37:17','2023-10-01 18:41:38'),(17,'01329620','pote','jp073','Tearlaments Cryme','壱世壊に澄み渡る残響','ティアラメンツ・クライム','trap','Tearlaments','2023-09-30 06:38:27','2023-09-30 06:38:27'),(18,'33878367','dabl','jp056','Tearlaments Grief','壱世壊に渦巻く反響','ティアラメンツ・グリーフ','spell','Tearlaments','2023-09-30 06:39:25','2023-09-30 06:39:25'),(19,'00821049','dune','jp039','Visas Amritara','ヴィサス＝アムリターラ','ヴィサス＝アムリターラ','synchro','Visas','2023-09-30 06:47:03','2023-09-30 06:47:03'),(20,'56099748','difo','jp008','Visas Starfrost','ヴィサス＝スタフロスト','ヴィサス＝スタフロスト','effect',NULL,'2023-09-30 06:58:12','2023-10-01 18:38:24'),(21,'89631139','scb1','jpp01','Blue-Eyes White Dragon','青眼の白龍','ブルーアイズ・ホワイト・ドラゴン','normal','Blue-Eyes','2023-09-30 07:00:32','2023-09-30 07:00:32'),(22,'96305350','wpp4','jp031','Gold Pride - Captain Carrie','GP－キャプテン・キャリー','ゴールド・プライド－キャプテン・キャリー','effect','Gold Pride','2023-10-01 19:15:27','2023-10-01 19:15:27'),(23,'28497830','wpp4','jp033','Gold Pride - Pin Baller','GP－PB','ゴールド・プライド－ピン・ボーラー','fusion','Gold Pride','2023-10-01 19:26:45','2023-10-01 19:26:45'),(24,'22390469','wpp4','jp034','Gold Pride - Star Leon','GP－スター・リオン','ゴールド・プライド－スター・リオン','synchro','Gold Pride','2023-10-01 19:35:50','2023-10-01 19:35:50'),(26,'23512906','wpp4','jp029','Gold Pride - Leon','GP－リオン','ゴールド・プライド－リオン','effect','Gold Pride','2023-10-02 11:06:49','2023-10-02 11:06:49');
+/*!40000 ALTER TABLE `cards` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2023-10-08 18:45:45
