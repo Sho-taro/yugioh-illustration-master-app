@@ -61,6 +61,13 @@ p, h1, h2, h3, h4 {
   transform: scale(0.95);
 }
 
+/* checkbox */
+input[type=checkbox] {
+  border: solid 2px rgb(176, 179, 255);
+  border-radius: 0.2rem;
+  margin-right: 0.2rem;
+}
+
 /* アニメーションが走るボタン */
 .animation-button {
   display: inline-block;
