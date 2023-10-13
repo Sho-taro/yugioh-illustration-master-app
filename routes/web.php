@@ -42,12 +42,14 @@ require __DIR__.'/auth.php';
 
 // ここから独自のルーティング
 // admin
-Route::get('/admin/card', \App\Http\Controllers\Admin\Card\IndexController::class)->name('admin.card.index');
-Route::post('/admin/card', \App\Http\Controllers\Admin\Card\StoreController::class)->name('admin.card.store');
-Route::get('/admin/card/create', \App\Http\Controllers\Admin\Card\CreateController::class)->name('admin.card.create');
-Route::get('/admin/card/{id}', \App\Http\Controllers\Admin\Card\ShowController::class)->name('admin.card.show');
-Route::put('/admin/card/{id}', \App\Http\Controllers\Admin\Card\UpdateController::class)->name('admin.card.update');
-Route::delete('/admin/card/{id}', \App\Http\Controllers\Admin\Card\DestroyController::class)->name('admin.card.destroy');
+Route::middleware(['admin'])->group(function () {
+    Route::get('/admin/card', \App\Http\Controllers\Admin\Card\IndexController::class)->name('admin.card.index');
+    Route::post('/admin/card', \App\Http\Controllers\Admin\Card\StoreController::class)->name('admin.card.store');
+    Route::get('/admin/card/create', \App\Http\Controllers\Admin\Card\CreateController::class)->name('admin.card.create');
+    Route::get('/admin/card/{id}', \App\Http\Controllers\Admin\Card\ShowController::class)->name('admin.card.show');
+    Route::put('/admin/card/{id}', \App\Http\Controllers\Admin\Card\UpdateController::class)->name('admin.card.update');
+    Route::delete('/admin/card/{id}', \App\Http\Controllers\Admin\Card\DestroyController::class)->name('admin.card.destroy');
+});
 
 
 // game
