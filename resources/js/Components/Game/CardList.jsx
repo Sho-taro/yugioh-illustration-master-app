@@ -66,8 +66,8 @@ function CardList({ auth, cards, showModal }) {
 				<div>
 					<p className="text-left text-xs text-gray-500">ログインすると、次回からイラスト画像をダウンロードできます（完全無料）</p>
 					<p className="text-left text-xs text-gray-500">⇒
-						<a href="http://yugiohim.com/login">ログイン</a>または
-						<a href="http://yugiohim.com/register">新規登録</a>
+						<a href={route('login')}>ログイン</a>または
+						<a href={route('register')}>新規登録</a>
 					</p>
 				</div>
 			)}
