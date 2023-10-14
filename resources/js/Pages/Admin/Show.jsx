@@ -85,135 +85,162 @@ function Show({ card, errors }) {
 						</label>
 						<form onSubmit={handleSubmit} method="POST">
 							<table className="show-table">
-								<tr>
-									<th>データベース内ID: </th>
-									<td>
-										<p>{values.id}</p>
-									</td>
-								</tr>
-								<tr>
-									<th>カードID(8ケタ): </th>
-									<td>
-										<input
-											name="card_id"
-											type="text"
-											onChange={handleChange}
-											value={values.card_id}
-											disabled={!isEditable}
-										/>
-										{errors.card_id && (
-											<p className="text-red-500">{errors.card_id}</p>
-										)}
-									</td>
-								</tr>
-								<tr>
-									<th>パック型番: </th>
-									<td>
-										<input
-											name="pack_name"
-											type="text"
-											onChange={handleChange}
-											value={values.pack_name}
-											disabled={!isEditable}
-										/>
-										{errors.pack_name && (
-											<p className="text-red-500">{errors.pack_name}</p>
-										)}
-									</td>
-								</tr>
-								<tr>
-									<th>パック内リスト番号: </th>
-									<td>
-										<input
-											name="list_number"
-											type="text"
-											onChange={handleChange}
-											value={values.list_number}
-											disabled={!isEditable}
-										/>
-										{errors.list_number && (
-											<p className="text-red-500">{errors.list_number}</p>
-										)}
-									</td>
-								</tr>
-								<tr>
-									<th>カード名(英語): </th>
-									<td>
-										<input
-											name="name_en"
-											type="text"
-											style={{ color: 'gray' }}
-											onChange={handleChange}
-											value={values.name_en}
-											disabled={!isEditable}
-										/>
-										{errors.name_en && (
-											<p className="text-red-500">{errors.name_en}</p>
-										)}
-									</td>
-								</tr>
-								<tr>
-									<th>カード名(日本語): </th>
-									<td>
-										<input
-											name="name_ja"
-											type="text"
-											onChange={handleChange}
-											value={values.name_ja}
-											disabled={!isEditable}
-										/>
-										{errors.name_ja && (
-											<p className="text-red-500">{errors.name_ja}</p>
-										)}
-									</td>
-								</tr>
-								<tr>
-									<th>カード名(日本語よみ): </th>
-									<td>
-										<input
-											name="name_ja_kana"
-											type="text"
-											onChange={handleChange}
-											value={values.name_ja_kana}
-											disabled={!isEditable}
-										/>
-										{errors.name_ja_kana && (
-											<p className="text-red-500">{errors.name_ja_kana}</p>
-										)}
-									</td>
-								</tr>
-								<tr>
-									<th>カードタイプ: </th>
-									<td>
-										<input
-											name="frame_type"
-											type="text"
-											style={{ color: 'gray' }}
-											onChange={handleChange}
-											value={values.frame_type}
-											disabled={!isEditable}
-										/>
-										{errors.frame_type && (
-											<p className="text-red-500">{errors.frame_type}</p>
-										)}
-									</td>
-								</tr>
-								<tr>
-									<th>カテゴリ: </th>
-									<td>
-										<input
-											name="archetype"
-											type="text"
-											style={{ color: 'gray' }}
-											onChange={handleChange}
-											value={values.archetype}
-											disabled={!isEditable}
-										/>
-										{errors.archetype && (
-											<p className="text-red-500">{errors.archetype}</p>
-										)}
-									</td>
-								</tr>
+								<thead className="hidden">
+									<tr>
+										<th colSpan="2" className="text-center">
+											カード情報
+										</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<th>データベース内ID: </th>
+										<td>
+											<p>{values.id}</p>
+										</td>
+									</tr>
+								</tbody>
+								<tbody>
+									<tr>
+										<th>カードID(8ケタ): </th>
+										<td>
+											<input
+												name="card_id"
+												type="text"
+												onChange={handleChange}
+												value={values.card_id}
+												disabled={!isEditable}
+											/>
+											{errors.card_id && (
+												<p className="text-red-500">{errors.card_id}</p>
+											)}
+										</td>
+									</tr>
+								</tbody>
+								<tbody>
+									<tr>
+										<th>パック型番: </th>
+										<td>
+											<input
+												name="pack_name"
+												type="text"
+												onChange={handleChange}
+												value={values.pack_name}
+												disabled={!isEditable}
+											/>
+											{errors.pack_name && (
+												<p className="text-red-500">{errors.pack_name}</p>
+											)}
+										</td>
+									</tr>
+								</tbody>
+								<tbody>
+									<tr>
+										<th>パック内リスト番号: </th>
+										<td>
+											<input
+												name="list_number"
+												type="text"
+												onChange={handleChange}
+												value={values.list_number}
+												disabled={!isEditable}
+											/>
+											{errors.list_number && (
+												<p className="text-red-500">{errors.list_number}</p>
+											)}
+										</td>
+									</tr>
+								</tbody>
+								<tbody>
+									<tr>
+										<th>カード名(英語): </th>
+										<td>
+											<input
+												name="name_en"
+												type="text"
+												style={{ color: 'gray' }}
+												onChange={handleChange}
+												value={values.name_en}
+												disabled={!isEditable}
+											/>
+											{errors.name_en && (
+												<p className="text-red-500">{errors.name_en}</p>
+											)}
+										</td>
+									</tr>
+								</tbody>
+								<tbody>
+									<tr>
+										<th>カード名(日本語): </th>
+										<td>
+											<input
+												name="name_ja"
+												type="text"
+												onChange={handleChange}
+												value={values.name_ja}
+												disabled={!isEditable}
+											/>
+											{errors.name_ja && (
+												<p className="text-red-500">{errors.name_ja}</p>
+											)}
+										</td>
+									</tr>
+								</tbody>
+								<tbody>
+									<tr>
+										<th>カード名(日本語よみ): </th>
+										<td>
+											<input
+												name="name_ja_kana"
+												type="text"
+												onChange={handleChange}
+												value={values.name_ja_kana}
+												disabled={!isEditable}
+											/>
+											{errors.name_ja_kana && (
+												<p className="text-red-500">
+													{errors.name_ja_kana}
+												</p>
+											)}
+										</td>
+									</tr>
+								</tbody>
+								<tbody>
+									<tr>
+										<th>カードタイプ: </th>
+										<td>
+											<input
+												name="frame_type"
+												type="text"
+												style={{ color: 'gray' }}
+												onChange={handleChange}
+												value={values.frame_type}
+												disabled={!isEditable}
+											/>
+											{errors.frame_type && (
+												<p className="text-red-500">{errors.frame_type}</p>
+											)}
+										</td>
+									</tr>
+								</tbody>
+								<tbody>
+									<tr>
+										<th>カテゴリ: </th>
+										<td>
+											<input
+												name="archetype"
+												type="text"
+												style={{ color: 'gray' }}
+												onChange={handleChange}
+												value={values.archetype}
+												disabled={!isEditable}
+											/>
+											{errors.archetype && (
+												<p className="text-red-500">{errors.archetype}</p>
+											)}
+										</td>
+									</tr>
+								</tbody>
 							</table>
 							<button
 								type="submit"
