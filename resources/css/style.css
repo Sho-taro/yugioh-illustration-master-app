@@ -403,7 +403,7 @@ td {
   border-radius: 0.2rem;
 
   /* Content alignment */
-  margin-bottom: 1rem;
+  margin-bottom: 0.2rem;
 }
 .card-list-li {
   display: flex;

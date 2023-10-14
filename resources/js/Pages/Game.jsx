@@ -20,7 +20,8 @@ import { randomIndexFirst, randomIndexSecond } from '../utils/splitMoreMixedOrde
 import { mergeNestedArray } from '../utils/mergeNestedArray';
 import { playBtnAnimation } from '../utils/playBtnAnimation';
 
-function Game({ cards }) {
+
+function Game({ auth, cards }) {
 	const [gameStatus, setGameStatus] = useState('preparing');
 	const [index, setIndex] = useState(0);
 	const [card, setCard] = useState(cards[0]);
@@ -54,10 +55,8 @@ function Game({ cards }) {
 		if (gameStatus !== 'playing') return;
 		// console.log(randomOrderFirst)
 		setFirstAnimation(animateBlock(mergeNestedArray(randomOrderFirst), showCardName));
-		setTimeout(() => {
-			setSecondAnimation(animateBlock(mergeNestedArray(randomOrderSecond), logFinished));
-		}, 1500);
-		setTimeout(() => playBtnAnimation(playSvg.current), 200);
+		setSecondAnimation(animateBlock(mergeNestedArray(randomOrderSecond), logFinished));
+		setTimeout(() => playBtnAnimation(playSvg.current), 100);
 	}, [gameStatus, index]);
 
 	useEffect(() => {
@@ -230,13 +229,13 @@ function Game({ cards }) {
 		return (
 			<>
 				<DivContainer>
-					<CardList cards={cards} showModal={showModal} />
-					<a href="/" className="animation-button button mb-2">
+					<CardList auth={auth} cards={cards} showModal={showModal} />
+					<a href="/" className="animation-button button mt-6 mb-2">
 						Play again
 					</a>
 				</DivContainer>
 				{showingModal ? (
-					<ModalWindow cards={cards} modalIndex={modalIndex} hideModal={hideModal} />
+					<ModalWindow auth={auth} cards={cards} modalIndex={modalIndex} hideModal={hideModal} />
 				) : null}
 			</>
 		);

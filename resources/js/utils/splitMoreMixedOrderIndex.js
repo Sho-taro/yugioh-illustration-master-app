@@ -11,4 +11,4 @@ for (let i = 34; i < 68; i++){
 };
 
 export { randomIndexFirst, randomIndexSecond };
-// それぞれ要素の順番入れ替えた後に１つの配列に結合したものを、animateBlock関数に渡す
+// それぞれ要素の順番を入れ替えた後に１つの配列に結合したものを、animateBlock関数に渡す
