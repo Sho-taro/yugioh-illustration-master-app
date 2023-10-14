@@ -1,0 +1,32 @@
+/* Circular Progress Bar */
+.circular-progressbar {
+  width: 15vw;
+  max-width: 75px;
+  aspect-ratio: 1/1;
+  /* background-color: rgb(83, 71, 208); */
+  border-radius: 50%;
+  background: conic-gradient(rgb(237, 237, 237) 10deg, rgb(29, 32, 34) 0deg);
+  /* box-shadow: inset 6px 6px 10px rgb(183, 186, 195), inset -6px -6px 10px rgb(199, 199, 211); */
+  /* filter: drop-shadow(0 0 5px rgb(84, 65, 250)); */
+  position: relative;
+}
+.circular-progressbar::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  display: block;
+  width: 75%;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  background-color: rgb(255, 255, 255);
+}
+.circular-progressbar-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}

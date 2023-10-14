@@ -242,53 +242,75 @@ td {
   border-bottom: solid 4px rgba(100, 100, 100, 1); */
 }
 
-/* Circular Progress Bar */
-.circular-progressbar {
-  width: 15vw;
-  max-width: 75px;
-  aspect-ratio: 1/1;
-  /* background-color: rgb(83, 71, 208); */
-  border-radius: 50%;
-  background: conic-gradient(rgb(237, 237, 237) 10deg, rgb(29, 32, 34) 0deg);
-  box-shadow: inset 6px 6px 10px rgb(183, 186, 195), inset -6px -6px 10px rgb(199, 199, 211);
-  /* filter: drop-shadow(0 0 5px rgb(84, 65, 250)); */
+/* Progressbar */
+.progressbar {
+  /* Size */
+  width: 500px;
+  max-width: 100%;
+  height: 5px;
+
+  /* Content alignment */
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: stretch;
   position: relative;
+
+  /* Style */
+  border-radius: 2px;
+  background-color: rgb(198, 198, 208);
 }
-.circular-progressbar::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 1;
-  display: block;
-  width: 75%;
-  aspect-ratio: 1/1;
-  border-radius: 50%;
-  background-color: rgb(255, 255, 255);
+.bar {
+  /* Size */
+  width: 100%;
+
+  /* Style */
+  /* background: rgba(70, 82, 255, 1); */
+  background: rgb(45, 45, 45);
+  /* box-shadow: 0 0 20px #5441fa; */
+  border-radius: 2px;
 }
-.circular-progressbar-text {
+.progressbar-text-container {
+  font-size: 0.9rem;
+  /* Content alignment */
+  /* テキストを右端 上下中央 に固定 */
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 2;
+  bottom: 0%;
+  right: 0%;
+  /* translate(0px, -50px) → x軸方向に0px, y軸方向に-50px だけ平行移動 */
+  transform: translate(0 , 100%);
 }
 
+
+
+.card-index {
+  width: 10vw;
+  max-width: 65px;
+  /* aspect-ratio: 1 / 1; */
+  text-align: center;
+  /* background-color: rgb(221, 221, 233); */
+  border: 2px solid rgb(198, 198, 208);
+  border-radius: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 /* AnimationController */
 /* .animation-button-container {
   text-align: center;
 } */
 .play-pause-button {
+  margin: 0 1.5rem;
   width: 15vw;
-  max-width: 75px;
+  max-width: 85px;
   aspect-ratio: 1/1;
   /* background-color: rgb(83, 71, 208); */
   border-radius: 50%;
-  background: linear-gradient(145deg, #d1d1d9, #f8f8ff);
-  box-shadow:  6px 6px 12px #c5c5cd, -6px -6px 12px #ffffff;
-  /* box-shadow: 0px 0px 6px rgb(84, 65, 250); */
+  border: 2px solid rgb(198, 198, 208);
+  background-color: rgb(232, 232, 241);
+  /* background: linear-gradient(145deg, #d1d1d9, #f8f8ff);
+  box-shadow:  6px 6px 12px #c5c5cd, -6px -6px 12px #ffffff; */
   position: relative;
   cursor: pointer;
 }
@@ -308,20 +330,23 @@ td {
   background-size: contain;
 }
 .play-pause-button:hover {
-  background: linear-gradient(145deg, #cacad2, #ededf4);
+  background-color: rgb(198, 198, 208);
+  /* background: linear-gradient(145deg, #cacad2, #ededf4); */
 }
 .play-pause-button:active {
   transform: scale(0.96);
-  box-shadow:  4px 4px 10px #c5c5cd, -4px -4px 10px #ffffff;
+  /* box-shadow:  4px 4px 10px #c5c5cd, -4px -4px 10px #ffffff; */
 }
 .answer-button {
-  width: 15vw;
-  max-width: 75px;
+  width: 10vw;
+  max-width: 65px;
   aspect-ratio: 1/1;
   /* background-color: rgb(83, 71, 208); */
   border-radius: 50%;
-  background: linear-gradient(145deg, #d1d1d9, #f8f8ff);
-  box-shadow:  6px 6px 12px #c5c5cd, -6px -6px 12px #ffffff;
+  border: 2px solid rgb(198, 198, 208);
+  background-color: rgb(232, 232, 241);
+  /* background: linear-gradient(145deg, #d1d1d9, #f8f8ff);
+  box-shadow:  6px 6px 12px #c5c5cd, -6px -6px 12px #ffffff; */
   /* box-shadow: 0px 0px 6px rgb(84, 65, 250); */
   position: relative;
   cursor: pointer;
@@ -342,20 +367,23 @@ td {
   background-size: contain;
 }
 .answer-button:hover {
-  background: linear-gradient(145deg, #cacad2, #ededf4);
+  background-color: rgb(198, 198, 208);
+  /* background: linear-gradient(145deg, #cacad2, #ededf4); */
 }
 .answer-button:active {
   transform: scale(0.96);
-  box-shadow:  4px 4px 10px #c5c5cd, -4px -4px 10px #ffffff;
+  /* box-shadow:  4px 4px 10px #c5c5cd, -4px -4px 10px #ffffff; */
 }
 .next-button {
-  width: 15vw;
-  max-width: 75px;
+  width: 10vw;
+  max-width: 65px;
   aspect-ratio: 1/1;
   /* background-color: rgb(83, 71, 208); */
+  border: 2px solid rgb(198, 198, 208);
   border-radius: 50%;
-  background: linear-gradient(145deg, #d1d1d9, #f8f8ff);
-  box-shadow:  6px 6px 12px #c5c5cd, -6px -6px 12px #ffffff;
+  background-color: rgb(232, 232, 241);
+  /* background: linear-gradient(145deg, #d1d1d9, #f8f8ff);
+  box-shadow:  6px 6px 12px #c5c5cd, -6px -6px 12px #ffffff; */
   /* box-shadow: 0px 0px 6px rgb(84, 65, 250); */
   position: relative;
   cursor: pointer;
@@ -376,11 +404,12 @@ td {
   background-size: contain;
 }
 .next-button:hover {
-  background: linear-gradient(145deg, #cacad2, #ededf4);
+  background-color: rgb(198, 198, 208);
+  /* background: linear-gradient(145deg, #cacad2, #ededf4); */
 }
 .next-button:active {
   transform: scale(0.96);
-  box-shadow:  4px 4px 10px #c5c5cd, -4px -4px 10px #ffffff;
+  /* box-shadow:  4px 4px 10px #c5c5cd, -4px -4px 10px #ffffff; */
 }
 .disabled-button {
   pointer-events: none;

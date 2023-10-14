@@ -34,7 +34,7 @@ function ProgressBar({ value }) {
 						duration: '0.5',
 					}}></motion.div>
 				<div className="progressbar-text-container">
-          <p><i className="text-white"><span ref={progressTextRef} className="text-white">100</span>%</i></p>
+          <p><span ref={progressTextRef}>100</span>%</p>
 				</div>
 			</div>
 		</div>

@@ -7,8 +7,8 @@ import Layout from '../Layouts/Layout';
 import CardInfo from '../Components/Game/CardInfo';
 import ImagesContainer from '../Components/Game/ImagesContainer';
 import CardList from '../Components/Game/CardList';
-// import ProgressBar from '../Components/Game/ProgressBar';
-import CircularProgressBar from '../Components/Game/CircularProgressBar';
+import ProgressBar from '../Components/Game/ProgressBar';
+// import CircularProgressBar from '../Components/Game/CircularProgressBar';
 import DivContainer from '../Components/Game/DivContainer';
 import ModalWindow from '../Components/Game/ModalWindow';
 
@@ -185,9 +185,14 @@ function Game({ auth, cards }) {
 							</button>
 						) : (
 							<>
-								<div key={index} className="flex justify-around items-center mt-4">
-									{/* <ProgressBar value={progress} /> */}
-									<CircularProgressBar value={progress} />
+								<ProgressBar value={progress} />
+								{/* <CircularProgressBar value={progress} /> */}
+								<div key={index} className="flex justify-center items-center mt-4">
+									<div className="card-index">
+										<p className="text-xs">
+											<span className="text-base">{index + 1}</span> / 5
+										</p>
+									</div>
 									<div
 										ref={playPauseBtn}
 										className="play-pause-button"
@@ -216,9 +221,6 @@ function Game({ auth, cards }) {
 										/>
 									</div> */}
 								</div>
-								<p className="text-xs text-center text-gray-500 mt-4">
-									( {index + 1} / 5 ){' '}
-								</p>
 							</>
 						)}
 					</div>
