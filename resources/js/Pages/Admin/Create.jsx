@@ -86,7 +86,7 @@ function Create({ errors }) {
 				<Link href={route('admin.card.index')} className="simple-button">
 					登録したカードの一覧へ
 				</Link>
-				<div className="flex justify-center mt-4">
+				<div className="flex justify-start mt-4">
 					<div>
 						<h2 className="text-2xl mb-8">APIからカード情報を取得する</h2>
 						<ApiForm onSubmit={handleApiSubmit} onChange={handleApiChange}></ApiForm>

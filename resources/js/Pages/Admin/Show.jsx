@@ -49,8 +49,8 @@ function Show({ card, errors }) {
 				<Link href={route('admin.card.index')} className="simple-button">
 					一覧へ戻る
 				</Link>
-				<div className="flex justify-center mt-4">
-					<div className="w-1/2 mx-auto mt-12 mr-12">
+				<div className="flex justify-start mt-4">
+					<div className="w-1/2 mt-12">
 						<input
 							id="delete-checkbox"
 							type="checkBox"

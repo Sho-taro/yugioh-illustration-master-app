@@ -123,6 +123,18 @@ input[type="text"] {
   border-radius: 3px;
 }
 
+/* table */
+tr {
+  height: 3rem;
+}
+th {
+  min-width: 180px;
+  text-align: left;
+}
+td {
+  text-align: left;
+}
+
 
 
 /* ImagesContainer */
@@ -544,16 +556,6 @@ input[type="text"] {
   color: aliceblue;
   background-color: rgba(77, 77, 77, 1);
 }
-tr {
-  height: 3rem;
-}
-th {
-  min-width: 180px;
-  text-align: left;
-}
-td {
-  text-align: left;
-}
 
 /* Create */
 .register-table th, .register-table td {
@@ -572,9 +574,9 @@ td {
   color: black;
   border: none;
 }
-.show-table th {
+/* .show-table th {
   width: 20rem;
-}
+} */
 .show-table input {
   color: black;
 }
