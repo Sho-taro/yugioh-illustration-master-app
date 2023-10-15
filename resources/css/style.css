@@ -27,11 +27,12 @@ p, h1, h2, h3, h4 {
 .layout-bg {
   /* background: linear-gradient(178deg, rgba(255,255,255,1) 0%, rgba(200,200,230,1) 60%, rgb(42, 12, 112) 100%); */
   background-color: rgb(232, 232, 241);
-  background-size: cover;
-  background-position: top center;
+  /* background-size: cover;
+  background-position: top center; */
 }
-/* .adminLayout-bg {
-} */
+.adminLayout-bg {
+  background-color: rgb(232, 232, 241);
+}
 
 .simple-button {
   /* margin: 0.5rem 1rem; */
@@ -65,7 +66,6 @@ p, h1, h2, h3, h4 {
 .animation-button {
   display: inline-block;
   padding: 0.9rem 1.8rem;
-  font-size: 1rem;
   font-weight: 700;
   text-decoration: none;
   color: rgb(16, 53, 181);
@@ -139,7 +139,109 @@ td {
   text-align: left;
 }
 
+.menu-mask {
+  /* Size */
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.85);
+  /* Content alignment */
+  position: fixed;
+  top: 0;
+  left: 0;
+  cursor: pointer;
+  z-index: 15;
 
+  /* ↓ メニューボタンが押されるまで非表示 */
+  display: none;
+}
+.menu-mask.open {
+  /* ↓ メニューボタンが押されたら非表示を解除 */
+  display: block;
+}
+
+.account-svg {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(20%, -125%);
+  cursor: pointer;
+}
+.account-svg:hover {
+  opacity: 0.8;
+}
+/* .account-svg:active {
+  transform: scale(0.96);
+} */
+.account-svg-container {
+  width: 500px;
+  max-width: 100%;
+  position: relative;
+  /* display: flex;
+  justify-content: flex-end; */
+}
+.check-svg {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(-60%, -125%);
+}
+/* .check-svg:hover {
+  opacity: 0.8;
+} */
+/* .check-svg:active {
+  transform: scale(0.96);
+} */
+
+
+.menu-nav {
+  padding: 1.5rem;
+  width: 30vw;
+  min-width: 14rem;
+  height: 100vh;
+  background-color: rgb(232, 232, 241);
+  position: fixed;
+  top: 0;
+  right: 0;
+  transform: translateX(100%);
+  transition: all .4s ease-out;
+  z-index: 16;
+  /* opacityを0にして見えなくする（display: none だとtransitionが効かなくなってしまう） */
+  /* display: none; */
+  opacity: 0
+}
+.menu-nav.open {
+  /* display: block; */
+  opacity: 1;
+  transform: translateX(0%);
+}
+.guest-user-name:before {
+  content: "";
+  position: absolute;
+  bottom: 0%;
+  left: 0%;
+  /* transform: translate(0%, 0%); */
+  z-index: 16;
+  display: block;
+  width: 1.5rem;
+  aspect-ratio: 1/1;
+  background: url(/images/account-circle.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.login-user-name:before {
+  content: "";
+  position: absolute;
+  bottom: 0%;
+  left: 0%;
+  /* transform: translate(0%, 0%); */
+  z-index: 16;
+  display: block;
+  width: 1.5rem;
+  aspect-ratio: 1/1;
+  background: url(/images/account-circle-green.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+}
 
 /* ImagesContainer */
 .card-img {
@@ -284,7 +386,8 @@ td {
 
 
 .card-index {
-  width: 10vw;
+  width: 13vw;
+  min-width: 40px;
   max-width: 65px;
   /* aspect-ratio: 1 / 1; */
   text-align: center;
@@ -301,8 +404,8 @@ td {
   text-align: center;
 } */
 .play-pause-button {
-  margin: 0 1.5rem;
-  width: 15vw;
+  width: 17vw;
+  min-width: 55px;
   max-width: 85px;
   aspect-ratio: 1/1;
   /* background-color: rgb(83, 71, 208); */
@@ -338,7 +441,8 @@ td {
   /* box-shadow:  4px 4px 10px #c5c5cd, -4px -4px 10px #ffffff; */
 }
 .answer-button {
-  width: 10vw;
+  width: 13vw;
+  min-width: 40px;
   max-width: 65px;
   aspect-ratio: 1/1;
   /* background-color: rgb(83, 71, 208); */
@@ -375,7 +479,8 @@ td {
   /* box-shadow:  4px 4px 10px #c5c5cd, -4px -4px 10px #ffffff; */
 }
 .next-button {
-  width: 10vw;
+  width: 13vw;
+  min-width: 40px;
   max-width: 65px;
   aspect-ratio: 1/1;
   /* background-color: rgb(83, 71, 208); */
@@ -514,6 +619,7 @@ td {
   top: 0;
   left: 0;
 
+  cursor: pointer;
   z-index: 10;
 }
 
@@ -571,6 +677,7 @@ td {
   top: 50%;
   left: 0;
   transform: translate(0, -50%);
+  cursor: pointer;
 }
 
 

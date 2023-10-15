@@ -19,7 +19,7 @@ function CardList({ auth, cards, showModal }) {
 									src={`./images/card-images/${card.pack_name}-${card.list_number}.jpg`}
 									alt={card.name_en}
 									onClick={e => showModal(e)}
-									className="w-24 h-auto hover:opacity-50"
+									className="w-24 h-auto cursor-pointer hover:opacity-50"
 									onContextMenu={e => e.preventDefault()}
 									onMouseDown={e => e.preventDefault()}
 								/>

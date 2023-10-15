@@ -6,7 +6,7 @@ function ModalWindow({ auth, cards, modalIndex, hideModal }) {
 	let imgClassName;
 	if (auth.user !== null) {
 		// ログインしている場合（画像クリック/タッチで画像をダウンロードできるようになる）
-		imgClassName = 'modal-image';
+		imgClassName = 'modal-image cursor-pointer';
 	} else {
 		// ログインしている場合（画像クリック/タッチできなくなる）
 		imgClassName = 'modal-image pointer-events-none';
@@ -25,7 +25,7 @@ function ModalWindow({ auth, cards, modalIndex, hideModal }) {
 							// onMouseDown={e => e.preventDefault()}
 						/>
 					</div>
-					<p className="close-modal-p text-white mt-4" onClick={hideModal}>
+					<p className="close-modal-p text-white mt-4 cursor-pointer" onClick={hideModal}>
 						閉じる
 					</p>
 				</div>
