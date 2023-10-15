@@ -98,16 +98,16 @@ export default function Register() {
 
 					<InputError message={errors.password_confirmation} className="mt-2" />
 				</div>
+				<Link
+					href={route('login')}
+					className="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+					既に登録済みの方はこちら
+				</Link>
 
-				<div className="flex items-center justify-between mt-4">
+				<div className="flex items-center justify-center mt-4">
 					<PrimaryButton className="ml-4" disabled={processing}>
 						新規登録
 					</PrimaryButton>
-					<Link
-						href={route('login')}
-						className="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-						既に登録済みの方はこちら
-					</Link>
 				</div>
 			</form>
 		</GuestLayout>
