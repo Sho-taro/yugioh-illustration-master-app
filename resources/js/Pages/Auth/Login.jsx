@@ -66,7 +66,7 @@ export default function Login({ status, canResetPassword }) {
 					<InputError message={errors.password} className="mt-2" />
 				</div>
 
-				<div className="block mt-4">
+				<div className="block mt-4 mb-2">
 					<label className="flex items-center">
 						<Checkbox
 							name="remember"
@@ -75,12 +75,12 @@ export default function Login({ status, canResetPassword }) {
 						/>
 						<span className="ml-2 text-sm text-gray-600">ログイン状態を保持する</span>
 					</label>
-					<Link
-						href={route('register')}
-						className="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-						まだ登録がお済みでない方はこちら
-					</Link>
 				</div>
+				<Link
+					href={route('register')}
+					className="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+					まだ登録がお済みでない方はこちら
+				</Link>
 
 				<div className="flex items-start justify-center mt-4">
 					<PrimaryButton className="ml-4" disabled={processing}>

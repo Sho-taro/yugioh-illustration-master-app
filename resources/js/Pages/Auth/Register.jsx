@@ -82,7 +82,7 @@ export default function Register() {
 					<InputError message={errors.password} className="mt-2" />
 				</div>
 
-				<div className="mt-4">
+				<div className="my-4">
 					<InputLabel htmlFor="password_confirmation" value="パスワード再入力" />
 
 					<TextInput
