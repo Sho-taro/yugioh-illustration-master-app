@@ -82,10 +82,11 @@ export default function Login({ status, canResetPassword }) {
 					まだ登録がお済みでない方はこちら
 				</Link>
 
-				<div className="flex items-start justify-center mt-4">
-					<PrimaryButton className="ml-4" disabled={processing}>
+				<div className="flex flex-col items-center justify-center mt-8">
+					<PrimaryButton className="" disabled={processing}>
 						ログイン
 					</PrimaryButton>
+					<Link href={route('index')} className="block mt-4 underline">または ログインせずに戻る</Link>
 					{/* {canResetPassword && (
                         <Link
                             href={route('password.request')}

@@ -104,10 +104,11 @@ export default function Register() {
 					既に登録済みの方はこちら
 				</Link>
 
-				<div className="flex items-center justify-center mt-4">
-					<PrimaryButton className="ml-4" disabled={processing}>
+				<div className="flex flex-col items-center justify-center mt-8">
+					<PrimaryButton className="" disabled={processing}>
 						新規登録
 					</PrimaryButton>
+					<Link href={route('index')} className="block mt-4 underline">または 登録せずに戻る</Link>
 				</div>
 			</form>
 		</GuestLayout>
