@@ -15,8 +15,8 @@ function ModalWindow({ auth, cards, modalIndex, hideModal }) {
   return (
 		<>
 			<div className="mask-window" onClick={hideModal}>
-				<div className="modal-window">
-					<div>
+				<div className="modal-window" onClick={e => e.stopPropagation()}>
+					<div onClick={e => e.stopPropagation()}>
 						<img
 							src={`/images/card-images/${cards[modalIndex].pack_name}-${cards[modalIndex].list_number}.jpg`}
 							alt={cards[modalIndex].name_en}
@@ -27,7 +27,9 @@ function ModalWindow({ auth, cards, modalIndex, hideModal }) {
 							// onMouseDown={e => e.preventDefault()}
 						/>
 					</div>
-					<p className="close-modal-p text-white mt-4 cursor-pointer hover:opacity-80" onClick={hideModal}>
+					<p
+						className="close-modal-p text-white mt-4 cursor-pointer hover:opacity-80"
+						onClick={hideModal}>
 						閉じる
 					</p>
 				</div>
