@@ -2,7 +2,16 @@ import React from 'react';
 import { getCardInfoUrl } from '../../utils/getCardInfoUrl';
 // import './css/CardList.css';
 
-function CardList({ auth, cards, showModal }) {
+function CardList({ auth, cards, showModal, showingModal }) {
+	// imgのclassName
+	let imgClassName;
+	if (showingModal) {
+		// モーダルウィンドウを表示している間は、カードリストの画像を選択できないようにする
+		imgClassName = 'w-24 h-auto cursor-pointer hover:opacity-50 pointer-events-none';
+	} else {
+		imgClassName = 'w-24 h-auto cursor-pointer hover:opacity-50';
+	}
+
   return (
 		<>
 			<h2 className="my-2 text-xl sm:text-3xl font-bold">Card list</h2>
@@ -19,7 +28,8 @@ function CardList({ auth, cards, showModal }) {
 									src={`./images/card-images/${card.pack_name}-${card.list_number}.jpg`}
 									alt={card.name_en}
 									onClick={e => showModal(e)}
-									className="w-24 h-auto cursor-pointer hover:opacity-50"
+									className={imgClassName}
+									// ↓ マウスの右クリックをできなくする
 									onContextMenu={e => e.preventDefault()}
 									onMouseDown={e => e.preventDefault()}
 								/>
@@ -64,9 +74,11 @@ function CardList({ auth, cards, showModal }) {
 			</ul>
 			{!auth.user && (
 				<div>
-					<p className="text-left text-xs text-gray-500">ログインすると、次回からイラスト画像をダウンロードできます（完全無料）</p>
-					<p className="text-left text-xs text-gray-500">⇒
-						<a href={route('login')}>ログイン</a>または
+					<p className="text-left text-xs text-gray-500">
+						ログインすると、次回からイラスト画像をダウンロードできます（完全無料）
+					</p>
+					<p className="text-left text-xs text-gray-500">
+						⇒<a href={route('login')}>ログイン</a>または
 						<a href={route('register')}>新規登録</a>
 					</p>
 				</div>

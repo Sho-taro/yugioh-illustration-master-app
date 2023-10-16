@@ -252,7 +252,7 @@ function Game({ auth, cards }) {
 		return (
 			<>
 				<DivContainer>
-					<CardList auth={auth} cards={cards} showModal={showModal} />
+					<CardList auth={auth} cards={cards} showModal={showModal} showingModal={showingModal} />
 					<a href="/" className="animation-button button my-6  text-sm sm:text-base">
 						Play again
 					</a>
