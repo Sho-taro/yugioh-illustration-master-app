@@ -12,7 +12,7 @@ function Form({ onSubmit, onChange }) {
 					onChange={e => onChange(e)}
 					className="text-black/90"
 				></input>
-				<button type="submit" className="simple-button">APIを叩く</button>
+				<button type="submit" className="simple-button ml-4">APIを叩く</button>
 			</form>
 		</>
 	);
