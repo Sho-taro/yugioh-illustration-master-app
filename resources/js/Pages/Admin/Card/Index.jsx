@@ -23,6 +23,7 @@ function Index({ data, message }) {
 					<thead>
 						<tr>
 							<th width="350">カード名</th>
+							<th>イラスト</th>
 							<th>作成日時</th>
 							<th>更新日時</th>
 						</tr>
@@ -36,6 +37,13 @@ function Index({ data, message }) {
 										className="text-blue-600 underline">
 										{card.name_ja}
 									</Link>
+								</td>
+								<td>
+									<img
+										src={`/images/card-images/${card.pack_name}-${card.list_number}.jpg`}
+										alt="カードイラスト"
+										className="w-12"
+									/>
 								</td>
 								<td className="px-2 py-4">{card.created_at}</td>
 								<td className="px-2 py-4">{card.updated_at}</td>
