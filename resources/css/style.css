@@ -53,9 +53,11 @@ p, h1, h2, h3, h4 {
   /* -webkit-clip-path: polygon(1rem 0, calc(100% - 1rem) 0, 100% 50%, calc(100% - 1rem) 100%, 1rem 100%, 0 50%);
   clip-path: polygon(1rem 0, calc(100% - 1rem) 0, 100% 50%, calc(100% - 1rem) 100%, 1rem 100%, 0 50%); */
 }
-.simple-button:hover {
-  /* ホバーされているとき、box-shadowを大きくする */
-  box-shadow: 0 0 15px rgb(81, 86, 255);
+@media(hover: hover) {
+  .simple-button:hover {
+    /* ホバーされているとき、box-shadowを大きくする */
+    box-shadow: 0 0 15px rgb(81, 86, 255);
+  }
 }
 .simple-button:active {
   /* クリックされたとき、ボタンの大きさを小さくする */
@@ -92,16 +94,20 @@ p, h1, h2, h3, h4 {
   transition: all .2s;
   z-index: -1;
 }
-.animation-button:hover {
-  color: whitesmoke;
-  /* border: 3px solid rgb(81, 86, 255); */
-  box-shadow: 0px 0px 10px rgb(16, 53, 181);
+@media(hover: hover) {
+  .animation-button:hover {
+    color: whitesmoke;
+    /* border: 3px solid rgb(81, 86, 255); */
+    box-shadow: 0px 0px 10px rgb(16, 53, 181);
+  }
 }
 .animation-button:active {
   transform: scale(0.96);
 }
-.animation-button:hover::before {
-  transform: translateX(0);
+@media(hover: hover) {
+  .animation-button:hover::before {
+    transform: translateX(0);
+  }
 }
 
 a {
@@ -166,8 +172,10 @@ td {
   transform: translate(20%, -125%);
   cursor: pointer;
 }
-.account-svg:hover {
-  opacity: 0.8;
+@media(hover: hover) {
+  .account-svg:hover {
+    opacity: 0.8;
+  }
 }
 /* .account-svg:active {
   transform: scale(0.96);
@@ -387,7 +395,7 @@ td {
 
 .card-index {
   width: 13vw;
-  min-width: 40px;
+  min-width: 45px;
   max-width: 65px;
   /* aspect-ratio: 1 / 1; */
   text-align: center;
@@ -405,7 +413,7 @@ td {
 } */
 .play-pause-button {
   width: 17vw;
-  min-width: 55px;
+  min-width: 60px;
   max-width: 85px;
   aspect-ratio: 1/1;
   /* background-color: rgb(83, 71, 208); */
@@ -432,9 +440,11 @@ td {
   background-repeat: no-repeat;
   background-size: contain;
 }
-.play-pause-button:hover {
-  background-color: rgb(198, 198, 208);
-  /* background: linear-gradient(145deg, #cacad2, #ededf4); */
+@media(hover: hover) {
+  .play-pause-button:hover {
+    background-color: rgb(198, 198, 208);
+    /* background: linear-gradient(145deg, #cacad2, #ededf4); */
+  }
 }
 .play-pause-button:active {
   transform: scale(0.96);
@@ -442,7 +452,7 @@ td {
 }
 .answer-button {
   width: 13vw;
-  min-width: 40px;
+  min-width: 45px;
   max-width: 65px;
   aspect-ratio: 1/1;
   /* background-color: rgb(83, 71, 208); */
@@ -470,9 +480,11 @@ td {
   background-repeat: no-repeat;
   background-size: contain;
 }
-.answer-button:hover {
-  background-color: rgb(198, 198, 208);
-  /* background: linear-gradient(145deg, #cacad2, #ededf4); */
+@media(hover: hover) {
+  .answer-button:hover {
+    background-color: rgb(198, 198, 208);
+    /* background: linear-gradient(145deg, #cacad2, #ededf4); */
+  }
 }
 .answer-button:active {
   transform: scale(0.96);
@@ -480,7 +492,7 @@ td {
 }
 .next-button {
   width: 13vw;
-  min-width: 40px;
+  min-width: 45px;
   max-width: 65px;
   aspect-ratio: 1/1;
   /* background-color: rgb(83, 71, 208); */
@@ -508,9 +520,11 @@ td {
   background-repeat: no-repeat;
   background-size: contain;
 }
-.next-button:hover {
-  background-color: rgb(198, 198, 208);
-  /* background: linear-gradient(145deg, #cacad2, #ededf4); */
+@media(hover: hover) {
+  .next-button:hover {
+    background-color: rgb(198, 198, 208);
+    /* background: linear-gradient(145deg, #cacad2, #ededf4); */
+  }
 }
 .next-button:active {
   transform: scale(0.96);
@@ -596,9 +610,11 @@ td {
   width: 80%;
   font-size: 0.8rem;
 }
-.download-container a img:hover {
-  opacity: 0.5;
-  /* transform: scale(0.95); */
+@media(hover: hover) {
+  .download-container a img:hover {
+    opacity: 0.5;
+    /* transform: scale(0.95); */
+  }
 }
 .download-container a img:active {
   opacity: 0.5;
