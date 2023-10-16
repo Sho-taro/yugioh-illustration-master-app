@@ -21,11 +21,13 @@ function ModalWindow({ auth, cards, modalIndex, hideModal }) {
 							src={`/images/card-images/${cards[modalIndex].pack_name}-${cards[modalIndex].list_number}.jpg`}
 							alt={cards[modalIndex].name_en}
 							className={imgClassName}
+							// ↓ 画像をクリックしてもモーダルウィンドウが閉じないようにする
+							onClick={e => e.stopPropagation()}
 							// onContextMenu={e => e.preventDefault()}
 							// onMouseDown={e => e.preventDefault()}
 						/>
 					</div>
-					<p className="close-modal-p text-white mt-4 cursor-pointer" onClick={hideModal}>
+					<p className="close-modal-p text-white mt-4 cursor-pointer hover:opacity-80" onClick={hideModal}>
 						閉じる
 					</p>
 				</div>

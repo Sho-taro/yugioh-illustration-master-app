@@ -253,7 +253,7 @@ function Game({ auth, cards }) {
 			<>
 				<DivContainer>
 					<CardList auth={auth} cards={cards} showModal={showModal} />
-					<a href="/" className="animation-button button mt-6 mb-2  text-sm sm:text-base">
+					<a href="/" className="animation-button button my-6  text-sm sm:text-base">
 						Play again
 					</a>
 				</DivContainer>
@@ -270,7 +270,7 @@ function Game({ auth, cards }) {
 	}
 }
 
-// Persistant Layoutsの設定
+// Persistent Layoutsの設定
 Game.layout = page => <Layout title="イラストクイズ" children={page} />;
 
 export default Game;
