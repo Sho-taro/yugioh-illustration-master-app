@@ -31,6 +31,6 @@ class StoreController extends Controller
         $data = Card::orderBy('created_at', 'DESC')->paginate(15);    // paginateメソッドは、配列ではなくコレクション（jsonオブジェクト？）を返す
 
         // return redirect('/admin/card');
-        return inertia('Admin/Index', ['data' => $data, 'message' => 'カードを新規登録しました']);
+        return inertia('Admin/Card/Index', ['data' => $data, 'message' => 'カードを新規登録しました']);
     }
 }

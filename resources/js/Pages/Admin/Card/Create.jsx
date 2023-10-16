@@ -5,12 +5,12 @@ import { Link, usePage } from '@inertiajs/react';
 // import './css/Create.css';
 
 // コンポーネント
-import RegisterForm from '../../Components/Admin/RegisterForm';
-import ApiForm from '../../Components/Admin/ApiForm';
-import DisplayImage from '../../Components/Admin/DisplayImage';
+import RegisterForm from '@/Components/Admin/RegisterForm';
+import ApiForm from '@/Components/Admin/ApiForm';
+import DisplayImage from '@/Components/Admin/DisplayImage';
 
-import { sampleData } from '../../utils/sampleCardData';
-import AdminLayout from '../../Layouts/AdminLayout';
+import { sampleData } from '@/utils/sampleCardData';
+import AdminLayout from '@/Layouts/AdminLayout';
 
 function Create({ errors }) {
 	const [cardData, setCardData] = useState(sampleData);

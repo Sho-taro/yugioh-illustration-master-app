@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import AdminLayout from '../../Layouts/AdminLayout';
+import AdminLayout from '@/Layouts/AdminLayout';
 import { Link, router, usePage } from '@inertiajs/react';
 // import './css/Show.css';
 

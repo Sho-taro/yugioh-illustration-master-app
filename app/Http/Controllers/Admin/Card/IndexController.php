@@ -19,6 +19,6 @@ class IndexController extends Controller
         // dd($data);
 
         // return Inertia::render('Admin/Index', ['data' => $data]);
-        return inertia('Admin/Index', ['data' => $data]);   // inertiaへルパ関数を使うと記述がシンプル
+        return inertia('Admin/Card/Index', ['data' => $data]);   // inertiaへルパ関数を使うと記述がシンプル
     }
 }

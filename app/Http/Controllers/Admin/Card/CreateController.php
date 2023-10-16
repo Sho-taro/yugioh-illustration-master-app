@@ -13,6 +13,6 @@ class CreateController extends Controller
      */
     public function __invoke(Request $request)
     {
-        return inertia('Admin/Create', []);
+        return inertia('Admin/Card/Create', []);
     }
 }

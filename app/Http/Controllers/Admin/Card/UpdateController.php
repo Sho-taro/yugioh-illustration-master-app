@@ -40,6 +40,6 @@ class UpdateController extends Controller
 
 
         // return redirect()->route('admin.card.index');
-        return inertia('Admin/Index', ['data' => $data, 'message' => 'カードを編集しました']);
+        return inertia('Admin/Card/Index', ['data' => $data, 'message' => 'カードを編集しました']);
     }
 }

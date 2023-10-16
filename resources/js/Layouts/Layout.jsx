@@ -4,7 +4,7 @@ import { Head } from '@inertiajs/react';
 function Layout({title, children}) {
   return (
     <>
-      <Head title={title ? title : "イラストクイズ"} />
+      <Head title={title ? title : "遊戯王イラストクイズ"} />
       {/* <Head>
         <title>{title}</title>
       </Head> */}

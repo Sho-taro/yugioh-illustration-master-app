@@ -1,49 +1,38 @@
-import React from 'react';
-import AdminLayout from '../../Layouts/AdminLayout';
+import React from 'react'
 import { Link } from '@inertiajs/react';
-import Pagination from '@/Components/Admin/Pageination';
-// import './css/Index.css';
+import AdminLayout from '@/Layouts/AdminLayout';
 
-function Index({ data, message }) {
-	// console.log(data);
-	return (
+function Index({cardsNum, usersNum}) {
+  return (
 		<>
 			<div className="w-4/5 mt-8 mx-auto">
-				<Link href={route('admin.card.create')} className="simple-button">
-					カードを新規登録
+				<Link href={route('index')} className="simple-button">
+					プレイ画面へ
 				</Link>
-				{message && <p className="text-green-500">{message}</p>}
-				<table border="1" className="index-table mt-4">
-					<thead>
-						<tr>
-							<th width="350">カード名</th>
-							<th>作成日時</th>
-							<th>更新日時</th>
-						</tr>
-					</thead>
-					{data.data.map(card => (
-						<tbody key={card.id}>
-							<tr>
-								<td className="px-2 py-4">
-									<Link
-										href={`/admin/card/${card.id}`}
-										className="text-blue-600 underline">
-										{card.name_ja}
-									</Link>
-								</td>
-								<td className="px-2 py-4">{card.created_at}</td>
-								<td className="px-2 py-4">{card.created_at}</td>
-							</tr>
-						</tbody>
-					))}
-				</table>
-				<Pagination data={data} />
+				<div className="mt-8">
+					<div className="flex mb-4">
+						<p className="text-2xl">
+							登録済みカード: <span className="font-bold">{cardsNum}</span>枚
+						</p>
+						<Link href={route('admin.card.index')} className="simple-button ml-8">
+							カード一覧へ
+						</Link>
+					</div>
+					<div className="flex mb-4">
+						<p className="text-2xl">
+							ユーザ数: <span className="font-bold">{usersNum}</span>人
+						</p>
+						<Link href={route('admin.user.index')} className="simple-button ml-8">
+							ユーザ一覧へ
+						</Link>
+					</div>
+				</div>
 			</div>
 		</>
-	);
+  );
 }
 
-// Persistent Layoutの設定
-Index.layout = page => <AdminLayout title="カード一覧" children={page} />;
+// Persistent Layoutsの設定
+Index.layout = page => <AdminLayout title="トップ" children={page} />;
 
-export default Index;
+export default Index

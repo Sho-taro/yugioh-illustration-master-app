@@ -4,7 +4,7 @@ import { Head } from '@inertiajs/react';
 function AdminLayout({title, children}) {
   return (
 		<>
-			<Head title={title ? `${title} - 管理者画面` : "管理者画面"} />
+			<Head title={title ? `${title} - 管理画面` : "管理画面"} />
 			{/* <Head>
         <title>{title}</title>
       </Head> */}

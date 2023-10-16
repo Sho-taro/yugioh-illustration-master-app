@@ -25,6 +25,6 @@ class ShowController extends Controller
             throw new NotFoundHttpException('該当するカードが見つかりませんでした');
         }
 
-        return inertia('Admin/Show', ['card' => $card]);
+        return inertia('Admin/Card/Show', ['card' => $card]);
     }
 }

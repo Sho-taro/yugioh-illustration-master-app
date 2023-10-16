@@ -1,27 +1,28 @@
 import React, { useState, useEffect, useRef } from 'react';
 // import { router } from '@inertiajs/react';    // GETメソッド以外で送信するため
 // import { Link } from '@inertiajs/react';
-import Layout from '../Layouts/Layout';
+import Layout from '@/Layouts/Layout';
+// imp: '@'は絶対パス'/Users/skkch96/Desktop/programing/laravel/yugioh-illustration-master-app/resources/js'を表す
 
 // ↓ ここからComponents
-// import AnimationController from '../Components/Game/AnimationController';
-import CardInfo from '../Components/Game/CardInfo';
-import ImagesContainer from '../Components/Game/ImagesContainer';
-import CardList from '../Components/Game/CardList';
-import ProgressBar from '../Components/Game/ProgressBar';
-// import CircularProgressBar from '../Components/Game/CircularProgressBar';
-import DivContainer from '../Components/Game/DivContainer';
-import ModalWindow from '../Components/Game/ModalWindow';
+// import AnimationController from '@/Components/Game/AnimationController';
+import CardInfo from '@/Components/Game/CardInfo';
+import ImagesContainer from '@/Components/Game/ImagesContainer';
+import CardList from '@/Components/Game/CardList';
+import ProgressBar from '@/Components/Game/ProgressBar';
+// import CircularProgressBar from '@/Components/Game/CircularProgressBar';
+import DivContainer from '@/Components/Game/DivContainer';
+import ModalWindow from '@/Components/Game/ModalWindow';
 import Menubar from '@/Components/Game/Menubar';
 import AccountIcon from '@/Components/Game/AccountIcon';
 
 // ここからアニメーション関連 anime.js
-import { blocksNum } from '../utils/animationConfig';
-import { animateBlock } from '../utils/animateBlock';
-import { changeValsOrder } from '../utils/changeValsOrder';
-import { randomIndexFirst, randomIndexSecond } from '../utils/splitMoreMixedOrderIndex';
-import { mergeNestedArray } from '../utils/mergeNestedArray';
-import { playBtnAnimation } from '../utils/playBtnAnimation';
+import { blocksNum } from '@/utils/animationConfig';
+import { animateBlock } from '@/utils/animateBlock';
+import { changeValsOrder } from '@/utils/changeValsOrder';
+import { randomIndexFirst, randomIndexSecond } from '@/utils/splitMoreMixedOrderIndex';
+import { mergeNestedArray } from '@/utils/mergeNestedArray';
+import { playBtnAnimation } from '@/utils/playBtnAnimation';
 
 
 function Game({ auth, cards }) {
@@ -271,7 +272,7 @@ function Game({ auth, cards }) {
 }
 
 // Persistent Layoutsの設定
-Game.layout = page => <Layout title="イラストクイズ" children={page} />;
+Game.layout = page => <Layout title="遊戯王イラストクイズ" children={page} />;
 
 export default Game;
 
