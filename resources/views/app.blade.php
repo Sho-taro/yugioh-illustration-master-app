@@ -7,6 +7,8 @@
 
         <!-- <title inertia>{{ config('app.name', 'Laravel') }}</title> -->
 
+        <link rel="icon" type="images/png" href="/images/app-icon3.png">
+
         <!-- ↓ リセットcss -->
         <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">
         <!-- ↓ anime.js -->
