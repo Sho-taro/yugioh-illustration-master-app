@@ -10,10 +10,10 @@ function ProgressBar({ value }) {
     if (!progressTextRef.current) return;
     const prevProgressText = progressTextRef.current.textContent;
     // framer-motionのanimate関数
-    // animate関数はprevProgressTextから(100-value)まで値が動的に変化しながら、第３引数に渡されたオブジェクトの処理を実行する
-    animate(parseInt(prevProgressText), 100 - value, {
+    // animate関数はprevProgressTextから valueまで値が動的に変化しながら、第３引数に渡されたオブジェクトの処理を実行する
+    animate(parseInt(prevProgressText), value, {
       duration: 0.5,  // 単位は秒（ミリ秒じゃないので注意）
-      onUpdate: (cv) => {   // cv(current value)はprevProgressTextから(100-value)まで値が変化する)
+      onUpdate: (cv) => {   // cv(current value)はprevProgressTextから value まで値が変化する)
         progressTextRef.current.textContent = cv.toFixed(0);   // toFixed(0)で小数点は切り捨てる
       }
     })
@@ -28,7 +28,7 @@ function ProgressBar({ value }) {
 					// ↓ 今回の場合、propsからvalueが渡されたら、widthが0.5秒かけて変化するアニメーションが走る
 					animate={{
 						// width: '75%',
-						width: `${100 - value}%`,
+						width: `${value}%`,
 					}}
 					transition={{
 						duration: '0.5',
