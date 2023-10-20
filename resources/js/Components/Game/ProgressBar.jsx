@@ -19,7 +19,7 @@ function ProgressBar({ value }) {
     })
   }, [value]);
   return (
-		<div className="max-w-full mt-2 mb-4 sm:mt-4 sm:mb-6">
+		<div className="max-w-full mb-6 sm:mb-10">
 			<div className="progressbar">
 				<motion.div
 					className="bar"

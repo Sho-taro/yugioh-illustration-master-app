@@ -21,7 +21,7 @@ function CardList({ auth, cards, showModal, showingModal }) {
 						<div className="index-container">
 							<p>{i + 1}</p>
 						</div>
-						<div className="main-container">
+						<div className="w-full flex justify-between py-4 pl-5 pr-1 sm:pl-8 sm:pr-4">
 							<div className="flex flex-start flex-col sm:flex-row">
 								<img
 									id={i}
@@ -34,16 +34,16 @@ function CardList({ auth, cards, showModal, showingModal }) {
 									onMouseDown={e => e.preventDefault()}
 								/>
 								<div className="sm:ml-4">
-									<p className="text-xs text-gray-500 text-start">
-										{card.name_ja_kana}
-									</p>
-									<p className="text-sm font-bold text-start sm:text-base">
-										{card.name_ja}
-									</p>
-									{/* <p>
-										<span>{card.frame_type}</span>
-									</p> */}
-									<p className="text-xs text-start">
+									<div className="mb-2">
+										<p className="text-sm font-bold text-start sm:text-base">
+											{card.name_ja}
+										</p>
+										<p className="text-xs text-start">
+											<span className="text-gray">{card.name_ja_kana}</span>
+										</p>
+									</div>
+									<img src={`/images/frame-type-white/${card.frame_type}.png`} alt="フレームタイプ" className="w-12" />
+									<p className="text-xs text-start mt-2">
 										<a
 											href={getCardInfoUrl(card)}
 											target="_blank"

@@ -9,7 +9,7 @@ function ImagesContainer({ gameStatus, index, card, divImg, playSvg, stopSvg, bl
   }, [index]);
 
 	return (
-		<div className="relative">
+		<div className="relative w-10/12 mb-4 sm:mb-8">
 			<img
 				key={`card${index}`}
 				src={`./images/card-images/${card.pack_name}-${card.list_number}.jpg`}

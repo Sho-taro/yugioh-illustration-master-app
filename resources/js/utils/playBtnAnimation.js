@@ -12,8 +12,8 @@
 
 const subKeyframes = {
 	opacity: [.8, 0],
-	width: ['80px', '100px'],
-	height: ['80px', '100px'],
+	width: ['60px', '80px'],
+	height: ['60px', '80px'],
 	offset: [0, 1],
 };
 const subOptions = {

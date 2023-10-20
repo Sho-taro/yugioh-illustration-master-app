@@ -17,7 +17,9 @@ function Menubar({menuMask, menuNav, hideMenu, auth}) {
 						<p className="mb-6 text-lg sm:text-2xl font-bold">メニュー</p>
 						<ul>
 							<li className="guest-user-name relative pl-8 mb-2 text-lg sm:text-2xl border-b border-solid border-gray-500">
-								<i>未ログイン</i>
+								<i>
+									<p>未ログイン</p>
+								</i>
 							</li>
 							<li>
 								<a
@@ -40,7 +42,7 @@ function Menubar({menuMask, menuNav, hideMenu, auth}) {
 						<p className="mb-6 text-lg sm:text-2xl font-bold">メニュー</p>
 						<ul>
 							<li className="login-user-name relative pl-8 mb-2 text-lg sm:text-2xl border-b border-solid border-gray-500">
-								{auth.user.name}
+								<p>{auth.user.name}</p>
 							</li>
 							<li>
 								<p

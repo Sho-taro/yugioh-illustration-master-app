@@ -15,6 +15,8 @@ import DivContainer from '@/Components/Game/DivContainer';
 import ModalWindow from '@/Components/Game/ModalWindow';
 import Menubar from '@/Components/Game/Menubar';
 import AccountIcon from '@/Components/Game/AccountIcon';
+import GameHeader from '@/Components/Game/GameHeader';
+import FrameTypeImg from '@/Components/Game/FrameTypeImg';
 
 // ここからアニメーション関連 anime.js
 import { blocksNum } from '@/utils/animationConfig';
@@ -176,9 +178,21 @@ function Game({ auth, cards }) {
 	if (gameStatus === 'preparing' || gameStatus === 'playing') {
 		return (
 			<>
-				<Menubar menuMask={menuMask} menuNav={menuNav} hideMenu={hideMenu} auth={auth}></Menubar>
+				{gameStatus === 'preparing' && (
+					<Menubar
+						menuMask={menuMask}
+						menuNav={menuNav}
+						hideMenu={hideMenu}
+						auth={auth}></Menubar>
+				)}
 				<DivContainer>
-					<AccountIcon gameStatus={gameStatus} showMenu={showMenu} auth={auth}></AccountIcon>
+					{gameStatus === 'preparing' && (
+						<AccountIcon
+							gameStatus={gameStatus}
+							showMenu={showMenu}
+							auth={auth}></AccountIcon>
+					)}
+					{gameStatus === 'playing' && <GameHeader index={index}></GameHeader>}
 					<ImagesContainer
 						gameStatus={gameStatus}
 						index={index}
@@ -189,35 +203,42 @@ function Game({ auth, cards }) {
 						blocksNum={blocksNum}
 						controlAnimation={controlAnimation}
 					/>
-					<div className="max-w-full">
+					<div className="w-full">
 						<CardInfo
 							index={index}
 							cardName={cardName}
 							cardNameKana={cardNameKana}
 							card={card}
 						/>
+						<ProgressBar value={progress} />
+						{/* <CircularProgressBar value={progress} /> */}
 						{gameStatus === 'preparing' ? (
-							<button
-								className="animation-button mt-2 sm:mt-4 text-sm sm:text-base"
-								onClick={startGame}>
-								Click to Play
-							</button>
+							<div className="text-center">
+								<button
+									className="shiny-button text-sm sm:text-base px-5 py-3 sm:px-8 sm:py-4"
+									onClick={startGame}>
+									Click to Play
+								</button>
+							</div>
 						) : (
 							<>
-								<ProgressBar value={progress} />
-								{/* <CircularProgressBar value={progress} /> */}
-								<div key={index} className="flex justify-center items-center mt-4">
-									<div className="card-index">
+								<div
+									key={index}
+									className="flex justify-center items-center relative">
+									{/* <div className="card-index">
 										<p className="text-xs sm:text-sm">
 											<span className="text-sm sm:text-base font-bold">
 												{index + 1}
 											</span>{' '}
 											/ 5
 										</p>
+									</div> */}
+									<div className="text-xs absolute top-1/2 left-1/4 -translate-x-2/3 -translate-y-1/2">
+										<FrameTypeImg card={card}></FrameTypeImg>
 									</div>
 									<div
 										ref={playPauseBtn}
-										className="play-pause-button mx-4 sm:mx-6"
+										className="play-pause-button"
 										onClick={() => {
 											// gameStatusが'playing'な場合に限りcontrolAnimationを実行
 											if (gameStatus !== 'playing') return;
@@ -225,12 +246,16 @@ function Game({ auth, cards }) {
 										}}></div>
 									{!isAnimationCompleted ? (
 										// まだアニメーションが終わっていない場合
-										<div
-											className="answer-button"
-											onClick={finishAnimation}></div>
+										<div className="absolute top-1/2 right-1/4 translate-x-1/2 -translate-y-1/2">
+											<div
+												className="answer-button"
+												onClick={finishAnimation}></div>
+										</div>
 									) : (
 										// すでにアニメーションが終わっている場合
-										<div className="next-button" onClick={toNextCard}></div>
+										<div className="absolute top-1/2 right-1/4 translate-x-1/2 -translate-y-1/2">
+											<div className="next-button" onClick={toNextCard}></div>
+										</div>
 									)}
 									{/* <div className="ml-4 sm:ml-8">
 										<AnimationController
@@ -253,8 +278,15 @@ function Game({ auth, cards }) {
 		return (
 			<>
 				<DivContainer>
-					<CardList auth={auth} cards={cards} showModal={showModal} showingModal={showingModal} />
-					<a href="/" className="animation-button button my-6  text-sm sm:text-base">
+					<CardList
+						auth={auth}
+						cards={cards}
+						showModal={showModal}
+						showingModal={showingModal}
+					/>
+					<a
+						href="/"
+						className="shiny-button button my-6 text-sm sm:text-base px-5 py-3 sm:px-8 sm:py-4">
 						Play again
 					</a>
 				</DivContainer>
