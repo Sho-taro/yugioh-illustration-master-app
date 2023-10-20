@@ -116,6 +116,7 @@ p, h1, h2, h3, h4 {
 
 .shiny-button {
   font-weight: bold;
+  text-decoration: none;
   display: block;
   position: relative;
   background-color: rgb(56, 54, 203);
@@ -126,6 +127,7 @@ p, h1, h2, h3, h4 {
   text-decoration: none;
   overflow: hidden;
   transition: 400ms;
+  cursor: pointer;
 }
 .shiny-button::before {
     position: absolute;

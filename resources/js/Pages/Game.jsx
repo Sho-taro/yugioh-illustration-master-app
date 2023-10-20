@@ -215,7 +215,7 @@ function Game({ auth, cards }) {
 						{gameStatus === 'preparing' ? (
 							<div className="text-center">
 								<button
-									className="shiny-button text-sm sm:text-base px-5 py-3 sm:px-8 sm:py-4"
+									className="shiny-button mx-auto text-sm sm:text-base px-5 py-3 sm:px-8 sm:py-4"
 									onClick={startGame}>
 									Click to Play
 								</button>
