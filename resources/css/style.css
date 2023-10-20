@@ -192,8 +192,8 @@ td {
   text-align: left;
 }
 
-.max-w-500px {
-  max-width: 500px;
+.max-w-550px {
+  max-width: 550px;
 }
 
 .menu-mask {
@@ -442,7 +442,7 @@ td {
 .frame-type-img {
   width: 15vw;
   min-width: 70px;
-  max-width: 120px;
+  max-width: 100px;
 }
 
 

@@ -7,9 +7,9 @@ function CardList({ auth, cards, showModal, showingModal }) {
 	let imgClassName;
 	if (showingModal) {
 		// モーダルウィンドウを表示している間は、カードリストの画像を選択できないようにする
-		imgClassName = 'w-24 h-auto cursor-pointer hover:opacity-50 pointer-events-none';
+		imgClassName = 'w-24 h-24 cursor-pointer hover:opacity-50 pointer-events-none';
 	} else {
-		imgClassName = 'w-24 h-auto cursor-pointer hover:opacity-50';
+		imgClassName = 'w-24 h-24 cursor-pointer hover:opacity-50';
 	}
 
   return (
