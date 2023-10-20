@@ -3,7 +3,7 @@ import React from 'react';
 
 function DivContainer({ children }) {
 	return (
-		<div className="mx-auto min-h-screen px-4 flex flex-col items-center justify-center max-w-600px bg-opacity-70 sm:px-12 sm:w-4/5 md:w-3/5 lg:w-1/2">
+		<div className="mx-auto min-h-screen px-4 flex flex-col items-center justify-center max-w-500px bg-opacity-70 sm:px-12 sm:w-4/5 md:w-3/5 lg:w-1/2">
 			{children}
 		</div>
 	);
