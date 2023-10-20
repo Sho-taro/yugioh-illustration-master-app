@@ -28,9 +28,10 @@ class StoreController extends Controller
             'archetype' => ['string', 'nullable'],     // これだけ nullable
         ]));
 
-        $data = Card::orderBy('created_at', 'DESC')->paginate(15);    // paginateメソッドは、配列ではなくコレクション（jsonオブジェクト？）を返す
+        // $data = Card::orderBy('created_at', 'DESC')->paginate(15);    // paginateメソッドは、配列ではなくコレクション（jsonオブジェクト？）を返す
+        $registeredCard = Card::orderBy('created_at', 'DESC')->firstOrFail();
 
         // return redirect('/admin/card');
-        return inertia('Admin/Card/Index', ['data' => $data, 'message' => 'カードを新規登録しました']);
+        return inertia('Admin/Card/Create', ['registeredCard' => $registeredCard ,'message' => 'カードを新規登録しました']);
     }
 }
