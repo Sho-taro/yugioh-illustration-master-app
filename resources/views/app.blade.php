@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <!-- <title inertia>{{ config('app.name', 'Laravel') }}</title> -->
+        <meta name="description" content="遊戯王カードのイラストクイズに挑戦！新弾のカードから懐かしのカードまで、100種類以上のカードが登場。遊戯王を愛する者なら、全問正解できるよな！？">
 
         <link rel="icon" type="images/png" href="/images/app-icon3.png">
 
