@@ -1,7 +1,8 @@
-import React from 'react'
+import React from 'react';
 
-function Pagination({data}) {
-  return (
+function Pagination({ data }) {
+	console.log(data);
+	return (
 		<div className="mt-4 mb-8">
 			{/* {data.links.map(link => (
 					<p>
@@ -21,16 +22,18 @@ function Pagination({data}) {
 							</p>
 						);
 					}
-				} else if (i === 1) {
-					if (data.current_page === 1) {
-						return <span key={i}>　{link.label}　</span>;
+				} else if (i === data.links.length - 1) {
+					if (data.current_page === data.last_page) {
+						return <p key={i}>次のページへ</p>;
 					} else {
 						return (
-							<span key={i}>
-								<a href={link.url}>　{link.label}　</a>
-							</span>
+							<p key={i}>
+								<a href={link.url}>次のページへ</a>
+							</p>
 						);
 					}
+				} else if (link.label === '...') {
+					return <span key={i}>　{link.label}　</span>;
 				} else if (i === data.last_page) {
 					if (i === data.current_page) {
 						return <span key={i}>　{link.label}　</span>;
@@ -41,30 +44,20 @@ function Pagination({data}) {
 							</span>
 						);
 					}
-				} else if (i === data.last_page + 1) {
-					if (data.current_page === data.last_page) {
-						return <p key={i}>次のページへ</p>;
+				} else {
+					if (parseInt(link.label) === data.current_page) {
+						return <span key={i}>　{link.label}　</span>;
 					} else {
 						return (
-							<p key={i}>
-								<a href={link.url}>次のページへ</a>
-							</p>
+							<span key={i}>
+								<a href={link.url}>　{link.label}　</a>
+							</span>
 						);
 					}
-				} else if (i === data.current_page) {
-					return <span key={i}>　{link.label}　</span>;
-				} else if (i >= data.current_page - 3 && i <= data.current_page + 3) {
-					return (
-						<span key={i}>
-							<a href={link.url}>　{link.label}　</a>
-						</span>
-					);
-				} else {
-					return null;
 				}
 			})}
 		</div>
-  );
+	);
 }
 
-export default Pagination
+export default Pagination;
