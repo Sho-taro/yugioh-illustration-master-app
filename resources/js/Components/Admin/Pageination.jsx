@@ -1,7 +1,7 @@
 import React from 'react';
 
 function Pagination({ data }) {
-	console.log(data);
+	// console.log(data);
 	return (
 		<div className="mt-4 mb-8">
 			{/* {data.links.map(link => (
