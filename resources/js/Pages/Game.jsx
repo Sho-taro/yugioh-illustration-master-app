@@ -59,6 +59,7 @@ function Game({ auth, cards }) {
 	// 	targets.push(`.block-index${randomIndexSecond[i]}`);
 	// }
 
+
 	useEffect(() => {
 		if (gameStatus !== 'playing') return;
 		// console.log(randomOrderFirst)
@@ -275,6 +276,7 @@ function Game({ auth, cards }) {
 			</>
 		);
 	} else if (gameStatus === 'finished') {
+		// ５つのクイズがすべて終了した後に画面に表示するコンポーネント
 		return (
 			<>
 				<DivContainer>
@@ -308,7 +310,5 @@ Game.layout = page => <Layout title="遊戯王イラストクイズ" children={p
 
 export default Game;
 
-// 次にやること　→ Animation.playState をいじってみる running, paused, finished??
+// 次にやること　→ Animation.playState をいじってみる （running/paused/finished??）
 // Animation.currentTime　→ アニメーションの再生位置(https://www.webdesignleaves.com/pr/jquery/web-animation-api-basic.html)
-
-// 再レンダー後に、同じ変数が重複して存在してしまっている（レンダー前の変数が残ってしまっている）

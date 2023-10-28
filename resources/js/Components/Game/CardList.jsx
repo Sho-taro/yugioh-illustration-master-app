@@ -14,7 +14,7 @@ function CardList({ auth, cards, showModal, showingModal }) {
 
   return (
 		<>
-			<h2 className="my-2 text-xl sm:text-3xl font-bold">Card list</h2>
+			<h2 className="my-4 text-xl sm:text-3xl font-bold">Card list</h2>
 			<ul className="card-list-ul">
 				{cards.map((card, i) => (
 					<li key={card.id} className="card-list-li">
