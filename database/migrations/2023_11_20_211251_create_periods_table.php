@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('periods', function (Blueprint $table) {
             $table->id();
+            $table->string('period_code')->unique();
+            $table->string('name')->unique();
             $table->timestamps();
         });
     }
