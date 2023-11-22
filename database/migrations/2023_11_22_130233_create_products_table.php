@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('product_code')->unique();
             $table->string('name_en')->unique();
-            $table->string('name_en')->unique();
+            $table->string('name_ja')->unique();
             $table->string('period_code');   // 外部キー
             $table->foreign('period_code')->references('period_code')->on('periods')->cascadeOnDelete();   // periodsテーブルのperiod_codeカラムを参照先として、外部キー制約を追加
             $table->timestamps();
