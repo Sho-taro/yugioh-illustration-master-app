@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
+            $table->string('product_code')->unique();
+            $table->string('name_en')->unique();
+            $table->string('name_en')->unique();
+            $table->string('period_code');   // 外部キー
+            $table->foreign('period_code')->references('period_code')->on('periods')->cascadeOnDelete();   // periodsテーブルのperiod_codeカラムを参照先として、外部キー制約を追加
             $table->timestamps();
         });
     }
