@@ -13,6 +13,16 @@ return new class extends Migration
     {
         Schema::create('cards2', function (Blueprint $table) {
             $table->id();
+            $table->string('product_code');
+            $table->foreign('product_code')->references('product_code')->on('products')->cascadeOnDelete();   // 外部キー制約
+            $table->string('list_number');
+            $table->string('card_id');
+            $table->string('name_en');
+            $table->string('name_ja');
+            $table->string('name_ja_kana');
+            $table->string('frame_type_code');
+            $table->foreign('frame_type_code')->references('frame_type_code')->on('frame_types')->cascadeOnDelete();  //外部キー制約
+            $table->string('archetype')->nullable();
             $table->timestamps();
         });
     }
