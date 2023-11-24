@@ -10,21 +10,69 @@ function Index({cardsNum, usersNum}) {
 					プレイ画面へ
 				</Link>
 				<div className="mt-8">
-					<div className="flex mb-4">
-						<p className="text-2xl">
-							登録済みカード: <span className="font-bold">{cardsNum}</span>枚
-						</p>
-						<Link href={route('admin.card.index')} className="simple-button ml-8">
-							カード一覧へ
-						</Link>
-					</div>
-					<div className="flex mb-4">
-						<p className="text-2xl">
-							ユーザ数: <span className="font-bold">{usersNum}</span>人
-						</p>
-						<Link href={route('admin.user.index')} className="simple-button ml-8">
-							ユーザ一覧へ
-						</Link>
+					<div>
+						<div className="w-1/3 mb-8">
+							<p className="text-lg">
+								<span className="font-bold">一覧表示</span>はこちら
+							</p>
+							<div className="px-4 py-2 bg-gray-100 rounded-md">
+								<p>カード</p>
+								<div className="ml-4 mb-4">
+									<ul>
+										<li>
+											<Link href={route('admin.card.index')}>
+												cardsテーブル
+											</Link>
+										</li>
+										<li>
+											<Link>productsテーブル</Link>
+										</li>
+										<li>
+											<Link>periodsテーブル</Link>
+										</li>
+										<li>
+											<Link>frame_typesテーブル</Link>
+										</li>
+									</ul>
+								</div>
+								<p>ユーザー</p>
+								<div className="ml-4">
+									<ul>
+										<li>
+											<Link href={route('admin.user.index')}>
+												usersテーブル
+											</Link>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div className="w-1/3">
+							<p className="text-lg">
+								<span className="font-bold">新規登録</span>はこちら
+							</p>
+							<div className="px-4 py-2 bg-gray-100 rounded-md">
+								<p>カード</p>
+								<div className="ml-4">
+									<ul>
+										<li>
+											<Link href={route('admin.card.create')}>
+												cardsテーブル
+											</Link>
+										</li>
+										<li>
+											<Link>productsテーブル</Link>
+										</li>
+										<li>
+											<Link>periodsテーブル</Link>
+										</li>
+										<li>
+											<Link>frame_typesテーブル</Link>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
