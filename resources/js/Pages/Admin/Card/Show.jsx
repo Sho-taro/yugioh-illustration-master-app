@@ -53,7 +53,7 @@ function Show({ card, errors }) {
 					</Link>
 				</div>
 				<h2 className="text-lg">カード詳細を確認・編集</h2>
-				<div className="p-8 bg-gray-100 rounded-md mb-4 flex justify-around">
+				<div className="p-8 mb-4 bg-gray-100 rounded-md flex justify-around">
 					<div className="">
 						<img
 							src={`/images/card-images/${card.pack_name}-${card.list_number}.jpg`}
@@ -250,20 +250,25 @@ function Show({ card, errors }) {
 						</form>
 					</div>
 				</div>
-				<form onSubmit={handleDelete} className="">
-					<input
-						id="delete-checkbox"
-						type="checkBox"
-						checked={isDeletable}
-						onChange={() => setIsDeletable(prev => !prev)}
-					/>
-					<label htmlFor="delete-checkbox" className="text-black select-none">
-						削除可能にする
-					</label>
-					<button disabled={!isDeletable} className="simple-button delete-btn">
-						このカードを削除する
-					</button>
-				</form>
+				<h2 className="text-lg">カードを削除</h2>
+				<div className="p-8 bg-gray-100 rounded-md flex justify-start">
+					<div>
+						<input
+							id="delete-checkbox"
+							type="checkBox"
+							checked={isDeletable}
+							onChange={() => setIsDeletable(prev => !prev)}
+						/>
+						<label htmlFor="delete-checkbox" className="text-black select-none">
+							削除可能にする
+						</label>
+					</div>
+					<form onSubmit={handleDelete} className="ml-4">
+						<button disabled={!isDeletable} className="simple-button delete-btn">
+							このカードを削除する
+						</button>
+					</form>
+				</div>
 			</div>
 		</>
 	);
