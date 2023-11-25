@@ -17,13 +17,18 @@ function DisplayImage({ cardData, imageIndex, onBtnClick }) {
 
 	// const imgSrc = cardData.card_images[0].image_url_cropped;
 
-	const handleClick = () => {
-		if (index + 1 < imgsNum) {
-			setIndex(i => i + 1);
-		} else {
-			setIndex(0);
-		}
-	};
+	// imgsNumの値によって「次の画像を表示」のcssを切り替える
+	let buttonClassName = 'text-gray-500 block';
+	if (imgsNum >= 2) {
+		buttonClassName = 'underline text-blue-700 block';
+	}
+	// const handleClick = () => {
+	// 	if (index + 1 < imgsNum) {
+	// 		setIndex(i => i + 1);
+	// 	} else {
+	// 		setIndex(0);
+	// 	}
+	// };
 
 	// 画像をローカルにダウンロードする
 	// const handleClick = () => {
@@ -36,25 +41,34 @@ function DisplayImage({ cardData, imageIndex, onBtnClick }) {
 
 	return (
 		<>
-			<div className="w-3/4 mt-4">
-				{/* 画像を１枚ずつ表示するパターン */}
-				<img src={imgSources[imageIndex]} alt={cardData.name} className="w-full border-4 border-slate-400 border-solid"></img>
-
-				{/* 画像を全部表示するパターン */}
-				{/* {imgSources.map((imgSource) => (
+			<div className="mt-4 flex justify-start items-end">
+				<div>
+					{/* 画像を１枚ずつ表示するパターン */}
+					<img
+						src={imgSources[imageIndex]}
+						alt={cardData.name}
+						className="w-48 border-2 border-slate-400 border-solid"></img>
+					{/* 画像を全部表示するパターン */}
+					{/* {imgSources.map((imgSource) => (
 					<img key={imgSource} src={imgSource} alt={cardData.name} width="350" height="350"></img>
 				))} */}
 
-				{/* <img src={imgSrc} alt={cardData.name} width="350" height="350"></img> */}
-				{/* <a href={imgSrc} id="download" onClick={() => handleClick()}>
+					{/* <img src={imgSrc} alt={cardData.name} width="350" height="350"></img> */}
+					{/* <a href={imgSrc} id="download" onClick={() => handleClick()}>
 					画像をダウンロード
 				</a> */}
-			</div>
-			<div className="mt-2">
-				<p>イラスト: {imageIndex + 1}/{imgsNum}</p>
-				<button className="simple-button" onClick={onBtnClick} disabled={imgsNum === 1}>
-					次の画像
-				</button>
+				</div>
+				<div className="ml-4">
+					<p>
+						{imageIndex + 1}枚目 （全{imgsNum}枚）
+					</p>
+					<button
+						className={buttonClassName}
+						onClick={onBtnClick}
+						disabled={imgsNum === 1}>
+						次の画像を表示
+					</button>
+				</div>
 			</div>
 		</>
 	);

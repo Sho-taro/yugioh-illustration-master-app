@@ -82,23 +82,31 @@ function Create({ errors, registeredCard, message }) {
 
 		return (
 			<>
-				<div className="w-4/5 mt-8 mx-auto" key={registeredCard && registeredCard.id}>
-					<Link href={route('admin.card.index')} className="simple-button">
-						登録したカードの一覧へ
-					</Link>
-					<div className="flex justify-start mt-4">
-						<div>
-							{message && <p className="text-green-500 my-2">{message}: {registeredCard.name_ja}</p>}
-							<h2 className="text-2xl mb-8">APIからカード情報を取得する</h2>
-							<ApiForm
-								onSubmit={handleApiSubmit}
-								onChange={handleApiChange}></ApiForm>
-							{errMsg && <p className="text-red-500 my-2">{errMsg}</p>}
-							<DisplayImage
-								cardData={cardData}
-								imageIndex={imageIndex}
-								onBtnClick={displayNextImage}></DisplayImage>
+				<div className="w-2/3 mt-8 mx-auto" key={registeredCard && registeredCard.id}>
+					<div className="flex justify-between mb-4">
+						<h1 className="font-bold text-3xl mb-4">カード 新規登録</h1>
+						<Link href={route('admin.index')}>{'< '} 管理画面トップへ戻る</Link>
+					</div>
+					<div>
+						<h2 className="text-lg">APIからカード情報を取得する</h2>
+						<div className="p-8 bg-gray-100 rounded-md">
+							{message && (
+								<p className="text-green-500 my-2">
+									{message}: {registeredCard.name_ja}
+								</p>
+							)}
+							<div>
+								<ApiForm
+									onSubmit={handleApiSubmit}
+									onChange={handleApiChange}></ApiForm>
+								{errMsg && <p className="text-red-500 my-2">{errMsg}</p>}
+								<DisplayImage
+									cardData={cardData}
+									imageIndex={imageIndex}
+									onBtnClick={displayNextImage}></DisplayImage>
+							</div>
 						</div>
+
 						<div className="pl-12 border-l ">
 							<RegisterForm
 								cardData={cardData}

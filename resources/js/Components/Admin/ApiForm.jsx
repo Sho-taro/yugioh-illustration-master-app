@@ -10,9 +10,10 @@ function Form({ onSubmit, onChange }) {
 					type="text"
 					placeholder="カード名を英語で入力"
 					onChange={e => onChange(e)}
-					className="text-black/90"
-				></input>
-				<button type="submit" className="simple-button ml-4">APIを叩く</button>
+					className="text-black/90 w-80"></input>
+				<button type="submit" className="simple-button ml-8">
+					APIを叩く
+				</button>
 			</form>
 		</>
 	);
