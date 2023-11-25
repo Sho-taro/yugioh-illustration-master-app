@@ -45,34 +45,23 @@ function Show({ card, errors }) {
 
 	return (
 		<>
-			<div className="w-4/5 mt-8 mx-auto">
-				<Link href={route('admin.card.index')} className="simple-button">
-					一覧へ戻る
-				</Link>
-				<div className="flex justify-start mt-4">
-					<div className="w-1/2 mt-12">
-						<input
-							id="delete-checkbox"
-							type="checkBox"
-							checked={isDeletable}
-							onChange={() => setIsDeletable(prev => !prev)}
-						/>
-						<label htmlFor="delete-checkbox" className="text-black select-none">
-							削除可能にする
-						</label>
+			<div className="w-3/5 mt-8 mx-auto">
+				<div className="flex justify-between">
+					<h1 className="font-bold text-3xl mb-8">カード詳細</h1>
+					<Link href={route('admin.card.index')} className="">
+						{'< '} カード一覧へ戻る
+					</Link>
+				</div>
+				<h2 className="text-lg">カード詳細を確認・編集</h2>
+				<div className="p-8 bg-gray-100 rounded-md mb-4 flex justify-around">
+					<div className="">
 						<img
 							src={`/images/card-images/${card.pack_name}-${card.list_number}.jpg`}
 							alt={card.name_ja}
-							className="w-4/5 border-4 border-slate-400 border-solid"
+							className="w-80 border-4 border-slate-400 border-solid"
 						/>
-						<form onSubmit={handleDelete} className="mt-4">
-							<button disabled={!isDeletable} className="simple-button delete-btn">
-								このカードを削除する
-							</button>
-						</form>
 					</div>
-					<div className="pl-12 border-l">
-						<h2 className="text-2xl mb-4">カード詳細</h2>
+					<div className="">
 						<input
 							id="edit-checkbox"
 							type="checkBox"
@@ -94,19 +83,20 @@ function Show({ card, errors }) {
 								</thead>
 								<tbody>
 									<tr>
-										<th>データベース内ID: </th>
+										<th className="text-right">データベース内ID:　</th>
 										<td>
-											<p>{values.id}</p>
+											<p className="w-80">{values.id}</p>
 										</td>
 									</tr>
 								</tbody>
 								<tbody>
 									<tr>
-										<th>カードID(8ケタ): </th>
+										<th className="text-right">カードID(8ケタ):　</th>
 										<td>
 											<input
 												name="card_id"
 												type="text"
+												className="w-80"
 												onChange={handleChange}
 												value={values.card_id}
 												disabled={!isEditable}
@@ -119,11 +109,12 @@ function Show({ card, errors }) {
 								</tbody>
 								<tbody>
 									<tr>
-										<th>パック型番: </th>
+										<th className="text-right">パック型番:　</th>
 										<td>
 											<input
 												name="pack_name"
 												type="text"
+												className="w-80"
 												onChange={handleChange}
 												value={values.pack_name}
 												disabled={!isEditable}
@@ -136,11 +127,12 @@ function Show({ card, errors }) {
 								</tbody>
 								<tbody>
 									<tr>
-										<th>パック内リスト番号: </th>
+										<th className="text-right">パック内リスト番号:　</th>
 										<td>
 											<input
 												name="list_number"
 												type="text"
+												className="w-80"
 												onChange={handleChange}
 												value={values.list_number}
 												disabled={!isEditable}
@@ -153,11 +145,12 @@ function Show({ card, errors }) {
 								</tbody>
 								<tbody>
 									<tr>
-										<th>カード名(英語): </th>
+										<th className="text-right">カード名(英語):　</th>
 										<td>
 											<input
 												name="name_en"
 												type="text"
+												className="w-80"
 												style={{ color: 'gray' }}
 												onChange={handleChange}
 												value={values.name_en}
@@ -171,11 +164,12 @@ function Show({ card, errors }) {
 								</tbody>
 								<tbody>
 									<tr>
-										<th>カード名(日本語): </th>
+										<th className="text-right">カード名(日本語):　</th>
 										<td>
 											<input
 												name="name_ja"
 												type="text"
+												className="w-80"
 												onChange={handleChange}
 												value={values.name_ja}
 												disabled={!isEditable}
@@ -188,11 +182,12 @@ function Show({ card, errors }) {
 								</tbody>
 								<tbody>
 									<tr>
-										<th>カード名(日本語よみ): </th>
+										<th className="text-right">カード名(日本語よみ):　</th>
 										<td>
 											<input
 												name="name_ja_kana"
 												type="text"
+												className="w-80"
 												onChange={handleChange}
 												value={values.name_ja_kana}
 												disabled={!isEditable}
@@ -207,11 +202,12 @@ function Show({ card, errors }) {
 								</tbody>
 								<tbody>
 									<tr>
-										<th>カードタイプ: </th>
+										<th className="text-right">カードタイプ:　</th>
 										<td>
 											<input
 												name="frame_type"
 												type="text"
+												className="w-80"
 												style={{ color: 'gray' }}
 												onChange={handleChange}
 												value={values.frame_type}
@@ -225,11 +221,12 @@ function Show({ card, errors }) {
 								</tbody>
 								<tbody>
 									<tr>
-										<th>カテゴリ: </th>
+										<th className="text-right">カテゴリ:　</th>
 										<td>
 											<input
 												name="archetype"
 												type="text"
+												className="w-80"
 												style={{ color: 'gray' }}
 												onChange={handleChange}
 												value={values.archetype}
@@ -242,15 +239,31 @@ function Show({ card, errors }) {
 									</tr>
 								</tbody>
 							</table>
-							<button
-								type="submit"
-								className="simple-button mt-2 bg-black/90"
-								disabled={!isEditable}>
-								変更を保存
-							</button>
+							<div className="flex justify-end mt-4">
+								<button
+									type="submit"
+									className="simple-button bg-black/90 block"
+									disabled={!isEditable}>
+									変更を保存
+								</button>
+							</div>
 						</form>
 					</div>
 				</div>
+				<form onSubmit={handleDelete} className="">
+					<input
+						id="delete-checkbox"
+						type="checkBox"
+						checked={isDeletable}
+						onChange={() => setIsDeletable(prev => !prev)}
+					/>
+					<label htmlFor="delete-checkbox" className="text-black select-none">
+						削除可能にする
+					</label>
+					<button disabled={!isDeletable} className="simple-button delete-btn">
+						このカードを削除する
+					</button>
+				</form>
 			</div>
 		</>
 	);

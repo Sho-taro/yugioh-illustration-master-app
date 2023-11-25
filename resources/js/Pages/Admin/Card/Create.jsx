@@ -84,7 +84,7 @@ function Create({ errors, registeredCard, message }) {
 			<>
 				<div className="w-2/3 mt-8 mx-auto" key={registeredCard && registeredCard.id}>
 					<div className="flex justify-between mb-4">
-						<h1 className="font-bold text-3xl mb-4">カード 新規登録</h1>
+						<h1 className="font-bold text-3xl mb-4">カード新規登録</h1>
 						<Link href={route('admin.index')}>{'< '} 管理画面トップへ戻る</Link>
 					</div>
 					<div>
