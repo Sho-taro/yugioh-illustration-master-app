@@ -52,6 +52,31 @@ Route::middleware(['admin'])->group(function () {
     Route::get('/admin/card/{id}', \App\Http\Controllers\Admin\Card\ShowController::class)->name('admin.card.show');
     Route::put('/admin/card/{id}', \App\Http\Controllers\Admin\Card\UpdateController::class)->name('admin.card.update');
     Route::delete('/admin/card/{id}', \App\Http\Controllers\Admin\Card\DestroyController::class)->name('admin.card.destroy');
+
+    // ↓ products
+    Route::get('/admin/product', \App\Http\Controllers\Admin\Product\IndexController::class)->name('admin.product.index');
+    Route::post('/admin/product', \App\Http\Controllers\Admin\Product\StoreController::class)->name('admin.product.store');
+    Route::get('/admin/product/create', \App\Http\Controllers\Admin\Product\CreateController::class)->name('admin.product.create');
+    Route::get('/admin/product/{id}', \App\Http\Controllers\Admin\Product\ShowController::class)->name('admin.product.show');
+    Route::put('/admin/product/{id}', \App\Http\Controllers\Admin\Product\UpdateController::class)->name('admin.product.update');
+    Route::delete('/admin/product/{id}', \App\Http\Controllers\Admin\Product\DestroyController::class)->name('admin.product.destroy');
+
+    // ↓ periods
+    Route::get('/admin/period', \App\Http\Controllers\Admin\period\IndexController::class)->name('admin.period.index');
+    Route::post('/admin/period', \App\Http\Controllers\Admin\period\StoreController::class)->name('admin.period.store');
+    Route::get('/admin/period/create', \App\Http\Controllers\Admin\period\CreateController::class)->name('admin.period.create');
+    Route::get('/admin/period/{id}', \App\Http\Controllers\Admin\period\ShowController::class)->name('admin.period.show');
+    Route::put('/admin/period/{id}', \App\Http\Controllers\Admin\period\UpdateController::class)->name('admin.period.update');
+    Route::delete('/admin/period/{id}', \App\Http\Controllers\Admin\period\DestroyController::class)->name('admin.period.destroy');
+
+    // ↓ frame_types
+    Route::get('/admin/frametype', \App\Http\Controllers\Admin\frametype\IndexController::class)->name('admin.frametype.index');
+    Route::post('/admin/frametype', \App\Http\Controllers\Admin\frametype\StoreController::class)->name('admin.frametype.store');
+    Route::get('/admin/frametype/create', \App\Http\Controllers\Admin\frametype\CreateController::class)->name('admin.frametype.create');
+    Route::get('/admin/frametype/{id}', \App\Http\Controllers\Admin\frametype\ShowController::class)->name('admin.frametype.show');
+    Route::put('/admin/frametype/{id}', \App\Http\Controllers\Admin\frametype\UpdateController::class)->name('admin.frametype.update');
+    Route::delete('/admin/frametype/{id}', \App\Http\Controllers\Admin\frametype\DestroyController::class)->name('admin.frametype.destroy');
+
     // ↓ ユーザ
     Route::get('/admin/user', \App\Http\Controllers\Admin\User\IndexController::class)->name('admin.user.index');
 });
