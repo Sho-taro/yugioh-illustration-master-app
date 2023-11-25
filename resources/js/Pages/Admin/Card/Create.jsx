@@ -89,25 +89,25 @@ function Create({ errors, registeredCard, message }) {
 					</div>
 					<div>
 						<h2 className="text-lg">APIからカード情報を取得する</h2>
-						<div className="p-8 bg-gray-100 rounded-md">
+						<div className="p-8 bg-gray-100 rounded-md mb-4">
 							{message && (
 								<p className="text-green-500 my-2">
 									{message}: {registeredCard.name_ja}
 								</p>
 							)}
 							<div>
+								{errMsg && <p className="text-red-500 my-2">{errMsg}</p>}
 								<ApiForm
 									onSubmit={handleApiSubmit}
 									onChange={handleApiChange}></ApiForm>
-								{errMsg && <p className="text-red-500 my-2">{errMsg}</p>}
-								<DisplayImage
-									cardData={cardData}
-									imageIndex={imageIndex}
-									onBtnClick={displayNextImage}></DisplayImage>
 							</div>
 						</div>
-
-						<div className="pl-12 border-l ">
+						<h2 className="text-lg">カード情報を編集・登録する</h2>
+						<div className="p-8 bg-gray-100 rounded-md flex justify-around">
+							<DisplayImage
+								cardData={cardData}
+								imageIndex={imageIndex}
+								onBtnClick={displayNextImage}></DisplayImage>
 							<RegisterForm
 								cardData={cardData}
 								values={values}

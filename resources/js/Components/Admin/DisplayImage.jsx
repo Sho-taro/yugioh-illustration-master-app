@@ -41,13 +41,13 @@ function DisplayImage({ cardData, imageIndex, onBtnClick }) {
 
 	return (
 		<>
-			<div className="mt-4 flex justify-start items-end">
+			<div className="">
 				<div>
 					{/* 画像を１枚ずつ表示するパターン */}
 					<img
 						src={imgSources[imageIndex]}
 						alt={cardData.name}
-						className="w-48 border-2 border-slate-400 border-solid"></img>
+						className="w-72 border-2 border-slate-400 border-solid"></img>
 					{/* 画像を全部表示するパターン */}
 					{/* {imgSources.map((imgSource) => (
 					<img key={imgSource} src={imgSource} alt={cardData.name} width="350" height="350"></img>
@@ -58,7 +58,7 @@ function DisplayImage({ cardData, imageIndex, onBtnClick }) {
 					画像をダウンロード
 				</a> */}
 				</div>
-				<div className="ml-4">
+				<div className="">
 					<p>
 						{imageIndex + 1}枚目 （全{imgsNum}枚）
 					</p>

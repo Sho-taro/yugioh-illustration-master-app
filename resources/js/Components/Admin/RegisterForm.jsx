@@ -16,18 +16,8 @@ function RegisterForm({ cardData, values, onChange, imageIndex, errors }) {
 
 	return (
 		<>
-			<h2 className="text-2xl mb-2">カード情報をデータベースに登録する</h2>
-			<input
-				id="register-checkbox"
-				type="checkBox"
-				checked={isEditable}
-				onChange={() => setIsEditable(prev => !prev)}
-			/>
-			<label htmlFor="register-checkbox" className="text-black select-none">
-				APIから取得したデータを編集する
-			</label>
 			<form key={cardData.name} onSubmit={handleSubmit} method="POST">
-				<table className="register-table">
+				<table className="register-table mb-4">
 					<thead className="hidden">
 						<tr>
 							<th colSpan="2" className="text-center">
@@ -37,12 +27,13 @@ function RegisterForm({ cardData, values, onChange, imageIndex, errors }) {
 					</thead>
 					<tbody>
 						<tr>
-							<th>カードID(8ケタ): </th>
+							<th className="text-right">カードID(8ケタ):　</th>
 							<td>
 								<input
 									name="card_id"
 									type="text"
 									value={isEditable ? null : cardData.id}
+									className="w-80"
 									disabled={!isEditable}
 									onChange={onChange}
 								/>
@@ -52,12 +43,13 @@ function RegisterForm({ cardData, values, onChange, imageIndex, errors }) {
 					</tbody>
 					<tbody>
 						<tr>
-							<th>パック型番: </th>
+							<th className="text-right">製品コード:　</th>
 							<td>
 								<input
 									key={imageIndex}
 									name="pack_name"
 									type="text"
+									className="w-80"
 									onChange={onChange}
 								/>
 								{errors.pack_name && (
@@ -68,12 +60,13 @@ function RegisterForm({ cardData, values, onChange, imageIndex, errors }) {
 					</tbody>
 					<tbody>
 						<tr>
-							<th>パック内リスト番号: </th>
+							<th className="text-right">製品内リスト番号:　</th>
 							<td>
 								<input
 									key={imageIndex}
 									name="list_number"
 									type="text"
+									className="w-80"
 									onChange={onChange}
 								/>
 								{errors.list_number && (
@@ -84,12 +77,13 @@ function RegisterForm({ cardData, values, onChange, imageIndex, errors }) {
 					</tbody>
 					<tbody>
 						<tr>
-							<th>カード名(英語): </th>
+							<th className="text-right">カード名(英語):　</th>
 							<td>
 								<input
 									name="name_en"
 									type="text"
 									value={isEditable ? null : cardData.name}
+									className="w-80"
 									disabled={!isEditable}
 									onChange={onChange}
 								/>
@@ -99,18 +93,28 @@ function RegisterForm({ cardData, values, onChange, imageIndex, errors }) {
 					</tbody>
 					<tbody>
 						<tr>
-							<th>カード名(日本語): </th>
+							<th className="text-right">カード名(日本語):　</th>
 							<td>
-								<input name="name_ja" type="text" onChange={onChange} />
+								<input
+									name="name_ja"
+									type="text"
+									onChange={onChange}
+									className="w-80"
+								/>
 								{errors.name_ja && <p className="text-red-500">{errors.name_ja}</p>}
 							</td>
 						</tr>
 					</tbody>
 					<tbody>
 						<tr>
-							<th>カード名(日本語よみ): </th>
+							<th className="text-right">カード名(日本語よみ):　</th>
 							<td>
-								<input name="name_ja_kana" type="text" onChange={onChange} />
+								<input
+									name="name_ja_kana"
+									type="text"
+									onChange={onChange}
+									className="w-80"
+								/>
 								{errors.name_ja_kana && (
 									<p className="text-red-500">{errors.name_ja_kana}</p>
 								)}
@@ -119,12 +123,13 @@ function RegisterForm({ cardData, values, onChange, imageIndex, errors }) {
 					</tbody>
 					<tbody>
 						<tr>
-							<th>カードタイプ: </th>
+							<th className="text-right">カードタイプ:　</th>
 							<td>
 								<input
 									name="frame_type"
 									type="text"
 									value={isEditable ? null : cardData.frameType}
+									className="w-80"
 									disabled={!isEditable}
 									onChange={onChange}
 								/>
@@ -136,12 +141,13 @@ function RegisterForm({ cardData, values, onChange, imageIndex, errors }) {
 					</tbody>
 					<tbody>
 						<tr>
-							<th>カテゴリ: </th>
+							<th className="text-right">カテゴリ:　</th>
 							<td>
 								<input
 									name="archetype"
 									type="text"
 									value={isEditable ? null : cardData.archetype}
+									className="w-80"
 									disabled={!isEditable}
 									onChange={onChange}
 								/>
@@ -152,18 +158,29 @@ function RegisterForm({ cardData, values, onChange, imageIndex, errors }) {
 						</tr>
 					</tbody>
 				</table>
-				<div className="mt-4 flex justify-start items-center">
+				<div className="mb-4">
+					<input
+						id="register-checkbox"
+						type="checkBox"
+						checked={isEditable}
+						onChange={() => setIsEditable(prev => !prev)}
+					/>
+					<label htmlFor="register-checkbox" className="text-black select-none">
+						APIから取得したデータを編集可能にする
+					</label>
+				</div>
+				<div className="mt-4 flex justify-between">
+					<p className="mr-8">
+						カードナンバー: <i className="font-bold hover:select-all">{fileName}</i>
+					</p>
 					<button
-						className="simple-button"
+						className="text-blue-700 underline hover:text-blue-500 active:scale-95"
 						onClick={e => {
 							e.preventDefault();
 							navigator.clipboard.writeText(fileName);
 						}}>
-						クリップボードにコピー
+						クリップボードにコピーする
 					</button>
-					<p className="ml-8">
-						<i className="hover:select-all">{fileName}</i>
-					</p>
 				</div>
 				<button type="submit" className="simple-button mt-8 bg-black/90">
 					登録

@@ -43,7 +43,6 @@ function Index({ data, cardsNum, message }) {
 										/>
 									</div>
 								</td>
-								{console.log(card.created_at)}
 								<td className="px-2 py-4">
 									{card.created_at.substr(0, 10)} {card.created_at.substr(11, 5)}
 								</td>
