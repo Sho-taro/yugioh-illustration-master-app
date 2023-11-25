@@ -4,22 +4,18 @@ import { Link } from '@inertiajs/react';
 import Pagination from '@/Components/Admin/Pageination';
 // import './css/Index.css';
 
-function Index({ data, message }) {
+function Index({ data, cardsNum, message }) {
 	// console.log(data);
 	return (
 		<>
-			<div className="w-4/5 mt-8 mx-auto">
-				<h1 className="font-bold text-3xl mb-4">カード 一覧</h1>
+			<div className="w-3/5 mt-8 mx-auto">
 				<div className="flex justify-between">
-					<Link href={route('admin.card.create')} className="simple-button block">
-						カードを新規登録
-					</Link>
-					<Link href={route('admin.index')} className="simple-button block">
-						管理画面トップへ
-					</Link>
+					<h1 className="font-bold text-3xl mb-4">カード 一覧</h1>
+					<Link href={route('admin.index')}>{'< '} 管理画面トップへ戻る</Link>
 				</div>
+				{<p>登録カード枚数: {cardsNum}</p>}
 				{message && <p className="text-green-500">{message}</p>}
-				<table border="1" className="index-table mt-4">
+				<table border="1" className="index-table mt-4 w-full">
 					<thead>
 						<tr>
 							<th width="350">カード名</th>
@@ -39,14 +35,21 @@ function Index({ data, message }) {
 									</Link>
 								</td>
 								<td>
-									<img
-										src={`/images/card-images/${card.pack_name}-${card.list_number}.jpg`}
-										alt="カードイラスト"
-										className="w-12"
-									/>
+									<div className="mx-auto w-12">
+										<img
+											src={`/images/card-images/${card.pack_name}-${card.list_number}.jpg`}
+											alt="カードイラスト"
+											className="w-12"
+										/>
+									</div>
 								</td>
-								<td className="px-2 py-4">{card.created_at}</td>
-								<td className="px-2 py-4">{card.updated_at}</td>
+								{console.log(card.created_at)}
+								<td className="px-2 py-4">
+									{card.created_at.substr(0, 10)} {card.created_at.substr(11, 5)}
+								</td>
+								<td className="px-2 py-4">
+									{card.updated_at.substr(0, 10)} {card.updated_at.substr(11, 5)}
+								</td>
 							</tr>
 						</tbody>
 					))}

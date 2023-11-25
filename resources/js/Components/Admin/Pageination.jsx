@@ -3,7 +3,7 @@ import React from 'react';
 function Pagination({ data }) {
 	// console.log(data);
 	return (
-		<div className="mt-4 mb-8">
+		<div className="mt-4 mb-8 text-center">
 			{/* {data.links.map(link => (
 					<p>
 						<a href={link.url}>{link.label}</a>
@@ -14,22 +14,26 @@ function Pagination({ data }) {
 			{data.links.map((link, i) => {
 				if (i === 0) {
 					if (data.current_page === 1) {
-						return <p key={i}>前のページへ</p>;
+						return <span key={i} className="px-2 py-1 border-2 border-gray-200 rounded-lg">前へ</span>;
 					} else {
 						return (
-							<p key={i}>
-								<a href={link.url}>前のページへ</a>
-							</p>
+							<span key={i} className="px-2 py-1 border-2 border-gray-200 rounded-lg">
+								<a href={link.url}>前へ</a>
+							</span>
 						);
 					}
 				} else if (i === data.links.length - 1) {
 					if (data.current_page === data.last_page) {
-						return <p key={i}>次のページへ</p>;
+						return (
+							<span key={i} className="px-2 py-1 border-2 border-gray-200 rounded-lg">
+								次へ
+							</span>
+						);
 					} else {
 						return (
-							<p key={i}>
-								<a href={link.url}>次のページへ</a>
-							</p>
+							<span key={i} className="px-2 py-1 border-2 border-gray-200 rounded-lg">
+								<a href={link.url}>次へ</a>
+							</span>
 						);
 					}
 				} else if (link.label === '...') {
