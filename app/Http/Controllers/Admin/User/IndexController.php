@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 class IndexController extends Controller
 {
@@ -18,6 +19,9 @@ class IndexController extends Controller
         $data = User::orderBy('created_at', 'DESC')->paginate(15);    // paginateメソッドは、配列ではなくコレクション（jsonオブジェクト？）を返す
         // dd($data);
 
-        return inertia('Admin/User/Index', ['data' => $data]);
+        //登録ユーザー数を取得
+        $users_num = DB::table('users')->count();
+
+        return inertia('Admin/User/Index', ['data' => $data, 'usersNum' => $users_num]);
     }
 }

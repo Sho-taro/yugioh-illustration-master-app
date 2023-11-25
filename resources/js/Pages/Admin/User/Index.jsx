@@ -4,7 +4,7 @@ import { Link } from '@inertiajs/react';
 import Pagination from '@/Components/Admin/Pageination';
 // import './css/Index.css';
 
-function Index({ data, message }) {
+function Index({ data, usersNum ,message }) {
 	// console.log(data);
 	return (
 		<>
@@ -13,6 +13,7 @@ function Index({ data, message }) {
 				<div>
 					<Link href={route('admin.index')}>← 管理画面トップへ戻る</Link>
 				</div>
+				{<p>登録ユーザー数: {usersNum}</p>}
 				{/* {message && <p className="text-green-500">{message}</p>} */}
 				<table border="1" className="index-table mt-4 w-full">
 					<thead>
