@@ -3,7 +3,7 @@ import React from 'react';
 function Pagination({ data }) {
 	// console.log(data);
 	return (
-		<div className="mt-4 mb-8">
+		<div className="mt-4 mb-8 text-center">
 			{/* {data.links.map(link => (
 					<p>
 						<a href={link.url}>{link.label}</a>
