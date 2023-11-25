@@ -10,12 +10,9 @@ function Index({ data, message }) {
 		<>
 			<div className="w-4/5 mt-8 mx-auto">
 				<h1 className="font-bold text-3xl mb-4">カード 一覧</h1>
-				<div className="flex justify-between">
-					<Link href={route('admin.card.create')} className="simple-button block">
-						カードを新規登録
-					</Link>
-					<Link href={route('admin.index')} className="simple-button block">
-						管理画面トップへ
+				<div>
+					<Link href={route('admin.index')}>
+						← 管理画面トップへ戻る
 					</Link>
 				</div>
 				{message && <p className="text-green-500">{message}</p>}
