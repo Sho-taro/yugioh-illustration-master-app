@@ -9,9 +9,9 @@ function Index({ data, usersNum ,message }) {
 	return (
 		<>
 			<div className="w-3/5 mt-8 mx-auto">
-				<h1 className="font-bold text-3xl mb-4">ユーザー 一覧</h1>
-				<div>
-					<Link href={route('admin.index')}>← 管理画面トップへ戻る</Link>
+				<div className="flex justify-between">
+					<h1 className="font-bold text-3xl mb-4">ユーザー 一覧</h1>
+					<Link href={route('admin.index')}>{'< '} 管理画面トップへ戻る</Link>
 				</div>
 				{<p>登録ユーザー数: {usersNum}</p>}
 				{/* {message && <p className="text-green-500">{message}</p>} */}
