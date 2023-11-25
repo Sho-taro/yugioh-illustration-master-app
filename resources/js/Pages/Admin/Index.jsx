@@ -25,13 +25,19 @@ function Index({cardsNum, usersNum}) {
 											</Link>
 										</li>
 										<li>
-											<Link>productsテーブル</Link>
+											<Link href={route('admin.product.index')}>
+												productsテーブル
+											</Link>
 										</li>
 										<li>
-											<Link>periodsテーブル</Link>
+											<Link href={route('admin.period.index')}>
+												periodsテーブル
+											</Link>
 										</li>
 										<li>
-											<Link>frame_typesテーブル</Link>
+											<Link href={route('admin.frametype.index')}>
+												frame_typesテーブル
+											</Link>
 										</li>
 									</ul>
 								</div>
@@ -61,13 +67,19 @@ function Index({cardsNum, usersNum}) {
 											</Link>
 										</li>
 										<li>
-											<Link>productsテーブル</Link>
+											<Link href={route('admin.product.create')}>
+												productsテーブル
+											</Link>
 										</li>
 										<li>
-											<Link>periodsテーブル</Link>
+											<Link href={route('admin.period.create')}>
+												periodsテーブル
+											</Link>
 										</li>
 										<li>
-											<Link>frame_typesテーブル</Link>
+											<Link href={route('admin.frametype.create')}>
+												frame_typesテーブル
+											</Link>
 										</li>
 									</ul>
 								</div>
