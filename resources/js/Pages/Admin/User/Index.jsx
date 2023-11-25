@@ -8,12 +8,10 @@ function Index({ data, message }) {
 	// console.log(data);
 	return (
 		<>
-      <div className="w-4/5 mt-8 mx-auto">
-        <h1 className="font-bold text-3xl mb-4">ユーザー 一覧</h1>
+			<div className="w-4/5 mt-8 mx-auto">
+				<h1 className="font-bold text-3xl mb-4">ユーザー 一覧</h1>
 				<div>
-					<Link href={route('admin.index')}>
-						← 管理画面トップへ戻る
-					</Link>
+					<Link href={route('admin.index')}>← 管理画面トップへ戻る</Link>
 				</div>
 				{/* {message && <p className="text-green-500">{message}</p>} */}
 				<table border="1" className="index-table mt-4">
@@ -27,9 +25,7 @@ function Index({ data, message }) {
 					{data.data.map(user => (
 						<tbody key={user.id}>
 							<tr>
-								<td className="px-2 py-4">
-                  {user.id}
-								</td>
+								<td className="px-2 py-4">{user.id}</td>
 								<td className="px-2 py-4">
 									<Link
 										href={`/admin/user/${user.id}`}
@@ -37,7 +33,9 @@ function Index({ data, message }) {
 										{user.name}
 									</Link>
 								</td>
-								<td className="px-2 py-4">{user.created_at}</td>
+								<td className="px-2 py-4">
+									{user.created_at.substr(0, 10)} {user.created_at.substr(11, 5)}
+								</td>
 							</tr>
 						</tbody>
 					))}
