@@ -5,7 +5,6 @@ import AdminLayout from '@/Layouts/AdminLayout';
 function Show({ frameType, errors }) {
   const [values, setValues] = useState({
 		id: frameType.id,
-		frame_type_code: frameType.frame_type_code,
 		name_en: frameType.name_en,
 		name_ja: frameType.name_ja,
 		created_at: frameType.created_at,
@@ -72,24 +71,6 @@ function Show({ frameType, errors }) {
 									<th className="text-right">データベース内ID:　</th>
 									<td>
 										<p className="w-80">{values.id}</p>
-									</td>
-								</tr>
-							</tbody>
-							<tbody>
-								<tr>
-									<th className="text-right">frame_type_code:　</th>
-									<td>
-										<input
-											name="frame_type_code"
-											type="text"
-											className="w-80"
-											onChange={handleChange}
-											value={values.frame_type_code}
-											disabled={!isEditable}
-										/>
-										{errors.frame_type_code && (
-											<p className="text-red-500">{errors.frame_type_code}</p>
-										)}
 									</td>
 								</tr>
 							</tbody>
@@ -199,5 +180,8 @@ function Show({ frameType, errors }) {
 		</>
   );
 }
+
+// Persistent Layoutの設定
+Show.layout = page => <AdminLayout title="frame_types詳細" children={page} />;
 
 export default Show

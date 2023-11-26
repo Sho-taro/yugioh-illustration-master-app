@@ -7,7 +7,6 @@ import AdminLayout from '@/Layouts/AdminLayout';
 function Create({errors, registeredFrameType, message}) {
 	// DBに保存する用のデータ
 	const [values, setValues] = useState({
-		frame_type_code: '',
 		name_en: '',
 		name_ja: ''
 	});
@@ -50,23 +49,6 @@ function Create({errors, registeredFrameType, message}) {
 									</th>
 								</tr>
 							</thead>
-							<tbody>
-								<tr>
-									<th className="text-right">frame_type_code:　</th>
-									<td>
-										<input
-											name="frame_type_code"
-											type="text"
-											value={values.frame_type_code}
-											className="w-80"
-											onChange={handleChange}
-										/>
-										{errors.frame_type_code && (
-											<p className="text-red-500">{errors.frame_type_code}</p>
-										)}
-									</td>
-								</tr>
-							</tbody>
 							<tbody>
 								<tr>
 									<th className="text-right">name_en:　</th>
@@ -113,6 +95,6 @@ function Create({errors, registeredFrameType, message}) {
 }
 
 // Persistent Layoutの設定
-Create.layout = page => <AdminLayout title="frame_typeを新規登録" children={page} />;
+Create.layout = page => <AdminLayout title="frame_type新規登録" children={page} />;
 
 export default Create;

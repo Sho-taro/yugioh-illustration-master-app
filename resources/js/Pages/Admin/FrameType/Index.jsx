@@ -16,7 +16,6 @@ function Index({ data, message }) {
 					<thead>
 						<tr>
 							<th>id</th>
-							<th>frame_type_code</th>
 							<th>name_en</th>
 							<th>name_ja</th>
 						</tr>
@@ -31,7 +30,6 @@ function Index({ data, message }) {
 										{ft.id}
 									</Link>
 								</td>
-								<td className="px-2 py-4">{ft.frame_type_code}</td>
 								<td className="px-2 py-4">{ft.name_en}</td>
 								<td className="px-2 py-4">{ft.name_ja}</td>
 								{/* <td className="px-2 py-4">
