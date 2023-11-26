@@ -20,8 +20,8 @@ return new class extends Migration
             $table->string('name_en');
             $table->string('name_ja');
             $table->string('name_ja_kana');
-            $table->string('frame_type_code');
-            $table->foreign('frame_type_code')->references('frame_type_code')->on('frame_types')->cascadeOnDelete();  //外部キー制約
+            $table->string('frame_type');
+            $table->foreign('frame_type')->references('name_en')->on('frame_types')->cascadeOnDelete();  //外部キー制約
             $table->string('archetype')->nullable();
             $table->timestamps();
         });

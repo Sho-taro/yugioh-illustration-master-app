@@ -11,13 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('products', function (Blueprint $table) {
+        Schema::create('periods', function (Blueprint $table) {
             $table->id();
-            $table->string('product_code')->unique();
             $table->string('name_en')->unique();
             $table->string('name_ja')->unique();
-            $table->string('period_code');   // 外部キー
-            $table->foreign('period_code')->references('period_code')->on('periods')->cascadeOnDelete();   // periodsテーブルのperiod_codeカラムを参照先として、外部キー制約を追加
             $table->timestamps();
         });
     }
@@ -27,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('products');
+        Schema::dropIfExists('periods');
     }
 };

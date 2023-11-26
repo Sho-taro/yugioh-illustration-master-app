@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('frame_types', function (Blueprint $table) {
             $table->id();
-            $table->string('frame_type_code')->unique();
             $table->string('name_en')->unique();
             $table->string('name_ja')->unique();
             $table->timestamps();

@@ -27,7 +27,6 @@ class UpdateController extends Controller
 
         // フォームに入力された変更内容をバリデーション
         $updated_ft = $request->validate([
-            'frame_type_code' => ['required', 'string', 'min:3', 'max:3', 'unique:frame_types,frame_type_code'],
             'name_en' => ['required', 'string', 'unique:frame_types,name_en'],
             'name_ja' => ['required', 'string', 'unique:frame_types,name_ja']
         ]);
@@ -38,6 +37,6 @@ class UpdateController extends Controller
 
         $data = FrameType::orderBy('created_at', 'DESC')->paginate(15);
 
-        return inertia('Admin/FrameType/Index', ['data' => $data, 'message' => "id: ${id} の frame_type を編集しました"]);
+        return inertia('Admin/FrameType/Index', ['data' => $data, 'message' => "id: {$id} の frame_type を編集しました"]);
     }
 }

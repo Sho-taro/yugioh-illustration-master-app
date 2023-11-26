@@ -15,7 +15,6 @@ class StoreController extends Controller
     public function __invoke(Request $request)
     {
         FrameType::create($request->validate([
-            'frame_type_code' => ['required', 'string', 'min:3', 'max:3', 'unique:frame_types,frame_type_code'],
             'name_en' => ['required', 'string', 'unique:frame_types,name_en'],
             'name_ja' => ['required', 'string', 'unique:frame_types,name_ja']
         ]));
