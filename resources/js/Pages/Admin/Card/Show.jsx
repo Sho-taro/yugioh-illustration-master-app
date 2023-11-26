@@ -109,7 +109,7 @@ function Show({ card, errors }) {
 								</tbody>
 								<tbody>
 									<tr>
-										<th className="text-right">パック型番:　</th>
+										<th className="text-right">商品コード:　</th>
 										<td>
 											<input
 												name="pack_name"
@@ -127,7 +127,7 @@ function Show({ card, errors }) {
 								</tbody>
 								<tbody>
 									<tr>
-										<th className="text-right">パック内リスト番号:　</th>
+										<th className="text-right">商品内リスト番号:　</th>
 										<td>
 											<input
 												name="list_number"
@@ -202,7 +202,7 @@ function Show({ card, errors }) {
 								</tbody>
 								<tbody>
 									<tr>
-										<th className="text-right">カードタイプ:　</th>
+										<th className="text-right">フレームタイプ:　</th>
 										<td>
 											<input
 												name="frame_type"
