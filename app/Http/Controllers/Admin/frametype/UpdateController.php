@@ -31,7 +31,7 @@ class UpdateController extends Controller
             'name_en' => ['required', 'string', 'unique:frame_types,name_en'],
             'name_ja' => ['required', 'string', 'unique:frame_types,name_ja']
         ]);
-        dd($updated_ft);
+        // dd($updated_ft);
 
         // バリデーションエラーがなければ、変更内容を保存
         $frame_type->update($updated_ft);
