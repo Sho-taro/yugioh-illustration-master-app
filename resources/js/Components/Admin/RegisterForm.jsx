@@ -43,7 +43,7 @@ function RegisterForm({ cardData, values, onChange, imageIndex, errors }) {
 					</tbody>
 					<tbody>
 						<tr>
-							<th className="text-right">製品コード:　</th>
+							<th className="text-right">商品コード:　</th>
 							<td>
 								<input
 									key={imageIndex}
@@ -60,7 +60,7 @@ function RegisterForm({ cardData, values, onChange, imageIndex, errors }) {
 					</tbody>
 					<tbody>
 						<tr>
-							<th className="text-right">製品内リスト番号:　</th>
+							<th className="text-right">商品内リスト番号:　</th>
 							<td>
 								<input
 									key={imageIndex}
@@ -123,7 +123,7 @@ function RegisterForm({ cardData, values, onChange, imageIndex, errors }) {
 					</tbody>
 					<tbody>
 						<tr>
-							<th className="text-right">カードタイプ:　</th>
+							<th className="text-right">フレームタイプ:　</th>
 							<td>
 								<input
 									name="frame_type"
