@@ -3,7 +3,7 @@ import { Link } from '@inertiajs/react';
 import Pagination from '@/Components/Admin/Pageination';
 import AdminLayout from '@/Layouts/AdminLayout';
 
-function Index({ data }) {
+function Index({ data, message }) {
 	return (
 		<>
 			<div className="w-2/3 mt-8 mx-auto" key="">
@@ -11,6 +11,7 @@ function Index({ data }) {
 					<h1 className="font-bold text-3xl mb-4">frame_type一覧</h1>
 					<Link href={route('admin.index')}>{'< '} 管理画面トップへ戻る</Link>
 				</div>
+				{message && <p className="text-green-500">{message}</p>}
 				<table border="1" className="index-table mt-4 w-full">
 					<thead>
 						<tr>

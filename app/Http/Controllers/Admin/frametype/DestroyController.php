@@ -30,6 +30,6 @@ class DestroyController extends Controller
 
         $data = FrameType::orderBy('created_at', 'DESC')->paginate(15);
 
-        return inertia('Admin/FrameType/Index', ['data' => $data, 'message' => 'frame_typeを編集しました']);
+        return inertia('Admin/FrameType/Index', ['data' => $data, 'message' => "id: ${id} の frame_type を削除しました"]);
     }
 }
