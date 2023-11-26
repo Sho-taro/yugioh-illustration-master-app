@@ -39,6 +39,7 @@ function Index({ data }) {
 						</tbody>
 					))}
 				</table>
+				<Pagination data={data} />
 			</div>
 		</>
 	);
