@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from '@inertiajs/react';
 import Pagination from '@/Components/Admin/Pageination';
+import AdminLayout from '@/Layouts/AdminLayout';
 
 function Index({ data }) {
 	return (
@@ -44,5 +45,8 @@ function Index({ data }) {
 		</>
 	);
 }
+
+// Persistent Layoutの設定
+Index.layout = page => <AdminLayout title="frame_types一覧" children={page} />;
 
 export default Index;

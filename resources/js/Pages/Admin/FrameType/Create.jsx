@@ -2,6 +2,7 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { Link } from '@inertiajs/react';
 import { router } from '@inertiajs/react';
+import AdminLayout from '@/Layouts/AdminLayout';
 
 function Create({errors, registeredFrameType, message}) {
 	// DBに保存する用のデータ
@@ -110,5 +111,8 @@ function Create({errors, registeredFrameType, message}) {
 		</>
 	);
 }
+
+// Persistent Layoutの設定
+Create.layout = page => <AdminLayout title="frame_typeを新規登録" children={page} />;
 
 export default Create;
