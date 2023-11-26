@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { Link } from '@inertiajs/react';
 import { router } from '@inertiajs/react';
 
-function Create({errors}) {
+function Create({errors, registeredFrameType, message}) {
 	// DBに保存する用のデータ
 	const [values, setValues] = useState({
 		frame_type_code: '',
@@ -35,6 +35,11 @@ function Create({errors}) {
 				</div>
 				<h2 className="text-lg">frame_typeを新規登録する</h2>
 				<div className="p-8 bg-gray-100 rounded-md mb-4">
+					{message && (
+						<p className="text-green-500 mb-2">
+							{message}: {registeredFrameType.name_ja}
+						</p>
+					)}
 					<form onSubmit={handleSubmit} method="POST">
 						<table className="register-table mb-4">
 							<thead className="hidden">
@@ -51,7 +56,7 @@ function Create({errors}) {
 										<input
 											name="frame_type_code"
 											type="text"
-                      value={values.frame_type_code}
+											value={values.frame_type_code}
 											className="w-80"
 											onChange={handleChange}
 										/>
@@ -68,7 +73,7 @@ function Create({errors}) {
 										<input
 											name="name_en"
 											type="text"
-                      value={values.name_en}
+											value={values.name_en}
 											className="w-80"
 											onChange={handleChange}
 										/>
@@ -85,7 +90,7 @@ function Create({errors}) {
 										<input
 											name="name_ja"
 											type="text"
-                      value={values.name_ja}
+											value={values.name_ja}
 											className="w-80"
 											onChange={handleChange}
 										/>
