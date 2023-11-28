@@ -8,7 +8,7 @@ function Index({ data, message }) {
 		<>
 			<div className="w-2/3 mt-8 mx-auto" key="">
 				<div className="flex justify-between mb-4">
-					<h1 className="font-bold text-3xl mb-4">frame_type一覧</h1>
+					<h1 className="font-bold text-3xl mb-4">periods一覧</h1>
 					<Link href={route('admin.index')}>{'< '} 管理画面トップへ戻る</Link>
 				</div>
 				{message && <p className="text-green-500">{message}</p>}
@@ -20,20 +20,20 @@ function Index({ data, message }) {
 							<th>name_ja</th>
 						</tr>
 					</thead>
-					{data.data.map(ft => (
-						<tbody key={ft.id}>
+					{data.data.map(period => (
+						<tbody key={period.id}>
 							<tr>
 								<td className="px-2 py-4">
 									<Link
-										href={`/admin/frametype/${ft.id}`}
+										href={`/admin/frametype/${period.id}`}
 										className="text-blue-600 underline">
-										{ft.id}
+										{period.id}
 									</Link>
 								</td>
-								<td className="px-2 py-4">{ft.name_en}</td>
-								<td className="px-2 py-4">{ft.name_ja}</td>
+								<td className="px-2 py-4">{period.name_en}</td>
+								<td className="px-2 py-4">{period.name_ja}</td>
 								{/* <td className="px-2 py-4">
-									{ft.updated_at.substr(0, 10)} {ft.updated_at.substr(11, 5)}
+									{period.updated_at.substr(0, 10)} {period.updated_at.substr(11, 5)}
 								</td> */}
 							</tr>
 						</tbody>
@@ -46,6 +46,6 @@ function Index({ data, message }) {
 }
 
 // Persistent Layoutの設定
-Index.layout = page => <AdminLayout title="frame_types一覧" children={page} />;
+Index.layout = page => <AdminLayout title="periods一覧" children={page} />;
 
 export default Index;

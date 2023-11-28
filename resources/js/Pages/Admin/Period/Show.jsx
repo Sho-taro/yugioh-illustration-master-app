@@ -2,19 +2,19 @@ import React, { useState } from 'react';
 import {Link, router} from '@inertiajs/react'
 import AdminLayout from '@/Layouts/AdminLayout';
 
-function Show({ frameType, errors }) {
+function Show({ period, errors }) {
   const [values, setValues] = useState({
-		id: frameType.id,
-		name_en: frameType.name_en,
-		name_ja: frameType.name_ja,
-		created_at: frameType.created_at,
-		updated_at: frameType.updated_at,
+		id: period.id,
+		name_en: period.name_en,
+		name_ja: period.name_ja,
+		created_at: period.created_at,
+		updated_at: period.updated_at,
   });
 
   const [isEditable, setIsEditable] = useState(false);   // 編集可or編集不可についての状態
   const [isDeletable, setIsDeletable] = useState(false);  // 削除可or削除不可についての状態
 
-  // frame_typeの情報を編集
+  // periodの情報を編集
   const handleChange = e => {
     const key = e.target.name;
     const value = e.target.value;
@@ -27,25 +27,25 @@ function Show({ frameType, errors }) {
   // フォームの送信
   const handleSubmit = e => {
     e.preventDefault();
-    router.put(`/admin/frametype/${values.id}`, values);
+    router.put(`/admin/period/${values.id}`, values);
   };
 
-  // frame_typeの削除
+  // periodの削除
   const handleDelete = e => {
     e.preventDefault();
-    router.delete(`/admin/frametype/${values.id}`);
+    router.delete(`/admin/period/${values.id}`);
   }
 
   return (
 		<>
 			<div className="w-3/5 mt-8 mx-auto">
 				<div className="flex justify-between">
-					<h1 className="font-bold text-3xl mb-8">frame_type詳細</h1>
-					<Link href={route('admin.frametype.index')} className="">
-						{'< '} frame_type一覧へ戻る
+					<h1 className="font-bold text-3xl mb-8">period詳細</h1>
+					<Link href={route('admin.period.index')} className="">
+						{'< '} period一覧へ戻る
 					</Link>
 				</div>
-				<h2 className="text-lg">frame_type詳細を確認・編集</h2>
+				<h2 className="text-lg">period詳細を確認・編集</h2>
 				<div className="p-8 mb-4 bg-gray-100 rounded-md">
 					<input
 						id="edit-checkbox"
@@ -62,7 +62,7 @@ function Show({ frameType, errors }) {
 							<thead className="hidden">
 								<tr>
 									<th colSpan="2" className="text-center">
-										frame_type情報
+										period情報
 									</th>
 								</tr>
 							</thead>
@@ -157,7 +157,7 @@ function Show({ frameType, errors }) {
 						</div>
 					</form>
 				</div>
-				<h2 className="text-lg">frame_typeを削除</h2>
+				<h2 className="text-lg">periodを削除</h2>
 				<div className="p-8 bg-gray-100 rounded-md flex justify-start">
 					<div>
 						<input
@@ -172,7 +172,7 @@ function Show({ frameType, errors }) {
 					</div>
 					<form onSubmit={handleDelete} className="ml-4">
 						<button disabled={!isDeletable} className="simple-button delete-btn">
-							このframe_typeを削除する
+							このperiodを削除する
 						</button>
 					</form>
 				</div>
@@ -182,6 +182,6 @@ function Show({ frameType, errors }) {
 }
 
 // Persistent Layoutの設定
-Show.layout = page => <AdminLayout title="frame_types詳細" children={page} />;
+Show.layout = page => <AdminLayout title="period詳細" children={page} />;
 
 export default Show

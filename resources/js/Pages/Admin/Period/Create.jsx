@@ -14,7 +14,7 @@ function Create({errors, registeredFrameType, message}) {
 	const handleSubmit = e => {
 		e.preventDefault();
 		// フォームの送信
-		router.post(route('admin.frametype.store'), values);
+		router.post(route('admin.period.store'), values);
 	};
 
 	const handleChange = e => {
@@ -30,14 +30,14 @@ function Create({errors, registeredFrameType, message}) {
 		<>
 			<div className="w-2/3 mt-8 mx-auto" key="">
 				<div className="flex justify-between mb-4">
-					<h1 className="font-bold text-3xl mb-4">frame_type新規登録</h1>
+					<h1 className="font-bold text-3xl mb-4">period新規登録</h1>
 					<Link href={route('admin.index')}>{'< '} 管理画面トップへ戻る</Link>
 				</div>
-				<h2 className="text-lg">frame_typeを新規登録する</h2>
+				<h2 className="text-lg">periodを新規登録する</h2>
 				<div className="p-8 bg-gray-100 rounded-md mb-4">
 					{message && (
 						<p className="text-green-500 mb-2">
-							{message}: {registeredFrameType.name_ja}
+							{message}: {registeredPeriod.name_ja}
 						</p>
 					)}
 					<form onSubmit={handleSubmit} method="POST">
@@ -45,7 +45,7 @@ function Create({errors, registeredFrameType, message}) {
 							<thead className="hidden">
 								<tr>
 									<th colSpan="2" className="text-center">
-										frame_typeを登録
+										periodを登録
 									</th>
 								</tr>
 							</thead>
@@ -95,6 +95,6 @@ function Create({errors, registeredFrameType, message}) {
 }
 
 // Persistent Layoutの設定
-Create.layout = page => <AdminLayout title="frame_type新規登録" children={page} />;
+Create.layout = page => <AdminLayout title="period新規登録" children={page} />;
 
 export default Create;
