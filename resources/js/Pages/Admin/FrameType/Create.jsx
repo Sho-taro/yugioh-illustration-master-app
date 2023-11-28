@@ -57,6 +57,7 @@ function Create({errors, registeredFrameType, message}) {
 											name="name_en"
 											type="text"
 											value={values.name_en}
+											placeholder="normal"
 											className="w-80"
 											onChange={handleChange}
 										/>
@@ -74,6 +75,7 @@ function Create({errors, registeredFrameType, message}) {
 											name="name_ja"
 											type="text"
 											value={values.name_ja}
+											placeholder="通常"
 											className="w-80"
 											onChange={handleChange}
 										/>
