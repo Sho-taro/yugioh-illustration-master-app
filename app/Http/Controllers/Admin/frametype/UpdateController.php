@@ -27,8 +27,8 @@ class UpdateController extends Controller
 
         // フォームに入力された変更内容をバリデーション
         $updated_ft = $request->validate([
-            'name_en' => ['required', 'string', 'unique:frame_types,name_en'],
-            'name_ja' => ['required', 'string', 'unique:frame_types,name_ja']
+            'name_en' => ['required', 'string'],     // 更新処理時のバリデーションチェックでは、unique制約はつけてはいけない
+            'name_ja' => ['required', 'string']
         ]);
         // dd($updated_ft);
 

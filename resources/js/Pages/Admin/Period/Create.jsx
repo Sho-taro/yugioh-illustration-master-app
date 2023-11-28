@@ -4,7 +4,7 @@ import { Link } from '@inertiajs/react';
 import { router } from '@inertiajs/react';
 import AdminLayout from '@/Layouts/AdminLayout';
 
-function Create({errors, registeredFrameType, message}) {
+function Create({errors, registeredPeriod, message}) {
 	// DBに保存する用のデータ
 	const [values, setValues] = useState({
 		name_en: '',

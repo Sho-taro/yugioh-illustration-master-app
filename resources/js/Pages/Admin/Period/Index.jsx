@@ -25,7 +25,7 @@ function Index({ data, message }) {
 							<tr>
 								<td className="px-2 py-4">
 									<Link
-										href={`/admin/frametype/${period.id}`}
+										href={`/admin/period/${period.id}`}
 										className="text-blue-600 underline">
 										{period.id}
 									</Link>
