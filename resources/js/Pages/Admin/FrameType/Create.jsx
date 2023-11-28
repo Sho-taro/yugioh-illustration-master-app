@@ -26,6 +26,13 @@ function Create({errors, registeredFrameType, message}) {
 		});
 	};
 
+	const clearInput = () => {
+		setValues({
+			name_en: '',
+			name_ja: '',
+		});
+	};
+
 	return (
 		<>
 			<div className="w-2/3 mt-8 mx-auto" key="">
@@ -86,9 +93,17 @@ function Create({errors, registeredFrameType, message}) {
 								</tr>
 							</tbody>
 						</table>
-						<button type="submit" className="simple-button mt-8 bg-black/90">
-							登録
-						</button>
+						<div>
+							<button type="submit" className="simple-button bg-black/90">
+								登録
+							</button>
+							<button
+								type="button"
+								onClick={clearInput}
+								className="mt-8 block underline text-blue-700 hover:text-blue-500">
+								入力内容をクリア
+							</button>
+						</div>
 					</form>
 				</div>
 			</div>

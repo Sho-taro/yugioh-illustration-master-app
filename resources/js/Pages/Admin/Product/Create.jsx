@@ -4,11 +4,13 @@ import { Link } from '@inertiajs/react';
 import { router } from '@inertiajs/react';
 import AdminLayout from '@/Layouts/AdminLayout';
 
-function Create({errors, registeredProduct, message}) {
+function Create({ errors, registeredProduct, message }) {
 	// DBに保存する用のデータ
 	const [values, setValues] = useState({
+		product_code: '',
 		name_en: '',
-		name_ja: ''
+		name_ja: '',
+		period: '',
 	});
 
 	const handleSubmit = e => {
@@ -23,6 +25,15 @@ function Create({errors, registeredProduct, message}) {
 		setValues({
 			...values,
 			[key]: value,
+		});
+	};
+
+	const clearInput = () => {
+		setValues({
+			product_code: '',
+			name_en: '',
+			name_ja: '',
+			period: values.period,
 		});
 	};
 
@@ -122,9 +133,17 @@ function Create({errors, registeredProduct, message}) {
 								</tr>
 							</tbody>
 						</table>
-						<button type="submit" className="simple-button mt-8 bg-black/90">
-							登録
-						</button>
+						<div>
+							<button type="submit" className="block simple-button bg-black/90">
+								登録
+							</button>
+							<button
+								type="button"
+								onClick={clearInput}
+								className="mt-8 block underline text-blue-700 hover:text-blue-500">
+								入力内容をクリア
+							</button>
+						</div>
 					</form>
 				</div>
 			</div>
