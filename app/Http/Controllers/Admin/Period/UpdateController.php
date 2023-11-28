@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Period;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Period;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Inertia\Inertia;
 
 class UpdateController extends Controller
