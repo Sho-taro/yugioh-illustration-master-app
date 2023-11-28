@@ -19,7 +19,8 @@ function Index({ data, usersNum ,message }) {
 					<thead>
 						<tr>
 							<th>ユーザーID</th>
-							<th width="400">ユーザー名</th>
+							<th width="300">ユーザー名</th>
+							<th width="300">メールアドレス</th>
 							<th>登録日時</th>
 						</tr>
 					</thead>
@@ -34,6 +35,7 @@ function Index({ data, usersNum ,message }) {
 										{user.name}
 									</Link>
 								</td>
+								<td className="px-2 py-4">{user.email}</td>
 								<td className="px-2 py-4">
 									{user.created_at.substr(0, 10)} {user.created_at.substr(11, 5)}
 								</td>
