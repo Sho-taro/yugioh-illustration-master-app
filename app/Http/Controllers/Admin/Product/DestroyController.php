@@ -32,6 +32,5 @@ class DestroyController extends Controller
         $data = Product::orderBy('created_at', 'DESC')->paginate(15);
 
         return inertia('Admin/Product/Index', ['data' => $data, 'message' => "id: {$id} の product を削除しました"]);
-
     }
 }
