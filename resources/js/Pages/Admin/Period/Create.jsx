@@ -57,6 +57,7 @@ function Create({errors, registeredPeriod, message}) {
 											name="name_en"
 											type="text"
 											value={values.name_en}
+											placeholder="1st"
 											className="w-80"
 											onChange={handleChange}
 										/>
@@ -74,6 +75,7 @@ function Create({errors, registeredPeriod, message}) {
 											name="name_ja"
 											type="text"
 											value={values.name_ja}
+											placeholder="第1期"
 											className="w-80"
 											onChange={handleChange}
 										/>
