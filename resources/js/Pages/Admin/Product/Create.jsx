@@ -57,7 +57,7 @@ function Create({errors, registeredProduct, message}) {
 											name="product_code"
 											type="text"
 											value={values.product_code}
-											placeholder="1st"
+											placeholder="agov"
 											className="w-80"
 											onChange={handleChange}
 										/>
@@ -75,7 +75,7 @@ function Create({errors, registeredProduct, message}) {
 											name="name_en"
 											type="text"
 											value={values.name_en}
-											placeholder="1st"
+											placeholder="age of overload"
 											className="w-80"
 											onChange={handleChange}
 										/>
@@ -93,7 +93,7 @@ function Create({errors, registeredProduct, message}) {
 											name="name_ja"
 											type="text"
 											value={values.name_ja}
-											placeholder="第1期"
+											placeholder="エイジ・オブ・オーバーロード"
 											className="w-80"
 											onChange={handleChange}
 										/>
@@ -111,7 +111,7 @@ function Create({errors, registeredProduct, message}) {
 											name="period"
 											type="text"
 											value={values.period}
-											placeholder="1st"
+											placeholder="12th"
 											className="w-80"
 											onChange={handleChange}
 										/>
