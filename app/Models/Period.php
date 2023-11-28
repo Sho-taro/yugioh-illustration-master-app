@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class FrameType extends Model
+class Period extends Model
 {
     use HasFactory;
 
-    // frame_typesテーブルに明示的に紐付けする
-    protected $table = 'frame_types';
+    // periodsテーブルに明示的に紐付けする
+    protected $table = 'periods';
     /**
      * The attributes that are mass assignable.
      *
