@@ -22,13 +22,13 @@ class UpdateController extends Controller
 
         // フォームに入力された内容をバリデーション
         $cardData = $request->validate([
-            'card_id' => ['required', 'string', 'min:8', 'max:8'],
-            'pack_name' => ['required', 'string'],
+            'product_code' => ['required', 'string', 'exists:products,product_code'],   // exists　← 外部キー制約
             'list_number' => ['required', 'string'],
+            'card_id' => ['required', 'string', 'min:8', 'max:8'],
             'name_en' => ['required', 'string'],
             'name_ja' => ['required', 'string'],
             'name_ja_kana' => ['required', 'string'],
-            'frame_type' => ['required', 'string'],
+            'frame_type' => ['required', 'string', 'exists:frame_types,name_en'],   // exists　← 外部キー制約
             'archetype' => ['string', 'nullable'],     // これだけ nullable
         ]);
         // dd($cardData);
@@ -40,6 +40,6 @@ class UpdateController extends Controller
 
 
         // return redirect()->route('admin.card.index');
-        return inertia('Admin/Card/Index', ['data' => $data, 'message' => 'カードを編集しました']);
+        return inertia('Admin/Card/Index', ['data' => $data, 'message' => "id: {$id} のカードを編集しました"]);
     }
 }

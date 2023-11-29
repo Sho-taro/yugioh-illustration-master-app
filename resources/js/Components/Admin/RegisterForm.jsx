@@ -4,6 +4,7 @@ import { router } from '@inertiajs/react';
 
 function RegisterForm({ cardData, values, onChange, imageIndex, errors }) {
 	const [isEditable, setIsEditable] = useState(false);
+	const fileName = `${values.product_code}-${values.list_number}`;
 
 	const handleSubmit = e => {
 		e.preventDefault();
@@ -11,8 +12,6 @@ function RegisterForm({ cardData, values, onChange, imageIndex, errors }) {
 		// フォームの送信
 		router.post(route('admin.card.store'), values);
 	};
-
-	const fileName = `${values.pack_name}-${values.list_number}`;
 
 	return (
 		<>
@@ -27,33 +26,17 @@ function RegisterForm({ cardData, values, onChange, imageIndex, errors }) {
 					</thead>
 					<tbody>
 						<tr>
-							<th className="text-right">カードID(8ケタ):　</th>
-							<td>
-								<input
-									name="card_id"
-									type="text"
-									value={isEditable ? null : cardData.id}
-									className="w-80"
-									disabled={!isEditable}
-									onChange={onChange}
-								/>
-								{errors.card_id && <p className="text-red-500">{errors.card_id}</p>}
-							</td>
-						</tr>
-					</tbody>
-					<tbody>
-						<tr>
 							<th className="text-right">商品コード:　</th>
 							<td>
 								<input
 									key={imageIndex}
-									name="pack_name"
+									name="product_code"
 									type="text"
 									className="w-80"
 									onChange={onChange}
 								/>
-								{errors.pack_name && (
-									<p className="text-red-500">{errors.pack_name}</p>
+								{errors.product_code && (
+									<p className="text-red-500">{errors.product_code}</p>
 								)}
 							</td>
 						</tr>
@@ -72,6 +55,22 @@ function RegisterForm({ cardData, values, onChange, imageIndex, errors }) {
 								{errors.list_number && (
 									<p className="text-red-500">{errors.list_number}</p>
 								)}
+							</td>
+						</tr>
+					</tbody>
+					<tbody>
+						<tr>
+							<th className="text-right">カードID(8ケタ):　</th>
+							<td>
+								<input
+									name="card_id"
+									type="text"
+									value={isEditable ? null : cardData.id}
+									className="w-80"
+									disabled={!isEditable}
+									onChange={onChange}
+								/>
+								{errors.card_id && <p className="text-red-500">{errors.card_id}</p>}
 							</td>
 						</tr>
 					</tbody>

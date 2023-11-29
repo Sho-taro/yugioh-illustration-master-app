@@ -31,6 +31,6 @@ class DestroyController extends Controller
 
 
         // return redirect()->route('admin.card.index');
-        return inertia('Admin/Card/Index', ['data' => $data, 'message' => 'カードを削除しました']);
+        return inertia('Admin/Card/Index', ['data' => $data, 'message' => "id: {$id} のカードを削除しました"]);
     }
 }
