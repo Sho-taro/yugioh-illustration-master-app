@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { router } from '@inertiajs/react';
 
-
-function RegisterForm({ cardData, values, onChange, imageIndex, errors }) {
+function RegisterForm({ values, onChange, imageIndex, errors }) {
 	const [isEditable, setIsEditable] = useState(false);
 	const fileName = `${values.product_code}-${values.list_number}`;
 
@@ -15,7 +14,7 @@ function RegisterForm({ cardData, values, onChange, imageIndex, errors }) {
 
 	return (
 		<>
-			<form key={cardData.name} onSubmit={handleSubmit} method="POST">
+			<form key={values.name_en} onSubmit={handleSubmit} method="POST">
 				<table className="register-table mb-4">
 					<thead className="hidden">
 						<tr>
@@ -65,7 +64,7 @@ function RegisterForm({ cardData, values, onChange, imageIndex, errors }) {
 								<input
 									name="card_id"
 									type="text"
-									value={isEditable ? null : cardData.id}
+									value={isEditable ? null : values.card_id}
 									className="w-80"
 									disabled={!isEditable}
 									onChange={onChange}
@@ -81,7 +80,7 @@ function RegisterForm({ cardData, values, onChange, imageIndex, errors }) {
 								<input
 									name="name_en"
 									type="text"
-									value={isEditable ? null : cardData.name}
+									value={isEditable ? null : values.name_en}
 									className="w-80"
 									disabled={!isEditable}
 									onChange={onChange}
@@ -127,7 +126,7 @@ function RegisterForm({ cardData, values, onChange, imageIndex, errors }) {
 								<input
 									name="frame_type"
 									type="text"
-									value={isEditable ? null : cardData.frameType}
+									value={isEditable ? null : values.frame_type}
 									className="w-80"
 									disabled={!isEditable}
 									onChange={onChange}
@@ -145,7 +144,7 @@ function RegisterForm({ cardData, values, onChange, imageIndex, errors }) {
 								<input
 									name="archetype"
 									type="text"
-									value={isEditable ? null : cardData.archetype}
+									value={isEditable ? null : values.archetype}
 									className="w-80"
 									disabled={!isEditable}
 									onChange={onChange}
