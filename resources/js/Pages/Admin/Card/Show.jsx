@@ -6,9 +6,9 @@ import { Link, router, usePage } from '@inertiajs/react';
 function Show({ card, errors }) {
 	const [values, setValues] = useState({
 		id: card.id,
-		card_id: card.card_id,
-		pack_name: card.pack_name,
+		product_code: card.product_code,
 		list_number: card.list_number,
+		card_id: card.card_id,
 		name_en: card.name_en,
 		name_ja: card.name_ja,
 		name_ja_kana: card.name_ja_kana,
@@ -56,7 +56,7 @@ function Show({ card, errors }) {
 				<div className="p-8 mb-4 bg-gray-100 rounded-md flex justify-around">
 					<div className="">
 						<img
-							src={`/images/card-images/${card.pack_name}-${card.list_number}.jpg`}
+							src={`/images/card-images/${card.product_code}-${card.list_number}.jpg`}
 							alt={card.name_ja}
 							className="w-80 border-4 border-slate-400 border-solid"
 						/>
@@ -91,36 +91,20 @@ function Show({ card, errors }) {
 								</tbody>
 								<tbody>
 									<tr>
-										<th className="text-right">カードID(8ケタ):　</th>
-										<td>
-											<input
-												name="card_id"
-												type="text"
-												className="w-80"
-												onChange={handleChange}
-												value={values.card_id}
-												disabled={!isEditable}
-											/>
-											{errors.card_id && (
-												<p className="text-red-500">{errors.card_id}</p>
-											)}
-										</td>
-									</tr>
-								</tbody>
-								<tbody>
-									<tr>
 										<th className="text-right">商品コード:　</th>
 										<td>
 											<input
-												name="pack_name"
+												name="product_code"
 												type="text"
 												className="w-80"
 												onChange={handleChange}
-												value={values.pack_name}
+												value={values.product_code}
 												disabled={!isEditable}
 											/>
-											{errors.pack_name && (
-												<p className="text-red-500">{errors.pack_name}</p>
+											{errors.product_code && (
+												<p className="text-red-500">
+													{errors.product_code}
+												</p>
 											)}
 										</td>
 									</tr>
@@ -139,6 +123,24 @@ function Show({ card, errors }) {
 											/>
 											{errors.list_number && (
 												<p className="text-red-500">{errors.list_number}</p>
+											)}
+										</td>
+									</tr>
+								</tbody>
+								<tbody>
+									<tr>
+										<th className="text-right">カードID(8ケタ):　</th>
+										<td>
+											<input
+												name="card_id"
+												type="text"
+												className="w-80"
+												onChange={handleChange}
+												value={values.card_id}
+												disabled={!isEditable}
+											/>
+											{errors.card_id && (
+												<p className="text-red-500">{errors.card_id}</p>
 											)}
 										</td>
 									</tr>

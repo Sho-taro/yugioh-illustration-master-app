@@ -18,6 +18,7 @@ function Index({ data, cardsNum, message }) {
 				<table border="1" className="index-table mt-4 w-full">
 					<thead>
 						<tr>
+							<th>id</th>
 							<th width="350">カード名</th>
 							<th>イラスト</th>
 							<th>作成日時</th>
@@ -27,6 +28,7 @@ function Index({ data, cardsNum, message }) {
 					{data.data.map(card => (
 						<tbody key={card.id}>
 							<tr>
+								<td className="px-2 py-4">{card.id}</td>
 								<td className="px-2 py-4">
 									<Link
 										href={`/admin/card/${card.id}`}
@@ -37,7 +39,7 @@ function Index({ data, cardsNum, message }) {
 								<td>
 									<div className="mx-auto w-12">
 										<img
-											src={`/images/card-images/${card.pack_name}-${card.list_number}.jpg`}
+											src={`/images/card-images/${card.product_code}-${card.list_number}.jpg`}
 											alt="カードイラスト"
 											className="w-12"
 										/>
