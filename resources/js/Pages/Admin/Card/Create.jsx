@@ -73,7 +73,7 @@ function Create({ errors, registeredCard, message }) {
 	useEffect(() => {
 		setValues({
 			...values,
-			card_id: String(cardData.id),
+			card_id: String(cardData.id).padStart(8, '0'),
 			name_en: cardData.name,
 			frame_type: cardData.frameType,
 			archetype: cardData.archetype,
@@ -109,7 +109,6 @@ function Create({ errors, registeredCard, message }) {
 								imageIndex={imageIndex}
 								onBtnClick={displayNextImage}></DisplayImage>
 							<RegisterForm
-								cardData={cardData}
 								values={values}
 								onChange={handleValueChange}
 								imageIndex={imageIndex}
