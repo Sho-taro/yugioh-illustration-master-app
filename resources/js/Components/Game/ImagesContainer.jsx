@@ -12,7 +12,7 @@ function ImagesContainer({ gameStatus, index, card, divImg, playSvg, stopSvg, bl
 		<div className="relative w-10/12 mb-4 sm:mb-8">
 			<img
 				key={`card${index}`}
-				src={`./images/card-images/${card.pack_name}-${card.list_number}.jpg`}
+				src={`./images/card-images/${card.product_code}-${card.list_number}.jpg`}
 				alt={card.name_en}
 				className="card-img pointer-events-none"
 				// // ↓ '右クリックして画像ダウンロード'をさせないようにする（代わりにpointer-events: none を指定しているので、コメントアウト）

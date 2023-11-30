@@ -25,7 +25,7 @@ function CardList({ auth, cards, showModal, showingModal }) {
 							<div className="flex flex-start flex-col sm:flex-row">
 								<img
 									id={i}
-									src={`./images/card-images/${card.pack_name}-${card.list_number}.jpg`}
+									src={`./images/card-images/${card.product_code}-${card.list_number}.jpg`}
 									alt={card.name_en}
 									onClick={e => showModal(e)}
 									className={imgClassName}
@@ -58,7 +58,7 @@ function CardList({ auth, cards, showModal, showingModal }) {
 								<div>
 									{auth.user !== null && (
 										<a
-											href={`./images/card-images/${card.pack_name}-${card.list_number}.jpg`}
+											href={`./images/card-images/${card.product_code}-${card.list_number}.jpg`}
 											download={`${card.name_en}`}>
 											<img
 												src="/images/download.svg"

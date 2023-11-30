@@ -18,7 +18,7 @@ function ModalWindow({ auth, cards, modalIndex, hideModal }) {
 				<div className="modal-window" onClick={e => e.stopPropagation()}>
 					<div onClick={e => e.stopPropagation()}>
 						<img
-							src={`/images/card-images/${cards[modalIndex].pack_name}-${cards[modalIndex].list_number}.jpg`}
+							src={`/images/card-images/${cards[modalIndex].product_code}-${cards[modalIndex].list_number}.jpg`}
 							alt={cards[modalIndex].name_en}
 							className={imgClassName}
 							// ↓ 画像をクリックしてもモーダルウィンドウが閉じないようにする
