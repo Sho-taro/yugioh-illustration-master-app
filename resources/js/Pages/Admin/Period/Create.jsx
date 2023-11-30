@@ -38,7 +38,9 @@ function Create({errors, registeredPeriod, message}) {
 			<div className="w-2/3 mt-8 mx-auto" key="">
 				<div className="flex justify-between mb-4">
 					<h1 className="font-bold text-3xl mb-4">period新規登録</h1>
-					<Link href={route('admin.index')}>{'< '} 管理画面トップへ戻る</Link>
+					<Link href={route('admin.index')} className="hover:text-blue-400">
+						{'< '} 管理画面トップへ戻る
+					</Link>
 				</div>
 				<h2 className="text-lg">periodを新規登録する</h2>
 				<div className="p-8 bg-gray-100 rounded-md mb-4">
@@ -100,7 +102,7 @@ function Create({errors, registeredPeriod, message}) {
 							<button
 								type="button"
 								onClick={clearInput}
-								className="mt-8 block underline text-blue-700 hover:text-blue-500">
+								className="mt-8 block underline text-blue-600 hover:text-blue-400">
 								入力内容をクリア
 							</button>
 						</div>

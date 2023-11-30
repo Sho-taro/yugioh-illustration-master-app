@@ -41,7 +41,7 @@ function Show({ period, errors }) {
 			<div className="w-3/5 mt-8 mx-auto">
 				<div className="flex justify-between">
 					<h1 className="font-bold text-3xl mb-8">period詳細</h1>
-					<Link href={route('admin.period.index')} className="">
+					<Link href={route('admin.period.index')} className="hover:text-blue-400">
 						{'< '} period一覧へ戻る
 					</Link>
 				</div>

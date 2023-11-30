@@ -20,22 +20,30 @@ function Index({cardsNum, usersNum}) {
 								<div className="ml-4 mb-4">
 									<ul>
 										<li>
-											<Link href={route('admin.card.index')}>
+											<Link
+												href={route('admin.card.index')}
+												className="hover:text-blue-400">
 												cardsテーブル
 											</Link>
 										</li>
 										<li>
-											<Link href={route('admin.product.index')}>
+											<Link
+												href={route('admin.product.index')}
+												className="hover:text-blue-400">
 												productsテーブル
 											</Link>
 										</li>
 										<li>
-											<Link href={route('admin.period.index')}>
+											<Link
+												href={route('admin.period.index')}
+												className="hover:text-blue-400">
 												periodsテーブル
 											</Link>
 										</li>
 										<li>
-											<Link href={route('admin.frametype.index')}>
+											<Link
+												href={route('admin.frametype.index')}
+												className="hover:text-blue-400">
 												frame_typesテーブル
 											</Link>
 										</li>
@@ -45,7 +53,9 @@ function Index({cardsNum, usersNum}) {
 								<div className="ml-4">
 									<ul>
 										<li>
-											<Link href={route('admin.user.index')}>
+											<Link
+												href={route('admin.user.index')}
+												className="hover:text-blue-400">
 												usersテーブル
 											</Link>
 										</li>
@@ -62,22 +72,30 @@ function Index({cardsNum, usersNum}) {
 								<div className="ml-4">
 									<ul>
 										<li>
-											<Link href={route('admin.card.create')}>
+											<Link
+												href={route('admin.card.create')}
+												className="hover:text-blue-400">
 												cardsテーブル
 											</Link>
 										</li>
 										<li>
-											<Link href={route('admin.product.create')}>
+											<Link
+												href={route('admin.product.create')}
+												className="hover:text-blue-400">
 												productsテーブル
 											</Link>
 										</li>
 										<li>
-											<Link href={route('admin.period.create')}>
+											<Link
+												href={route('admin.period.create')}
+												className="hover:text-blue-400">
 												periodsテーブル
 											</Link>
 										</li>
 										<li>
-											<Link href={route('admin.frametype.create')}>
+											<Link
+												href={route('admin.frametype.create')}
+												className="hover:text-blue-400">
 												frame_typesテーブル
 											</Link>
 										</li>

@@ -85,7 +85,7 @@ function Create({ errors, registeredCard, message }) {
 				<div className="w-2/3 mt-8 mx-auto" key={registeredCard && registeredCard.id}>
 					<div className="flex justify-between mb-4">
 						<h1 className="font-bold text-3xl mb-4">カード新規登録</h1>
-						<Link href={route('admin.index')}>{'< '} 管理画面トップへ戻る</Link>
+						<Link href={route('admin.index')} className="hover:text-blue-400">{'< '} 管理画面トップへ戻る</Link>
 					</div>
 					<div>
 						<h2 className="text-lg">APIからカード情報を取得する</h2>
