@@ -9,7 +9,9 @@ function Index({ data, message }) {
 			<div className="w-2/3 mt-8 mx-auto" key="">
 				<div className="flex justify-between mb-4">
 					<h1 className="font-bold text-3xl mb-4">periods一覧</h1>
-					<Link href={route('admin.index')}>{'< '} 管理画面トップへ戻る</Link>
+					<Link href={route('admin.index')} className="hover:text-blue-400">
+						{'< '} 管理画面トップへ戻る
+					</Link>
 				</div>
 				{message && <p className="text-green-500">{message}</p>}
 				<table border="1" className="index-table mt-4 w-full">
@@ -26,7 +28,7 @@ function Index({ data, message }) {
 								<td className="px-2 py-4">
 									<Link
 										href={`/admin/period/${period.id}`}
-										className="text-blue-600 underline">
+										className="hover:text-blue-400 underline">
 										{period.id}
 									</Link>
 								</td>

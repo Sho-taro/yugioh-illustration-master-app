@@ -172,7 +172,7 @@ function RegisterForm({ values, onChange, imageIndex, errors }) {
 						カードナンバー: <i className="font-bold hover:select-all">{fileName}</i>
 					</p>
 					<button
-						className="text-blue-700 underline hover:text-blue-500 active:scale-95"
+						className="text-blue-600 hover:text-blue-400 active:scale-95"
 						onClick={e => {
 							e.preventDefault();
 							navigator.clipboard.writeText(fileName);

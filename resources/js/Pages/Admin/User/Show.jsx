@@ -43,7 +43,7 @@ function Show({user, errors}) {
 			<div className="w-3/5 mt-8 mx-auto">
 				<div className="flex justify-between">
 					<h1 className="font-bold text-3xl mb-8">user詳細</h1>
-					<Link href={route('admin.user.index')} className="">
+					<Link href={route('admin.user.index')} className="hover:text-blue-400">
 						{'< '} user一覧へ戻る
 					</Link>
 				</div>
@@ -51,7 +51,7 @@ function Show({user, errors}) {
 				<div className="p-8 mb-4 bg-gray-100 rounded-md">
 					<input
 						id="edit-checkbox"
-            type="checkBox"
+						type="checkBox"
 						// checked={isEditable}
 						// onChange={() => setIsEditable(prev => !prev)}
 						className="w-4 h-4"
@@ -87,8 +87,8 @@ function Show({user, errors}) {
 											type="text"
 											className="w-80"
 											// onChange={handleChange}
-                      value={values.name}
-                      disabled
+											value={values.name}
+											disabled
 											// disabled={!isEditable}
 										/>
 										{errors.name && (
@@ -106,8 +106,8 @@ function Show({user, errors}) {
 											type="text"
 											className="w-80"
 											// onChange={handleChange}
-                      value={values.email}
-                      disabled
+											value={values.email}
+											disabled
 											// disabled={!isEditable}
 										/>
 										{errors.email && (
@@ -125,8 +125,8 @@ function Show({user, errors}) {
 											type="text"
 											className="w-80"
 											// onChange={handleChange}
-                      value={values.password}
-                      disabled
+											value={values.password}
+											disabled
 											// disabled={!isEditable}
 										/>
 										{errors.password && (
@@ -175,10 +175,10 @@ function Show({user, errors}) {
 						<div className="flex justify-end mt-4">
 							<button
 								type="submit"
-                className="simple-button bg-black/90 block"
-                disabled
-                // disabled={!isEditable}
-              >
+								className="simple-button bg-black/90 block"
+								disabled
+								// disabled={!isEditable}
+							>
 								変更を保存
 							</button>
 						</div>
@@ -189,7 +189,7 @@ function Show({user, errors}) {
 					<div>
 						<input
 							id="delete-checkbox"
-              type="checkBox"
+							type="checkBox"
 							// checked={isDeletable}
 							// onChange={() => setIsDeletable(prev => !prev)}
 						/>
@@ -197,13 +197,13 @@ function Show({user, errors}) {
 							削除可能にする
 						</label>
 					</div>
-          <form
-            // onSubmit={handleDelete}
-            className="ml-4">
-            <button
-              disabled
-              // disabled={!isDeletable}
-              className="simple-button delete-btn">
+					<form
+						// onSubmit={handleDelete}
+						className="ml-4">
+						<button
+							disabled
+							// disabled={!isDeletable}
+							className="simple-button delete-btn">
 							このuserを削除する
 						</button>
 					</form>

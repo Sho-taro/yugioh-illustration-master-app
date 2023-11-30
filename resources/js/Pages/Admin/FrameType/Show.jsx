@@ -41,7 +41,7 @@ function Show({ frameType, errors }) {
 			<div className="w-3/5 mt-8 mx-auto">
 				<div className="flex justify-between">
 					<h1 className="font-bold text-3xl mb-8">frame_type詳細</h1>
-					<Link href={route('admin.frametype.index')} className="">
+					<Link href={route('admin.frametype.index')} className="hover:text-blue-400">
 						{'< '} frame_type一覧へ戻る
 					</Link>
 				</div>

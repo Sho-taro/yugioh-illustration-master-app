@@ -11,7 +11,9 @@ function Index({ data, cardsNum, message }) {
 			<div className="w-3/5 mt-8 mx-auto">
 				<div className="flex justify-between">
 					<h1 className="font-bold text-3xl mb-4">カード 一覧</h1>
-					<Link href={route('admin.index')}>{'< '} 管理画面トップへ戻る</Link>
+					<Link href={route('admin.index')} className="hover:text-blue-400">
+						{'< '} 管理画面トップへ戻る
+					</Link>
 				</div>
 				{<p>登録カード枚数: {cardsNum}</p>}
 				{message && <p className="text-green-500">{message}</p>}
@@ -32,7 +34,7 @@ function Index({ data, cardsNum, message }) {
 								<td className="px-2 py-4">
 									<Link
 										href={`/admin/card/${card.id}`}
-										className="text-blue-600 underline">
+										className="hover:text-blue-400 underline">
 										{card.name_ja}
 									</Link>
 								</td>
