@@ -15,13 +15,13 @@ class IndexController extends Controller
   */
   public function __invoke(Request $request)
   {
-    // dd($request->input());
+    // dd($request->input('card-name'));
 
     // 登録されているカードのレコード数を取得
       $cards_num = DB::table('cards')->count();
 
     // 検索ボタンを押さずにこのページにアクセスしてきた場合
-    if (empty($request->input())) {
+    if (empty($request->input('card-name'))) {
       // $cards = Card::orderBy('created_at', 'DESC')->get();
       $data = Card::orderBy('created_at', 'DESC')->paginate(15);    // paginateメソッドは、配列ではなくコレクション（jsonオブジェクト？）を返す
 
@@ -29,9 +29,8 @@ class IndexController extends Controller
       return inertia('Admin/Card/Index', ['data' => $data, 'cardsNum' => $cards_num]);   // inertiaへルパ関数を使うと記述がシンプル
 
     } else {
-      // カード検索の条件を変数に代入
-      $search_type = $request->input("search-type");
-      $keyword = $request->input("card-name");
+      // カード検索のキーワードを変数に代入
+      $keyword = $request->input('card-name');
     }
 
 
@@ -56,18 +55,23 @@ class IndexController extends Controller
       // 全角スペースを半角スペースに変換したあと、半角スペースで区切って配列に格納
       $arr_keywords = preg_split("/[\s,]+/", mb_convert_kana($keyword, 's'));
 
-      if ($search_type === 'std') {
-        // カード名（標準）で検索する場合の処理
-        foreach ($arr_keywords as $val) {
-          $cards->where('name_ja', 'LIKE', "%{$val}%");
-        }
+      // 検索キーワードで中間一致検索をかける
+      // これじゃダメ（and/or条件がごちゃごちゃ）
+      // foreach ($arr_keywords as $val) {
+      //   $cards->where('name_ja', 'LIKE', "%{$val}%")
+      //         ->orWhere('name_ja_kana', 'LIKE', "%{$val}%");
+      // }
 
-      } else {
-        // カード名（読み）で検索する場合の処理
-        foreach ($arr_keywords as $val) {
-          $cards->where('name_ja_kana', 'LIKE', "%{$val}%");
-        }
+      // これならOK （参考: https://readouble.com/laravel/10.x/ja/queries.html の「OR WHERE句」セクション）
+      foreach ($arr_keywords as $val) {
+        $cards->where(function ($query) use ($val) {
+          $query->where('name_ja', 'LIKE', "%{$val}%")
+                ->orWhere('name_ja_kana', 'LIKE', "%{$val}%");
+        });
       }
+      // これは次のsql文を意味する
+      // select * from cards where (name_ja LIKE "%$val1%" or name_ja_kana LIKE "%$val1%") and (name_ja LIKE "%$val2%" or name_ja_kana LIKE "%$val2%") and (...);
+
       // dd($cards);
       $data = $cards->orderBy('name_ja', 'ASC')->paginate(15);
       // dd($data);
