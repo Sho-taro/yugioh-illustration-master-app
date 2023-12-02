@@ -19,8 +19,8 @@ class StoreController extends Controller
             'name_ja' => ['required', 'string', 'unique:frame_types,name_ja']
         ]));
 
-        // $data = Card::orderBy('created_at', 'DESC')->paginate(15);    // paginateメソッドは、配列ではなくコレクション（jsonオブジェクト？）を返す
-        $registeredFrameType = FrameType::orderBy('created_at', 'DESC')->firstOrFail();
+        // $data = Card::orderBy('updated_at', 'DESC')->paginate(15);    // paginateメソッドは、配列ではなくコレクション（jsonオブジェクト？）を返す
+        $registeredFrameType = FrameType::orderBy('updated_at', 'DESC')->firstOrFail();
 
         // return redirect('/admin/card');
         return inertia('Admin/FrameType/Create', ['registeredFrameType' => $registeredFrameType, 'message' => 'frame_typeを新規登録しました']);

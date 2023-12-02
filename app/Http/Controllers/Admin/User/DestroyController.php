@@ -29,7 +29,7 @@ class DestroyController extends Controller
         // 該当するuserをDBから削除
         $user->delete();
 
-        $data = User::orderBy('created_at', 'DESC')->paginate(15);
+        $data = User::orderBy('updated_at', 'DESC')->paginate(15);
 
         return inertia('Admin/User/Index', ['data' => $data, 'message' => "id: {$id} の user を削除しました"]);
     }

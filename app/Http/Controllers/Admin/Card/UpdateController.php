@@ -36,7 +36,7 @@ class UpdateController extends Controller
         // バリデーションエラーが無ければ、データベースを更新
         $card->update($cardData);
 
-        $data = Card::orderBy('created_at', 'DESC')->paginate(15);    // paginateメソッドは、配列ではなくコレクション（jsonオブジェクト？）を返す
+        $data = Card::orderBy('updated_at', 'DESC')->paginate(15);    // paginateメソッドは、配列ではなくコレクション（jsonオブジェクト？）を返す
 
 
         // return redirect()->route('admin.card.index');

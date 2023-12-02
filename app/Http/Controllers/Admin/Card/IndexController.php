@@ -22,8 +22,8 @@ class IndexController extends Controller
 
     // 検索ボタンを押さずにこのページにアクセスしてきた場合
     if (empty($request->input())) {
-      // $cards = Card::orderBy('created_at', 'DESC')->get();
-      $data = Card::orderBy('created_at', 'DESC')->paginate(15);    // paginateメソッドは、配列ではなくコレクション（jsonオブジェクト？）を返す
+      // $cards = Card::orderBy('updated_at', 'DESC')->get();
+      $data = Card::orderBy('updated_at', 'DESC')->paginate(15);    // paginateメソッドは、配列ではなくコレクション（jsonオブジェクト？）を返す
 
       // return Inertia::render('Admin/Index', ['data' => $data]);
       return inertia('Admin/Card/Index', ['data' => $data, 'cardsNum' => $cards_num]);   // inertiaへルパ関数を使うと記述がシンプル
@@ -36,7 +36,7 @@ class IndexController extends Controller
 
     if ($keyword === ' ' || $keyword === null) {
       // 検索ボタンを押して再度このページにアクセスしてきたが、検索キーワードが空欄だった場合
-      $data = Card::orderBy('created_at', 'DESC')->paginate(15);    // paginateメソッドは、配列ではなくコレクション（jsonオブジェクト？）を返す
+      $data = Card::orderBy('updated_at', 'DESC')->paginate(15);    // paginateメソッドは、配列ではなくコレクション（jsonオブジェクト？）を返す
 
       // 検索キーワードが未入力だったというエラーメッセージを設定
       $err_message = '検索キーワードが未入力です';

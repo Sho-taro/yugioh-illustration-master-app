@@ -27,7 +27,7 @@ class DestroyController extends Controller
         // 該当するカードをデータベースから削除
         $card->delete();
 
-        $data = Card::orderBy('created_at', 'DESC')->paginate(15);    // paginateメソッドは、配列ではなくコレクション（jsonオブジェクト？）を返す
+        $data = Card::orderBy('updated_at', 'DESC')->paginate(15);    // paginateメソッドは、配列ではなくコレクション（jsonオブジェクト？）を返す
 
 
         // return redirect()->route('admin.card.index');

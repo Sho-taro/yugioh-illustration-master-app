@@ -38,7 +38,7 @@ class UpdateController extends Controller
         // バリデーションエラーがなければ、変更内容を保存
         $product->update($updated_product);
 
-        $data = Product::orderBy('created_at', 'DESC')->paginate(15);
+        $data = Product::orderBy('updated_at', 'DESC')->paginate(15);
 
         return inertia('Admin/Product/Index', ['data' => $data, 'message' => "id: {$id} の product を編集しました"]);
     }
