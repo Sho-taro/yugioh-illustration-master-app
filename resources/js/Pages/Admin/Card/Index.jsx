@@ -4,8 +4,12 @@ import { Link } from '@inertiajs/react';
 import Pagination from '@/Components/Admin/Pageination';
 // import './css/Index.css';
 
-function Index({ data, cardsNum, message }) {
+function Index({ data, cardsNum, errMessage }) {
 	// console.log(data);
+	// const handleSubmit = (e) => {
+	// 	e.preventDefault();
+	// 	router.get(route('admin.card.index'), values);
+	// }
 	return (
 		<>
 			<div className="w-3/5 mt-8 mx-auto">
@@ -15,8 +19,58 @@ function Index({ data, cardsNum, message }) {
 						{'< '} 管理画面トップへ戻る
 					</Link>
 				</div>
-				{<p>登録カード枚数: {cardsNum}</p>}
-				{message && <p className="text-green-500">{message}</p>}
+				{
+					<p>
+						登録カード枚数: <span className="font-bold">{cardsNum}</span> 枚
+					</p>
+				}
+				<div>
+					<details>
+						<summary>カードを検索する</summary>
+						<form action={route('admin.card.index')}>
+							<div className="ml-4">
+								<p>検索方法を選択: </p>
+								<div>
+									<div>
+										<input
+											type="radio"
+											name="search-type"
+											id="std"
+											value="std"
+											defaultChecked
+										/>
+										<label htmlFor="std">カード名（標準）</label>
+									</div>
+									<div>
+										<input
+											type="radio"
+											name="search-type"
+											id="kana"
+											value="kana"
+										/>
+										<label htmlFor="kana">カード名（読み）</label>
+									</div>
+								</div>
+							</div>
+							<div className="relative w-1/2">
+								<input
+									type="text"
+									name="card-name"
+									placeholder="カード名を入力"
+									className="w-full"
+								/>
+								<button type="submit" className="absolute top-1/2 right-2 -translate-y-1/2">
+									<img
+										src="/images/search.svg"
+										alt="検索ボタン"
+										className="cursor-pointer hover:opacity-50"
+									/>
+								</button>
+							</div>
+						</form>
+					</details>
+				</div>
+				{errMessage && <p className="text-red-500">{errMessage}</p>}
 				<table border="1" className="index-table mt-4 w-full">
 					<thead>
 						<tr>
