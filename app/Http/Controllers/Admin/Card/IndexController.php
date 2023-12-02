@@ -56,8 +56,8 @@ class IndexController extends Controller
       // 全角スペースを半角スペースに変換
       // $keyword_hankaku = mb_convert_kana($keyword, 's');
 
-      // さらに、半角スペースで区切って配列に格納
-      $arr_keywords = $keywords = preg_split("/[\s,]+/", mb_convert_kana($keyword, 's'));
+      // 全角スペースを半角スペースに変換したあと、半角スペースで区切って配列に格納
+      $arr_keywords = preg_split("/[\s,]+/", mb_convert_kana($keyword, 's'));
 
       if ($search_type === 'std') {
         // カード名（標準）で検索する場合の処理
