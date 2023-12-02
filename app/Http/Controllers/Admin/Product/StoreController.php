@@ -21,8 +21,8 @@ class StoreController extends Controller
             'period' => ['required', 'string', 'exists:periods,name_en']   // exists → 外部キー制約のバリデーション。periodsテーブルのname_enカラムに存在しない値の場合エラーにする。
         ]));
 
-        // $data = Product::orderBy('created_at', 'DESC')->paginate(15);    // paginateメソッドは、配列ではなくコレクション（jsonオブジェクト？）を返す
-        $registeredProduct = Product::orderBy('created_at', 'DESC')->firstOrFail();
+        // $data = Product::orderBy('updated_at', 'DESC')->paginate(15);    // paginateメソッドは、配列ではなくコレクション（jsonオブジェクト？）を返す
+        $registeredProduct = Product::orderBy('updated_at', 'DESC')->firstOrFail();
 
         // return redirect('/admin/card');
         return inertia('Admin/Product/Create', ['registeredProduct' => $registeredProduct, 'message' => 'productを新規登録しました']);

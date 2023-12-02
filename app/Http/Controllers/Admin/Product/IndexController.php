@@ -14,7 +14,7 @@ class IndexController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $data = Product::orderBy('created_at','DESC')->paginate(15);
+        $data = Product::orderBy('updated_at','DESC')->paginate(15);
         return inertia('Admin/Product/Index', ['data' => $data]);
     }
 }

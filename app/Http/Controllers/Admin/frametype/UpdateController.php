@@ -36,7 +36,7 @@ class UpdateController extends Controller
         // バリデーションエラーがなければ、変更内容を保存
         $frame_type->update($updated_ft);
 
-        $data = FrameType::orderBy('created_at', 'DESC')->paginate(15);
+        $data = FrameType::orderBy('updated_at', 'DESC')->paginate(15);
 
         return inertia('Admin/FrameType/Index', ['data' => $data, 'message' => "id: {$id} の frame_type を編集しました"]);
     }

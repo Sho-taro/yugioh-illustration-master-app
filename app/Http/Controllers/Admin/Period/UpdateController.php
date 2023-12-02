@@ -36,7 +36,7 @@ class UpdateController extends Controller
         // バリデーションエラーがなければ、変更内容を保存
         $period->update($updated_period);
 
-        $data = Period::orderBy('created_at', 'DESC')->paginate(15);
+        $data = Period::orderBy('updated_at', 'DESC')->paginate(15);
 
         return inertia('Admin/Period/Index', ['data' => $data, 'message' => "id: {$id} の period を編集しました"]);
     }

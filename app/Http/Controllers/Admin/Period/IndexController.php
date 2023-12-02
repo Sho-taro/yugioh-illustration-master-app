@@ -14,7 +14,7 @@ class IndexController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $data = Period::orderBy('created_at','DESC')->paginate(15);
+        $data = Period::orderBy('updated_at','DESC')->paginate(15);
         return inertia('Admin/Period/Index', ['data' => $data]);
     }
 }

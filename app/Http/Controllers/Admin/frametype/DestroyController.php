@@ -28,7 +28,7 @@ class DestroyController extends Controller
         // 該当するframe_typeをDBから削除
         $frame_type->delete();
 
-        $data = FrameType::orderBy('created_at', 'DESC')->paginate(15);
+        $data = FrameType::orderBy('updated_at', 'DESC')->paginate(15);
 
         return inertia('Admin/FrameType/Index', ['data' => $data, 'message' => "id: {$id} の frame_type を削除しました"]);
     }

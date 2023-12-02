@@ -29,7 +29,7 @@ class DestroyController extends Controller
         // 該当するproductをDBから削除
         $product->delete();
 
-        $data = Product::orderBy('created_at', 'DESC')->paginate(15);
+        $data = Product::orderBy('updated_at', 'DESC')->paginate(15);
 
         return inertia('Admin/Product/Index', ['data' => $data, 'message' => "id: {$id} の product を削除しました"]);
     }

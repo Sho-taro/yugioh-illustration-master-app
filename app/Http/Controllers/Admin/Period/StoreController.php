@@ -19,8 +19,8 @@ class StoreController extends Controller
             'name_ja' => ['required', 'string', 'unique:periods,name_ja']
         ]));
 
-        // $data = Period::orderBy('created_at', 'DESC')->paginate(15);    // paginateメソッドは、配列ではなくコレクション（jsonオブジェクト？）を返す
-        $registeredPeriod = Period::orderBy('created_at', 'DESC')->firstOrFail();
+        // $data = Period::orderBy('updated_at', 'DESC')->paginate(15);    // paginateメソッドは、配列ではなくコレクション（jsonオブジェクト？）を返す
+        $registeredPeriod = Period::orderBy('updated_at', 'DESC')->firstOrFail();
 
         // return redirect('/admin/card');
         return inertia('Admin/Period/Create', ['registeredPeriod' => $registeredPeriod, 'message' => 'periodを新規登録しました']);

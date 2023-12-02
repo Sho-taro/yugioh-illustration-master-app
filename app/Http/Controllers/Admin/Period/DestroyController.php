@@ -29,7 +29,7 @@ class DestroyController extends Controller
         // 該当するperiodをDBから削除
         $period->delete();
 
-        $data = Period::orderBy('created_at', 'DESC')->paginate(15);
+        $data = Period::orderBy('updated_at', 'DESC')->paginate(15);
 
         return inertia('Admin/Period/Index', ['data' => $data, 'message' => "id: {$id} の period を削除しました"]);
     }

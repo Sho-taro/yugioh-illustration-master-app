@@ -14,7 +14,7 @@ class IndexController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $data = FrameType::orderBy('created_at', 'DESC')->paginate(15);
+        $data = FrameType::orderBy('updated_at', 'DESC')->paginate(15);
         return inertia('Admin/FrameType/Index', ['data' => $data]);
     }
 }

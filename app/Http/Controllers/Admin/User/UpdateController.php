@@ -38,7 +38,7 @@ class UpdateController extends Controller
         // バリデーションエラーがなければ、変更内容を保存
         $user->update($updated_user);
 
-        $data = User::orderBy('created_at', 'DESC')->paginate(15);
+        $data = User::orderBy('updated_at', 'DESC')->paginate(15);
 
         return inertia('Admin/User/Index', ['data' => $data, 'message' => "id: {$id} の user を編集しました"]);
 
