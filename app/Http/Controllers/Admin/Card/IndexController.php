@@ -21,7 +21,7 @@ class IndexController extends Controller
       $cards_num = DB::table('cards')->count();
 
     // 検索ボタンを押さずにこのページにアクセスしてきた場合
-    if (empty($request->input('card-name'))) {
+    if (empty($request->input())) {
       // $cards = Card::orderBy('created_at', 'DESC')->get();
       $data = Card::orderBy('created_at', 'DESC')->paginate(15);    // paginateメソッドは、配列ではなくコレクション（jsonオブジェクト？）を返す
 
