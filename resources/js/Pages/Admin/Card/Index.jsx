@@ -59,7 +59,9 @@ function Index({ data, cardsNum, errMessage }) {
 									placeholder="カード名を入力"
 									className="w-full"
 								/>
-								<button type="submit" className="absolute top-1/2 right-2 -translate-y-1/2">
+								<button
+									type="submit"
+									className="absolute top-1/2 right-2 -translate-y-1/2">
 									<img
 										src="/images/search.svg"
 										alt="検索ボタン"
@@ -76,8 +78,8 @@ function Index({ data, cardsNum, errMessage }) {
 						<tr>
 							<th>id</th>
 							<th width="350">カード名</th>
+							<th width="350">カード名（読み）</th>
 							<th>イラスト</th>
-							<th>作成日時</th>
 							<th>更新日時</th>
 						</tr>
 					</thead>
@@ -92,6 +94,9 @@ function Index({ data, cardsNum, errMessage }) {
 										{card.name_ja}
 									</Link>
 								</td>
+								<td className="px-2 py-4">
+									{card.name_ja_kana}
+								</td>
 								<td>
 									<div className="mx-auto w-12">
 										<img
@@ -100,9 +105,6 @@ function Index({ data, cardsNum, errMessage }) {
 											className="w-12"
 										/>
 									</div>
-								</td>
-								<td className="px-2 py-4">
-									{card.created_at.substr(0, 10)} {card.created_at.substr(11, 5)}
 								</td>
 								<td className="px-2 py-4">
 									{card.updated_at.substr(0, 10)} {card.updated_at.substr(11, 5)}
