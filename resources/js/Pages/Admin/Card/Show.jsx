@@ -240,6 +240,28 @@ function Show({ card, errors }) {
 										</td>
 									</tr>
 								</tbody>
+								<tbody>
+									<tr>
+										<th className="text-right">作成日時:　</th>
+										<td>
+											<p>
+												{card.created_at.substr(0, 10)}{' '}
+												{card.created_at.substr(11, 5)}
+											</p>
+										</td>
+									</tr>
+								</tbody>
+								<tbody>
+									<tr>
+										<th className="text-right">更新日時:　</th>
+										<td>
+											<p>
+												{card.updated_at.substr(0, 10)}{' '}
+												{card.updated_at.substr(11, 5)}
+											</p>
+										</td>
+									</tr>
+								</tbody>
 							</table>
 							<div className="flex justify-end mt-4">
 								<button
