@@ -33,6 +33,7 @@ function Index({ data, cardsNum, errMessage }) {
 								placeholder="カード名で検索"
 								className="w-full"
 							/>
+							<input type="hidden" name="type" value="search"/>
 							<button
 								type="submit"
 								className="absolute top-1/2 right-2 -translate-y-1/2">
@@ -366,6 +367,7 @@ function Index({ data, cardsNum, errMessage }) {
 										</label>
 									</div>
 								</div>
+								<input type="hidden" name="type" value="filter" />
 								<button className="block mt-4 border-2 border-solid border-gray-300 rounded-md">
 									この条件で絞り込む
 								</button>
