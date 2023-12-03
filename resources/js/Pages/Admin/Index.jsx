@@ -5,7 +5,7 @@ import AdminLayout from '@/Layouts/AdminLayout';
 function Index({cardsNum, usersNum}) {
   return (
 		<>
-			<div className="w-4/5 mt-8 mx-auto">
+			<div className="w-4/5 pt-8 mx-auto">
 				<Link href={route('index')} className="simple-button">
 					プレイ画面へ
 				</Link>

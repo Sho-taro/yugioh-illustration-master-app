@@ -45,7 +45,7 @@ function Show({ card, errors }) {
 
 	return (
 		<>
-			<div className="w-3/5 mt-8 mx-auto">
+			<div className="w-2/3 pt-8 mx-auto">
 				<div className="flex justify-between">
 					<h1 className="font-bold text-3xl mb-8">カード詳細</h1>
 					<Link href={route('admin.card.index')} className="hover:text-blue-400">
@@ -53,7 +53,7 @@ function Show({ card, errors }) {
 					</Link>
 				</div>
 				<h2 className="text-lg">カード詳細を確認・編集</h2>
-				<div className="p-8 mb-4 bg-gray-100 rounded-md flex justify-around">
+				<div className="p-8 mb-4 bg-gray-100 rounded-md flex justify-center">
 					<div className="">
 						<img
 							src={`/images/card-images/${card.product_code}-${card.list_number}.jpg`}
@@ -61,7 +61,7 @@ function Show({ card, errors }) {
 							className="w-80 border-4 border-slate-400 border-solid"
 						/>
 					</div>
-					<div className="">
+					<div className="ml-8">
 						<input
 							id="edit-checkbox"
 							type="checkBox"

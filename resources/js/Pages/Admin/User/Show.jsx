@@ -40,7 +40,7 @@ function Show({user, errors}) {
 
 	return (
 		<>
-			<div className="w-3/5 mt-8 mx-auto">
+			<div className="w-3/5 pt-8 mx-auto">
 				<div className="flex justify-between">
 					<h1 className="font-bold text-3xl mb-8">user詳細</h1>
 					<Link href={route('admin.user.index')} className="hover:text-blue-400">
@@ -172,7 +172,7 @@ function Show({user, errors}) {
 								</tr>
 							</tbody>
 						</table>
-						<div className="flex justify-end mt-4">
+						<div className="mt-4">
 							<button
 								type="submit"
 								className="simple-button bg-black/90 block"

@@ -14,11 +14,11 @@ function Pagination({ data }) {
 			{data.links.map((link, i) => {
 				if (i === 0) {
 					if (data.current_page === 1) {
-						return <span key={i} className="px-2 py-1 border-2 border-gray-200 rounded-lg">前へ</span>;
+						return <span key={i} className="px-2 py-1 border-2 border-gray-200 rounded-lg">{'<'}</span>;
 					} else {
 						return (
 							<span key={i} className="px-2 py-1 border-2 border-gray-200 rounded-lg">
-								<a href={link.url}>前へ</a>
+								<a href={link.url}>{'<'}</a>
 							</span>
 						);
 					}
@@ -26,13 +26,13 @@ function Pagination({ data }) {
 					if (data.current_page === data.last_page) {
 						return (
 							<span key={i} className="px-2 py-1 border-2 border-gray-200 rounded-lg">
-								次へ
+								{'>'}
 							</span>
 						);
 					} else {
 						return (
 							<span key={i} className="px-2 py-1 border-2 border-gray-200 rounded-lg">
-								<a href={link.url}>次へ</a>
+								<a href={link.url}>{'>'}</a>
 							</span>
 						);
 					}
