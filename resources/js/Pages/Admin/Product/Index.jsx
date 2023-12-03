@@ -6,7 +6,7 @@ import AdminLayout from '@/Layouts/AdminLayout';
 function Index({ data, message }) {
 	return (
 		<>
-			<div className="w-2/3 mt-8 mx-auto" key="">
+			<div className="w-2/3 pt-8 mx-auto" key="">
 				<div className="flex justify-between mb-4">
 					<h1 className="font-bold text-3xl mb-4">products一覧</h1>
 					<Link href={route('admin.index')} className="hover:text-blue-400">

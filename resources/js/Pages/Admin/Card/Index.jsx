@@ -12,7 +12,7 @@ function Index({ data, cardsNum, errMessage }) {
 	// }
 	return (
 		<>
-			<div className="w-3/5 mt-8 mx-auto">
+			<div className="w-2/3 pt-8 mx-auto">
 				<div className="flex justify-between">
 					<h1 className="font-bold text-3xl mb-4">カード 一覧</h1>
 					<Link href={route('admin.index')} className="hover:text-blue-400">
@@ -368,7 +368,7 @@ function Index({ data, cardsNum, errMessage }) {
 									</div>
 								</div>
 								<input type="hidden" name="type" value="filter" />
-								<button className="block mt-4 border-2 border-solid border-gray-300 rounded-md">
+								<button className="block mt-4 px-2 py-1 border-2 border-solid border-gray-300 rounded-md">
 									この条件で絞り込む
 								</button>
 							</form>
