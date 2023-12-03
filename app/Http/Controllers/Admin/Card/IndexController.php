@@ -15,6 +15,23 @@ class IndexController extends Controller
   */
   public function __invoke(Request $request)
   {
+    if ($request->input('frame-types') !== null) {
+      // dd($request->input('frame-types'));
+
+      $frame_types = $request->input('frame-types');
+
+      // cardsテーブルのレコードを全件取得
+      $cards = DB::table('cards');
+
+      $cards->whereIn('frame_type', $frame_types);
+
+      $data = $cards->orderBy('name_ja', 'ASC')->paginate(15);
+
+      return inertia('Admin/Card/Index', ['data' => $data]);
+    }
+
+
+
     // dd($request->input('card-name'));
 
     // 登録されているカードのレコード数を取得
@@ -46,7 +63,7 @@ class IndexController extends Controller
     } else {
       // 検索ボタンを押して再度このページにアクセスして、検索キーワードがきちんと入力されていた場合
 
-      // // cardsテーブルのレコードを全件取得
+      // cardsテーブルのレコードを全件取得
       $cards = DB::table('cards');
 
       // 全角スペースを半角スペースに変換

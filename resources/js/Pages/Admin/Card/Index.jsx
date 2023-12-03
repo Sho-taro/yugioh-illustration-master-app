@@ -45,6 +45,208 @@ function Index({ data, cardsNum, errMessage }) {
 						</div>
 					</form>
 				</div>
+				<div>
+					<details>
+						<summary>絞り込み</summary>
+						<div>
+							<form action={route('admin.card.index')}>
+								<div>
+									<p>カードの種類で絞り込む :</p>
+									<div className="flex justify-start items-center">
+										<p className="w-20">モンスター</p>
+										<div className="ml-4">
+											<div>
+												<input
+													type="checkbox"
+													id="normal"
+													name="frame-types[]"
+													value="normal"
+													defaultChecked
+												/>
+												<label
+													htmlFor="normal"
+													className="inline-block mr-4">
+													通常
+												</label>
+												<input
+													type="checkbox"
+													id="effect"
+													name="frame-types[]"
+													value="effect"
+													defaultChecked
+												/>
+												<label
+													htmlFor="effect"
+													className="inline-block mr-4">
+													効果
+												</label>
+												<input
+													type="checkbox"
+													id="ritual"
+													name="frame-types[]"
+													value="ritual"
+													defaultChecked
+												/>
+												<label
+													htmlFor="ritual"
+													className="inline-block mr-4">
+													儀式
+												</label>
+												<input
+													type="checkbox"
+													id="fusion"
+													name="frame-types[]"
+													value="fusion"
+													defaultChecked
+												/>
+												<label
+													htmlFor="fusion"
+													className="inline-block mr-4">
+													融合
+												</label>
+												<input
+													type="checkbox"
+													id="synchro"
+													name="frame-types[]"
+													value="synchro"
+													defaultChecked
+												/>
+												<label
+													htmlFor="synchro"
+													className="inline-block mr-4">
+													シンクロ
+												</label>
+												<input
+													type="checkbox"
+													id="xyz"
+													name="frame-types[]"
+													value="xyz"
+													defaultChecked
+												/>
+												<label htmlFor="xyz" className="inline-block mr-4">
+													エクシーズ
+												</label>
+												<input
+													type="checkbox"
+													id="link"
+													name="frame-types[]"
+													value="link"
+													defaultChecked
+												/>
+												<label htmlFor="link" className="inline-block mr-4">
+													リンク
+												</label>
+											</div>
+											<div>
+												<input
+													type="checkbox"
+													id="normal_pendulum"
+													name="frame-types[]"
+													value="normal_pendulum"
+													defaultChecked
+												/>
+												<label
+													htmlFor="normal_pendulum"
+													className="inline-block mr-4">
+													P通常
+												</label>
+												<input
+													type="checkbox"
+													id="effect_pendulum"
+													name="frame-types[]"
+													value="effect_pendulum"
+													defaultChecked
+												/>
+												<label
+													htmlFor="effect_pendulum"
+													className="inline-block mr-4">
+													P効果
+												</label>
+												<input
+													type="checkbox"
+													id="ritual_pendulum"
+													name="frame-types[]"
+													value="ritual_pendulum"
+													defaultChecked
+												/>
+												<label
+													htmlFor="ritual_pendulum"
+													className="inline-block mr-4">
+													P儀式
+												</label>
+												<input
+													type="checkbox"
+													id="fusion_pendulum"
+													name="frame-types[]"
+													value="fusion_pendulum"
+													defaultChecked
+												/>
+												<label
+													htmlFor="fusion_pendulum"
+													className="inline-block mr-4">
+													P融合
+												</label>
+												<input
+													type="checkbox"
+													id="synchro_pendulum"
+													name="frame-types[]"
+													value="synchro_pendulum"
+													defaultChecked
+												/>
+												<label
+													htmlFor="synchro_pendulum"
+													className="inline-block mr-4">
+													Pシンクロ
+												</label>
+												<input
+													type="checkbox"
+													id="xyz_pendulum"
+													name="frame-types[]"
+													value="xyz_pendulum"
+													defaultChecked
+												/>
+												<label
+													htmlFor="xyz_pendulum"
+													className="inline-block mr-4">
+													Pエクシーズ
+												</label>
+											</div>
+										</div>
+									</div>
+									<div className="mt-2 flex justify-start items-center">
+										<p className="w-20">魔法</p>
+										<div className="ml-4">
+											<input
+												type="checkbox"
+												id="spell"
+												name="frame-types[]"
+												value="spell"
+												defaultChecked
+											/>
+											<label htmlFor="spell">魔法</label>
+										</div>
+									</div>
+									<div className="mt-2 flex justify-start items-center">
+										<p className="w-20">罠</p>
+										<div className="ml-4">
+											<input
+												type="checkbox"
+												id="trap"
+												name="frame-types[]"
+												value="trap"
+												defaultChecked
+											/>
+											<label htmlFor="trap">罠</label>
+										</div>
+									</div>
+								</div>
+								<button className="block mt-4 border-2 border-solid border-gray-300 rounded-md">
+									この条件で絞り込む
+								</button>
+							</form>
+						</div>
+					</details>
+				</div>
 				{errMessage && <p className="text-red-500">{errMessage}</p>}
 				<table border="1" className="index-table mt-4 w-full">
 					<thead>
@@ -67,9 +269,7 @@ function Index({ data, cardsNum, errMessage }) {
 										{card.name_ja}
 									</Link>
 								</td>
-								<td className="px-2 py-4">
-									{card.name_ja_kana}
-								</td>
+								<td className="px-2 py-4">{card.name_ja_kana}</td>
 								<td>
 									<div className="mx-auto w-12">
 										<img
