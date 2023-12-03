@@ -19,13 +19,24 @@ class IndexController extends Controller
       // dd($request->input('frame-types'));
 
       $frame_types = $request->input('frame-types');
+      $periods = $request->input('periods');
 
       // cardsテーブルのレコードを全件取得
       $cards = DB::table('cards');
 
+      //まずframe_typeの条件で絞り込み
       $cards->whereIn('frame_type', $frame_types);
 
-      $data = $cards->orderBy('name_ja', 'ASC')->paginate(15);
+      //次にperiodの条件で絞り込むための準備
+      //（準備）cardsテーブルとproductsテーブルをinner join
+      $cards->join('products', 'cards.product_code', '=', 'products.product_code')
+            ->select('cards.*', 'products.period');
+
+      //periodの条件で絞り込み
+      $cards->whereIn('period', $periods);
+
+      // レコードを取得
+      $data = $cards->orderBy('cards.name_ja', 'ASC')->paginate(15);
 
       return inertia('Admin/Card/Index', ['data' => $data]);
     }
