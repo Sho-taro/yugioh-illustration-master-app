@@ -262,6 +262,22 @@ function Show({ card, errors }) {
 										</td>
 									</tr>
 								</tbody>
+								<tbody>
+									<tr>
+										<th className="text-right">初登場時期:　</th>
+										<td>
+											<p>{/* {card.period} */}</p>
+										</td>
+									</tr>
+								</tbody>
+								<tbody>
+									<tr>
+										<th className="text-right">収録パック名:　</th>
+										<td>
+											<p>{/* {card.pack_name} */}</p>
+										</td>
+									</tr>
+								</tbody>
 							</table>
 							<div className="flex justify-end mt-4">
 								<button
