@@ -25,6 +25,9 @@ class ShowController extends Controller
             throw new NotFoundHttpException('該当するカードが見つかりませんでした');
         }
 
-        return inertia('Admin/Card/Show', ['card' => $card]);
+        // リレーションを使って関連するproductのレコードを取得
+        $product = $card->product;
+
+        return inertia('Admin/Card/Show', ['card' => $card, 'product' => $product]);
     }
 }
