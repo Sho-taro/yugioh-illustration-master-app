@@ -4,7 +4,7 @@ import { Link } from '@inertiajs/react';
 import Pagination from '@/Components/Admin/Pageination';
 // import './css/Index.css';
 
-function Index({ data, cardsNum, errMessage }) {
+function Index({ data, cardsNum, errMessage, message }) {
 	// console.log(data);
 	// const handleSubmit = (e) => {
 	// 	e.preventDefault();
@@ -25,32 +25,25 @@ function Index({ data, cardsNum, errMessage }) {
 					</p>
 				}
 				<div>
-					<form action={route('admin.card.index')}>
-						<div className="my-4 relative w-1/2">
-							<input
-								type="text"
-								name="card-name"
-								placeholder="カード名で検索"
-								className="w-full"
-							/>
-							<input type="hidden" name="type" value="search"/>
-							<button
-								type="submit"
-								className="absolute top-1/2 right-2 -translate-y-1/2">
-								<img
-									src="/images/search.svg"
-									alt="検索ボタン"
-									className="cursor-pointer hover:opacity-50"
-								/>
-							</button>
-						</div>
-					</form>
-				</div>
-				<div>
 					<details>
 						<summary>絞り込み</summary>
 						<div>
 							<form action={route('admin.card.index')}>
+								<input type="hidden" name="access-type" value="filtering" />
+								<div className="my-4 w-1/2">
+									<p>カード名で絞り込む :</p>
+									<input
+										type="text"
+										name="card-name"
+										placeholder=" を含む"
+										className="w-full"
+									/>
+									{/* <img
+										src="/images/search.svg"
+										alt="検索ボタン"
+										className="cursor-pointer hover:opacity-50"
+									/> */}
+								</div>
 								<div>
 									<p>カードの種類で絞り込む :</p>
 									<div className="flex justify-start items-center">
@@ -367,7 +360,6 @@ function Index({ data, cardsNum, errMessage }) {
 										</label>
 									</div>
 								</div>
-								<input type="hidden" name="type" value="filter" />
 								<button className="block mt-4 px-2 py-1 border-2 border-solid border-gray-300 rounded-md">
 									この条件で絞り込む
 								</button>
@@ -376,6 +368,7 @@ function Index({ data, cardsNum, errMessage }) {
 					</details>
 				</div>
 				{errMessage && <p className="text-red-500">{errMessage}</p>}
+				{message && <p className="text-green-500">{message}</p>}
 				<table border="1" className="index-table mt-4 w-full">
 					<thead>
 						<tr>
