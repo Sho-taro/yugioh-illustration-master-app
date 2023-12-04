@@ -3,7 +3,7 @@ import AdminLayout from '@/Layouts/AdminLayout';
 import { Link, router, usePage } from '@inertiajs/react';
 // import './css/Show.css';
 
-function Show({ card, errors }) {
+function Show({ card, product, errors }) {
 	const [values, setValues] = useState({
 		id: card.id,
 		product_code: card.product_code,
@@ -259,6 +259,22 @@ function Show({ card, errors }) {
 												{card.updated_at.substr(0, 10)}{' '}
 												{card.updated_at.substr(11, 5)}
 											</p>
+										</td>
+									</tr>
+								</tbody>
+								<tbody>
+									<tr>
+										<th className="text-right">初登場時期:　</th>
+										<td>
+											<p>{product.period}</p>
+										</td>
+									</tr>
+								</tbody>
+								<tbody>
+									<tr>
+										<th className="text-right">収録パック名:　</th>
+										<td>
+											<p>{product.name_en}</p>
 										</td>
 									</tr>
 								</tbody>
