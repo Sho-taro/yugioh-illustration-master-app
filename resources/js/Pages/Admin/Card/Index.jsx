@@ -38,11 +38,11 @@ function Index({ data, cardsNum, errMessage, message }) {
 										placeholder=" を含む"
 										className="w-full"
 									/>
-									<img
+									{/* <img
 										src="/images/search.svg"
 										alt="検索ボタン"
 										className="cursor-pointer hover:opacity-50"
-									/>
+									/> */}
 								</div>
 								<div>
 									<p>カードの種類で絞り込む :</p>
