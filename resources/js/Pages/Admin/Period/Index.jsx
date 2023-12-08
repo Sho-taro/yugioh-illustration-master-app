@@ -18,8 +18,10 @@ function Index({ data, message }) {
 					<thead>
 						<tr>
 							<th>id</th>
-							<th>name_en</th>
-							<th>name_ja</th>
+							<th>period_code</th>
+							<th>name</th>
+							<th>start_date</th>
+							<th>end_date</th>
 						</tr>
 					</thead>
 					{data.data.map(period => (
@@ -32,8 +34,10 @@ function Index({ data, message }) {
 										{period.id}
 									</Link>
 								</td>
-								<td className="px-2 py-4">{period.name_en}</td>
-								<td className="px-2 py-4">{period.name_ja}</td>
+								<td className="px-2 py-4">{period.period_code}</td>
+								<td className="px-2 py-4">{period.name}</td>
+								<td className="px-2 py-4">{period.start_date}</td>
+								<td className="px-2 py-4">{period.end_date}</td>
 								{/* <td className="px-2 py-4">
 									{period.updated_at.substr(0, 10)} {period.updated_at.substr(11, 5)}
 								</td> */}
