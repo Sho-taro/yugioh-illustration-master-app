@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('periods', function (Blueprint $table) {
+        Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->string('period_code', 8)->unique();
-            $table->string('name', 100);
-            $table->date('start_date');
-            $table->date('end_date');
+            $table->string('product_code', 8)->unique();
+            $table->string('name_ja', 100);
+            $table->string('name_en', 100);
+            $table->date('release_date');
         });
     }
 
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('periods');
+        Schema::dropIfExists('products');
     }
 };
