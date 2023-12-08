@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('frame_types', function (Blueprint $table) {
+        Schema::create('spell_trap_play_types', function (Blueprint $table) {
             $table->id();
-            $table->string('name_en')->unique();
-            $table->string('name_ja')->unique();
-            $table->timestamps();
+            $table->string('play_type_code', 8)->unique();
+            $table->string('name_ja', 100);
+            $table->string('name_en', 100);
         });
     }
 
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('frame_types');
+        Schema::dropIfExists('spell_trap_play_types');
     }
 };
