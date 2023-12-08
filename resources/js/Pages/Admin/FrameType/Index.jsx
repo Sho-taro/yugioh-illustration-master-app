@@ -9,15 +9,18 @@ function Index({ data, message }) {
 			<div className="w-2/3 pt-8 mx-auto" key="">
 				<div className="flex justify-between mb-4">
 					<h1 className="font-bold text-3xl mb-4">frame_type一覧</h1>
-					<Link href={route('admin.index')} className="hover:text-blue-400">{'< '} 管理画面トップへ戻る</Link>
+					<Link href={route('admin.index')} className="hover:text-blue-400">
+						{'< '} 管理画面トップへ戻る
+					</Link>
 				</div>
 				{message && <p className="text-green-500">{message}</p>}
 				<table border="1" className="index-table mt-4 w-full">
 					<thead>
 						<tr>
 							<th>id</th>
-							<th>name_en</th>
+							<th>frame_type_code</th>
 							<th>name_ja</th>
+							<th>name_en</th>
 						</tr>
 					</thead>
 					{data.data.map(ft => (
@@ -30,8 +33,9 @@ function Index({ data, message }) {
 										{ft.id}
 									</Link>
 								</td>
-								<td className="px-2 py-4">{ft.name_en}</td>
+								<td className="px-2 py-4">{ft.frame_type_code}</td>
 								<td className="px-2 py-4">{ft.name_ja}</td>
+								<td className="px-2 py-4">{ft.name_en}</td>
 								{/* <td className="px-2 py-4">
 									{ft.updated_at.substr(0, 10)} {ft.updated_at.substr(11, 5)}
 								</td> */}
