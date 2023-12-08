@@ -1,141 +1,96 @@
 import React from 'react';
 import { Link } from '@inertiajs/react';
+import DatabaseCard from '@/Components/Admin/DatabaseCard';
 import AdminLayout from '@/Layouts/AdminLayout';
 
-function Index({ cardsNum, usersNum }) {
+function Index() {
 	return (
 		<>
 			<div className="w-4/5 pt-8 mx-auto">
-				<Link href={route('index')} className="simple-button">
-					プレイ画面へ
-				</Link>
-				<h1 className="text-3xl font-bold mt-8 mb-12">管理画面トップ</h1>
-				<div className="mb-8">
+				<div className="mb-12 flex justify-between">
+					<h1 className="text-3xl font-bold">管理画面トップ</h1>
+					<div>
+						<Link href={route('index')} className="simple-button">
+							プレイ画面へ
+						</Link>
+					</div>
+				</div>
+				<section className="mb-8">
 					<p>カードに関するテーブル（クリックしてデータを一覧表示）</p>
 					<div className="py-4">
 						<div className="flex justify-start mb-4">
-							<div className="p-2 bg-gray-300 text-center rounded-md">
-								<img
-									src="/images/cards.jpg"
-									className="w-24 h-24 inline-block"
-									alt="cards"
-								/>
-								<Link
-									href={route('admin.card.index')}
-									className="hover:text-blue-400 block">
-									cards
-								</Link>
-							</div>
-							<div className="ml-4 p-2 bg-gray-300 text-center rounded-md">
-								<img
-									src="/images/tags.png"
-									className="w-24 h-24 inline-block"
-									alt="tags"
-								/>
-								<Link href="" className="hover:text-blue-400 block">
-									tags
-								</Link>
-							</div>
+							<DatabaseCard
+								isMlOn={false}
+								src="/images/cards.jpg"
+								dbName="cards"
+								routeName="admin.card.index"
+							/>
+							<DatabaseCard
+								isMlOn={true}
+								src="/images/tags.png"
+								dbName="tags"
+								routeName="admin.card.index" // todo: 要修正
+							/>
 						</div>
 						<div className="flex justify-start">
-							<div className="p-2 bg-gray-300 text-center rounded-md">
-								<img
-									src="/images/products.jpeg"
-									className="w-24 h-24 inline-block"
-									alt="products"
-								/>
-								<Link
-									href={route('admin.product.index')}
-									className="hover:text-blue-400 block">
-									products
-								</Link>
-							</div>
-							<div className="p-2 ml-4 bg-gray-300 text-center rounded-md">
-								<img
-									src="/images/periods.png"
-									className="w-24 h-24 inline-block"
-									alt="periods"
-								/>
-								<Link
-									href={route('admin.period.index')}
-									className="hover:text-blue-400 block">
-									periods
-								</Link>
-							</div>
-							<div className="p-2 ml-4 bg-gray-300 text-center rounded-md">
-								<img
-									src="/images/archetypes.png"
-									className="w-24 h-24 inline-block"
-									alt="archetypes"
-								/>
-								<Link href="" className="hover:text-blue-400 block">
-									archetypes
-								</Link>
-							</div>
-							<div className="p-2 ml-4 bg-gray-300 text-center rounded-md">
-								<img
-									src="/images/frame_types.jpg"
-									className="h-24 aspect-auto inline-block"
-									alt="frame_types"
-								/>
-								<Link
-									href={route('admin.frametype.index')}
-									className="hover:text-blue-400 block">
-									frame_types
-								</Link>
-							</div>
-							<div className="p-2 ml-4 bg-gray-300 text-center rounded-md">
-								<img
-									src="/images/races.jpg"
-									className="w-24 h-24 inline-block"
-									alt="races"
-								/>
-								<Link href="" className="hover:text-blue-400 block">
-									races
-								</Link>
-							</div>
-							<div className="p-2 ml-4 bg-gray-300 text-center rounded-md">
-								<img
-									src="/images/attributes.jpeg"
-									className="w-24 h-24 inline-block"
-									alt="attributes"
-								/>
-								<Link href="" className="hover:text-blue-400 block">
-									attributes
-								</Link>
-							</div>
-							<div className="p-2 ml-4 bg-gray-300 text-center rounded-md">
-								<img
-									src="/images/spell_trap_play_types.jpeg"
-									className="w-24 h-24 inline-block"
-									alt="spell_trap_play_types"
-								/>
-								<Link href="" className="hover:text-blue-400 block">
-									spell_trap_play_types
-								</Link>
-							</div>
+							<DatabaseCard
+								isMlOn={false}
+								src="/images/products.jpeg"
+								dbName="products"
+								routeName="admin.product.index"
+							/>
+							<DatabaseCard
+								isMlOn={true}
+								src="/images/periods.png"
+								dbName="periods"
+								routeName="admin.period.index"
+							/>
+							<DatabaseCard
+								isMlOn={true}
+								src="/images/archetypes.png"
+								dbName="archetypes"
+								routeName="admin.card.index" // todo: 要修正
+							/>
+							<DatabaseCard
+								isMlOn={true}
+								src="/images/frame_types.jpg"
+								dbName="frame_types"
+								routeName="admin.frametype.index"
+							/>
+							<DatabaseCard
+								isMlOn={true}
+								src="/images/races.jpg"
+								dbName="races"
+								routeName="admin.card.index" // todo: 要修正
+							/>
+							<DatabaseCard
+								isMlOn={true}
+								src="/images/attributes.jpeg"
+								dbName="attributes"
+								routeName="admin.card.index" // todo: 要修正
+							/>
+							<DatabaseCard
+								isMlOn={true}
+								src="/images/spell_trap_play_types.jpeg"
+								dbName="spell_trap_play_types"
+								routeName="admin.card.index" // todo: 要修正
+							/>
 						</div>
 					</div>
-				</div>
-				<div className="mb-8">
+				</section>
+				<section className="mb-8">
 					<p>ユーザーに関するテーブル（クリックしてデータを一覧表示）</p>
 					<div className="py-4">
 						<div className="flex justify-start mb-4">
-							<div className="p-2 bg-gray-300 text-center rounded-md">
-								<img
-									src="/images/account-circle-black.svg"
-									className="w-24 h-24 inline-block"
-									alt="users"
-								/>
-								<Link
-									href={route('admin.user.index')}
-									className="hover:text-blue-400 block">
-									usersテーブル
-								</Link>
-							</div>
+							<DatabaseCard
+								isMlOn={false}
+								src="/images/account-circle-black.svg"
+								dbName="users"
+								routeName="admin.user.index"
+							/>
 						</div>
 					</div>
-				</div>
+				</section>
 			</div>
 		</>
 	);
