@@ -17,11 +17,12 @@ class IndexController extends Controller
     public function __invoke(Request $request)
     {
         // cardsテーブルのレコード数を取得
-        $cards_num = DB::table('cards')->count();
+        // $cards_num = DB::table('cards')->count();
 
         // usersテーブルのレコード数を取得
-        $users_num = DB::table('users')->count();
+        // $users_num = DB::table('users')->count();
 
-        return inertia('Admin/Index',['cardsNum' => $cards_num, 'usersNum' => $users_num]);
+        // return inertia('Admin/Index',['cardsNum' => $cards_num, 'usersNum' => $users_num]);
+        return inertia('Admin/Index',[]);
     }
 }

@@ -1,116 +1,102 @@
-import React from 'react'
+import React from 'react';
 import { Link } from '@inertiajs/react';
+import DatabaseCard from '@/Components/Admin/DatabaseCard';
 import AdminLayout from '@/Layouts/AdminLayout';
 
-function Index({cardsNum, usersNum}) {
-  return (
+function Index() {
+	return (
 		<>
 			<div className="w-4/5 pt-8 mx-auto">
-				<Link href={route('index')} className="simple-button">
-					プレイ画面へ
-				</Link>
-				<div className="mt-8">
+				<div className="mb-12 flex justify-between">
+					<h1 className="text-3xl font-bold">管理画面トップ</h1>
 					<div>
-						<div className="w-1/3 mb-8">
-							<p className="text-lg">
-								<span className="font-bold">一覧表示</span>はこちら
-							</p>
-							<div className="px-4 py-2 bg-gray-100 rounded-md">
-								<p>カード</p>
-								<div className="ml-4 mb-4">
-									<ul>
-										<li>
-											<Link
-												href={route('admin.card.index')}
-												className="hover:text-blue-400">
-												cardsテーブル
-											</Link>
-										</li>
-										<li>
-											<Link
-												href={route('admin.product.index')}
-												className="hover:text-blue-400">
-												productsテーブル
-											</Link>
-										</li>
-										<li>
-											<Link
-												href={route('admin.period.index')}
-												className="hover:text-blue-400">
-												periodsテーブル
-											</Link>
-										</li>
-										<li>
-											<Link
-												href={route('admin.frametype.index')}
-												className="hover:text-blue-400">
-												frame_typesテーブル
-											</Link>
-										</li>
-									</ul>
-								</div>
-								<p>ユーザー</p>
-								<div className="ml-4">
-									<ul>
-										<li>
-											<Link
-												href={route('admin.user.index')}
-												className="hover:text-blue-400">
-												usersテーブル
-											</Link>
-										</li>
-									</ul>
-								</div>
-							</div>
-						</div>
-						<div className="w-1/3">
-							<p className="text-lg">
-								<span className="font-bold">新規登録</span>はこちら
-							</p>
-							<div className="px-4 py-2 bg-gray-100 rounded-md">
-								<p>カード</p>
-								<div className="ml-4">
-									<ul>
-										<li>
-											<Link
-												href={route('admin.card.create')}
-												className="hover:text-blue-400">
-												cardsテーブル
-											</Link>
-										</li>
-										<li>
-											<Link
-												href={route('admin.product.create')}
-												className="hover:text-blue-400">
-												productsテーブル
-											</Link>
-										</li>
-										<li>
-											<Link
-												href={route('admin.period.create')}
-												className="hover:text-blue-400">
-												periodsテーブル
-											</Link>
-										</li>
-										<li>
-											<Link
-												href={route('admin.frametype.create')}
-												className="hover:text-blue-400">
-												frame_typesテーブル
-											</Link>
-										</li>
-									</ul>
-								</div>
-							</div>
-						</div>
+						<Link href={route('index')} className="simple-button">
+							プレイ画面へ
+						</Link>
 					</div>
 				</div>
+				<section className="mb-8">
+					<p>カードに関するテーブル（クリックしてデータを一覧表示）</p>
+					<div className="py-4">
+						<div className="flex justify-start mb-4">
+							<DatabaseCard
+								isMlOn={false}
+								src="/images/cards.jpg"
+								dbName="cards"
+								routeName="admin.card.index"
+							/>
+							<DatabaseCard
+								isMlOn={true}
+								src="/images/tags.png"
+								dbName="tags"
+								routeName="admin.card.index" // todo: 要修正
+							/>
+						</div>
+						<div className="flex justify-start">
+							<DatabaseCard
+								isMlOn={false}
+								src="/images/products.jpeg"
+								dbName="products"
+								routeName="admin.product.index"
+							/>
+							<DatabaseCard
+								isMlOn={true}
+								src="/images/periods.png"
+								dbName="periods"
+								routeName="admin.period.index"
+							/>
+							<DatabaseCard
+								isMlOn={true}
+								src="/images/archetypes.png"
+								dbName="archetypes"
+								routeName="admin.card.index" // todo: 要修正
+							/>
+							<DatabaseCard
+								isMlOn={true}
+								src="/images/frame_types.jpg"
+								dbName="frame_types"
+								routeName="admin.frametype.index"
+							/>
+							<DatabaseCard
+								isMlOn={true}
+								src="/images/races.jpg"
+								dbName="races"
+								routeName="admin.card.index" // todo: 要修正
+							/>
+							<DatabaseCard
+								isMlOn={true}
+								src="/images/attributes.jpeg"
+								dbName="attributes"
+								routeName="admin.card.index" // todo: 要修正
+							/>
+							<DatabaseCard
+								isMlOn={true}
+								src="/images/spell_trap_play_types.jpeg"
+								dbName="spell_trap_play_types"
+								routeName="admin.card.index" // todo: 要修正
+							/>
+						</div>
+					</div>
+				</section>
+				<section className="mb-8">
+					<p>ユーザーに関するテーブル（クリックしてデータを一覧表示）</p>
+					<div className="py-4">
+						<div className="flex justify-start mb-4">
+							<DatabaseCard
+								isMlOn={false}
+								src="/images/account-circle-black.svg"
+								dbName="users"
+								routeName="admin.user.index"
+							/>
+						</div>
+					</div>
+				</section>
 			</div>
 		</>
-  );
+	);
 }
 
 // Persistent Layoutsの設定
 Index.layout = page => <AdminLayout title="トップ" children={page} />;
 
-export default Index
+export default Index;
