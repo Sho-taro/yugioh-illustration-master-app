@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('product_code', 8)->unique();
             $table->string('name_ja', 100);
-            $table->string('name_en', 100);
+            $table->string('name_en', 100)->nullable();   // 商品の英語名は無いこともあるのでnullable
             $table->date('release_date');
         });
     }
