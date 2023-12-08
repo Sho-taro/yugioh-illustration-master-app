@@ -13,9 +13,8 @@ return new class extends Migration
     {
         Schema::create('card_likes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->string('released_card_id');
-            $table->foreign('released_card_id')->references('released_card_id')->on('released_cards')->cascadeOnDelete();   // 外部キー制約。削除をカスケードする。
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();   // 外部キー制約。削除をカスケードする。
+            $table->foreignId('released_card_id')->constrained()->cascadeOnDelete();   // 外部キー制約。削除をカスケードする。
         });
     }
 
