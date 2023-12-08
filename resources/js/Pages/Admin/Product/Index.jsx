@@ -19,9 +19,8 @@ function Index({ data, message }) {
 						<tr>
 							<th>id</th>
 							<th>product_code</th>
-							<th>name_en</th>
 							<th>name_ja</th>
-							<th>period</th>
+							<th>release_date</th>
 						</tr>
 					</thead>
 					{data.data.map(product => (
@@ -35,9 +34,8 @@ function Index({ data, message }) {
 									</Link>
 								</td>
 								<td className="px-2 py-4">{product.product_code}</td>
-								<td className="px-2 py-4">{product.name_en}</td>
 								<td className="px-2 py-4">{product.name_ja}</td>
-								<td className="px-2 py-4">{product.period}</td>
+								<td className="px-2 py-4">{product.release_date}</td>
 								{/* <td className="px-2 py-4">
 									{product.updated_at.substr(0, 10)} {product.updated_at.substr(11, 5)}
 								</td> */}
