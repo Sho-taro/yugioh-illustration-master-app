@@ -5,8 +5,10 @@ import AdminLayout from '@/Layouts/AdminLayout';
 function Show({ period, errors }) {
   const [values, setValues] = useState({
 		id: period.id,
-		name_en: period.name_en,
-		name_ja: period.name_ja,
+		period_code: period.period_code,
+		name: period.name,
+		start_date: period.start_date,
+		end_date: period.end_date,
 		created_at: period.created_at,
 		updated_at: period.updated_at,
   });
@@ -42,7 +44,7 @@ function Show({ period, errors }) {
 				<div className="flex justify-between">
 					<h1 className="font-bold text-3xl mb-8">period詳細</h1>
 					<Link href={route('admin.period.index')} className="hover:text-blue-400">
-						{'< '} period一覧へ戻る
+						{'< '} periods一覧へ戻る
 					</Link>
 				</div>
 				<h2 className="text-lg">period詳細を確認・編集</h2>
@@ -76,36 +78,72 @@ function Show({ period, errors }) {
 							</tbody>
 							<tbody>
 								<tr>
-									<th className="text-right">name_en:　</th>
+									<th className="text-right">period_code:　</th>
 									<td>
 										<input
-											name="name_en"
+											name="period_code"
 											type="text"
 											className="w-80"
 											onChange={handleChange}
-											value={values.name_en}
+											value={values.period_code}
 											disabled={!isEditable}
 										/>
-										{errors.name_en && (
-											<p className="text-red-500">{errors.name_en}</p>
+										{errors.period_code && (
+											<p className="text-red-500">{errors.period_code}</p>
 										)}
 									</td>
 								</tr>
 							</tbody>
 							<tbody>
 								<tr>
-									<th className="text-right">name_ja:　</th>
+									<th className="text-right">name:　</th>
 									<td>
 										<input
-											name="name_ja"
+											name="name"
 											type="text"
 											className="w-80"
 											onChange={handleChange}
-											value={values.name_ja}
+											value={values.name}
 											disabled={!isEditable}
 										/>
-										{errors.name_ja && (
-											<p className="text-red-500">{errors.name_ja}</p>
+										{errors.name && (
+											<p className="text-red-500">{errors.name}</p>
+										)}
+									</td>
+								</tr>
+							</tbody>
+							<tbody>
+								<tr>
+									<th className="text-right">start_date:　</th>
+									<td>
+										<input
+											name="start_date"
+											type="text"
+											className="w-80"
+											onChange={handleChange}
+											value={values.start_date}
+											disabled={!isEditable}
+										/>
+										{errors.start_date && (
+											<p className="text-red-500">{errors.start_date}</p>
+										)}
+									</td>
+								</tr>
+							</tbody>
+							<tbody>
+								<tr>
+									<th className="text-right">end_date:　</th>
+									<td>
+										<input
+											name="end_date"
+											type="text"
+											className="w-80"
+											onChange={handleChange}
+											value={values.end_date}
+											disabled={!isEditable}
+										/>
+										{errors.end_date && (
+											<p className="text-red-500">{errors.end_date}</p>
 										)}
 									</td>
 								</tr>
