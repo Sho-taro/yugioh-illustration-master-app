@@ -27,7 +27,7 @@ function Index() {
 							/>
 							<DatabaseCard
 								isMlOn={true}
-								src="/images/tags.png"
+								src="/images/tags.svg"
 								dbName="tags"
 								routeName="admin.card.index" // todo: 要修正
 							/>
@@ -41,13 +41,13 @@ function Index() {
 							/>
 							<DatabaseCard
 								isMlOn={true}
-								src="/images/periods.png"
+								src="/images/periods.svg"
 								dbName="periods"
 								routeName="admin.period.index"
 							/>
 							<DatabaseCard
 								isMlOn={true}
-								src="/images/archetypes.png"
+								src="/images/archetypes.svg"
 								dbName="archetypes"
 								routeName="admin.card.index" // todo: 要修正
 							/>
