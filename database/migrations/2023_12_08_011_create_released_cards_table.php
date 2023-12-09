@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('card_official_id')->unique();
             $table->foreign('card_official_id')->references('card_official_id')->on('cards')->cascadeOnUpdate()->cascadeOnDelete();   // 外部キー制約。更新・削除をカスケードする。
             $table->unique(['product_code', 'list_number']);   // 複合ユニーク
+            $table->timestamps();
+
             $table->index('product_code', 'productCodeIndex');   // product_codeカラムにindexを貼る。index名はproductCodeIndex。
         });
     }

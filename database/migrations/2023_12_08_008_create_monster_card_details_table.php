@@ -23,6 +23,7 @@ return new class extends Migration
             $table->foreign('attribute_code')->references('attribute_code')->on('attributes')->cascadeOnUpdate()->restrictOnDelete();   // 外部キー制約。更新はカスケードし、削除は制限する。
             $table->string('level or rank', 8);     // リンクモンスターは N/A
             $table->string('link_val', 8);  // リンクモンスター以外は N/A
+            $table->timestamps();
         });
     }
 
