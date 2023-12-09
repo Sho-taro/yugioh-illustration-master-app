@@ -43,7 +43,7 @@ function Create({errors, registeredPeriod, message}) {
 				<div className="flex justify-between mb-4">
 					<h1 className="font-bold text-3xl mb-4">period新規登録</h1>
 					<Link href={route('admin.period.index')} className="hover:text-blue-400">
-						{'< '} periods一覧表示画面へ戻る
+						{'< '} periods一覧へ戻る
 					</Link>
 				</div>
 				<h2 className="text-lg">periodを新規登録する</h2>
