@@ -18,8 +18,10 @@ class Period extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'name_en',
-        'name_ja',
+        'period_code',
+        'name',
+        'start_date',
+        'end_date',
     ];
 
     // Productとのリレーション

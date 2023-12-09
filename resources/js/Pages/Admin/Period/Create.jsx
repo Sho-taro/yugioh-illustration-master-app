@@ -7,8 +7,10 @@ import AdminLayout from '@/Layouts/AdminLayout';
 function Create({errors, registeredPeriod, message}) {
 	// DBに保存する用のデータ
 	const [values, setValues] = useState({
-		name_en: '',
-		name_ja: ''
+		period_code: '',
+		name: '',
+		start_date: '',
+		end_date: '',
 	});
 
 	const handleSubmit = e => {
@@ -28,8 +30,10 @@ function Create({errors, registeredPeriod, message}) {
 
 	const clearInput = () => {
 		setValues({
-			name_en: '',
-			name_ja: '',
+			period_code: '',
+			name: '',
+			start_date: '',
+			end_date: '',
 		});
 	};
 
@@ -38,8 +42,8 @@ function Create({errors, registeredPeriod, message}) {
 			<div className="w-2/3 pt-8 mx-auto" key="">
 				<div className="flex justify-between mb-4">
 					<h1 className="font-bold text-3xl mb-4">period新規登録</h1>
-					<Link href={route('admin.index')} className="hover:text-blue-400">
-						{'< '} 管理画面トップへ戻る
+					<Link href={route('admin.period.index')} className="hover:text-blue-400">
+						{'< '} periods一覧へ戻る
 					</Link>
 				</div>
 				<h2 className="text-lg">periodを新規登録する</h2>
@@ -60,36 +64,72 @@ function Create({errors, registeredPeriod, message}) {
 							</thead>
 							<tbody>
 								<tr>
-									<th className="text-right">name_en:　</th>
+									<th className="w-20">period_code:　</th>
 									<td>
 										<input
-											name="name_en"
+											name="period_code"
 											type="text"
-											value={values.name_en}
-											placeholder="1st"
+											value={values.period_code}
+											placeholder="0001"
 											className="w-80"
 											onChange={handleChange}
 										/>
-										{errors.name_en && (
-											<p className="text-red-500">{errors.name_en}</p>
+										{errors.period_code && (
+											<p className="text-red-500">{errors.period_code}</p>
 										)}
 									</td>
 								</tr>
 							</tbody>
 							<tbody>
 								<tr>
-									<th className="text-right">name_ja:　</th>
+									<th className="w-20">name:　</th>
 									<td>
 										<input
-											name="name_ja"
+											name="name"
 											type="text"
-											value={values.name_ja}
-											placeholder="第1期"
+											value={values.name}
+											placeholder="１期"
 											className="w-80"
 											onChange={handleChange}
 										/>
-										{errors.name_ja && (
-											<p className="text-red-500">{errors.name_ja}</p>
+										{errors.name && (
+											<p className="text-red-500">{errors.name}</p>
+										)}
+									</td>
+								</tr>
+							</tbody>
+							<tbody>
+								<tr>
+									<th>start_date:　</th>
+									<td>
+										<input
+											name="start_date"
+											type="text"
+											value={values.start_date}
+											placeholder="yyyy-mm-dd"
+											className="w-80"
+											onChange={handleChange}
+										/>
+										{errors.start_date && (
+											<p className="text-red-500">{errors.start_date}</p>
+										)}
+									</td>
+								</tr>
+							</tbody>
+							<tbody>
+								<tr>
+									<th>end_date:　</th>
+									<td>
+										<input
+											name="end_date"
+											type="text"
+											value={values.end_date}
+											placeholder="yyyy-mm-dd"
+											className="w-80"
+											onChange={handleChange}
+										/>
+										{errors.end_date && (
+											<p className="text-red-500">{errors.end_date}</p>
 										)}
 									</td>
 								</tr>

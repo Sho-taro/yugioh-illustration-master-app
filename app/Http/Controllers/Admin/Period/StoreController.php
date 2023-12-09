@@ -15,8 +15,10 @@ class StoreController extends Controller
     public function __invoke(Request $request)
     {
         Period::create($request->validate([
-            'name_en' => ['required', 'string', 'unique:periods,name_en'],
-            'name_ja' => ['required', 'string', 'unique:periods,name_ja']
+            'period_code' => ['required', 'string', 'min:4', 'max:4', 'unique:periods,period_code'],
+            'name' => ['required', 'string'],
+            'start_date' => ['required', 'date_format:Y-m-d'],    // imp: dateのフォーマットはY-m-dのみ許可　（例: 2020-01-01）
+            'end_date' => ['required', 'date_format:Y-m-d']
         ]));
 
         // $data = Period::orderBy('updated_at', 'DESC')->paginate(15);    // paginateメソッドは、配列ではなくコレクション（jsonオブジェクト？）を返す
@@ -24,6 +26,5 @@ class StoreController extends Controller
 
         // return redirect('/admin/card');
         return inertia('Admin/Period/Create', ['registeredPeriod' => $registeredPeriod, 'message' => 'periodを新規登録しました']);
-
     }
 }
