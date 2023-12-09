@@ -7,8 +7,9 @@ import AdminLayout from '@/Layouts/AdminLayout';
 function Create({errors, registeredFrameType, message}) {
 	// DBに保存する用のデータ
 	const [values, setValues] = useState({
-		name_en: '',
-		name_ja: ''
+		frame_type_code: '',
+		name_ja: '',
+		name_en: ''
 	});
 
 	const handleSubmit = e => {
@@ -28,8 +29,9 @@ function Create({errors, registeredFrameType, message}) {
 
 	const clearInput = () => {
 		setValues({
-			name_en: '',
+			frame_type_code: '',
 			name_ja: '',
+			name_en: '',
 		});
 	};
 
@@ -38,8 +40,8 @@ function Create({errors, registeredFrameType, message}) {
 			<div className="w-2/3 pt-8 mx-auto" key="">
 				<div className="flex justify-between mb-4">
 					<h1 className="font-bold text-3xl mb-4">frame_type新規登録</h1>
-					<Link href={route('admin.index')} className="hover:text-blue-400">
-						{'< '} 管理画面トップへ戻る
+					<Link href={route('admin.frametype.index')} className="hover:text-blue-400">
+						{'< '} frame_types一覧へ戻る
 					</Link>
 				</div>
 				<h2 className="text-lg">frame_typeを新規登録する</h2>
@@ -60,25 +62,25 @@ function Create({errors, registeredFrameType, message}) {
 							</thead>
 							<tbody>
 								<tr>
-									<th className="text-right">name_en:　</th>
+									<th>frame_type_code:　</th>
 									<td>
 										<input
-											name="name_en"
+											name="frame_type_code"
 											type="text"
-											value={values.name_en}
-											placeholder="normal"
+											value={values.frame_type_code}
+											placeholder="0001"
 											className="w-80"
 											onChange={handleChange}
 										/>
-										{errors.name_en && (
-											<p className="text-red-500">{errors.name_en}</p>
+										{errors.frame_type_code && (
+											<p className="text-red-500">{errors.frame_type_code}</p>
 										)}
 									</td>
 								</tr>
 							</tbody>
 							<tbody>
 								<tr>
-									<th className="text-right">name_ja:　</th>
+									<th>name_ja:　</th>
 									<td>
 										<input
 											name="name_ja"
@@ -90,6 +92,24 @@ function Create({errors, registeredFrameType, message}) {
 										/>
 										{errors.name_ja && (
 											<p className="text-red-500">{errors.name_ja}</p>
+										)}
+									</td>
+								</tr>
+							</tbody>
+							<tbody>
+								<tr>
+									<th>name_en:　</th>
+									<td>
+										<input
+											name="name_en"
+											type="text"
+											value={values.name_en}
+											placeholder="normal"
+											className="w-80"
+											onChange={handleChange}
+										/>
+										{errors.name_en && (
+											<p className="text-red-500">{errors.name_en}</p>
 										)}
 									</td>
 								</tr>

@@ -15,8 +15,9 @@ class StoreController extends Controller
     public function __invoke(Request $request)
     {
         FrameType::create($request->validate([
-            'name_en' => ['required', 'string', 'unique:frame_types,name_en'],
-            'name_ja' => ['required', 'string', 'unique:frame_types,name_ja']
+            'frame_type_code' => ['required', 'string', 'size:4', 'unique:frame_types,frame_type_code'],
+            'name_ja' => ['required', 'string'],
+            'name_en' => ['required', 'string']
         ]));
 
         // $data = Card::orderBy('updated_at', 'DESC')->paginate(15);    // paginateメソッドは、配列ではなくコレクション（jsonオブジェクト？）を返す
