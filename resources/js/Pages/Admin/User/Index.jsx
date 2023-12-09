@@ -9,8 +9,8 @@ function Index({ data, usersNum ,message }) {
 	return (
 		<>
 			<div className="w-3/5 pt-8 mx-auto">
-				<div className="flex justify-between">
-					<h1 className="font-bold text-3xl mb-4">ユーザー 一覧</h1>
+				<div className="flex justify-between mb-8">
+					<h1 className="font-bold text-3xl">ユーザー 一覧</h1>
 					<Link href={route('admin.index')} className="hover:text-blue-400">
 						{'< '} 管理画面トップへ戻る
 					</Link>
