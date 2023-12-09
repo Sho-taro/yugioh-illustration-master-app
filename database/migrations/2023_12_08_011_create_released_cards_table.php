@@ -31,7 +31,9 @@ return new class extends Migration
         Schema::dropIfExists('released_cards');
 
         // インデックスを削除
-        $table->dropIndex('releasedCards_productCodeIndex_index');
         // 例: $table->dropIndex('テーブル名_インデックス名_index');
+        Schema::table('releasedCards', function (Blueprint $table) {
+            $table->dropIndex('releasedCards_productCodeIndex_index');
+        });
     }
 };

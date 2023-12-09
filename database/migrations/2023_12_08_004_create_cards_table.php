@@ -33,7 +33,9 @@ return new class extends Migration
         Schema::dropIfExists('cards');
 
         // インデックスを削除
-        $table->dropIndex('cards_frameTypeCodeIndex_index');
         // 例: $table->dropIndex('テーブル名_インデックス名_index');
+        Schema::table('cards', function (Blueprint $table) {
+            $table->dropIndex('cards_frameTypeCodeIndex_index');
+        });
     }
 };
