@@ -18,8 +18,9 @@ class FrameType extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'name_en',
+        'frame_type_code',
         'name_ja',
+        'name_en',
     ];
 
     public function cards() :HasMany

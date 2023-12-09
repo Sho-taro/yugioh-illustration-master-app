@@ -29,7 +29,7 @@ class UpdateController extends Controller
         // フォームに入力された変更内容をバリデーション
         $updated_period = $request->validate([
             // 更新処理時のバリデーションチェックでは、unique制約はつけてはいけない
-            'period_code' => ['required', 'string', 'min:4', 'max:4'],
+            'period_code' => ['required', 'string', 'size:4'],
             'name' => ['required', 'string'],
             'start_date' => ['required', 'date_format:Y-m-d'],    // imp: dateのフォーマットはY-m-dのみ許可　（例: 2020-01-01）
             'end_date' => ['required', 'date_format:Y-m-d']

@@ -15,7 +15,7 @@ class StoreController extends Controller
     public function __invoke(Request $request)
     {
         Period::create($request->validate([
-            'period_code' => ['required', 'string', 'min:4', 'max:4', 'unique:periods,period_code'],
+            'period_code' => ['required', 'string', 'size:4', 'unique:periods,period_code'],   // ４文字、unique
             'name' => ['required', 'string'],
             'start_date' => ['required', 'date_format:Y-m-d'],    // imp: dateのフォーマットはY-m-dのみ許可　（例: 2020-01-01）
             'end_date' => ['required', 'date_format:Y-m-d']
