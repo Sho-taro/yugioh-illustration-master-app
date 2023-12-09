@@ -2,10 +2,10 @@ import React from 'react'
 
 function FilterCards({ routeName }) {
   return (
-		<div>
+		<dispatchEvent>
 			<details>
 				<summary>絞り込み</summary>
-				<div>
+				<div className="text-left">
 					<form action={route(routeName)}>
 						<input type="hidden" name="access-type" value="filtering" />
 						<div className="my-4 w-1/2">
@@ -332,7 +332,7 @@ function FilterCards({ routeName }) {
 					</form>
 				</div>
 			</details>
-		</div>
+		</dispatchEvent>
   );
 }
 

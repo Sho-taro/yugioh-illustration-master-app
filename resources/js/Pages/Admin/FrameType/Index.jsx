@@ -7,10 +7,15 @@ function Index({ data, message }) {
 	return (
 		<>
 			<div className="w-2/3 pt-8 mx-auto" key="">
-				<div className="flex justify-between mb-4">
-					<h1 className="font-bold text-3xl mb-4">frame_type一覧</h1>
+				<div className="flex justify-between mb-8">
+					<h1 className="font-bold text-3xl">frame_type一覧</h1>
 					<Link href={route('admin.index')} className="hover:text-blue-400">
 						{'< '} 管理画面トップへ戻る
+					</Link>
+				</div>
+				<div className="mb-6">
+					<Link href={route('admin.frametype.create')} className="simple-button">
+						+ frame_typeを新規登録
 					</Link>
 				</div>
 				{message && <p className="text-green-500">{message}</p>}

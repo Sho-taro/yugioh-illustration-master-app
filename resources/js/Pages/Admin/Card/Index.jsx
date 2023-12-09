@@ -14,18 +14,27 @@ function Index({ data, cardsNum, errMessage, message }) {
 	return (
 		<>
 			<div className="w-4/5 pt-8 mx-auto">
-				<div className="flex justify-between">
-					<h1 className="font-bold text-3xl mb-4">カード 一覧</h1>
+				<div className="flex justify-between mb-8">
+					<h1 className="font-bold text-3xl">カード 一覧</h1>
 					<Link href={route('admin.index')} className="hover:text-blue-400">
 						{'< '} 管理画面トップへ戻る
 					</Link>
 				</div>
-				{
-					<p>
-						登録カード枚数: <span className="font-bold">{cardsNum}</span> 枚
-					</p>
-				}
-				<FilterCards routeName="admin.card.index" />
+				<div className="flex justify-between">
+					<div>
+						<Link href={route('admin.card.create')} className="simple-button">
+							+ cardを新規登録
+						</Link>
+					</div>
+					<div className="text-right">
+						{
+							<p>
+								登録カード枚数: <span className="font-bold">{cardsNum}</span> 枚
+							</p>
+						}
+						<FilterCards routeName="admin.card.index" />
+					</div>
+				</div>
 				{errMessage && <p className="text-red-500">{errMessage}</p>}
 				{message && <p className="text-green-500">{message}</p>}
 				<table border="1" className="index-table mt-4 w-full">
