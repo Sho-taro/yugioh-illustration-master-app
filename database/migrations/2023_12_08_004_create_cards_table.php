@@ -21,6 +21,8 @@ return new class extends Migration
             $table->foreign('frame_type_code')->references('frame_type_code')->on('frame_types')->cascadeOnUpdate()->restrictOnDelete();   // 外部キー制約。更新はカスケードし、削除は制限する。
             $table->string('archetype_code', 8);
             $table->foreign('archetype_code')->references('archetype_code')->on('archetypes')->cascadeOnUpdate()->restrictOnDelete();   // 外部キー制約。更新はカスケードし、削除は制限する。
+            $table->timestamps();
+
             $table->index('frame_type_code', 'frameTypeCodeIndex');    // frame_type_codeカラムにindexを貼る。'frameTypeCodeIndex'というindex名を指定。
         });
     }

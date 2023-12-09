@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('frame_type_code', 8)->unique();
             $table->string('name_ja', 100);
             $table->string('name_en', 100);
+            $table->timestamps();
         });
     }
 
