@@ -5,8 +5,9 @@ import AdminLayout from '@/Layouts/AdminLayout';
 function Show({ frameType, errors }) {
   const [values, setValues] = useState({
 		id: frameType.id,
-		name_en: frameType.name_en,
+		frame_type_code: frameType.frame_type_code,
 		name_ja: frameType.name_ja,
+		name_en: frameType.name_en,
 		created_at: frameType.created_at,
 		updated_at: frameType.updated_at,
   });
@@ -42,7 +43,7 @@ function Show({ frameType, errors }) {
 				<div className="flex justify-between">
 					<h1 className="font-bold text-3xl mb-8">frame_type詳細</h1>
 					<Link href={route('admin.frametype.index')} className="hover:text-blue-400">
-						{'< '} frame_type一覧へ戻る
+						{'< '} frame_types一覧へ戻る
 					</Link>
 				</div>
 				<h2 className="text-lg">frame_type詳細を確認・編集</h2>
@@ -76,18 +77,18 @@ function Show({ frameType, errors }) {
 							</tbody>
 							<tbody>
 								<tr>
-									<th className="text-right">name_en:　</th>
+									<th className="text-right">frame_type_code:　</th>
 									<td>
 										<input
-											name="name_en"
+											name="frame_type_code"
 											type="text"
 											className="w-80"
 											onChange={handleChange}
-											value={values.name_en}
+											value={values.frame_type_code}
 											disabled={!isEditable}
 										/>
-										{errors.name_en && (
-											<p className="text-red-500">{errors.name_en}</p>
+										{errors.frame_type_code && (
+											<p className="text-red-500">{errors.frame_type_code}</p>
 										)}
 									</td>
 								</tr>
@@ -106,6 +107,24 @@ function Show({ frameType, errors }) {
 										/>
 										{errors.name_ja && (
 											<p className="text-red-500">{errors.name_ja}</p>
+										)}
+									</td>
+								</tr>
+							</tbody>
+							<tbody>
+								<tr>
+									<th className="text-right">name_en:　</th>
+									<td>
+										<input
+											name="name_en"
+											type="text"
+											className="w-80"
+											onChange={handleChange}
+											value={values.name_en}
+											disabled={!isEditable}
+										/>
+										{errors.name_en && (
+											<p className="text-red-500">{errors.name_en}</p>
 										)}
 									</td>
 								</tr>
