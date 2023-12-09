@@ -30,12 +30,24 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('cards');
+        // 外部キー制約を削除する
+        // 例: $table->dropForeign('テーブル名_外部キー制約をつけたカラム名_foreign');
 
-        // インデックスを削除
-        // 例: $table->dropIndex('テーブル名_インデックス名_index');
+
         Schema::table('cards', function (Blueprint $table) {
-            $table->dropIndex('cards_frameTypeCodeIndex_index');
+            // 先に外部キー制約を削除してからでないと、インデックスは削除できない
+
+            // 外部キー制約を削除する
+            // 例: $table->dropForeign('テーブル名_外部キー制約をつけたカラム名_foreign');
+            $table->dropForeign('cards_frame_type_code_foreign');
+
+            // インデックスを削除する
+            // 例: $table->dropIndex('インデックス名');
+            // ※ デフォルトのインデックス名　= 'テーブル名_インデックスをつけたカラム名_index'
+            $table->dropIndex('frameTypeCodeIndex');
         });
+
+        // テーブルを削除
+        Schema::dropIfExists('cards');
     }
 };

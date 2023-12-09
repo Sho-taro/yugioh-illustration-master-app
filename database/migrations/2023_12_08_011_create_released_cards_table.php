@@ -28,12 +28,14 @@ return new class extends Migration
      */
     public function down(): void
     {
+        // インデックスを削除
+        // 例: $table->dropIndex('インデックス名');
+        Schema::table('released_cards', function (Blueprint $table) {
+            $table->dropIndex('productCodeIndex');
+        });
+
+        // テーブルを削除
         Schema::dropIfExists('released_cards');
 
-        // インデックスを削除
-        // 例: $table->dropIndex('テーブル名_インデックス名_index');
-        Schema::table('releasedCards', function (Blueprint $table) {
-            $table->dropIndex('releasedCards_productCodeIndex_index');
-        });
     }
 };
