@@ -93,6 +93,14 @@ Route::middleware(['admin'])->group(function () {
     Route::put('/admin/race/{id}', \App\Http\Controllers\Admin\Race\UpdateController::class)->name('admin.race.update');
     Route::delete('/admin/race/{id}', \App\Http\Controllers\Admin\Race\DestroyController::class)->name('admin.race.destroy');
 
+    // ↓ attributes
+    Route::get('/admin/attribute', \App\Http\Controllers\Admin\Attribute\IndexController::class)->name('admin.attribute.index');
+    Route::post('/admin/attribute', \App\Http\Controllers\Admin\Attribute\StoreController::class)->name('admin.attribute.store');
+    Route::get('/admin/attribute/create', \App\Http\Controllers\Admin\Attribute\CreateController::class)->name('admin.attribute.create');
+    Route::get('/admin/attribute/{id}', \App\Http\Controllers\Admin\Attribute\ShowController::class)->name('admin.attribute.show');
+    Route::put('/admin/attribute/{id}', \App\Http\Controllers\Admin\Attribute\UpdateController::class)->name('admin.attribute.update');
+    Route::delete('/admin/attribute/{id}', \App\Http\Controllers\Admin\Attribute\DestroyController::class)->name('admin.attribute.destroy');
+
     // ↓ ユーザ
     Route::get('/admin/user', \App\Http\Controllers\Admin\User\IndexController::class)->name('admin.user.index');
     Route::get('/admin/user/{id}', \App\Http\Controllers\Admin\User\ShowController::class)->name('admin.user.show');
