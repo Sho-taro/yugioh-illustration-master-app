@@ -73,7 +73,7 @@ function Index() {
 								isMlOn={true}
 								src="/images/spell_trap_play_types.jpeg"
 								dbName="spell_trap_play_types"
-								routeName="admin.card.index" // todo: 要修正
+								routeName="admin.playtype.index"
 							/>
 						</div>
 					</div>
