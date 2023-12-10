@@ -49,7 +49,7 @@ function Index() {
 								isMlOn={true}
 								src="/images/archetypes.svg"
 								dbName="archetypes"
-								routeName="admin.card.index" // todo: 要修正
+								routeName="admin.archetype.index"
 							/>
 							<DatabaseCard
 								isMlOn={true}

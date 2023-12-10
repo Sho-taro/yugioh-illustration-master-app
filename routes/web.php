@@ -77,6 +77,14 @@ Route::middleware(['admin'])->group(function () {
     Route::put('/admin/frametype/{id}', \App\Http\Controllers\Admin\frametype\UpdateController::class)->name('admin.frametype.update');
     Route::delete('/admin/frametype/{id}', \App\Http\Controllers\Admin\frametype\DestroyController::class)->name('admin.frametype.destroy');
 
+    // ↓ archetypes
+    Route::get('/admin/archetype', \App\Http\Controllers\Admin\Archetype\IndexController::class)->name('admin.archetype.index');
+    Route::post('/admin/archetype', \App\Http\Controllers\Admin\Archetype\StoreController::class)->name('admin.archetype.store');
+    Route::get('/admin/archetype/create', \App\Http\Controllers\Admin\Archetype\CreateController::class)->name('admin.archetype.create');
+    Route::get('/admin/archetype/{id}', \App\Http\Controllers\Admin\Archetype\ShowController::class)->name('admin.archetype.show');
+    Route::put('/admin/archetype/{id}', \App\Http\Controllers\Admin\Archetype\UpdateController::class)->name('admin.archetype.update');
+    Route::delete('/admin/archetype/{id}', \App\Http\Controllers\Admin\Archetype\DestroyController::class)->name('admin.archetype.destroy');
+
     // ↓ ユーザ
     Route::get('/admin/user', \App\Http\Controllers\Admin\User\IndexController::class)->name('admin.user.index');
     Route::get('/admin/user/{id}', \App\Http\Controllers\Admin\User\ShowController::class)->name('admin.user.show');
