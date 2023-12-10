@@ -85,6 +85,14 @@ Route::middleware(['admin'])->group(function () {
     Route::put('/admin/archetype/{id}', \App\Http\Controllers\Admin\Archetype\UpdateController::class)->name('admin.archetype.update');
     Route::delete('/admin/archetype/{id}', \App\Http\Controllers\Admin\Archetype\DestroyController::class)->name('admin.archetype.destroy');
 
+    // ↓ races
+    Route::get('/admin/race', \App\Http\Controllers\Admin\Race\IndexController::class)->name('admin.race.index');
+    Route::post('/admin/race', \App\Http\Controllers\Admin\Race\StoreController::class)->name('admin.race.store');
+    Route::get('/admin/race/create', \App\Http\Controllers\Admin\Race\CreateController::class)->name('admin.race.create');
+    Route::get('/admin/race/{id}', \App\Http\Controllers\Admin\Race\ShowController::class)->name('admin.race.show');
+    Route::put('/admin/race/{id}', \App\Http\Controllers\Admin\Race\UpdateController::class)->name('admin.race.update');
+    Route::delete('/admin/race/{id}', \App\Http\Controllers\Admin\Race\DestroyController::class)->name('admin.race.destroy');
+
     // ↓ ユーザ
     Route::get('/admin/user', \App\Http\Controllers\Admin\User\IndexController::class)->name('admin.user.index');
     Route::get('/admin/user/{id}', \App\Http\Controllers\Admin\User\ShowController::class)->name('admin.user.show');
