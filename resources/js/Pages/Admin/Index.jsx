@@ -29,7 +29,7 @@ function Index() {
 								isMlOn={true}
 								src="/images/tags.svg"
 								dbName="tags"
-								routeName="admin.card.index" // todo: 要修正
+								routeName="admin.tag.index"
 							/>
 						</div>
 						<div className="flex justify-start">
