@@ -10,7 +10,7 @@ class Tag extends Model
     use HasFactory;
 
     // racesテーブルに明示的に紐付けする
-    protected $table = 'races';
+    protected $table = 'tags';
 
     /**
      * The attributes that are mass assignable.
