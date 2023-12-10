@@ -20,9 +20,9 @@ class Product extends Model
      */
     protected $fillable = [
         'product_code',
-        'name_en',
         'name_ja',
-        'period'
+        'name_en',
+        'release_date'
     ];
 
     // Periodとのリレーション
