@@ -101,6 +101,14 @@ Route::middleware(['admin'])->group(function () {
     Route::put('/admin/attribute/{id}', \App\Http\Controllers\Admin\Attribute\UpdateController::class)->name('admin.attribute.update');
     Route::delete('/admin/attribute/{id}', \App\Http\Controllers\Admin\Attribute\DestroyController::class)->name('admin.attribute.destroy');
 
+    // ↓ spell_trap_play_types
+    Route::get('/admin/playtype', \App\Http\Controllers\Admin\PlayType\IndexController::class)->name('admin.playtype.index');
+    Route::post('/admin/playtype', \App\Http\Controllers\Admin\PlayType\StoreController::class)->name('admin.playtype.store');
+    Route::get('/admin/playtype/create', \App\Http\Controllers\Admin\PlayType\CreateController::class)->name('admin.playtype.create');
+    Route::get('/admin/playtype/{id}', \App\Http\Controllers\Admin\PlayType\ShowController::class)->name('admin.playtype.show');
+    Route::put('/admin/playtype/{id}', \App\Http\Controllers\Admin\PlayType\UpdateController::class)->name('admin.playtype.update');
+    Route::delete('/admin/playtype/{id}', \App\Http\Controllers\Admin\PlayType\DestroyController::class)->name('admin.playtype.destroy');
+
     // ↓ ユーザ
     Route::get('/admin/user', \App\Http\Controllers\Admin\User\IndexController::class)->name('admin.user.index');
     Route::get('/admin/user/{id}', \App\Http\Controllers\Admin\User\ShowController::class)->name('admin.user.show');
