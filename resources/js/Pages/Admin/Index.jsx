@@ -61,7 +61,7 @@ function Index() {
 								isMlOn={true}
 								src="/images/races.jpg"
 								dbName="races"
-								routeName="admin.card.index" // todo: 要修正
+								routeName="admin.race.index"
 							/>
 							<DatabaseCard
 								isMlOn={true}
