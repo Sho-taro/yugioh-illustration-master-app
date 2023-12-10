@@ -4,10 +4,10 @@ import { Link } from '@inertiajs/react';
 import { router } from '@inertiajs/react';
 import AdminLayout from '@/Layouts/AdminLayout';
 
-function Create({ errors, registeredRace, message }) {
+function Create({ errors, registeredAttribute, message }) {
 	// DBに保存する用のデータ
 	const [values, setValues] = useState({
-		race_code: '',
+		attribute_code: '',
 		name_ja: '',
 		name_en: '',
 	});
@@ -15,7 +15,7 @@ function Create({ errors, registeredRace, message }) {
 	const handleSubmit = e => {
 		e.preventDefault();
 		// フォームの送信
-		router.post(route('admin.race.store'), values);
+		router.post(route('admin.attribute.store'), values);
 	};
 
 	const handleChange = e => {
@@ -29,26 +29,26 @@ function Create({ errors, registeredRace, message }) {
 
 	const clearInput = () => {
 		setValues({
-			race_code: '',
+			attribute_code: '',
 			name_ja: '',
 			name_en: '',
 		});
-  };
+	};
 
-  return (
+	return (
 		<>
 			<div className="w-2/3 pt-8 mx-auto" key="">
 				<div className="flex justify-between mb-4">
-					<h1 className="font-bold text-3xl mb-4">race新規登録</h1>
-					<Link href={route('admin.race.index')} className="hover:text-blue-400">
-						{'< '} races一覧へ戻る
+					<h1 className="font-bold text-3xl mb-4">attribute新規登録</h1>
+					<Link href={route('admin.attribute.index')} className="hover:text-blue-400">
+						{'< '} attributes一覧へ戻る
 					</Link>
 				</div>
-				<h2 className="text-lg">raceを新規登録する</h2>
+				<h2 className="text-lg">attributeを新規登録する</h2>
 				<div className="p-8 bg-gray-100 rounded-md mb-4">
 					{message && (
 						<p className="text-green-500 mb-2">
-							{message}: {registeredRace.name_ja}
+							{message}: {registeredAttribute.name_ja}
 						</p>
 					)}
 					<form onSubmit={handleSubmit} method="POST">
@@ -56,24 +56,24 @@ function Create({ errors, registeredRace, message }) {
 							<thead className="hidden">
 								<tr>
 									<th colSpan="2" className="text-center">
-										raceを登録
+										attributeを登録
 									</th>
 								</tr>
 							</thead>
 							<tbody>
 								<tr>
-									<th>race_code:　</th>
+									<th>attribute_code:　</th>
 									<td>
 										<input
-											name="race_code"
+											name="attribute_code"
 											type="text"
-											value={values.race_code}
+											value={values.attribute_code}
 											placeholder="0001"
 											className="w-80"
 											onChange={handleChange}
 										/>
-										{errors.race_code && (
-											<p className="text-red-500">{errors.race_code}</p>
+										{errors.attribute_code && (
+											<p className="text-red-500">{errors.attribute_code}</p>
 										)}
 									</td>
 								</tr>
@@ -86,7 +86,7 @@ function Create({ errors, registeredRace, message }) {
 											name="name_ja"
 											type="text"
 											value={values.name_ja}
-											placeholder="戦士"
+											placeholder="光"
 											className="w-80"
 											onChange={handleChange}
 										/>
@@ -104,7 +104,7 @@ function Create({ errors, registeredRace, message }) {
 											name="name_en"
 											type="text"
 											value={values.name_en}
-											placeholder="warrior"
+											placeholder="light"
 											className="w-80"
 											onChange={handleChange}
 										/>
@@ -130,10 +130,10 @@ function Create({ errors, registeredRace, message }) {
 				</div>
 			</div>
 		</>
-  );
+	);
 }
 
 // Persistent Layoutの設定
-Create.layout = page => <AdminLayout title="race新規登録" children={page} />;
+Create.layout = page => <AdminLayout title="attribute新規登録" children={page} />;
 
 export default Create;
