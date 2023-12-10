@@ -6,9 +6,9 @@ function Show({ product, errors }) {
   const [values, setValues] = useState({
 		id: product.id,
 		product_code: product.product_code,
-		name_en: product.name_en,
 		name_ja: product.name_ja,
-		period: product.period,
+		name_en: product.name_en,
+		release_date: product.release_date,
 		created_at: product.created_at,
 		updated_at: product.updated_at,
   });
@@ -96,24 +96,6 @@ function Show({ product, errors }) {
 							</tbody>
 							<tbody>
 								<tr>
-									<th className="text-right">name_en:　</th>
-									<td>
-										<input
-											name="name_en"
-											type="text"
-											className="w-80"
-											onChange={handleChange}
-											value={values.name_en}
-											disabled={!isEditable}
-										/>
-										{errors.name_en && (
-											<p className="text-red-500">{errors.name_en}</p>
-										)}
-									</td>
-								</tr>
-							</tbody>
-							<tbody>
-								<tr>
 									<th className="text-right">name_ja:　</th>
 									<td>
 										<input
@@ -132,18 +114,36 @@ function Show({ product, errors }) {
 							</tbody>
 							<tbody>
 								<tr>
-									<th className="text-right">period:　</th>
+									<th className="text-right">name_en:　</th>
 									<td>
 										<input
-											name="period"
+											name="name_en"
 											type="text"
 											className="w-80"
 											onChange={handleChange}
-											value={values.period}
+											value={values.name_en}
 											disabled={!isEditable}
 										/>
-										{errors.period && (
-											<p className="text-red-500">{errors.period}</p>
+										{errors.name_en && (
+											<p className="text-red-500">{errors.name_en}</p>
+										)}
+									</td>
+								</tr>
+							</tbody>
+							<tbody>
+								<tr>
+									<th className="text-right">release_date:　</th>
+									<td>
+										<input
+											name="release_date"
+											type="text"
+											className="w-80"
+											onChange={handleChange}
+											value={values.release_date}
+											disabled={!isEditable}
+										/>
+										{errors.release_date && (
+											<p className="text-red-500">{errors.release_date}</p>
 										)}
 									</td>
 								</tr>

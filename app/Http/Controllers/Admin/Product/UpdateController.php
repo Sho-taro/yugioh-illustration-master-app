@@ -29,9 +29,10 @@ class UpdateController extends Controller
         // フォームに入力された変更内容をバリデーション
         $updated_product = $request->validate([
             'product_code' => ['required', 'string'],
-            'name_en' => ['required', 'string'],
             'name_ja' => ['required', 'string'],
-            'period' => ['required', 'string', 'exists:periods,name_en']   // exists → 外部キー制約のバリデーション。periodsテーブルのname_enカラムに存在しない値の場合エラーにする。
+            'name_en' => ['string', 'nullable'],     // nullableなので'required'は無し
+            'release_date' => ['required', 'date_format:Y-m-d'],
+            // 'period' => ['required', 'string', 'exists:periods,name_en']   // exists → 外部キー制約のバリデーション。periodsテーブルのname_enカラムに存在しない値の場合エラーにする。
         ]);
         // dd($updated_product);
 

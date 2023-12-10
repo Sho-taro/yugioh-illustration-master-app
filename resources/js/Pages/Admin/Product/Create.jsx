@@ -8,9 +8,9 @@ function Create({ errors, registeredProduct, message }) {
 	// DBに保存する用のデータ
 	const [values, setValues] = useState({
 		product_code: '',
-		name_en: '',
 		name_ja: '',
-		period: '',
+		name_en: '',
+		release_date: '',
 	});
 
 	const handleSubmit = e => {
@@ -31,9 +31,9 @@ function Create({ errors, registeredProduct, message }) {
 	const clearInput = () => {
 		setValues({
 			product_code: '',
-			name_en: '',
 			name_ja: '',
-			period: values.period,
+			name_en: '',
+			release_date: '',
 		});
 	};
 
@@ -42,8 +42,8 @@ function Create({ errors, registeredProduct, message }) {
 			<div className="w-2/3 pt-8 mx-auto" key="">
 				<div className="flex justify-between mb-4">
 					<h1 className="font-bold text-3xl mb-4">product新規登録</h1>
-					<Link href={route('admin.index')} className="hover:text-blue-400">
-						{'< '} 管理画面トップへ戻る
+					<Link href={route('admin.product.index')} className="hover:text-blue-400">
+						{'< '} products一覧へ戻る
 					</Link>
 				</div>
 				<h2 className="text-lg">productを新規登録する</h2>
@@ -64,7 +64,7 @@ function Create({ errors, registeredProduct, message }) {
 							</thead>
 							<tbody>
 								<tr>
-									<th className="text-right">product_code:　</th>
+									<th>product_code:　</th>
 									<td>
 										<input
 											name="product_code"
@@ -82,25 +82,7 @@ function Create({ errors, registeredProduct, message }) {
 							</tbody>
 							<tbody>
 								<tr>
-									<th className="text-right">name_en:　</th>
-									<td>
-										<input
-											name="name_en"
-											type="text"
-											value={values.name_en}
-											placeholder="age of overload"
-											className="w-80"
-											onChange={handleChange}
-										/>
-										{errors.name_en && (
-											<p className="text-red-500">{errors.name_en}</p>
-										)}
-									</td>
-								</tr>
-							</tbody>
-							<tbody>
-								<tr>
-									<th className="text-right">name_ja:　</th>
+									<th>name_ja:　</th>
 									<td>
 										<input
 											name="name_ja"
@@ -118,18 +100,36 @@ function Create({ errors, registeredProduct, message }) {
 							</tbody>
 							<tbody>
 								<tr>
-									<th className="text-right">period:　</th>
+									<th>name_en:　</th>
 									<td>
 										<input
-											name="period"
+											name="name_en"
 											type="text"
-											value={values.period}
-											placeholder="12th"
+											value={values.name_en}
+											placeholder="age of overload"
 											className="w-80"
 											onChange={handleChange}
 										/>
-										{errors.period && (
-											<p className="text-red-500">{errors.period}</p>
+										{errors.name_en && (
+											<p className="text-red-500">{errors.name_en}</p>
+										)}
+									</td>
+								</tr>
+							</tbody>
+							<tbody>
+								<tr>
+									<th>release_date:　</th>
+									<td>
+										<input
+											name="release_date"
+											type="text"
+											value={values.release_date}
+											placeholder="2023-07-22"
+											className="w-80"
+											onChange={handleChange}
+										/>
+										{errors.release_date && (
+											<p className="text-red-500">{errors.release_date}</p>
 										)}
 									</td>
 								</tr>
