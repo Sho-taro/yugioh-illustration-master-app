@@ -68,7 +68,7 @@ function Create({ errors, registeredPlayType, message }) {
 											name="play_type_code"
 											type="text"
 											value={values.play_type_code}
-											placeholder="0001"
+											placeholder="0004"
 											className="w-80"
 											onChange={handleChange}
 										/>
@@ -86,7 +86,7 @@ function Create({ errors, registeredPlayType, message }) {
 											name="name_ja"
 											type="text"
 											value={values.name_ja}
-											placeholder="通常"
+											placeholder="永続"
 											className="w-80"
 											onChange={handleChange}
 										/>
@@ -104,7 +104,7 @@ function Create({ errors, registeredPlayType, message }) {
 											name="name_en"
 											type="text"
 											value={values.name_en}
-											placeholder="normal"
+											placeholder="Continuous"
 											className="w-80"
 											onChange={handleChange}
 										/>
