@@ -106,7 +106,7 @@ function Create({ errors, registeredProduct, message }) {
 											name="name_en"
 											type="text"
 											value={values.name_en}
-											placeholder="age of overload"
+											placeholder="age of overload（※空欄可）"
 											className="w-80"
 											onChange={handleChange}
 										/>
