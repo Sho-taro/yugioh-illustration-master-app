@@ -14,6 +14,8 @@ import MonsterCardInput from '@/Components/Admin/MonsterCardInput';
 import SpellTrapCardInput from '@/Components/Admin/SpellTrapCardInput';
 import SampleImage from '@/Components/Admin/SampleImage';
 import ImageName from '@/Components/Admin/ImageName';
+import NewIllustRegistration from '@/Components/Admin/NewIllustRegistration';
+import NewCardRegistration from '@/Components/Admin/NewCardRegistration';
 
 // import { sampleData } from '@/utils/sampleCardData';
 import AdminLayout from '@/Layouts/AdminLayout';
@@ -89,7 +91,7 @@ function Create({ errors, registeredCard, message }) {
 		cardNameInput.current.value = '';
 	};
 
-	const ChangeMonsterCardValue = e => {
+	const changeMonsterCardValue = e => {
 		const key = e.target.name;
 		const value = e.target.value;
 
@@ -98,7 +100,7 @@ function Create({ errors, registeredCard, message }) {
 			[key]: value,
 		});
 	};
-	const ChangeSpellTrapCardValue = e => {
+	const changeSpellTrapCardValue = e => {
 		const key = e.target.name;
 		const value = e.target.value;
 
@@ -114,6 +116,20 @@ function Create({ errors, registeredCard, message }) {
 			setImageIndex(i => i + 1);
 		} else {
 			setImageIndex(0);
+		}
+		// product_codeとlist_numberの値をリセット
+		if (cardType === 'monster') {
+			setMonsterCardValues({
+				...monsterCardValues,
+				product_code: '',
+				list_number: ''
+			})
+		} else if (cardType === 'spell/trap') {
+			setSpellTrapCardValues({
+				...spellTrapCardValues,
+				product_code: '',
+				list_number: '',
+			});
 		}
 	};
 
@@ -138,8 +154,11 @@ function Create({ errors, registeredCard, message }) {
 				linkValue = 'N/A';
 			}
 			setMonsterCardValues({
-				...monsterCardValues,
+				product_code: '',
+				list_number: '',
 				card_official_id: String(cardData.id).padStart(8, '0'),
+				name_ja: '',
+				name_ja_kana: '',
 				name_en: cardData.name,
 				frame_type_code: frameType,
 				archetype_code: cardData.archetype,
@@ -152,8 +171,11 @@ function Create({ errors, registeredCard, message }) {
 			});
 		} else if (cardType === 'spell/trap') {
 			setSpellTrapCardValues({
-				...spellTrapCardValues,
+				product_code: '',
+				list_number: '',
 				card_official_id: String(cardData.id).padStart(8, '0'),
+				name_ja: '',
+				name_ja_kana: '',
 				name_en: cardData.name,
 				frame_type_code: cardData.frameType,
 				archetype_code: cardData.archetype,
@@ -192,7 +214,7 @@ function Create({ errors, registeredCard, message }) {
 						</div>
 					</div>
 					<h2 className="text-lg">2. 取得したカード情報を編集する</h2>
-					<div className="p-8 bg-gray-100 rounded-md flex justify-around">
+					<div className="p-8 bg-gray-100 rounded-md flex justify-around mb-4">
 						<div className="w-1/3">
 							{cardData ? (
 								<DisplayImage
@@ -229,15 +251,40 @@ function Create({ errors, registeredCard, message }) {
 								<MonsterCardInput
 									value={monsterCardValues}
 									imageIndex={imageIndex}
-									onChange={ChangeMonsterCardValue}
+									onChange={changeMonsterCardValue}
 								/>
 							)}
 							{cardType === 'spell/trap' && (
 								<SpellTrapCardInput
 									value={spellTrapCardValues}
 									imageIndex={imageIndex}
-									onChange={ChangeSpellTrapCardValue}
+									onChange={changeSpellTrapCardValue}
 								/>
+							)}
+						</div>
+					</div>
+					<h2 className="text-lg">3. カード情報をDBに登録する</h2>
+					<div className="mb-4 p-8 bg-gray-100 rounded-md flex justify-around ">
+						<div className="w-3/8">
+							<p>登録済みカードの新イラストを登録</p>
+							<p>（以下の内容が、released_cardsテーブルに登録されます）</p>
+							{cardType === 'monster' && (
+								<NewIllustRegistration values={monsterCardValues} />
+							)}
+							{cardType === 'spell/trap' && (
+								<NewIllustRegistration values={spellTrapCardValues} />
+							)}
+						</div>
+						<div className="w-3/8">
+							<p>未登録カードを新規登録</p>
+							<p>
+								（以下の内容が、cardsテーブルなど３つのテーブルに分かれて登録されます）
+							</p>
+							{cardType === 'monster' && (
+								<NewCardRegistration values={monsterCardValues} />
+							)}
+							{cardType === 'spell/trap' && (
+								<NewCardRegistration values={spellTrapCardValues} />
 							)}
 						</div>
 					</div>
