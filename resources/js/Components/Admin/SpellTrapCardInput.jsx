@@ -1,85 +1,145 @@
-import React from 'react'
+import React from 'react';
 
-function SpellTrapCardInput() {
+function SpellTrapCardInput({ value, imageIndex, onChange }) {
   return (
 		<>
-			<table>
+			<table key={value.card_official_id}>
 				<thead className="hidden">
 					<tr>
-						<th colSpan="2" className="text-center">
-							魔法・罠カードの登録
-						</th>
+						<th>項目</th>
+						<td>データ</td>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
-						<th className="text_left">product_code:</th>
+						<th>product_code:</th>
 						<td>
-							<input type="text" placeholder="agov" />
+							<input
+								name="product_code"
+								key={`${imageIndex}_pc`}
+								type="text"
+								className="w-80"
+								placeholder="agov"
+								onChange={onChange}
+							/>
 						</td>
 					</tr>
 				</tbody>
 				<tbody>
 					<tr>
-						<th className="text_left">list_number:</th>
+						<th>list_number:</th>
 						<td>
-							<input type="text" placeholder="jp001" />
+							<input
+								name="list_number"
+								key={`${imageIndex}_ln`}
+								type="text"
+								className="w-80"
+								placeholder="jp001"
+								onChange={onChange}
+							/>
 						</td>
 					</tr>
 				</tbody>
 				<tbody>
 					<tr>
-						<th className="text_left">card_official_id:</th>
+						<th>card_official_id:</th>
 						<td>
-							<input type="text" placeholder="00000000" />
+							<input
+								name="card_official_id"
+								type="text"
+								className="w-80"
+								placeholder="00000000"
+								value={value.card_official_id}
+								readOnly
+							/>
 						</td>
 					</tr>
 				</tbody>
 				<tbody>
 					<tr>
-						<th className="text_left">name_ja:</th>
+						<th>name_ja:</th>
 						<td>
-							<input type="text" placeholder="青眼の白龍" />
+							<input
+								name="name_ja"
+								type="text"
+								className="w-80"
+								placeholder="三戦の才"
+								onChange={onChange}
+							/>
 						</td>
 					</tr>
 				</tbody>
 				<tbody>
 					<tr>
-						<th className="text_left">name_ja_kana:</th>
+						<th>name_ja_kana:</th>
 						<td>
-							<input type="text" placeholder="ブルーアイズ・ホワイトドラゴン" />
+							<input
+								name="name_ja_kana"
+								type="text"
+								className="w-80"
+								placeholder="さんせんのさい"
+								onChange={onChange}
+							/>
 						</td>
 					</tr>
 				</tbody>
 				<tbody>
 					<tr>
-						<th className="text_left">name_en:</th>
+						<th>name_en:</th>
 						<td>
-							<input type="text" placeholder="Blue-Eyes White Dragon" />
+							<input
+								name="name_en"
+								type="text"
+								className="w-80"
+								placeholder="Blue-Eyes White Dragon"
+								value={value.name_en}
+								readOnly
+							/>
 						</td>
 					</tr>
 				</tbody>
 				<tbody>
 					<tr>
-						<th className="text_left">frame_type_code:</th>
+						<th>frame_type_code:</th>
 						<td>
-							<input type="text" placeholder="normal" />
+							<input
+								name="frame_type_code"
+								type="text"
+								className="w-80"
+								placeholder="normal"
+								value={value.frame_type_code}
+								readOnly
+							/>
 						</td>
 					</tr>
 				</tbody>
 				<tbody>
 					<tr>
-						<th className="text_left">archetype_code:</th>
+						<th>archetype_code:</th>
 						<td>
-							<input type="text" placeholder="9999" />
+							<input
+								name="archetype_code"
+								type="text"
+								className="w-80"
+								placeholder="Blue-Eyes"
+								value={value.archetype_code}
+								readOnly
+							/>
 						</td>
 					</tr>
 				</tbody>
 				<tbody>
 					<tr>
-						<th className="text_left">play_type_code:</th>
+						<th>play_type_code:</th>
 						<td>
-							<input type="text" placeholder="0001" />
+							<input
+								name="play_type_code"
+								type="text"
+								className="w-80"
+								placeholder="3000"
+								value={value.play_type_code}
+								readOnly
+							/>
 						</td>
 					</tr>
 				</tbody>
@@ -88,4 +148,4 @@ function SpellTrapCardInput() {
   );
 }
 
-export default SpellTrapCardInput
+export default SpellTrapCardInput;

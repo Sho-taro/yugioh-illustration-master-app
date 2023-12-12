@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Form({ cardNameInput, onSubmit }) {
+function Form({ cardNameInput, onSubmit, onClick }) {
 	return (
 		<>
 			<form onSubmit={e => onSubmit(e)}>
@@ -15,6 +15,7 @@ function Form({ cardNameInput, onSubmit }) {
 					APIを叩く
 				</button>
 			</form>
+			<button type="button" className="mt-2 text-blue-600 underline hover:text-blue-400" onClick={onClick}>入力内容をクリア</button>
 		</>
 	);
 }

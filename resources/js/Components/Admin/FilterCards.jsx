@@ -2,7 +2,7 @@ import React from 'react'
 
 function FilterCards({ routeName }) {
   return (
-		<dispatchEvent>
+		<>
 			<details>
 				<summary>絞り込み</summary>
 				<div className="text-left">
@@ -332,7 +332,7 @@ function FilterCards({ routeName }) {
 					</form>
 				</div>
 			</details>
-		</dispatchEvent>
+		</>
   );
 }
 

@@ -8,9 +8,12 @@ import { Link, usePage } from '@inertiajs/react';
 import RegisterForm from '@/Components/Admin/RegisterForm';
 import ApiForm from '@/Components/Admin/ApiForm';
 import DisplayImage from '@/Components/Admin/DisplayImage';
+import MonsterCardApi from '@/Components/Admin/MonsterCardApi';
+import SpellTrapCardApi from '@/Components/Admin/SpellTrapCardApi';
 import MonsterCardInput from '@/Components/Admin/MonsterCardInput';
 import SpellTrapCardInput from '@/Components/Admin/SpellTrapCardInput';
 import SampleImage from '@/Components/Admin/SampleImage';
+import ImageName from '@/Components/Admin/ImageName';
 
 // import { sampleData } from '@/utils/sampleCardData';
 import AdminLayout from '@/Layouts/AdminLayout';
@@ -37,7 +40,7 @@ function Create({ errors, registeredCard, message }) {
 		race_code: '',
 		attribute_code: '',
 		'level or rank': '',
-		link_value: ''
+		link_value: '',
 	});
 	// 魔法・罠カード用
 	const [spellTrapCardValues, setSpellTrapCardValues] = useState({
@@ -49,7 +52,7 @@ function Create({ errors, registeredCard, message }) {
 		name_en: '',
 		frame_type_code: '',
 		archetype_code: '',
-		play_type_code: ''
+		play_type_code: '',
 	});
 
 	// useRef
@@ -82,16 +85,29 @@ function Create({ errors, registeredCard, message }) {
 		e.preventDefault();
 		getCardData(cardNameInput.current.value);
 	};
+	const clearInput = () => {
+		cardNameInput.current.value = '';
+	};
 
-	const handleValueChange = e => {
+	const ChangeMonsterCardValue = e => {
 		const key = e.target.name;
 		const value = e.target.value;
 
-		setValues({
-			...values,
+		setMonsterCardValues({
+			...monsterCardValues,
 			[key]: value,
 		});
 	};
+	const ChangeSpellTrapCardValue = e => {
+		const key = e.target.name;
+		const value = e.target.value;
+
+		setSpellTrapCardValues({
+			...spellTrapCardValues,
+			[key]: value,
+		});
+	};
+
 	const displayNextImage = () => {
 		const imgsNum = cardData.card_images.length; // APIから取得した画像の枚数
 		if (imageIndex + 1 < imgsNum) {
@@ -102,8 +118,8 @@ function Create({ errors, registeredCard, message }) {
 	};
 
 	useEffect(() => {
-		if (!cardData) return;  // APIを叩く前ならearly return
-		setImageIndex(0);    // カードイラストのインデックスを0にリセット
+		if (!cardData) return; // APIを叩く前ならearly return
+		setImageIndex(0); // カードイラストのインデックスを0にリセット
 
 		// DBに登録するデータをset
 		// モンスターカードの場合
@@ -119,7 +135,7 @@ function Create({ errors, registeredCard, message }) {
 			} else {
 				defense = String(cardData.def);
 				levelOrRank = String(cardData.level);
-				linkValue = 'N/A'
+				linkValue = 'N/A';
 			}
 			setMonsterCardValues({
 				...monsterCardValues,
@@ -141,19 +157,18 @@ function Create({ errors, registeredCard, message }) {
 				name_en: cardData.name,
 				frame_type_code: cardData.frameType,
 				archetype_code: cardData.archetype,
-				play_type_code: cardData.race
+				play_type_code: cardData.race,
 			});
 		}
 	}, [cardData]);
 
 	// デバック用
-	console.log(monsterCardValues);
-	console.log(spellTrapCardValues);
-
+	// console.log(monsterCardValues);
+	// console.log(spellTrapCardValues);
 
 	return (
 		<>
-			<div className="w-2/3 pt-8 mx-auto" key={registeredCard && registeredCard.id}>
+			<div className="w-4/5 pt-8 mx-auto" key={registeredCard && registeredCard.id}>
 				<div className="flex justify-between mb-4">
 					<h1 className="font-bold text-3xl mb-4">カード新規登録</h1>
 					<Link href={route('admin.index')} className="hover:text-blue-400">
@@ -172,24 +187,58 @@ function Create({ errors, registeredCard, message }) {
 							{errMsg && <p className="text-red-500 my-2">{errMsg}</p>}
 							<ApiForm
 								cardNameInput={cardNameInput}
-								onSubmit={handleApiSubmit}></ApiForm>
+								onSubmit={handleApiSubmit}
+								onClick={clearInput}></ApiForm>
 						</div>
 					</div>
 					<h2 className="text-lg">2. 取得したカード情報を編集する</h2>
 					<div className="p-8 bg-gray-100 rounded-md flex justify-around">
-						{cardData ? (
-							<DisplayImage
-								cardData={cardData}
-								imageIndex={imageIndex}
-								onBtnClick={displayNextImage}
-							/>
-						) : (
-							<SampleImage />
-						)}
-						<div>
-							<p className="mb-2">▽ APIから取得したデータが表示されます ▽</p>
-							{cardType === 'monster' && <MonsterCardInput />}
-							{cardType === 'spell/trap' && <SpellTrapCardInput />}
+						<div className="w-1/3">
+							{cardData ? (
+								<DisplayImage
+									cardData={cardData}
+									imageIndex={imageIndex}
+									onBtnClick={displayNextImage}
+								/>
+							) : (
+								<SampleImage />
+							)}
+							{cardType === 'monster' && (
+								<ImageName
+									product_code={monsterCardValues.product_code}
+									list_number={monsterCardValues.list_number}
+								/>
+							)}
+							{cardType === 'spell/trap' && (
+								<ImageName
+									product_code={spellTrapCardValues.product_code}
+									list_number={spellTrapCardValues.list_number}
+								/>
+							)}
+							<details className="mt-4">
+								<summary>カード情報を表示</summary>
+								{cardType === 'monster' && <MonsterCardApi cardData={cardData} />}
+								{cardType === 'spell/trap' && (
+									<SpellTrapCardApi cardData={cardData} />
+								)}
+							</details>
+						</div>
+						<div className="w-2/5">
+							<p className="mb-2">カード情報を編集</p>
+							{cardType === 'monster' && (
+								<MonsterCardInput
+									value={monsterCardValues}
+									imageIndex={imageIndex}
+									onChange={ChangeMonsterCardValue}
+								/>
+							)}
+							{cardType === 'spell/trap' && (
+								<SpellTrapCardInput
+									value={spellTrapCardValues}
+									imageIndex={imageIndex}
+									onChange={ChangeSpellTrapCardValue}
+								/>
+							)}
 						</div>
 					</div>
 				</div>

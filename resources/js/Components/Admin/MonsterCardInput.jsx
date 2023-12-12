@@ -1,131 +1,226 @@
-import React from 'react'
+import React from 'react';
 
-function MonsterCardInput() {
-  return (
+function MonsterCardInput({ value, imageIndex, onChange }) {
+	return (
 		<>
-			<table>
+			<table key={value.card_official_id}>
 				<thead className="hidden">
 					<tr>
-						<th colSpan="2" className="text-center">
-							モンスターカードの登録
-						</th>
+						<th>項目</th>
+						<td>データ</td>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
-						<th className="text_left">product_code:</th>
+						<th>product_code:</th>
 						<td>
-							<input type="text" placeholder="agov" />
+							<input
+								key={`${imageIndex}_pc`}
+								name="product_code"
+								type="text"
+								className="w-80"
+								placeholder="agov"
+								onChange={e => onChange(e)}
+							/>
 						</td>
 					</tr>
 				</tbody>
 				<tbody>
 					<tr>
-						<th className="text_left">list_number:</th>
+						<th>list_number:</th>
 						<td>
-							<input type="text" placeholder="jp001" />
+							<input
+								key={`${imageIndex}_ln`}
+								name="list_number"
+								type="text"
+								className="w-80"
+								placeholder="jp001"
+								onChange={e => onChange(e)}
+							/>
 						</td>
 					</tr>
 				</tbody>
 				<tbody>
 					<tr>
-						<th className="text_left">card_official_id:</th>
+						<th>card_official_id:</th>
 						<td>
-							<input type="text" placeholder="00000000" />
+							<input
+								name="card_official_id"
+								type="text"
+								className="w-80"
+								placeholder="00000000"
+                value={value.card_official_id}
+                readOnly
+							/>
 						</td>
 					</tr>
 				</tbody>
 				<tbody>
 					<tr>
-						<th className="text_left">name_ja:</th>
+						<th>name_ja:</th>
 						<td>
-							<input type="text" placeholder="青眼の白龍" />
+							<input
+								name="name_ja"
+								type="text"
+								className="w-80"
+								placeholder="青眼の白龍"
+								onChange={e => onChange(e)}
+							/>
 						</td>
 					</tr>
 				</tbody>
 				<tbody>
 					<tr>
-						<th className="text_left">name_ja_kana:</th>
+						<th>name_ja_kana:</th>
 						<td>
-							<input type="text" placeholder="ブルーアイズ・ホワイトドラゴン" />
+							<input
+								name="name_ja_kana"
+								type="text"
+								className="w-80"
+								placeholder="ブルーアイズ・ホワイトドラゴン"
+								onChange={e => onChange(e)}
+							/>
 						</td>
 					</tr>
 				</tbody>
 				<tbody>
 					<tr>
-						<th className="text_left">name_en:</th>
+						<th>name_en:</th>
 						<td>
-							<input type="text" placeholder="Blue-Eyes White Dragon" />
+							<input
+								name="name_en"
+								type="text"
+								className="w-80"
+								placeholder="Blue-Eyes White Dragon"
+                value={value.name_en}
+                readOnly
+							/>
 						</td>
 					</tr>
 				</tbody>
 				<tbody>
 					<tr>
-						<th className="text_left">frame_type_code:</th>
+						<th>frame_type_code:</th>
 						<td>
-							<input type="text" placeholder="normal" />
+							<input
+								name="frame_type_code"
+								type="text"
+								className="w-80"
+								placeholder="normal"
+                value={value.frame_type_code}
+                readOnly
+							/>
 						</td>
 					</tr>
 				</tbody>
 				<tbody>
 					<tr>
-						<th className="text_left mb-2">archetype_code:</th>
+						<th>archetype_code:</th>
 						<td>
-							<input type="text" placeholder="9999" />
+							<input
+								name="archetype_code"
+								type="text"
+								className="w-80"
+								placeholder="Blue-Eyes"
+                value={value.archetype_code}
+                readOnly
+							/>
 						</td>
 					</tr>
 				</tbody>
 				<tbody>
 					<tr>
-						<th className="text_left">attack:</th>
+						<th>attack:</th>
 						<td>
-							<input type="text" placeholder="3000" />
+              <input
+                name="attack"
+								type="text"
+								className="w-80"
+								placeholder="3000"
+                value={value.attack}
+                readOnly
+							/>
 						</td>
 					</tr>
 				</tbody>
 				<tbody>
 					<tr>
-						<th className="text_left">defense:</th>
+						<th>defense:</th>
 						<td>
-							<input type="text" placeholder="2500" />
+              <input
+                name="defense"
+								type="text"
+								className="w-80"
+								placeholder="2500"
+                value={value.defense}
+                readOnly
+							/>
 						</td>
 					</tr>
 				</tbody>
 				<tbody>
 					<tr>
-						<th className="text_left">race_code:</th>
+						<th>race_code:</th>
 						<td>
-							<input type="text" placeholder="0002" />
+              <input
+                name="race_code"
+								type="text"
+								className="w-80"
+								placeholder="Dragon"
+                value={value.race_code}
+                readOnly
+							/>
 						</td>
 					</tr>
 				</tbody>
 				<tbody>
 					<tr>
-						<th className="text_left">attribute_code:</th>
+						<th>attribute_code:</th>
 						<td>
-							<input type="text" placeholder="0002" />
+              <input
+                name="attribute_code"
+								type="text"
+								className="w-80"
+								placeholder="LIGHT"
+                value={value.attribute_code}
+                readOnly
+							/>
 						</td>
 					</tr>
 				</tbody>
 				<tbody>
 					<tr>
-						<th className="text_left">level or lank:</th>
+						<th>level or rank:</th>
 						<td>
-							<input type="text" placeholder="8" />
+              <input
+                name="level or rank"
+								type="text"
+								className="w-80"
+								placeholder="8"
+                value={value['level or rank']}
+                readOnly
+							/>
 						</td>
 					</tr>
 				</tbody>
 				<tbody>
 					<tr>
-						<th className="text_left">link_value:</th>
+						<th>link_value:</th>
 						<td>
-							<input type="text" placeholder="N/A" />
+              <input
+                name="link_value"
+								type="text"
+								className="w-80"
+								placeholder=""
+                value={value.link_value}
+                readOnly
+							/>
 						</td>
 					</tr>
 				</tbody>
 			</table>
 		</>
-  );
+	);
 }
 
-export default MonsterCardInput
+export default MonsterCardInput;
