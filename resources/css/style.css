@@ -713,7 +713,7 @@ td {
 /* Admin */
 
 /* Index */
-.index-table th, td{
+.index-table th, .index-table td {
   /* background-color: rgba(45, 45, 45, 1); */
   color: rgb(33, 33, 33);
   border: 1px solid rgb(33, 33, 33);

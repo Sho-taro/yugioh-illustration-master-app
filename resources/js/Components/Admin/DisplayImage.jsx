@@ -60,7 +60,7 @@ function DisplayImage({ cardData, imageIndex, onBtnClick }) {
 				</div>
 				<div className="">
 					<p>
-						{imageIndex + 1}枚目 （全{imgsNum}枚）
+						全{imgsNum}枚中 <span className="font-bold">{imageIndex + 1}</span>枚目
 					</p>
 					<button
 						className={buttonClassName}
