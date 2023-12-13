@@ -29,7 +29,7 @@ class UpdateController extends Controller
         // フォームに入力された変更内容をバリデーション
         $updated_attribute = $request->validate([
             // 更新処理時のバリデーションチェックでは、unique制約はつけてはいけない
-            'attribute_code' => ['required', 'string', 'size:4'],
+            'attribute_code' => ['required', 'string', 'size:6'],
             'name_ja' => ['required', 'string'],
             'name_en' => ['required', 'string']
         ]);

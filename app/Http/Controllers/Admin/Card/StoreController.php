@@ -14,8 +14,8 @@ class StoreController extends Controller
      */
     public function __invoke(Request $request)
     {
-        // $cardData = request()->all();
-        // dd($cardData);
+        $cardData = request()->all();
+        dd($cardData);
 
         Card::create($request->validate([
             'product_code' => ['required', 'string', 'exists:products,product_code'],   // exists　← 外部キー制約

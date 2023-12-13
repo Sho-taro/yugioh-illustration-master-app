@@ -15,7 +15,7 @@ class StoreController extends Controller
     public function __invoke(Request $request)
     {
         Race::create($request->validate([
-            'race_code' => ['required', 'string', 'size:4', 'unique:races,race_code'],
+            'race_code' => ['required', 'string', 'size:6', 'unique:races,race_code'],
             'name_ja' => ['required', 'string'],
             'name_en' => ['required', 'string']
         ]));
