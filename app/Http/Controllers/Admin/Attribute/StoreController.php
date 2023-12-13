@@ -15,7 +15,7 @@ class StoreController extends Controller
     public function __invoke(Request $request)
     {
         Attribute::create($request->validate([
-            'attribute_code' => ['required', 'string', 'size:4', 'unique:attributes,attribute_code'],
+            'attribute_code' => ['required', 'string', 'size:6', 'unique:attributes,attribute_code'],
             'name_ja' => ['required', 'string'],
             'name_en' => ['required', 'string']
         ]));

@@ -29,7 +29,7 @@ class UpdateController extends Controller
         // フォームに入力された変更内容をバリデーション
         $updated_race = $request->validate([
             // 更新処理時のバリデーションチェックでは、unique制約はつけてはいけない
-            'race_code' => ['required', 'string', 'size:4'],
+            'race_code' => ['required', 'string', 'size:6'],
             'name_ja' => ['required', 'string'],
             'name_en' => ['required', 'string']
         ]);

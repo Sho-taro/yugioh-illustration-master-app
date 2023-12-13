@@ -15,7 +15,7 @@ class StoreController extends Controller
     public function __invoke(Request $request)
     {
         Archetype::create($request->validate([
-            'archetype_code' => ['required', 'string', 'size:4', 'unique:archetypes,archetype_code'],
+            'archetype_code' => ['required', 'string', 'size:6', 'unique:archetypes,archetype_code'],
             'name_ja' => ['required', 'string'],
             'name_en' => ['required', 'string']
         ]));
