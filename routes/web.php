@@ -53,6 +53,9 @@ Route::middleware(['admin'])->group(function () {
     Route::put('/admin/card/{id}', \App\Http\Controllers\Admin\Card\UpdateController::class)->name('admin.card.update');
     Route::delete('/admin/card/{id}', \App\Http\Controllers\Admin\Card\DestroyController::class)->name('admin.card.destroy');
 
+    // released_cards
+    Route::post('/admin/releasedcard', \App\Http\Controllers\Admin\ReleasedCard\StoreController::class)->name('admin.releasedcard.store');
+
     // ↓ products
     Route::get('/admin/product', \App\Http\Controllers\Admin\Product\IndexController::class)->name('admin.product.index');
     Route::post('/admin/product', \App\Http\Controllers\Admin\Product\StoreController::class)->name('admin.product.store');

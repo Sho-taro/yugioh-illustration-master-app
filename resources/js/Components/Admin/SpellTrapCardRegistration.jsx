@@ -1,12 +1,17 @@
-import React from 'react';
+import React from 'react'
 import { router } from '@inertiajs/react';
 
-function NewCardRegistration({ values }) {
-	const handleClick = () => {
-		console.log(values);
-		// router.post(route('admin.card.store'), values);
-	};
-	return (
+function SpellTrapCardRegistration({ values }) {
+  const handleClick = () => {
+    const newValues = {
+      ...values,
+      cardType: 'spell/trap'
+    };
+    // console.log(values);
+		router.post(route('admin.card.store'), newValues);
+  };
+
+  return (
 		<>
 			<table>
 				<thead className="hidden">
@@ -65,44 +70,14 @@ function NewCardRegistration({ values }) {
 				</tbody>
 				<tbody>
 					<tr>
-						<th>attack:</th>
-						<td>　{values.attack}</td>
-					</tr>
-				</tbody>
-				<tbody>
-					<tr>
-						<th>defense:</th>
-						<td>　{values.defense}</td>
-					</tr>
-				</tbody>
-				<tbody>
-					<tr>
-						<th>race_code:</th>
-						<td>　{values.race_code}</td>
-					</tr>
-				</tbody>
-				<tbody>
-					<tr>
-						<th>attribute_code:</th>
-						<td>　{values.attribute_code}</td>
-					</tr>
-				</tbody>
-				<tbody>
-					<tr>
-						<th>level or rank:</th>
-						<td>　{values['level or rank']}</td>
-					</tr>
-				</tbody>
-				<tbody>
-					<tr>
-						<th>link_value:</th>
-						<td>　{values.link_value}</td>
+						<th>play_type_code:</th>
+						<td>　{values.play_type_code}</td>
 					</tr>
 				</tbody>
 			</table>
 			<button onClick={handleClick}>登録</button>
 		</>
-	);
+  );
 }
 
-export default NewCardRegistration;
+export default SpellTrapCardRegistration

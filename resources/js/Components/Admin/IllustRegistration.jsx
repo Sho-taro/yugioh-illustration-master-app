@@ -1,15 +1,15 @@
 import React from 'react';
 import { router } from '@inertiajs/react';
 
-function NewIllustRegistration({ values }) {
+function IllustRegistration({ values }) {
   const neededValues = {
     product_code: values.product_code,
     list_number: values.list_number,
     card_official_id: values.card_official_id
   };
   const handleClick = () => {
-    console.log(neededValues);
-    // router.post(route('admin.newillust.store'), neededValues);
+    // console.log(neededValues);
+    router.post(route('admin.releasedcard.store'), neededValues);
   }
   return (
 		<>
@@ -44,4 +44,4 @@ function NewIllustRegistration({ values }) {
   );
 }
 
-export default NewIllustRegistration
+export default IllustRegistration

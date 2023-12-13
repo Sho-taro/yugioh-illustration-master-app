@@ -14,8 +14,9 @@ import MonsterCardInput from '@/Components/Admin/MonsterCardInput';
 import SpellTrapCardInput from '@/Components/Admin/SpellTrapCardInput';
 import SampleImage from '@/Components/Admin/SampleImage';
 import ImageName from '@/Components/Admin/ImageName';
-import NewIllustRegistration from '@/Components/Admin/NewIllustRegistration';
-import NewCardRegistration from '@/Components/Admin/NewCardRegistration';
+import IllustRegistration from '@/Components/Admin/IllustRegistration';
+import MonsterCardRegistration from '@/Components/Admin/MonsterCardRegistration';
+import SpellTrapCardRegistration from '@/Components/Admin/SpellTrapCardRegistration';
 
 // import { sampleData } from '@/utils/sampleCardData';
 import AdminLayout from '@/Layouts/AdminLayout';
@@ -269,10 +270,10 @@ function Create({ errors, registeredCard, message }) {
 							<p>登録済みカードの新イラストを登録</p>
 							<p>（以下の内容が、released_cardsテーブルに登録されます）</p>
 							{cardType === 'monster' && (
-								<NewIllustRegistration values={monsterCardValues} />
+								<IllustRegistration values={monsterCardValues} />
 							)}
 							{cardType === 'spell/trap' && (
-								<NewIllustRegistration values={spellTrapCardValues} />
+								<IllustRegistration values={spellTrapCardValues} />
 							)}
 						</div>
 						<div className="w-3/8">
@@ -281,10 +282,10 @@ function Create({ errors, registeredCard, message }) {
 								（以下の内容が、cardsテーブルなど３つのテーブルに分かれて登録されます）
 							</p>
 							{cardType === 'monster' && (
-								<NewCardRegistration values={monsterCardValues} />
+								<MonsterCardRegistration values={monsterCardValues} />
 							)}
 							{cardType === 'spell/trap' && (
-								<NewCardRegistration values={spellTrapCardValues} />
+								<SpellTrapCardRegistration values={spellTrapCardValues} />
 							)}
 						</div>
 					</div>
