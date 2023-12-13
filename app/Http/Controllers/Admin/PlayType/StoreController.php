@@ -15,7 +15,7 @@ class StoreController extends Controller
     public function __invoke(Request $request)
     {
         PlayType::create($request->validate([
-            'play_type_code' => ['required', 'string', 'size:4', 'unique:spell_trap_play_types,play_type_code'],
+            'play_type_code' => ['required', 'string', 'size:6', 'unique:spell_trap_play_types,play_type_code'],
             'name_ja' => ['required', 'string'],
             'name_en' => ['required', 'string']
         ]));
