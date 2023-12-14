@@ -105,7 +105,7 @@ function MonsterCardRegistration({ values }) {
 					</tr>
 				</tbody>
 			</table>
-			<button onClick={handleClick}>登録</button>
+			<button onClick={handleClick} className="mt-4 simple-button">登録</button>
 		</>
 	);
 }
