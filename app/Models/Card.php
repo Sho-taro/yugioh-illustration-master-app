@@ -19,14 +19,12 @@ class Card extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'product_code',
-        'list_number',
-        'card_id',
-        'name_en',
+        'card_official_id',
         'name_ja',
         'name_ja_kana',
-        'frame_type',
-        'archetype',
+        'name_en',
+        'frame_type_code',
+        'archetype_code',
     ];
 
     public function product() :BelongsTo
