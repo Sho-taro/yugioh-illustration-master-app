@@ -19,6 +19,7 @@ import MonsterCardRegistration from '@/Components/Admin/MonsterCardRegistration'
 import SpellTrapCardRegistration from '@/Components/Admin/SpellTrapCardRegistration';
 
 // import { sampleData } from '@/utils/sampleCardData';
+import { getFrameTypeCode, getArchetypeCode, getRaceCode, getAttributeCode, getPlayTypeCode } from '@/utils/getCodesFunctions'
 import AdminLayout from '@/Layouts/AdminLayout';
 
 function Create({ errors, registeredCard, message }) {
@@ -161,12 +162,12 @@ function Create({ errors, registeredCard, message }) {
 				name_ja: '',
 				name_ja_kana: '',
 				name_en: cardData.name,
-				frame_type_code: frameType,
-				archetype_code: cardData.archetype,
+				frame_type_code: getFrameTypeCode(frameType),
+				archetype_code: getArchetypeCode(cardData.archetype),
 				attack: String(cardData.atk),
 				defense: defense,
-				race_code: cardData.race,
-				attribute_code: cardData.attribute,
+				race_code: getRaceCode(cardData.race),
+				attribute_code: getAttributeCode(cardData.attribute),
 				'level or rank': levelOrRank,
 				link_value: linkValue,
 			});
@@ -178,9 +179,9 @@ function Create({ errors, registeredCard, message }) {
 				name_ja: '',
 				name_ja_kana: '',
 				name_en: cardData.name,
-				frame_type_code: cardData.frameType,
-				archetype_code: cardData.archetype,
-				play_type_code: cardData.race,
+				frame_type_code: getFrameTypeCode(cardData.frameType),
+				archetype_code: getArchetypeCode(cardData.archetype),
+				play_type_code: getPlayTypeCode(cardData.race),
 			});
 		}
 	}, [cardData]);
