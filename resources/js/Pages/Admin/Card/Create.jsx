@@ -43,7 +43,7 @@ function Create({ errors, registeredCard, message }) {
 		defense: '',
 		race_code: '',
 		attribute_code: '',
-		'level or rank': '',
+		level_or_rank: '',
 		link_value: '',
 	});
 	// 魔法・罠カード用
@@ -168,7 +168,7 @@ function Create({ errors, registeredCard, message }) {
 				defense: defense,
 				race_code: getRaceCode(cardData.race),
 				attribute_code: getAttributeCode(cardData.attribute),
-				'level or rank': levelOrRank,
+				level_or_rank: levelOrRank,
 				link_value: linkValue,
 			});
 		} else if (cardType === 'spell/trap') {

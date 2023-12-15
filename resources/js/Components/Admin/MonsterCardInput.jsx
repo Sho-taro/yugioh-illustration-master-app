@@ -190,14 +190,14 @@ function MonsterCardInput({ value, imageIndex, onChange }) {
 				</tbody>
 				<tbody>
 					<tr>
-						<th>level or rank:</th>
+						<th>level_or_rank:</th>
 						<td>
               <input
-                name="level or rank"
+                name="level_or_rank"
 								type="text"
 								className="w-80"
 								placeholder="8"
-                value={value['level or rank']}
+                value={value.level_or_rank}
                 readOnly
 							/>
 						</td>

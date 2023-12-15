@@ -60,7 +60,7 @@ function MonsterCardApi({ cardData }) {
 				</tbody>
 				<tbody>
 					<tr>
-						<th>level or rank:</th>
+						<th>level_or_rank:</th>
 						<td>　{cardData.level && cardData.level}</td>
 					</tr>
 				</tbody>

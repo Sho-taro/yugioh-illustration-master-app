@@ -7,7 +7,7 @@ function MonsterCardRegistration({ values }) {
 			...values,
 			cardType: 'monster',
 		};
-		// console.log(values);
+		// console.log(newValues);
 		router.post(route('admin.card.store'), newValues);
 	};
 
@@ -94,8 +94,8 @@ function MonsterCardRegistration({ values }) {
 				</tbody>
 				<tbody>
 					<tr>
-						<th>level or rank:</th>
-						<td>　{values['level or rank']}</td>
+						<th>level_or_rank:</th>
+						<td>　{values.level_or_rank}</td>
 					</tr>
 				</tbody>
 				<tbody>
