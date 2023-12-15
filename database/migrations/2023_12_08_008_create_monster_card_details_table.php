@@ -21,8 +21,8 @@ return new class extends Migration
             $table->foreign('race_code')->references('race_code')->on('races')->cascadeOnUpdate()->restrictOnDelete();   // 外部キー制約。更新はカスケードし、削除は制限する。
             $table->string('attribute_code', 8);
             $table->foreign('attribute_code')->references('attribute_code')->on('attributes')->cascadeOnUpdate()->restrictOnDelete();   // 外部キー制約。更新はカスケードし、削除は制限する。
-            $table->string('level or rank', 8);     // リンクモンスターは N/A
-            $table->string('link_val', 8);  // リンクモンスター以外は N/A
+            $table->string('level or rank', 8);   // note: カラム名が間違っていたため、別のマイグレーションファイルで修正済み。正しくはlevel_or_rank。  // リンクモンスターは N/A
+            $table->string('link_val', 8);  // note: カラム名が間違っていたため、別のマイグレーションファイルで修正済み。正しくはlink_value。 // リンクモンスター以外は N/A　
             $table->timestamps();
         });
     }
