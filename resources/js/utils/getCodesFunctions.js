@@ -21,7 +21,7 @@ const getFrameTypeCode = fr => {
 	};
 
 	const frameTypeCode = frameTypeCodes[fr];
-	console.log(frameTypeCode);  // デバック用
+	// console.log(frameTypeCode);  // デバック用
 
 	return frameTypeCode;
 };
@@ -38,7 +38,7 @@ const getArchetypeCode = ar => {
 	} else {
 		archetypeCode = 'AR9999';
 	}
-	console.log(archetypeCode);   // デバック用
+	// console.log(archetypeCode);   // デバック用
 
 	return archetypeCode;
 };
@@ -75,7 +75,7 @@ const getRaceCode = ra => {
 	};
 
 	const raceCode = raceCodes[ra];
-	console.log(raceCode);   // デバック用
+	// console.log(raceCode);   // デバック用
 
 	return raceCode;
 };
@@ -93,7 +93,7 @@ const getAttributeCode = (at) => {
 	};
 
 	const attributeCode = attributeCodes[at];
-	console.log(attributeCode);  // デバック用
+	// console.log(attributeCode);  // デバック用
 
 	return attributeCode;
 }
@@ -111,7 +111,7 @@ const getPlayTypeCode = (pl) => {
 	};
 
 	const playTypeCode = playTypeCodes[pl];
-	console.log(playTypeCode);   // デバック用
+	// console.log(playTypeCode);   // デバック用
 
 	return playTypeCode;
 }
