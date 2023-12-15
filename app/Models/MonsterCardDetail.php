@@ -23,7 +23,7 @@ class MonsterCardDetail extends Model
         'defense',
         'race_code',
         'attribute_code',
-        'level or rank',
+        'level_or_rank',
         'link_value',
     ];
 }
