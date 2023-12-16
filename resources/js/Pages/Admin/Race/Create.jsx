@@ -68,7 +68,7 @@ function Create({ errors, registeredRace, message }) {
 											name="race_code"
 											type="text"
 											value={values.race_code}
-											placeholder="0004"
+											placeholder="RA0004"
 											className="w-80"
 											onChange={handleChange}
 										/>

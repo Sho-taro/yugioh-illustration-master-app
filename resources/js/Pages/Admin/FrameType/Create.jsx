@@ -68,7 +68,7 @@ function Create({errors, registeredFrameType, message}) {
 											name="frame_type_code"
 											type="text"
 											value={values.frame_type_code}
-											placeholder="0001"
+											placeholder="FR0001"
 											className="w-80"
 											onChange={handleChange}
 										/>

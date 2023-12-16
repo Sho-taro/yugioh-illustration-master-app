@@ -68,7 +68,7 @@ function Create({ errors, registeredArchetype, message }) {
 											name="archetype_code"
 											type="text"
 											value={values.archetype_code}
-											placeholder="0001"
+											placeholder="AR0001"
 											className="w-80"
 											onChange={handleChange}
 										/>

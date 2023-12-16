@@ -68,7 +68,7 @@ function Create({ errors, registeredAttribute, message }) {
 											name="attribute_code"
 											type="text"
 											value={values.attribute_code}
-											placeholder="0002"
+											placeholder="AT0002"
 											className="w-80"
 											onChange={handleChange}
 										/>

@@ -70,7 +70,7 @@ function Create({errors, registeredPeriod, message}) {
 											name="period_code"
 											type="text"
 											value={values.period_code}
-											placeholder="0001"
+											placeholder="PE0001"
 											className="w-80"
 											onChange={handleChange}
 										/>

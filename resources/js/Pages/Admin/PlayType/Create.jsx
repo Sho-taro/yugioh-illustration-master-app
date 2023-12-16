@@ -68,7 +68,7 @@ function Create({ errors, registeredPlayType, message }) {
 											name="play_type_code"
 											type="text"
 											value={values.play_type_code}
-											placeholder="0004"
+											placeholder="PL0004"
 											className="w-80"
 											onChange={handleChange}
 										/>
