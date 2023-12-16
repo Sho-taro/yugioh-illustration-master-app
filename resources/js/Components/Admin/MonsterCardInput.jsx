@@ -1,6 +1,6 @@
 import React from 'react';
 
-function MonsterCardInput({ value, imageIndex, onChange }) {
+function MonsterCardInput({ value, imageIndex, onChange, errors }) {
 	return (
 		<>
 			<table key={value.card_official_id}>
@@ -22,6 +22,9 @@ function MonsterCardInput({ value, imageIndex, onChange }) {
 								placeholder="agov"
 								onChange={e => onChange(e)}
 							/>
+							{errors.product_code && (
+								<p className="text-red-500">{errors.product_code}</p>
+							)}
 						</td>
 					</tr>
 				</tbody>
@@ -37,6 +40,9 @@ function MonsterCardInput({ value, imageIndex, onChange }) {
 								placeholder="jp001"
 								onChange={e => onChange(e)}
 							/>
+							{errors.list_number && (
+								<p className="text-red-500">{errors.list_number}</p>
+							)}
 						</td>
 					</tr>
 				</tbody>
@@ -49,9 +55,12 @@ function MonsterCardInput({ value, imageIndex, onChange }) {
 								type="text"
 								className="w-80"
 								placeholder="00000000"
-                value={value.card_official_id}
-                readOnly
+								value={value.card_official_id}
+								readOnly
 							/>
+							{errors.card_official_id && (
+								<p className="text-red-500">{errors.card_official_id}</p>
+							)}
 						</td>
 					</tr>
 				</tbody>
@@ -66,6 +75,7 @@ function MonsterCardInput({ value, imageIndex, onChange }) {
 								placeholder="青眼の白龍"
 								onChange={e => onChange(e)}
 							/>
+							{errors.name_ja && <p className="text-red-500">{errors.name_ja}</p>}
 						</td>
 					</tr>
 				</tbody>
@@ -80,6 +90,9 @@ function MonsterCardInput({ value, imageIndex, onChange }) {
 								placeholder="ブルーアイズ・ホワイトドラゴン"
 								onChange={e => onChange(e)}
 							/>
+							{errors.name_ja_kana && (
+								<p className="text-red-500">{errors.name_ja_kana}</p>
+							)}
 						</td>
 					</tr>
 				</tbody>
@@ -92,9 +105,10 @@ function MonsterCardInput({ value, imageIndex, onChange }) {
 								type="text"
 								className="w-80"
 								placeholder="Blue-Eyes White Dragon"
-                value={value.name_en}
-                readOnly
+								value={value.name_en}
+								readOnly
 							/>
+							{errors.name_en && <p className="text-red-500">{errors.name_en}</p>}
 						</td>
 					</tr>
 				</tbody>
@@ -107,9 +121,12 @@ function MonsterCardInput({ value, imageIndex, onChange }) {
 								type="text"
 								className="w-80"
 								placeholder="normal"
-                value={value.frame_type_code}
-                readOnly
+								value={value.frame_type_code}
+								readOnly
 							/>
+							{errors.frame_type_code && (
+								<p className="text-red-500">{errors.frame_type_code}</p>
+							)}
 						</td>
 					</tr>
 				</tbody>
@@ -122,9 +139,12 @@ function MonsterCardInput({ value, imageIndex, onChange }) {
 								type="text"
 								className="w-80"
 								placeholder="Blue-Eyes"
-                value={value.archetype_code}
-                readOnly
+								value={value.archetype_code}
+								readOnly
 							/>
+							{errors.archetype_code && (
+								<p className="text-red-500">{errors.archetype_code}</p>
+							)}
 						</td>
 					</tr>
 				</tbody>
@@ -132,14 +152,15 @@ function MonsterCardInput({ value, imageIndex, onChange }) {
 					<tr>
 						<th>attack:</th>
 						<td>
-              <input
-                name="attack"
+							<input
+								name="attack"
 								type="text"
 								className="w-80"
 								placeholder="3000"
-                value={value.attack}
-                readOnly
+								value={value.attack}
+								readOnly
 							/>
+							{errors.attack && <p className="text-red-500">{errors.attack}</p>}
 						</td>
 					</tr>
 				</tbody>
@@ -147,14 +168,15 @@ function MonsterCardInput({ value, imageIndex, onChange }) {
 					<tr>
 						<th>defense:</th>
 						<td>
-              <input
-                name="defense"
+							<input
+								name="defense"
 								type="text"
 								className="w-80"
 								placeholder="2500"
-                value={value.defense}
-                readOnly
+								value={value.defense}
+								readOnly
 							/>
+							{errors.defense && <p className="text-red-500">{errors.defense}</p>}
 						</td>
 					</tr>
 				</tbody>
@@ -162,14 +184,15 @@ function MonsterCardInput({ value, imageIndex, onChange }) {
 					<tr>
 						<th>race_code:</th>
 						<td>
-              <input
-                name="race_code"
+							<input
+								name="race_code"
 								type="text"
 								className="w-80"
 								placeholder="Dragon"
-                value={value.race_code}
-                readOnly
+								value={value.race_code}
+								readOnly
 							/>
+							{errors.race_code && <p className="text-red-500">{errors.race_code}</p>}
 						</td>
 					</tr>
 				</tbody>
@@ -177,14 +200,17 @@ function MonsterCardInput({ value, imageIndex, onChange }) {
 					<tr>
 						<th>attribute_code:</th>
 						<td>
-              <input
-                name="attribute_code"
+							<input
+								name="attribute_code"
 								type="text"
 								className="w-80"
 								placeholder="LIGHT"
-                value={value.attribute_code}
-                readOnly
+								value={value.attribute_code}
+								readOnly
 							/>
+							{errors.attribute_code && (
+								<p className="text-red-500">{errors.attribute_code}</p>
+							)}
 						</td>
 					</tr>
 				</tbody>
@@ -192,14 +218,17 @@ function MonsterCardInput({ value, imageIndex, onChange }) {
 					<tr>
 						<th>level_or_rank:</th>
 						<td>
-              <input
-                name="level_or_rank"
+							<input
+								name="level_or_rank"
 								type="text"
 								className="w-80"
 								placeholder="8"
-                value={value.level_or_rank}
-                readOnly
+								value={value.level_or_rank}
+								readOnly
 							/>
+							{errors.level_or_rank && (
+								<p className="text-red-500">{errors.level_or_rank}</p>
+							)}
 						</td>
 					</tr>
 				</tbody>
@@ -207,14 +236,17 @@ function MonsterCardInput({ value, imageIndex, onChange }) {
 					<tr>
 						<th>link_value:</th>
 						<td>
-              <input
-                name="link_value"
+							<input
+								name="link_value"
 								type="text"
 								className="w-80"
 								placeholder=""
-                value={value.link_value}
-                readOnly
+								value={value.link_value}
+								readOnly
 							/>
+							{errors.link_value && (
+								<p className="text-red-500">{errors.link_value}</p>
+							)}
 						</td>
 					</tr>
 				</tbody>

@@ -21,15 +21,13 @@ class StoreController extends Controller
         // $cardData = request()->all();
         // dd($cardData);
 
-        $storedCard = null;
-        $storedReleasedCard = null;
-        $storedMonsterDetail = null;
-        $storedSpellTrapCardDetail = null;
 
         // DBトランザクション。試行回数は1回（1回失敗したら例外をスロー）。
-        DB::transaction(function () use ($request, $storedCard) {
+        $registeredData = DB::transaction(function () use ($request) {
+            $registeredData = [];   // 登録したデータ（モデル）をここに格納していく
+
             // cardsテーブルに登録
-            $storedCard = Card::create($request->validate([
+            $registeredData['card'] = Card::create($request->validate([
                 'card_official_id' => ['required', 'string', 'size:8', 'unique:cards,card_official_id'],
                 'name_ja' => ['required', 'string',],
                 'name_ja_kana' => ['required', 'string',],
@@ -39,7 +37,7 @@ class StoreController extends Controller
             ]));
 
             // released_cardsテーブルに登録
-            $storedReleasedCard = ReleasedCard::create($request->validate([
+            $registeredData['released_card'] = ReleasedCard::create($request->validate([
                 'card_official_id' => ['required', 'string', 'size:8', 'exists:cards,card_official_id'],
                 'product_code'=> ['required', 'string', 'exists:products,product_code'],
                 'list_number' => ['required', 'string',]
@@ -48,7 +46,7 @@ class StoreController extends Controller
 
             if ($request->input('cardType') === 'monster') {
                 // monster_card_detailsテーブルに登録
-                $storedMonsterDetail = MonsterCardDetail::create($request->validate([
+                $registeredData['monster_card_detail'] = MonsterCardDetail::create($request->validate([
                     'card_official_id' => ['required', 'string', 'size:8', 'exists:cards,card_official_id'],
                     'attack' => ['required', 'string',],
                     'defense' => ['required', 'string',],
@@ -59,13 +57,15 @@ class StoreController extends Controller
                 ]));
             } else if ($request->input('cardType') === 'spell/trap') {
                 // spell_trap_card_detailsテーブルに登録
-                $storedSpellTrapCardDetail = SpellTrapCardDetail::create($request->validate([
+                $registeredData['spell_trap_card_details'] = SpellTrapCardDetail::create($request->validate([
                     'card_official_id' => ['required', 'string', 'size:8', 'exists:cards,card_official_id'],
                     'play_type_code' => ['required', 'string', 'size:6', 'exists:spell_trap_play_types,play_type_code']
                 ]));
             }
+
+            return $registeredData;
         }, 1);
 
-        return inertia('Admin/Card/Create', ['registeredCard' => $storedCard ,'message' => 'カードを新規登録しました']);
+        return inertia('Admin/Card/Create', ['registeredData' => $registeredData ,'message' => 'カードを新規登録しました']);
     }
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 
-function SpellTrapCardInput({ value, imageIndex, onChange }) {
+function SpellTrapCardInput({ value, imageIndex, onChange, errors }) {
   return (
 		<>
 			<table key={value.card_official_id}>
@@ -22,6 +22,9 @@ function SpellTrapCardInput({ value, imageIndex, onChange }) {
 								placeholder="agov"
 								onChange={onChange}
 							/>
+							{errors.product_code && (
+								<p className="text-red-500">{errors.product_code}</p>
+							)}
 						</td>
 					</tr>
 				</tbody>
@@ -37,6 +40,9 @@ function SpellTrapCardInput({ value, imageIndex, onChange }) {
 								placeholder="jp001"
 								onChange={onChange}
 							/>
+							{errors.list_number && (
+								<p className="text-red-500">{errors.list_number}</p>
+							)}
 						</td>
 					</tr>
 				</tbody>
@@ -52,6 +58,9 @@ function SpellTrapCardInput({ value, imageIndex, onChange }) {
 								value={value.card_official_id}
 								readOnly
 							/>
+							{errors.card_official_id && (
+								<p className="text-red-500">{errors.card_official_id}</p>
+							)}
 						</td>
 					</tr>
 				</tbody>
@@ -66,6 +75,7 @@ function SpellTrapCardInput({ value, imageIndex, onChange }) {
 								placeholder="三戦の才"
 								onChange={onChange}
 							/>
+							{errors.name_ja && <p className="text-red-500">{errors.name_ja}</p>}
 						</td>
 					</tr>
 				</tbody>
@@ -80,6 +90,9 @@ function SpellTrapCardInput({ value, imageIndex, onChange }) {
 								placeholder="さんせんのさい"
 								onChange={onChange}
 							/>
+							{errors.name_ja_kana && (
+								<p className="text-red-500">{errors.name_ja_kana}</p>
+							)}
 						</td>
 					</tr>
 				</tbody>
@@ -95,6 +108,7 @@ function SpellTrapCardInput({ value, imageIndex, onChange }) {
 								value={value.name_en}
 								readOnly
 							/>
+							{errors.name_en && <p className="text-red-500">{errors.name_en}</p>}
 						</td>
 					</tr>
 				</tbody>
@@ -110,6 +124,9 @@ function SpellTrapCardInput({ value, imageIndex, onChange }) {
 								value={value.frame_type_code}
 								readOnly
 							/>
+							{errors.frame_type_code && (
+								<p className="text-red-500">{errors.frame_type_code}</p>
+							)}
 						</td>
 					</tr>
 				</tbody>
@@ -125,6 +142,9 @@ function SpellTrapCardInput({ value, imageIndex, onChange }) {
 								value={value.archetype_code}
 								readOnly
 							/>
+							{errors.archetype_code && (
+								<p className="text-red-500">{errors.archetype_code}</p>
+							)}
 						</td>
 					</tr>
 				</tbody>
@@ -140,6 +160,9 @@ function SpellTrapCardInput({ value, imageIndex, onChange }) {
 								value={value.play_type_code}
 								readOnly
 							/>
+							{errors.play_type_code && (
+								<p className="text-red-500">{errors.play_type_code}</p>
+							)}
 						</td>
 					</tr>
 				</tbody>
