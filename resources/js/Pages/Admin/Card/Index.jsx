@@ -40,8 +40,8 @@ function Index({ data, cardsNum, errMessage, message }) {
 				<table border="1" className="index-table mt-4 w-full">
 					<thead>
 						<tr>
-							<th>id</th>
 							<th>card_official_id</th>
+							<th>frame_type</th>
 							<th width="350">カード名</th>
 							<th>イラスト</th>
 							<th>更新日時</th>
@@ -54,10 +54,10 @@ function Index({ data, cardsNum, errMessage, message }) {
 									<Link
 										href={`/admin/card/${card.id}`}
 										className="hover:text-blue-400 underline">
-										{card.id}
+										{card.card_official_id}
 									</Link>
 								</td>
-								<td className="px-2 py-4">{card.card_official_id}</td>
+								<td className="px-2 py-4">{card.frame_type_code}</td>
 								<td className="px-2 py-4">
 									<p className="text-xs">{card.name_ja_kana}</p>
 									<p>{card.name_ja}</p>
