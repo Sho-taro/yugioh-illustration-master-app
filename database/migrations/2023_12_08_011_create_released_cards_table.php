@@ -16,11 +16,11 @@ return new class extends Migration
             $table->string('product_code');
             $table->foreign('product_code')->references('product_code')->on('products')->cascadeOnUpdate()->restrictOnDelete();   // 外部キー制約。更新はカスケードし、削除は制限する。
             $table->string('list_number');
-            $table->string('card_official_id')->unique();  // note: 別のmigrationファイルでこのunique制約は削除済み
+            $table->string('card_official_id');
             $table->foreign('card_official_id')->references('card_official_id')->on('cards')->cascadeOnUpdate()->cascadeOnDelete();   // 外部キー制約。更新・削除をカスケードする。
-            $table->unique(['product_code', 'list_number']);   // 複合ユニーク
             $table->timestamps();
 
+            $table->unique(['product_code', 'list_number']);   // 複合ユニーク
             $table->index('product_code', 'productCodeIndex');   // product_codeカラムにindexを貼る。index名はproductCodeIndex。
         });
     }
