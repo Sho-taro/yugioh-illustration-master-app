@@ -22,7 +22,7 @@ import SpellTrapCardRegistration from '@/Components/Admin/SpellTrapCardRegistrat
 import { getFrameTypeCode, getArchetypeCode, getRaceCode, getAttributeCode, getPlayTypeCode } from '@/utils/getCodesFunctions'
 import AdminLayout from '@/Layouts/AdminLayout';
 
-function Create({ errors, registeredCard, message }) {
+function Create({ errors, registeredData, message }) {
 	const [cardData, setCardData] = useState(null);
 	const [cardType, setCardType] = useState(null); // カードの種類。'monster' or 'spell/trap'
 	const [imageIndex, setImageIndex] = useState(0);
@@ -189,10 +189,11 @@ function Create({ errors, registeredCard, message }) {
 	// デバック用
 	// console.log(monsterCardValues);
 	// console.log(spellTrapCardValues);
+	// console.log(registeredData);
 
 	return (
 		<>
-			<div className="w-4/5 pt-8 mx-auto" key={registeredCard && registeredCard.id}>
+			<div className="w-4/5 pt-8 mx-auto">
 				<div className="flex justify-between mb-4">
 					<h1 className="font-bold text-3xl mb-4">カード新規登録</h1>
 					<Link href={route('admin.index')} className="hover:text-blue-400">
@@ -204,7 +205,8 @@ function Create({ errors, registeredCard, message }) {
 					<div className="p-8 bg-gray-100 rounded-md mb-4">
 						{message && (
 							<p className="text-green-500 my-2">
-								{message}: {registeredCard.name_ja}
+								{message}: {' '}
+								{registeredData.released_card.product_code}-{registeredData.released_card.list_number}
 							</p>
 						)}
 						<div>
@@ -254,6 +256,7 @@ function Create({ errors, registeredCard, message }) {
 									value={monsterCardValues}
 									imageIndex={imageIndex}
 									onChange={changeMonsterCardValue}
+									errors={errors}
 								/>
 							)}
 							{cardType === 'spell/trap' && (
@@ -261,6 +264,7 @@ function Create({ errors, registeredCard, message }) {
 									value={spellTrapCardValues}
 									imageIndex={imageIndex}
 									onChange={changeSpellTrapCardValue}
+									errors={errors}
 								/>
 							)}
 						</div>
