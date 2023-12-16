@@ -196,8 +196,8 @@ function Create({ errors, registeredData, message }) {
 			<div className="w-4/5 pt-8 mx-auto">
 				<div className="flex justify-between mb-4">
 					<h1 className="font-bold text-3xl mb-4">カード新規登録</h1>
-					<Link href={route('admin.index')} className="hover:text-blue-400">
-						{'< '} 管理画面トップへ戻る
+					<Link href={route('admin.card.index')} className="hover:text-blue-400">
+						{'< '} カード一覧へ戻る
 					</Link>
 				</div>
 				<div>
