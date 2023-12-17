@@ -1,19 +1,41 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import AdminLayout from '@/Layouts/AdminLayout';
 import { Link, router, usePage } from '@inertiajs/react';
 // import './css/Show.css';
 
+// コンポーネント
+import MonsterCardUpdateForm from '@/Components/Admin/MonsterCardUpdateForm';
+import SpellTrapCardUpdateForm from '@/Components/Admin/SpellTrapCardUpdateForm';
+
+import { getCardType } from '@/utils/getCardType';
+
 function Show({ card, product, errors }) {
-	const [values, setValues] = useState({
-		id: card.id,
-		product_code: card.product_code,
-		list_number: card.list_number,
-		card_id: card.card_id,
-		name_en: card.name_en,
-		name_ja: card.name_ja,
-		name_ja_kana: card.name_ja_kana,
-		frame_type: card.frame_type,
-		archetype: card.archetype,
+	// モンスターカード用
+	const [monsterCardValues, setMonsterCardValues] = useState({
+		id: '',
+		card_official_id: '',
+		name_ja: '',
+		name_ja_kana: '',
+		name_en: '',
+		frame_type_code: '',
+		archetype_code: '',
+		attack: '',
+		defense: '',
+		race_code: '',
+		attribute_code: '',
+		level_or_rank: '',
+		link_value: '',
+	});
+	// 魔法・罠カード用
+	const [spellTrapCardValues, setSpellTrapCardValues] = useState({
+		id: '',
+		card_official_id: '',
+		name_ja: '',
+		name_ja_kana: '',
+		name_en: '',
+		frame_type_code: '',
+		archetype_code: '',
+		play_type_code: '',
 	});
 
 	const [isEditable, setIsEditable] = useState(false);
@@ -22,13 +44,22 @@ function Show({ card, product, errors }) {
 	// バリデーションエラーメッセージ
 	// const { errors } = usePage().props;
 
+	const cardType = getCardType(card.frame_type_code); // 表示するカードの種類。 'monster' or 'spell/trap'
+
 	const handleChange = e => {
 		const key = e.target.name;
 		const value = e.target.value;
-		setValues({
-			...values,
-			[key]: value,
-		});
+		if (cardType === 'monster') {
+			setMonsterCardValues({
+				...monsterCardValues,
+				[key]: value,
+			});
+		} else if (cardType === 'spell/trap') {
+			setSpellTrapCardValues({
+				...spellTrapCardValues,
+				[key]: value,
+			});
+		}
 	};
 
 	const handleSubmit = e => {
@@ -43,6 +74,39 @@ function Show({ card, product, errors }) {
 		router.delete(`/admin/card/${values.id}`);
 	};
 
+	useEffect(() => {
+		if (cardType === 'monster') {
+			// モンスターカード用
+			setMonsterCardValues({
+				id: card.id,
+				card_official_id: card.card_official_id,
+				name_ja: card.name_ja,
+				name_ja_kana: card.name_ja_kana,
+				name_en: card.name_en,
+				frame_type_code: card.frame_type_code,
+				archetype_code: card.archetype_code,
+				attack: card.attack,
+				defense: card.defense,
+				race_code: card.race_code,
+				attribute_code: card.attribute_code,
+				level_or_rank: card.level_or_rank,
+				link_value: card.link_value,
+			});
+		} else if (cardType === 'spell/trap') {
+			// 魔法・罠カード用
+			setSpellTrapCardValues({
+				id: card.id,
+				card_official_id: card.card_official_id,
+				name_ja: card.name_ja,
+				name_ja_kana: card.name_ja_kana,
+				name_en: card.name_en,
+				frame_type_code: card.frame_type_code,
+				archetype_code: card.archetype_code,
+				play_type_code: card.play_type_code,
+			});
+		}
+	}, []);
+
 	return (
 		<>
 			<div className="w-2/3 pt-8 mx-auto">
@@ -52,16 +116,9 @@ function Show({ card, product, errors }) {
 						{'< '} カード一覧へ戻る
 					</Link>
 				</div>
-				<h2 className="text-lg">カード詳細を確認・編集</h2>
-				<div className="p-8 mb-4 bg-gray-100 rounded-md flex justify-center">
-					<div className="">
-						<img
-							src={`/images/card-images/${card.product_code}-${card.list_number}.jpg`}
-							alt={card.name_ja}
-							className="w-80 border-4 border-slate-400 border-solid"
-						/>
-					</div>
-					<div className="ml-8">
+				<h2 className="text-lg">カード詳細を確認・編集・削除</h2>
+				<div className="p-8 mb-4 bg-gray-100 rounded-md">
+					<div className="mb-6">
 						<input
 							id="edit-checkbox"
 							type="checkBox"
@@ -72,242 +129,43 @@ function Show({ card, product, errors }) {
 						<label htmlFor="edit-checkbox" className="text-black select-none">
 							編集可能にする
 						</label>
-						<form onSubmit={handleSubmit} method="POST">
-							<table className="show-table">
-								<thead className="hidden">
-									<tr>
-										<th colSpan="2" className="text-center">
-											カード情報
-										</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<th className="text-right">データベース内ID:　</th>
-										<td>
-											<p className="w-80">{values.id}</p>
-										</td>
-									</tr>
-								</tbody>
-								<tbody>
-									<tr>
-										<th className="text-right">商品コード:　</th>
-										<td>
-											<input
-												name="product_code"
-												type="text"
-												className="w-80"
-												onChange={handleChange}
-												value={values.product_code}
-												disabled={!isEditable}
-											/>
-											{errors.product_code && (
-												<p className="text-red-500">
-													{errors.product_code}
-												</p>
-											)}
-										</td>
-									</tr>
-								</tbody>
-								<tbody>
-									<tr>
-										<th className="text-right">商品内リスト番号:　</th>
-										<td>
-											<input
-												name="list_number"
-												type="text"
-												className="w-80"
-												onChange={handleChange}
-												value={values.list_number}
-												disabled={!isEditable}
-											/>
-											{errors.list_number && (
-												<p className="text-red-500">{errors.list_number}</p>
-											)}
-										</td>
-									</tr>
-								</tbody>
-								<tbody>
-									<tr>
-										<th className="text-right">カードID(8ケタ):　</th>
-										<td>
-											<input
-												name="card_id"
-												type="text"
-												className="w-80"
-												onChange={handleChange}
-												value={values.card_id}
-												disabled={!isEditable}
-											/>
-											{errors.card_id && (
-												<p className="text-red-500">{errors.card_id}</p>
-											)}
-										</td>
-									</tr>
-								</tbody>
-								<tbody>
-									<tr>
-										<th className="text-right">カード名(英語):　</th>
-										<td>
-											<input
-												name="name_en"
-												type="text"
-												className="w-80"
-												style={{ color: 'gray' }}
-												onChange={handleChange}
-												value={values.name_en}
-												disabled={!isEditable}
-											/>
-											{errors.name_en && (
-												<p className="text-red-500">{errors.name_en}</p>
-											)}
-										</td>
-									</tr>
-								</tbody>
-								<tbody>
-									<tr>
-										<th className="text-right">カード名(日本語):　</th>
-										<td>
-											<input
-												name="name_ja"
-												type="text"
-												className="w-80"
-												onChange={handleChange}
-												value={values.name_ja}
-												disabled={!isEditable}
-											/>
-											{errors.name_ja && (
-												<p className="text-red-500">{errors.name_ja}</p>
-											)}
-										</td>
-									</tr>
-								</tbody>
-								<tbody>
-									<tr>
-										<th className="text-right">カード名(日本語よみ):　</th>
-										<td>
-											<input
-												name="name_ja_kana"
-												type="text"
-												className="w-80"
-												onChange={handleChange}
-												value={values.name_ja_kana}
-												disabled={!isEditable}
-											/>
-											{errors.name_ja_kana && (
-												<p className="text-red-500">
-													{errors.name_ja_kana}
-												</p>
-											)}
-										</td>
-									</tr>
-								</tbody>
-								<tbody>
-									<tr>
-										<th className="text-right">フレームタイプ:　</th>
-										<td>
-											<input
-												name="frame_type"
-												type="text"
-												className="w-80"
-												style={{ color: 'gray' }}
-												onChange={handleChange}
-												value={values.frame_type}
-												disabled={!isEditable}
-											/>
-											{errors.frame_type && (
-												<p className="text-red-500">{errors.frame_type}</p>
-											)}
-										</td>
-									</tr>
-								</tbody>
-								<tbody>
-									<tr>
-										<th className="text-right">カテゴリ:　</th>
-										<td>
-											<input
-												name="archetype"
-												type="text"
-												className="w-80"
-												style={{ color: 'gray' }}
-												onChange={handleChange}
-												value={values.archetype}
-												disabled={!isEditable}
-											/>
-											{errors.archetype && (
-												<p className="text-red-500">{errors.archetype}</p>
-											)}
-										</td>
-									</tr>
-								</tbody>
-								<tbody>
-									<tr>
-										<th className="text-right">作成日時:　</th>
-										<td>
-											<p>
-												{card.created_at.substr(0, 10)}{' '}
-												{card.created_at.substr(11, 5)}
-											</p>
-										</td>
-									</tr>
-								</tbody>
-								<tbody>
-									<tr>
-										<th className="text-right">更新日時:　</th>
-										<td>
-											<p>
-												{card.updated_at.substr(0, 10)}{' '}
-												{card.updated_at.substr(11, 5)}
-											</p>
-										</td>
-									</tr>
-								</tbody>
-								<tbody>
-									<tr>
-										<th className="text-right">初登場時期:　</th>
-										<td>
-											<p>{product.period}</p>
-										</td>
-									</tr>
-								</tbody>
-								<tbody>
-									<tr>
-										<th className="text-right">収録パック名:　</th>
-										<td>
-											<p>{product.name_en}</p>
-										</td>
-									</tr>
-								</tbody>
-							</table>
-							<div className="flex justify-end mt-4">
-								<button
-									type="submit"
-									className="simple-button bg-black/90 block"
-									disabled={!isEditable}>
-									変更を保存
-								</button>
-							</div>
+						{cardType === 'monster' && (
+							<MonsterCardUpdateForm
+								values={monsterCardValues}
+								handleSubmit={handleSubmit}
+								onChange={handleChange}
+								isEditable={isEditable}
+								errors={errors}
+							/>
+						)}
+						{cardType === 'spell/trap' && (
+							<SpellTrapCardUpdateForm
+								values={spellTrapCardValues}
+								handleSubmit={handleSubmit}
+								onChange={handleChange}
+								isEditable={isEditable}
+								errors={errors}
+							/>
+						)}
+					</div>
+					<div className="bg-gray-100 rounded-md flex justify-start">
+						<div>
+							<input
+								id="delete-checkbox"
+								type="checkBox"
+								checked={isDeletable}
+								onChange={() => setIsDeletable(prev => !prev)}
+							/>
+							<label htmlFor="delete-checkbox" className="text-black select-none">
+								削除可能にする
+							</label>
+						</div>
+						<form onSubmit={handleDelete} className="ml-4">
+							<button disabled={!isDeletable} className="simple-button">
+								このカードを削除する
+							</button>
 						</form>
 					</div>
-				</div>
-				<h2 className="text-lg">カードを削除</h2>
-				<div className="p-8 bg-gray-100 rounded-md flex justify-start">
-					<div>
-						<input
-							id="delete-checkbox"
-							type="checkBox"
-							checked={isDeletable}
-							onChange={() => setIsDeletable(prev => !prev)}
-						/>
-						<label htmlFor="delete-checkbox" className="text-black select-none">
-							削除可能にする
-						</label>
-					</div>
-					<form onSubmit={handleDelete} className="ml-4">
-						<button disabled={!isDeletable} className="simple-button delete-btn">
-							このカードを削除する
-						</button>
-					</form>
 				</div>
 			</div>
 		</>

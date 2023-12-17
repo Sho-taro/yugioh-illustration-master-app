@@ -752,7 +752,7 @@ td {
   color: gray;
 }
 
-.delete-btn:disabled {
+.simple-button:disabled {
   pointer-events: none;
   color: rgba(150, 150, 150, 0.8);
   text-shadow: 0 0 0px rgb(50, 54, 167);
