@@ -41,9 +41,8 @@ function Index({ data, cardsNum, errMessage, message }) {
 					<thead>
 						<tr>
 							<th>card_official_id</th>
-							<th>frame_type</th>
 							<th width="350">カード名</th>
-							<th>イラスト</th>
+							<th>frame_type</th>
 							<th>更新日時</th>
 						</tr>
 					</thead>
@@ -57,20 +56,11 @@ function Index({ data, cardsNum, errMessage, message }) {
 										{card.card_official_id}
 									</Link>
 								</td>
-								<td className="px-2 py-4">{card.frame_type_code}</td>
 								<td className="px-2 py-4">
 									<p className="text-xs">{card.name_ja_kana}</p>
 									<p>{card.name_ja}</p>
 								</td>
-								<td>
-									<div className="mx-auto w-12">
-										<img
-											src={`/images/card-images/${card.product_code}-${card.list_number}.jpg`}
-											alt="カードイラスト"
-											className="w-12"
-										/>
-									</div>
-								</td>
+								<td className="px-2 py-4">{card.frame_type_code}</td>
 								<td className="px-2 py-4">
 									{card.updated_at.substr(0, 10)} {card.updated_at.substr(11, 5)}
 								</td>
