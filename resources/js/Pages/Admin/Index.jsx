@@ -29,7 +29,7 @@ function Index() {
 								isMlOn={true}
 								src="/images/released_cards.jpg"
 								dbName="released_cards"
-								routeName="admin.card.index"
+								routeName="admin.releasedcard.index"
 							/>
 							<DatabaseCard
 								isMlOn={true}
