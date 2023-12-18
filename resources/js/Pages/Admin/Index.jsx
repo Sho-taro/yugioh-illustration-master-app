@@ -27,6 +27,12 @@ function Index() {
 							/>
 							<DatabaseCard
 								isMlOn={true}
+								src="/images/released_cards.jpg"
+								dbName="released_cards"
+								routeName="admin.card.index"
+							/>
+							<DatabaseCard
+								isMlOn={true}
 								src="/images/tags.svg"
 								dbName="tags"
 								routeName="admin.tag.index"
