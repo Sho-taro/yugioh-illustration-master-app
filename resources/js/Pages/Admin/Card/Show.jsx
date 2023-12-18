@@ -6,10 +6,11 @@ import { Link, router, usePage } from '@inertiajs/react';
 // コンポーネント
 import MonsterCardUpdateForm from '@/Components/Admin/MonsterCardUpdateForm';
 import SpellTrapCardUpdateForm from '@/Components/Admin/SpellTrapCardUpdateForm';
+import ReleasedCardsList from '@/Components/Admin/ReleasedCardsList';
 
 import { getCardType } from '@/utils/getCardType';
 
-function Show({ card, product, errors }) {
+function Show({ cardDetail, releasedCards, errors }) {
 	// モンスターカード用
 	const [monsterCardValues, setMonsterCardValues] = useState({
 		id: '',
@@ -44,7 +45,7 @@ function Show({ card, product, errors }) {
 	// バリデーションエラーメッセージ
 	// const { errors } = usePage().props;
 
-	const cardType = getCardType(card.frame_type_code); // 表示するカードの種類。 'monster' or 'spell/trap'
+	const cardType = getCardType(cardDetail.frame_type_code); // 表示するカードの種類。 'monster' or 'spell/trap'
 
 	const handleChange = e => {
 		const key = e.target.name;
@@ -66,43 +67,53 @@ function Show({ card, product, errors }) {
 		e.preventDefault();
 
 		// フォームの送信
-		router.put(`/admin/card/${values.id}`, values);
+		if (cardType === 'monster') {
+			router.put(`/admin/card/${monsterCardValues.id}`, monsterCardValues);
+		} else if (cardType === 'spell/trap') {
+			router.put(`/admin/card/${spellTrapCardValues.id}`, spellTrapCardValues);
+		}
 	};
 
 	const handleDelete = e => {
 		e.preventDefault();
-		router.delete(`/admin/card/${values.id}`);
+
+		// フォームの送信
+		if (cardType === 'monster') {
+			router.delete(`/admin/card/${monsterCardValues.id}`);
+		} else if (cardType === 'spell/trap') {
+			router.delete(`/admin/card/${spellTrapCardValues.id}`);
+		}
 	};
 
 	useEffect(() => {
 		if (cardType === 'monster') {
 			// モンスターカード用
 			setMonsterCardValues({
-				id: card.id,
-				card_official_id: card.card_official_id,
-				name_ja: card.name_ja,
-				name_ja_kana: card.name_ja_kana,
-				name_en: card.name_en,
-				frame_type_code: card.frame_type_code,
-				archetype_code: card.archetype_code,
-				attack: card.attack,
-				defense: card.defense,
-				race_code: card.race_code,
-				attribute_code: card.attribute_code,
-				level_or_rank: card.level_or_rank,
-				link_value: card.link_value,
+				id: cardDetail.id,
+				card_official_id: cardDetail.card_official_id,
+				name_ja: cardDetail.name_ja,
+				name_ja_kana: cardDetail.name_ja_kana,
+				name_en: cardDetail.name_en,
+				frame_type_code: cardDetail.frame_type_code,
+				archetype_code: cardDetail.archetype_code,
+				attack: cardDetail.attack,
+				defense: cardDetail.defense,
+				race_code: cardDetail.race_code,
+				attribute_code: cardDetail.attribute_code,
+				level_or_rank: cardDetail.level_or_rank,
+				link_value: cardDetail.link_value,
 			});
 		} else if (cardType === 'spell/trap') {
 			// 魔法・罠カード用
 			setSpellTrapCardValues({
-				id: card.id,
-				card_official_id: card.card_official_id,
-				name_ja: card.name_ja,
-				name_ja_kana: card.name_ja_kana,
-				name_en: card.name_en,
-				frame_type_code: card.frame_type_code,
-				archetype_code: card.archetype_code,
-				play_type_code: card.play_type_code,
+				id: cardDetail.id,
+				card_official_id: cardDetail.card_official_id,
+				name_ja: cardDetail.name_ja,
+				name_ja_kana: cardDetail.name_ja_kana,
+				name_en: cardDetail.name_en,
+				frame_type_code: cardDetail.frame_type_code,
+				archetype_code: cardDetail.archetype_code,
+				play_type_code: cardDetail.play_type_code,
 			});
 		}
 	}, []);
@@ -157,7 +168,7 @@ function Show({ card, product, errors }) {
 								onChange={() => setIsDeletable(prev => !prev)}
 							/>
 							<label htmlFor="delete-checkbox" className="text-black select-none">
-								削除可能にする
+								削除可能にする（※このカードに紐付いた全てのreleased_cardsも自動的に削除されます）
 							</label>
 						</div>
 						<form onSubmit={handleDelete} className="ml-4">
@@ -166,6 +177,10 @@ function Show({ card, product, errors }) {
 							</button>
 						</form>
 					</div>
+				</div>
+				<h2 className="text-lg">このカードに紐付いたreleased_cards</h2>
+				<div className="p-8 mb-4 bg-gray-100 rounded-md">
+					<ReleasedCardsList releasedCards={releasedCards} />
 				</div>
 			</div>
 		</>

@@ -1,7 +1,7 @@
 import React from 'react'
 
 function MonsterCardUpdateForm({ values, handleSubmit, onChange, isEditable, errors }) {
-	console.log(values);
+	// console.log(values);
 	return (
 		<>
 			<form onSubmit={handleSubmit} method="POST">
@@ -24,18 +24,7 @@ function MonsterCardUpdateForm({ values, handleSubmit, onChange, isEditable, err
 						<tr>
 							<th>card_official_id:</th>
 							<td>
-								<input
-									name="card_official_id"
-									type="text"
-									className="w-80"
-									placeholder="00000000"
-									value={values.card_official_id}
-									onChange={e => onChange(e)}
-									disabled={!isEditable}
-								/>
-								{errors.card_official_id && (
-									<p className="text-red-500">{errors.card_official_id}</p>
-								)}
+								<p className="w-80">{values.card_official_id}</p>
 							</td>
 						</tr>
 					</tbody>
@@ -48,6 +37,7 @@ function MonsterCardUpdateForm({ values, handleSubmit, onChange, isEditable, err
 									type="text"
 									className="w-80"
 									placeholder="青眼の白龍"
+									value={values.name_ja}
 									onChange={e => onChange(e)}
 									disabled={!isEditable}
 								/>
@@ -64,6 +54,7 @@ function MonsterCardUpdateForm({ values, handleSubmit, onChange, isEditable, err
 									type="text"
 									className="w-80"
 									placeholder="ブルーアイズ・ホワイトドラゴン"
+									value={values.name_ja_kana}
 									onChange={e => onChange(e)}
 									disabled={!isEditable}
 								/>

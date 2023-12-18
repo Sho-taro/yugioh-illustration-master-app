@@ -23,18 +23,7 @@ function SpellTrapCardUpdateForm({ values, handleSubmit, onChange, isEditable, e
 						<tr>
 							<th>card_official_id:</th>
 							<td>
-								<input
-									name="card_official_id"
-									type="text"
-									className="w-80"
-									placeholder="00000000"
-									value={values.card_official_id}
-									onChange={e => onChange(e)}
-									disabled={!isEditable}
-								/>
-								{errors.card_official_id && (
-									<p className="text-red-500">{errors.card_official_id}</p>
-								)}
+								<p className="w-80">{values.card_official_id}</p>
 							</td>
 						</tr>
 					</tbody>
@@ -47,7 +36,9 @@ function SpellTrapCardUpdateForm({ values, handleSubmit, onChange, isEditable, e
 									type="text"
 									className="w-80"
 									placeholder="青眼の白龍"
+									value={values.name_ja}
 									onChange={e => onChange(e)}
+									disabled={!isEditable}
 								/>
 								{errors.name_ja && <p className="text-red-500">{errors.name_ja}</p>}
 							</td>
@@ -62,7 +53,9 @@ function SpellTrapCardUpdateForm({ values, handleSubmit, onChange, isEditable, e
 									type="text"
 									className="w-80"
 									placeholder="ブルーアイズ・ホワイトドラゴン"
+									value={values.name_ja_kana}
 									onChange={e => onChange(e)}
+									disabled={!isEditable}
 								/>
 								{errors.name_ja_kana && (
 									<p className="text-red-500">{errors.name_ja_kana}</p>
@@ -81,6 +74,7 @@ function SpellTrapCardUpdateForm({ values, handleSubmit, onChange, isEditable, e
 									placeholder="Blue-Eyes White Dragon"
 									value={values.name_en}
 									onChange={e => onChange(e)}
+									disabled={!isEditable}
 								/>
 								{errors.name_en && <p className="text-red-500">{errors.name_en}</p>}
 							</td>
@@ -97,6 +91,7 @@ function SpellTrapCardUpdateForm({ values, handleSubmit, onChange, isEditable, e
 									placeholder="normal"
 									value={values.frame_type_code}
 									onChange={e => onChange(e)}
+									disabled={!isEditable}
 								/>
 								{errors.frame_type_code && (
 									<p className="text-red-500">{errors.frame_type_code}</p>
@@ -115,6 +110,7 @@ function SpellTrapCardUpdateForm({ values, handleSubmit, onChange, isEditable, e
 									placeholder="Blue-Eyes"
 									value={values.archetype_code}
 									onChange={e => onChange(e)}
+									disabled={!isEditable}
 								/>
 								{errors.archetype_code && (
 									<p className="text-red-500">{errors.archetype_code}</p>
@@ -133,6 +129,7 @@ function SpellTrapCardUpdateForm({ values, handleSubmit, onChange, isEditable, e
 									placeholder="N/A"
 									value={values.play_type_code}
 									onChange={e => onChange(e)}
+									disabled={!isEditable}
 								/>
 								{errors.play_type_code && (
 									<p className="text-red-500">{errors.play_type_code}</p>
@@ -141,6 +138,9 @@ function SpellTrapCardUpdateForm({ values, handleSubmit, onChange, isEditable, e
 						</tr>
 					</tbody>
 				</table>
+				<button type="submit" className="simple-button" disabled={!isEditable}>
+					変更を保存
+				</button>
 			</form>
 		</>
 	);
