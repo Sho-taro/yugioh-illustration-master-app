@@ -50,7 +50,7 @@ class IndexController extends Controller
         return inertia('Admin/Card/Index', ['data' => $data, 'cardsNum' => $cards_num, 'errMessage' => $err_message]);   // inertiaへルパ関数を使うと記述がシンプル
       }
 
-      // cardsテーブルのレコードを全件取得
+      // cardsテーブルのクエリビルダインスタンスを取得
       $cards = DB::table('cards');
       //（準備）cardsテーブルとproductsテーブルをinner joinするクエリを生成
       $cards->join('products', 'cards.product_code', '=', 'products.product_code')
