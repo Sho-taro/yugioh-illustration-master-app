@@ -17,6 +17,9 @@ function Index({ data, message }) {
 					<Link href={route('admin.product.create')} className="simple-button">
 						+ productを新規登録
 					</Link>
+					<Link href={route('admin.product.newcreate')} className="simple-button">
+						+ productを新規登録 その２
+					</Link>
 				</div>
 				{message && <p className="text-green-500">{message}</p>}
 				<table border="1" className="index-table mt-4 w-full">

@@ -65,6 +65,7 @@ Route::middleware(['admin'])->group(function () {
     Route::get('/admin/product', \App\Http\Controllers\Admin\Product\IndexController::class)->name('admin.product.index');
     Route::post('/admin/product', \App\Http\Controllers\Admin\Product\StoreController::class)->name('admin.product.store');
     Route::get('/admin/product/create', \App\Http\Controllers\Admin\Product\CreateController::class)->name('admin.product.create');
+    Route::get('/admin/product/newcreate', \App\Http\Controllers\Admin\Product\NewCreateController::class)->name('admin.product.newcreate');
     Route::get('/admin/product/{id}', \App\Http\Controllers\Admin\Product\ShowController::class)->name('admin.product.show');
     Route::put('/admin/product/{id}', \App\Http\Controllers\Admin\Product\UpdateController::class)->name('admin.product.update');
     Route::delete('/admin/product/{id}', \App\Http\Controllers\Admin\Product\DestroyController::class)->name('admin.product.destroy');

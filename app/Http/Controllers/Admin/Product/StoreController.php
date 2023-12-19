@@ -27,6 +27,7 @@ class StoreController extends Controller
 
         // return redirect('/admin/card');
         return inertia('Admin/Product/Create', ['registeredProduct' => $registeredProduct, 'message' => 'productを新規登録しました']);
+        // return inertia('Admin/Product/NewCreate', ['registeredProduct' => $registeredProduct, 'message' => 'productを新規登録しました']);   // NewCreate.jsxにリダイレクトする場合はこっち
 
     }
 }
