@@ -1,7 +1,7 @@
 import React from 'react';
 import AdminLayout from '@/Layouts/AdminLayout';
 import { Link } from '@inertiajs/react';
-import FilterCards from '@/Components/Admin/FilterCards';
+import FilterCards from '@/Components/Admin/Filters/FilterCards';
 import Pagination from '@/Components/Admin/Pageination';
 // import './css/Index.css';
 
