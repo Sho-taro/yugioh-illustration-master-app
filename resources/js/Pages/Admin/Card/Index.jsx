@@ -1,7 +1,7 @@
 import React from 'react';
 import AdminLayout from '@/Layouts/AdminLayout';
 import { Link } from '@inertiajs/react';
-import FilterCards from '@/Components/Admin/FilterCards';
+import FilterCards from '@/Components/Admin/Filters/FilterCards';
 import Pagination from '@/Components/Admin/Pageination';
 // import './css/Index.css';
 
@@ -32,7 +32,7 @@ function Index({ data, cardsNum, errMessage, message }) {
 								登録カード枚数: <span className="font-bold">{cardsNum}</span> 枚
 							</p>
 						}
-						<FilterCards routeName="admin.card.index" />
+						<FilterCards routeName="admin.card.index" isCardPeriodFilterOn={false} />
 					</div>
 				</div>
 				{errMessage && <p className="text-red-500">{errMessage}</p>}
