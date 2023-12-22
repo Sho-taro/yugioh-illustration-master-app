@@ -5,6 +5,8 @@ import FilterCards from '@/Components/Admin/Filters/FilterCards';
 import Pagination from '@/Components/Admin/Pageination';
 // import './css/Index.css';
 
+import { convertFrameTypeCode } from '@/utils/convertCodeFunctions';
+
 function Index({ data, cardsNum, errMessage, message }) {
 	// console.log(data);
 	// const handleSubmit = (e) => {
@@ -60,7 +62,16 @@ function Index({ data, cardsNum, errMessage, message }) {
 									<p className="text-xs">{card.name_ja_kana}</p>
 									<p>{card.name_ja}</p>
 								</td>
-								<td className="px-2 py-4">{card.frame_type_code}</td>
+								<td className="px-2 py-4 text-center">
+									<img
+										src={`/images/frame-type-white/${convertFrameTypeCode(
+											card.frame_type_code
+										)}.png`}
+										alt="frame-type"
+										className="w-20 inline-block"
+									/>
+									{` (${card.frame_type_code})`}
+								</td>
 								<td className="px-2 py-4">
 									{card.updated_at.substr(0, 10)} {card.updated_at.substr(11, 5)}
 								</td>
