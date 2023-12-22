@@ -2,7 +2,7 @@ import React from 'react'
 
 function AttributeFilter() {
   return (
-		<div className="flex justify-start items-center">
+		<div className="flex justify-start items-center mb-4">
 			<p className="w-28 text-center">属性</p>
 			<div className="ml-2">
 				<div>
