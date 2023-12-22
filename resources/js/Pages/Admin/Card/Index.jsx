@@ -32,7 +32,7 @@ function Index({ data, cardsNum, errMessage, message }) {
 								登録カード枚数: <span className="font-bold">{cardsNum}</span> 枚
 							</p>
 						}
-						<FilterCards routeName="admin.card.index" />
+						<FilterCards routeName="admin.card.index" isCardPeriodFilterOn={false} />
 					</div>
 				</div>
 				{errMessage && <p className="text-red-500">{errMessage}</p>}

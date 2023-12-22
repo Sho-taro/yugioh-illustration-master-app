@@ -6,7 +6,7 @@ import SpellCardFilter from './SpellCardFilter';
 import TrapCardFilter from './TrapCardFilter';
 import CardPeriodFilter from './CardPeriodFilter';
 
-function FilterCards({ routeName }) {
+function FilterCards({ routeName, isCardPeriodFilterOn }) {
 	const [target, setTarget] = useState('monster');
 
 	const handleChange = (e) => {
@@ -31,14 +31,10 @@ function FilterCards({ routeName }) {
 						<input type="hidden" name="access-type" value="filtering" />
 						<input type="hidden" name="target" value={target} />
 						<CardNameFilter />
-						{target !== 'all' && (
-							<div>
-								{target === 'monster' && <MonsterCardFilter />}
-								{target === 'spell' && <SpellCardFilter />}
-								{target === 'trap' && <TrapCardFilter />}
-							</div>
-						)}
-						<CardPeriodFilter />
+						{target === 'monster' && <MonsterCardFilter />}
+						{target === 'spell' && <SpellCardFilter />}
+						{target === 'trap' && <TrapCardFilter />}
+						{isCardPeriodFilterOn && <CardPeriodFilter />}
 						<button className="block mt-4 px-2 py-1 border-2 border-solid border-gray-300 rounded-md">
 							この条件で絞り込む
 						</button>
