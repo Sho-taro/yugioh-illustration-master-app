@@ -1,4 +1,5 @@
 import React from 'react'
+import { convertFrameTypeCode, convertArchetypeCode, convertRaceCode, convertAttributeCode } from '@/utils/convertCodeFunctions'
 
 function MonsterCardUpdateForm({ values, handleSubmit, onChange, isEditable, errors }) {
 	// console.log(values);
@@ -94,6 +95,7 @@ function MonsterCardUpdateForm({ values, handleSubmit, onChange, isEditable, err
 									onChange={e => onChange(e)}
 									disabled={!isEditable}
 								/>
+								{` (${convertFrameTypeCode(values.frame_type_code)})`}
 								{errors.frame_type_code && (
 									<p className="text-red-500">{errors.frame_type_code}</p>
 								)}
@@ -113,6 +115,7 @@ function MonsterCardUpdateForm({ values, handleSubmit, onChange, isEditable, err
 									onChange={e => onChange(e)}
 									disabled={!isEditable}
 								/>
+								{` (${convertArchetypeCode(values.archetype_code)})`}
 								{errors.archetype_code && (
 									<p className="text-red-500">{errors.archetype_code}</p>
 								)}
@@ -166,6 +169,7 @@ function MonsterCardUpdateForm({ values, handleSubmit, onChange, isEditable, err
 									onChange={e => onChange(e)}
 									disabled={!isEditable}
 								/>
+								{` (${convertRaceCode(values.race_code)})`}
 								{errors.race_code && (
 									<p className="text-red-500">{errors.race_code}</p>
 								)}
@@ -185,6 +189,7 @@ function MonsterCardUpdateForm({ values, handleSubmit, onChange, isEditable, err
 									onChange={e => onChange(e)}
 									disabled={!isEditable}
 								/>
+								{` (${convertAttributeCode(values.attribute_code)})`}
 								{errors.attribute_code && (
 									<p className="text-red-500">{errors.attribute_code}</p>
 								)}
