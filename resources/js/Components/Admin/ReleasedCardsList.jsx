@@ -5,7 +5,7 @@ function ReleasedCardsList({releasedCards}) {
 		<table>
 			<thead>
 				<tr>
-					<th className="w-48">イラスト</th>
+					<th className="w-40">イラスト</th>
 					<th className="w-40">型番</th>
 					<th className="w-80">収録</th>
 					<th className="w-40">発売日</th>
@@ -18,7 +18,7 @@ function ReleasedCardsList({releasedCards}) {
 						<td>
 							<img
 								src={`/images/card-images/${rc.product_code}-${rc.list_number}.jpg`}
-                className="w-40"
+                className="w-32"
 								alt="イラスト"
 							/>
 						</td>
