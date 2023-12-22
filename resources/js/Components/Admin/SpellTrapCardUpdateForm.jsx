@@ -1,4 +1,5 @@
 import React from 'react'
+import { convertFrameTypeCode, convertArchetypeCode, convertRaceCode, convertAttributeCode, convertPlayTypeCode } from '@/utils/convertCodeFunctions'
 
 function SpellTrapCardUpdateForm({ values, handleSubmit, onChange, isEditable, errors }) {
 	return (
@@ -93,6 +94,7 @@ function SpellTrapCardUpdateForm({ values, handleSubmit, onChange, isEditable, e
 									onChange={e => onChange(e)}
 									disabled={!isEditable}
 								/>
+								{` (${convertFrameTypeCode(values.frame_type_code)})`}
 								{errors.frame_type_code && (
 									<p className="text-red-500">{errors.frame_type_code}</p>
 								)}
@@ -112,6 +114,7 @@ function SpellTrapCardUpdateForm({ values, handleSubmit, onChange, isEditable, e
 									onChange={e => onChange(e)}
 									disabled={!isEditable}
 								/>
+								{` (${convertArchetypeCode(values.archetype_code)})`}
 								{errors.archetype_code && (
 									<p className="text-red-500">{errors.archetype_code}</p>
 								)}
@@ -131,6 +134,7 @@ function SpellTrapCardUpdateForm({ values, handleSubmit, onChange, isEditable, e
 									onChange={e => onChange(e)}
 									disabled={!isEditable}
 								/>
+								{` (${convertPlayTypeCode(values.play_type_code)})`}
 								{errors.play_type_code && (
 									<p className="text-red-500">{errors.play_type_code}</p>
 								)}
