@@ -6,7 +6,7 @@ import SpellCardFilter from './SpellCardFilter';
 import TrapCardFilter from './TrapCardFilter';
 import CardPeriodFilter from './CardPeriodFilter';
 
-function FilterCards({ routeName, isCardPeriodFilterOn }) {
+function FilterCards({ isOpen, routeName, isCardPeriodFilterOn }) {
 	const [target, setTarget] = useState('monster');
 
 	const handleChange = (e) => {
@@ -15,7 +15,7 @@ function FilterCards({ routeName, isCardPeriodFilterOn }) {
 
   return (
 		<>
-			<details>
+			<details open={isOpen}>
 				<summary>絞り込み</summary>
 				<div className="text-left">
 					<label htmlFor="target-select">絞り込みの対象を選択:</label>
