@@ -16,8 +16,20 @@ function Index() {
 					</div>
 				</div>
 				<section className="mb-8">
-					<p>カードに関するテーブル（クリックしてデータを一覧表示）</p>
-					<div className="py-4">
+					<div className="w-60 bg-blue-200 text-center rounded-md hover:opacity-70 ">
+						<Link href="" className="block text-black">
+							<img
+								src="/images/search.svg"
+								className="h-24 aspect-auto inline-block"
+								alt="検索"
+							/>
+							カードを検索する
+						</Link>
+					</div>
+				</section>
+				<section className="mb-8">
+					<h2>カードに関するテーブル（クリックしてデータを一覧表示）</h2>
+					<div>
 						<div className="flex justify-start mb-4">
 							<DatabaseCard
 								isMlOn={false}
@@ -85,8 +97,8 @@ function Index() {
 					</div>
 				</section>
 				<section className="mb-8">
-					<p>ユーザーに関するテーブル（クリックしてデータを一覧表示）</p>
-					<div className="py-4">
+					<h2>ユーザーに関するテーブル（クリックしてデータを一覧表示）</h2>
+					<div>
 						<div className="flex justify-start mb-4">
 							<DatabaseCard
 								isMlOn={false}
