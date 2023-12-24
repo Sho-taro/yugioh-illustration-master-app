@@ -238,7 +238,7 @@ class IndexController extends Controller
 
       // クエリを実行してレコードを取得
       $data = $releasedCards_query->orderBy('card_ja_kana', 'ASC')->paginate(15);  // 日本語カード名（読み）の昇順
-      dd($data);
+      // dd($data);
 
       return inertia('Admin/Card/Index', ['data' => $data, 'cardsNum' => $cards_num, 'message' => $message]);
     }

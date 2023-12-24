@@ -5,7 +5,7 @@ import FilterCards from '@/Components/Admin/Filters/FilterCards';
 import SearchResult from '@/Components/Admin/SearchResult';
 import Pagination from '@/Components/Admin/Pageination';
 
-function Index({data}) {
+function Index({ data }) {
 	return (
 		<>
 			<div className="w-4/5 pt-8 mx-auto">

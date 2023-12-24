@@ -1,12 +1,14 @@
 import React from 'react'
 
-function SpellTrapCardResult({card}) {
+function SpellTrapCardResult({card, handleImageClick}) {
   return (
 		<div className="p-2 flex justify-start">
 			<div className="w-36">
 				<img
 					src={`/images/card-images/${card.product_code}-${card.list_number}.jpg`}
 					alt="イラスト"
+					className="cursor-pointer"
+					onClick={e => handleImageClick(e)}
 				/>
 			</div>
 			<div className="w-full ml-2">
