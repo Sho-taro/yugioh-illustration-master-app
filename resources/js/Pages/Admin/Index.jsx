@@ -16,8 +16,8 @@ function Index() {
 					</div>
 				</div>
 				<section className="mb-8">
-					<div className="w-60 bg-blue-200 text-center rounded-md hover:opacity-70 ">
-						<Link href="" className="block text-black">
+					<div className="w-60 bg-blue-200 text-center rounded-md hover:opacity-70 active:scale-95">
+						<Link href={route('admin.searchcard.index')} className="block text-black">
 							<img
 								src="/images/search.svg"
 								className="h-24 aspect-auto inline-block"
