@@ -1,4 +1,5 @@
 export const getCardType = (frameTypeCode) => {
+  if (!frameTypeCode) return 'error';
   if (frameTypeCode === 'FR0014' || frameTypeCode === 'FR0015') {
     return 'spell/trap';
   } else if (frameTypeCode === 'FR0016') {

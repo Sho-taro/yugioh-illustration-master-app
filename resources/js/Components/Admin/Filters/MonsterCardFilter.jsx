@@ -5,14 +5,14 @@ import AttributeFilter from './AttributeFilter';
 import LevelOrRankFilter from './LevelOrRankFilter';
 import LinkValueFilter from './LinkValueFilter';
 
-function MonsterCardFilter() {
+function MonsterCardFilter({filters}) {
 	return (
 		<>
-			<FrameTypeFilter />
-			<RaceFilter />
-			<AttributeFilter />
-			<LevelOrRankFilter />
-			<LinkValueFilter />
+			<FrameTypeFilter filters={filters} />
+			<RaceFilter filters={filters} />
+			<AttributeFilter filters={filters} />
+			<LevelOrRankFilter filters={filters} />
+			<LinkValueFilter filters={filters} />
 		</>
 	);
 }

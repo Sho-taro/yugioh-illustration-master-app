@@ -129,6 +129,9 @@ Route::middleware(['admin'])->group(function () {
     // ↓ ユーザ
     Route::get('/admin/user', \App\Http\Controllers\Admin\User\IndexController::class)->name('admin.user.index');
     Route::get('/admin/user/{id}', \App\Http\Controllers\Admin\User\ShowController::class)->name('admin.user.show');
+
+    // カード検索
+    Route::get('/admin/searchcard', \App\Http\Controllers\Admin\SearchCard\IndexController::class)->name('admin.searchcard.index');
 });
 
 

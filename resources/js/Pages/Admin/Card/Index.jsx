@@ -7,8 +7,7 @@ import Pagination from '@/Components/Admin/Pageination';
 
 import { convertFrameTypeCode } from '@/utils/convertCodeFunctions';
 
-function Index({ data, cardsNum, errMessage, message }) {
-	// console.log(data);
+function Index({ data, cardsNum, errMessage, message, filters }) {
 	// const handleSubmit = (e) => {
 	// 	e.preventDefault();
 	// 	router.get(route('admin.card.index'), values);
@@ -34,7 +33,7 @@ function Index({ data, cardsNum, errMessage, message }) {
 								登録カード枚数: <span className="font-bold">{cardsNum}</span> 枚
 							</p>
 						}
-						<FilterCards routeName="admin.card.index" isCardPeriodFilterOn={false} />
+						<FilterCards isOpen={false} routeName="admin.card.index" isCardPeriodFilterOn={false} filters={filters} />
 					</div>
 				</div>
 				{errMessage && <p className="text-red-500">{errMessage}</p>}
