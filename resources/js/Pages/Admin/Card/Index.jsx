@@ -8,8 +8,6 @@ import Pagination from '@/Components/Admin/Pageination';
 import { convertFrameTypeCode } from '@/utils/convertCodeFunctions';
 
 function Index({ data, cardsNum, errMessage, message, filters }) {
-	console.log(filters);
-	console.log(data);
 	// const handleSubmit = (e) => {
 	// 	e.preventDefault();
 	// 	router.get(route('admin.card.index'), values);
