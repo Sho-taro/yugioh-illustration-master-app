@@ -5,7 +5,7 @@ import FilterCards from '@/Components/Admin/Filters/FilterCards';
 import SearchResult from '@/Components/Admin/SearchResult';
 import Pagination from '@/Components/Admin/Pageination';
 
-function Index({ data }) {
+function Index({ data, cardsNum, message, filters }) {
 	return (
 		<>
 			<div className="w-4/5 pt-8 mx-auto">
@@ -19,6 +19,7 @@ function Index({ data }) {
 					isOpen={true}
 					routeName="admin.searchcard.index"
 					isCardPeriodFilterOn={true}
+					filters={filters}
 				/>
 				<div className="w-2/3 mx-auto mb-8">
 					<p className="mt-4 w-full text-center border">↓ 検索結果 ↓</p>

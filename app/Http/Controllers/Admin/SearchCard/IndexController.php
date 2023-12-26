@@ -25,7 +25,12 @@ class IndexController extends Controller
 
     } else if ($request->input('access-type') === 'filtering') {
       // 絞り込みボタンを押して再アクセスしてきた場合
-      // dd($request->input());
+      $filters = $request->input();
+      // dd($filters);
+
+      // 絞り込み条件をセッションに保存
+      // $request->session()->put('filtering', $filters);   // セッションに保存
+      // dd($request->session()->get('filtering'));
 
 			// 登録されているカードのレコード数を取得
       $cards_num = DB::table('cards')->count();
@@ -252,10 +257,11 @@ class IndexController extends Controller
       $message = "{$releasedCards_query->count()} 枚のカードが見つかりました。";
 
       // クエリを実行してレコードを取得
-      $data = $releasedCards_query->orderBy('card_ja_kana', 'ASC')->paginate(15);  // 日本語カード名（読み）の昇順
+      $data = $releasedCards_query->orderBy('card_ja_kana', 'ASC')->paginate(15)          // 日本語カード名（読み）の昇順
+                                                                  ->withQueryString();   // URLのカスタマイズ（現在開いているページのクエリストリングを全て追加）
       // dd($data);
 
-      return inertia('Admin/SearchCard/Index', ['data' => $data, 'cardsNum' => $cards_num, 'message' => $message]);
+      return inertia('Admin/SearchCard/Index', ['data' => $data, 'cardsNum' => $cards_num, 'message' => $message, 'filters' => $filters]);
     }
   }
 
