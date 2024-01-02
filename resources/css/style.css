@@ -29,6 +29,7 @@ p, h1, h2, h3, h4 {
   background-color: rgb(18, 20, 27);
   /* background-size: cover;
   background-position: top center; */
+  min-height: 100vh;
 }
 /* .adminLayout-bg {
   background-color: rgb(232, 232, 241);

@@ -15,12 +15,14 @@ function Index({ data, cardsNum, message, filters }) {
 						{'< '} 管理画面トップへ戻る
 					</Link>
 				</div>
-				<FilterCards
-					isOpen={true}
-					routeName="admin.searchcard.index"
-					isCardPeriodFilterOn={true}
-					filters={filters}
-				/>
+				<details open>
+					<summary>絞り込み</summary>
+					<FilterCards
+						routeName="admin.searchcard.index"
+						isCardPeriodFilterOn={true}
+						filters={filters}
+					/>
+				</details>
 				<div className="w-2/3 mx-auto mb-8">
 					<p className="mt-4 w-full text-center border">↓ 検索結果 ↓</p>
 					{data && <SearchResult data={data} />}

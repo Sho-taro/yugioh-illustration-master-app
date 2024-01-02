@@ -33,7 +33,10 @@ function Index({ data, cardsNum, errMessage, message, filters }) {
 								登録カード枚数: <span className="font-bold">{cardsNum}</span> 枚
 							</p>
 						}
-						<FilterCards isOpen={false} routeName="admin.card.index" isCardPeriodFilterOn={false} filters={filters} />
+						<details>
+							<summary>絞り込み</summary>
+							<FilterCards isOpen={false} routeName="admin.card.index" isCardPeriodFilterOn={false} filters={filters} />
+						</details>
 					</div>
 				</div>
 				{errMessage && <p className="text-red-500">{errMessage}</p>}
