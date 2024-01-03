@@ -132,8 +132,13 @@ Route::middleware(['admin'])->group(function () {
 
     // カード検索
     Route::get('/admin/searchcard', \App\Http\Controllers\Admin\SearchCard\IndexController::class)->name('admin.searchcard.index');
-});
+
+    });
 
 
 // game
 Route::get('/', \App\Http\Controllers\IndexController::class)->name('index');
+
+// Gallery
+Route::get('/gallery/setting', \App\Http\Controllers\Gallery\SettingController::class)->name('gallery.setting');
+Route::get('/gallery/play', \App\Http\Controllers\Gallery\PlayController::class)->name('gallery.play');

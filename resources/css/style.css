@@ -29,6 +29,7 @@ p, h1, h2, h3, h4 {
   background-color: rgb(18, 20, 27);
   /* background-size: cover;
   background-position: top center; */
+  min-height: 100vh;
 }
 /* .adminLayout-bg {
   background-color: rgb(232, 232, 241);
@@ -688,6 +689,20 @@ td {
   /* Shadow */
   box-shadow: 0px 0px 10px #111;
 }
+.canvas-menu-bar {
+  /* Size */
+  width: 100vw;
+  height: 8vh;
+  background: linear-gradient(rgba(0, 0, 0, 0), 40%, rgba(0, 0, 0, 0.5));
+
+  /* Content alignment */
+  position: fixed;
+  bottom: 0;
+  left: 0;
+
+  z-index: 3;
+}
+
 /* 擬似要素を使ってsvg画像を文字の前に表示 */
 .close-modal-p {
   position: relative;
