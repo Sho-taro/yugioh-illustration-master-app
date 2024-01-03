@@ -1,7 +1,27 @@
-import React, {useEffect, useRef} from 'react'
+import React, { useState, useEffect, useRef } from 'react'
+import CanvasMenuBar from './CanvasMaskModal';
 
 function Canvas({ cards, animationState, setAnimationState, canvasCards, intervalId, animationFrameId }) {
+  const [showingMenuBar, setShowingMenuBar] = useState(false)
   const canvas = useRef(null); // canvasをuseRefで取得
+
+  // windowのサイズが変更されたら、canvasのサイズもそれにあわせて変更する
+  window.addEventListener('resize', () => {
+    canvas.current.width = window.innerWidth;
+    canvas.current.height = window.innerHeight;
+  })
+
+  // 一定時間動かなかったらカーソルとメニューバーを非表示
+  let timer;
+  window.addEventListener('mousemove', () => {
+    canvas.current.classList.remove('cursor-none');
+    setShowingMenuBar(true);
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      canvas.current.classList.add('cursor-none');
+      setShowingMenuBar(false);
+    }, 4000);
+  })
   // let intervalId;
   // let animationFrameId;
   // const handleButtonClick = () => {
@@ -112,9 +132,14 @@ function Canvas({ cards, animationState, setAnimationState, canvasCards, interva
 
   return (
 		<>
-			<canvas ref={canvas} width={window.innerWidth} height={window.innerHeight} className="">
+			<canvas
+				ref={canvas}
+				width={window.innerWidth}
+				height={window.innerHeight}
+				className="cursor-none">
 				エラー:お使いのブラウザが古いため、アニメーションを表示できません。
 			</canvas>
+			{showingMenuBar && <CanvasMenuBar />}
 		</>
   );
 };

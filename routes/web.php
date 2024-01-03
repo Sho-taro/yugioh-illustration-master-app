@@ -140,5 +140,5 @@ Route::middleware(['admin'])->group(function () {
 Route::get('/', \App\Http\Controllers\IndexController::class)->name('index');
 
 // Gallery
-Route::get('/gallery', \App\Http\Controllers\Gallery\IndexController::class)->name('gallery');
+Route::get('/gallery/setting', \App\Http\Controllers\Gallery\SettingController::class)->name('gallery.setting');
 Route::get('/gallery/play', \App\Http\Controllers\Gallery\PlayController::class)->name('gallery.play');

@@ -18,6 +18,9 @@ class PlayController extends Controller
         $filters = $request->input();
       // dd($filters);
 
+      // $filtersをセッションに保存
+      $request->session()->put('filters', $filters);
+
       // カードの絞り込み対象を取得
       $target = $request->input('target');
       // カード検索のキーワードを変数に代入
@@ -243,6 +246,6 @@ class PlayController extends Controller
       $cards = $releasedCards_query->orderBy('card_ja_kana', 'ASC')->get();          // 日本語カード名（読み）の昇順
       // dd($data);
 
-      return inertia('Gallery', ['cards' => $cards, 'message' => $message, 'filters' => $filters]);
+      return inertia('Gallery/Gallery', ['cards' => $cards, 'message' => $message]);
     }
   }
