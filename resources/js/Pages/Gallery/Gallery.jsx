@@ -5,8 +5,6 @@ import Layout from '@/Layouts/Layout';
 function Gallery({ cards }) {
 	const [animationState, setAnimationState] = useState('waiting');
 	const canvasCards = [];
-	let intervalId;
-	let animationFrameId;
 
 	return (
 		<>
@@ -15,8 +13,6 @@ function Gallery({ cards }) {
 				animationState={animationState}
 				setAnimationState={setAnimationState}
 				canvasCards={canvasCards}
-				intervalId={intervalId}
-				animationFrameId={animationFrameId}
 			/>
 		</>
 	);
