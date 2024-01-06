@@ -2,10 +2,13 @@ import React from 'react'
 import FilterCards from '@/Components/Admin/Filters/FilterCards';
 import Layout from '@/Layouts/Layout';
 
-function Setting({filters}) {
+function Setting({filters, message}) {
   return (
 		<>
       <div className="bg-white">
+        {message && (
+          <p style={{color: 'red'}}>{message}</p>
+        )}
         <FilterCards
           routeName="gallery.play"
           isCardPeriodFilterOn={true}

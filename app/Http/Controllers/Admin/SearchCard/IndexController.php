@@ -33,7 +33,7 @@ class IndexController extends Controller
       // dd($request->session()->get('filtering'));
 
 			// 登録されているカードのレコード数を取得
-      $cards_num = DB::table('cards')->count();
+      $cards_num = DB::table('released_cards')->count();
 
       // カードの絞り込み対象を取得
       $target = $request->input('target');
