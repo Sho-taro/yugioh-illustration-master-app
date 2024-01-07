@@ -2,19 +2,21 @@ import React from 'react'
 import FilterCards from '@/Components/Admin/Filters/FilterCards';
 import Layout from '@/Layouts/Layout';
 
-function Setting({filters, message}) {
+function Setting({filters, releasedCardsNum, message}) {
   return (
 		<>
-      <div className="bg-white">
-        {message && (
-          <p style={{color: 'red'}}>{message}</p>
-        )}
-        <FilterCards
-          routeName="gallery.play"
-          isCardPeriodFilterOn={true}
-          filters={filters}
-        />
-      </div>
+			<div className="h-screen flex justify-center items-center">
+				<div className="p-4 bg-white rounded-md">
+					{message && <p style={{ color: 'red' }} className="mb-2">{message}</p>}
+          <FilterCards
+            apiMode={'on'}
+						routeName="gallery.play"
+						isCardPeriodFilterOn={true}
+            filters={filters}
+            releasedCardsNum={releasedCardsNum}
+					/>
+				</div>
+			</div>
 		</>
   );
 }

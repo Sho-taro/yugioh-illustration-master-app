@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Gallery;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\ReleasedCard;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Query\JoinClause;
@@ -241,7 +242,8 @@ class PlayController extends Controller
 
       // dd($releasedCards_query->count());
       if ($releasedCards_query->count() === 0) {
-        return inertia('Gallery/Setting', ['message' => '該当するカードがありません。絞り込み条件を変更して下さい。']);
+        $released_cards_num = ReleasedCard::count();
+        return inertia('Gallery/Setting', ['message' => '該当するカードがありません。絞り込み条件を変更して下さい。', 'releasedCardsNum' => $released_cards_num]);
       }
 
       $message = "{$releasedCards_query->count()} 枚のカードが見つかりました。";

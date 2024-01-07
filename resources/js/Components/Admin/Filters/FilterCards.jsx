@@ -8,7 +8,7 @@ import SpellCardFilter from './SpellCardFilter';
 import TrapCardFilter from './TrapCardFilter';
 import CardPeriodFilter from './CardPeriodFilter';
 
-function FilterCards({ routeName, isCardPeriodFilterOn, filters }) {
+function FilterCards({ apiMode, routeName, isCardPeriodFilterOn, filters, releasedCardsNum }) {
 	const [target, setTarget] = useState('all');
 	const [filterResult, setFilterResult] = useState(0);
 	const filterForm = useRef(null);
@@ -44,6 +44,7 @@ function FilterCards({ routeName, isCardPeriodFilterOn, filters }) {
 		}
 	}, []);
 	useEffect(() => {
+		if (apiMode !== 'on') return;
 		// form内の全てのinput要素にchangeイベントハンドラーを設定する
 		const filterFormElements = filterForm.current.elements;
 		for (let i = 0; i < filterFormElements.length; i++) {
@@ -64,7 +65,9 @@ function FilterCards({ routeName, isCardPeriodFilterOn, filters }) {
 	return (
 		<>
 			<div className="text-left">
-				<label htmlFor="target-select">絞り込みの対象を選択:</label>
+				<label htmlFor="target-select" className="mr-4">
+					絞り込み対象
+				</label>
 				<select
 					name="target-select"
 					id="target-select"
@@ -85,11 +88,19 @@ function FilterCards({ routeName, isCardPeriodFilterOn, filters }) {
 					{target === 'spell' && <SpellCardFilter filters={filters} />}
 					{target === 'trap' && <TrapCardFilter filters={filters} />}
 					{isCardPeriodFilterOn && <CardPeriodFilter filters={filters} />}
-					<button className="block mt-4 px-2 py-1 border-2 border-solid border-gray-300 rounded-md">
-						この条件で絞り込む
-					</button>
+					<div className="flex justify-between items-end mt-4">
+						{apiMode === 'on' && (
+							<p style={{ color: 'black' }}>
+								全{releasedCardsNum}枚中{' '}
+								<span className="font-bold">{filterResult}</span>{' '}
+								枚のカードがヒットしました
+							</p>
+						)}
+						<button className="block ml-4 px-2 py-1 border-2 border-solid border-gray-300 rounded-md">
+							この条件で絞り込む
+						</button>
+					</div>
 				</form>
-				<p style={{color: 'black'}}>{filterResult}</p>
 			</div>
 		</>
 	);

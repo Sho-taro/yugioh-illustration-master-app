@@ -1,39 +1,41 @@
 import React from 'react'
-import { isCheckboxOn } from '@/utils/isCheckBoxOn';
+import { isCheckboxOn } from '@/utils/isCheckboxOn';
 
 function TrapCardFilter({filters}) {
   return (
 		<div className="mt-2 flex justify-start items-center">
-			<p className="w-28 text-center">種類</p>
+			<p style={{ color: 'rgb(33, 33, 33)' }} className="w-28 text-center">
+				種類
+			</p>
 			<div className="ml-2">
-				<input
-					type="checkbox"
-					id="Normal"
-					name="play-types[]"
-					value="Normal"
-					defaultChecked={isCheckboxOn(filters, 'play-types', 'Normal')}
-				/>
-				<label htmlFor="Normal" className="mr-4 select-none">
+				<label htmlFor="Normal" className="mr-4 select-none cursor-pointer">
+					<input
+						type="checkbox"
+						id="Normal"
+						name="play-types[]"
+						value="Normal"
+						defaultChecked={isCheckboxOn(filters, 'play-types', 'Normal')}
+					/>
 					通常罠
 				</label>
-				<input
-					type="checkbox"
-					id="Continuous"
-					name="play-types[]"
-					value="Continuous"
-					defaultChecked={isCheckboxOn(filters, 'play-types', 'Continuous')}
-				/>
-				<label htmlFor="Continuous" className="mr-4 select-none">
+				<label htmlFor="Continuous" className="mr-4 select-none cursor-pointer">
+					<input
+						type="checkbox"
+						id="Continuous"
+						name="play-types[]"
+						value="Continuous"
+						defaultChecked={isCheckboxOn(filters, 'play-types', 'Continuous')}
+					/>
 					永続罠
 				</label>
-				<input
-					type="checkbox"
-					id="Counter"
-					name="play-types[]"
-					value="Counter"
-					defaultChecked={isCheckboxOn(filters, 'play-types', 'Counter')}
-				/>
-				<label htmlFor="Counter" className="mr-4 select-none">
+				<label htmlFor="Counter" className="mr-4 select-none cursor-pointer">
+					<input
+						type="checkbox"
+						id="Counter"
+						name="play-types[]"
+						value="Counter"
+						defaultChecked={isCheckboxOn(filters, 'play-types', 'Counter')}
+					/>
 					カウンター罠
 				</label>
 			</div>

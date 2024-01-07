@@ -162,7 +162,7 @@ function Canvas({ cards, animationState, setAnimationState, canvasCards }) {
 				className="cursor-none">
 				エラー:お使いのブラウザが古いため、アニメーションを表示できません。
 			</canvas>
-			{showingMenuBar && <CanvasMenuBar handleClick={pauseRestartCanvas} />}
+			{showingMenuBar && <CanvasMenuBar handleClick={pauseRestartCanvas} animationState={animationState} />}
 		</>
 	);
 };
