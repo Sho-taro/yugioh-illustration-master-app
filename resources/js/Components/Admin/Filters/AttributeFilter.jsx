@@ -4,7 +4,7 @@ import { isCheckboxOn } from '@/utils/isCheckboxOn';
 function AttributeFilter({ filters }) {
 	return (
 		<div className="flex justify-start items-center mb-4">
-			<p style={{ color: 'rgb(33, 33, 33)' }} className="w-28 text-center">
+			<p style={{ color: 'rgb(33, 33, 33)' }} className="w-28">
 				属性
 			</p>
 			<div className="ml-2">

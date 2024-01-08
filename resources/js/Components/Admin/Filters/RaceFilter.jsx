@@ -4,7 +4,7 @@ import { isCheckboxOn } from '@/utils/isCheckboxOn';
 function RaceFilter({filters}) {
 	return (
 		<div className="flex justify-start items-center mb-4">
-			<p style={{ color: 'rgb(33, 33, 33)' }} className="w-28 text-center">
+			<p style={{ color: 'rgb(33, 33, 33)' }} className="w-28">
 				種族
 			</p>
 			<div className="ml-2">

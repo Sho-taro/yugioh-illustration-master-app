@@ -88,11 +88,11 @@ function FilterCards({ apiMode, routeName, isCardPeriodFilterOn, filters, releas
 					{target === 'spell' && <SpellCardFilter filters={filters} />}
 					{target === 'trap' && <TrapCardFilter filters={filters} />}
 					{isCardPeriodFilterOn && <CardPeriodFilter filters={filters} />}
-					<div className="flex justify-between items-end mt-4">
+					<div className="flex justify-between items-center mt-4">
 						{apiMode === 'on' && (
 							<p style={{ color: 'black' }}>
 								全{releasedCardsNum}枚中{' '}
-								<span className="font-bold">{filterResult}</span>{' '}
+								<span className="font-bold text-xl">{filterResult}</span>{' '}
 								枚のカードがヒットしました
 							</p>
 						)}

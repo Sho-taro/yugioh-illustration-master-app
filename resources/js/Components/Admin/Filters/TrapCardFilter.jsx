@@ -4,7 +4,7 @@ import { isCheckboxOn } from '@/utils/isCheckboxOn';
 function TrapCardFilter({filters}) {
   return (
 		<div className="mt-2 flex justify-start items-center">
-			<p style={{ color: 'rgb(33, 33, 33)' }} className="w-28 text-center">
+			<p style={{ color: 'rgb(33, 33, 33)' }} className="w-28">
 				種類
 			</p>
 			<div className="ml-2">

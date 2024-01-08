@@ -6,7 +6,7 @@ function Setting({filters, releasedCardsNum, message}) {
   return (
 		<>
 			<div className="h-screen flex justify-center items-center">
-				<div className="p-4 bg-white rounded-md">
+				<div className="px-16 py-4 h-2/3 w-3/5 bg-white rounded-md">
 					{message && <p style={{ color: 'red' }} className="mb-2">{message}</p>}
           <FilterCards
             apiMode={'on'}

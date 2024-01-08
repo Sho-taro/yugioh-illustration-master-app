@@ -15,7 +15,7 @@ function CardNameFilter({ filters }) {
 
 	return (
 		<div className="my-4 flex justify-start items-center">
-			<p style={{ color: 'rgb(33, 33, 33)' }} className="w-28 text-center">
+			<p style={{ color: 'rgb(33, 33, 33)' }} className="w-28">
 				カード名
 			</p>
 			<input

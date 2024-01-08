@@ -4,7 +4,7 @@ import { isCheckboxOn } from '@/utils/isCheckboxOn';
 function CardPeriodFilter({filters}) {
 	return (
 		<div className="mt-4 flex justify-start items-center">
-			<p style={{ color: 'rgb(33, 33, 33)' }} className="w-28 text-center">
+			<p style={{ color: 'rgb(33, 33, 33)' }} className="w-28">
 				初登場時期
 			</p>
 			<div className="ml-2">
