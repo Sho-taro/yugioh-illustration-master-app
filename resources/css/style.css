@@ -31,6 +31,10 @@ p, h1, h2, h3, h4, label {
   background-position: top center; */
   min-height: 100vh;
 }
+
+.bg-color-layout {
+  background-color: rgba(18, 20, 27, 1);
+}
 /* .adminLayout-bg {
   background-color: rgb(232, 232, 241);
 } */
@@ -42,6 +46,12 @@ p, h1, h2, h3, h4, label {
   color: rgba(240, 240, 240, 1);
 }
 .layout-bg h2 {
+  color: rgba(240, 240, 240, 1);
+}
+.layout-bg h3 {
+  color: rgba(240, 240, 240, 1);
+}
+.layout-bg label {
   color: rgba(240, 240, 240, 1);
 }
 
@@ -132,6 +142,8 @@ input[type="text"] {
 
 /* checkbox */
 input[type=checkbox] {
+  width: 1.2rem;
+  height: 1.2rem;
   border: solid 2px rgb(176, 179, 255);
   border-radius: 0.2rem;
   margin-right: 0.2rem;
@@ -161,6 +173,10 @@ td {
 
 .max-w-550px {
   max-width: 550px;
+}
+
+.max-h-60vh {
+  height: 60vh;
 }
 
 .menu-mask {
