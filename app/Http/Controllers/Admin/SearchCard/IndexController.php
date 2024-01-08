@@ -200,6 +200,7 @@ class IndexController extends Controller
               // 'archetypes.name_ja as archetype',   // 今は不要
               'attributes.name_ja as attribute',
               'monster_card_details.attack',
+              'monster_card_details.defense',
               'races.name_ja as race',
               'attributes.name_ja as attribute',
               'monster_card_details.level_or_rank',
