@@ -88,7 +88,7 @@ function FilterCardsTab({ apiMode, routeName, isCardPeriodFilterOn, filters, rel
 						<div className="w-2/5 flex flex-col">
 							{target === 'monster' && (
 								<div>
-									<div className="p-2 flex justify-between">
+									<div className="py-2 flex justify-between">
 										<p className="text-xl font-bold active:scale-90">
 											<a
 												className="text-white underline hover:text-gray-300"
@@ -96,9 +96,9 @@ function FilterCardsTab({ apiMode, routeName, isCardPeriodFilterOn, filters, rel
 												種類
 											</a>
 										</p>
-										<p className="mr-2">{'>'}</p>
+										<p className="mr-4">{'>'}</p>
 									</div>
-									<div className="p-2 flex justify-between">
+									<div className="py-2 flex justify-between">
 										<p className="text-xl font-bold active:scale-90">
 											<a
 												className="text-white underline hover:text-gray-300"
@@ -106,9 +106,9 @@ function FilterCardsTab({ apiMode, routeName, isCardPeriodFilterOn, filters, rel
 												種族
 											</a>
 										</p>
-										<p className="mr-2">{'>'}</p>
+										<p className="mr-4">{'>'}</p>
 									</div>
-									<div className="p-2 flex justify-between">
+									<div className="py-2 flex justify-between">
 										<p className="text-xl font-bold active:scale-90">
 											<a
 												className="text-white underline hover:text-gray-300"
@@ -116,9 +116,9 @@ function FilterCardsTab({ apiMode, routeName, isCardPeriodFilterOn, filters, rel
 												属性
 											</a>
 										</p>
-										<p className="mr-2">{'>'}</p>
+										<p className="mr-4">{'>'}</p>
 									</div>
-									<div className="p-2 flex justify-between">
+									<div className="py-2 flex justify-between">
 										<p className="text-xl font-bold active:scale-90">
 											<a
 												className="text-white underline hover:text-gray-300"
@@ -126,9 +126,9 @@ function FilterCardsTab({ apiMode, routeName, isCardPeriodFilterOn, filters, rel
 												レベル/ランク
 											</a>
 										</p>
-										<p className="mr-2">{'>'}</p>
+										<p className="mr-4">{'>'}</p>
 									</div>
-									<div className="p-2 flex justify-between">
+									<div className="py-2 flex justify-between">
 										<p className="text-xl font-bold active:scale-90">
 											<a
 												className="text-white underline hover:text-gray-300"
@@ -136,13 +136,13 @@ function FilterCardsTab({ apiMode, routeName, isCardPeriodFilterOn, filters, rel
 												Link-
 											</a>
 										</p>
-										<p className="mr-2">{'>'}</p>
+										<p className="mr-4">{'>'}</p>
 									</div>
 								</div>
 							)}
 							{target === 'spell' && (
 								<div>
-									<div className="p-2 flex justify-between">
+									<div className="py-2 flex justify-between">
 										<p className="text-xl font-bold active:scale-90">
 											<a
 												className="text-white underline hover:text-gray-300"
@@ -150,13 +150,13 @@ function FilterCardsTab({ apiMode, routeName, isCardPeriodFilterOn, filters, rel
 												種類
 											</a>
 										</p>
-										<p className="mr-2">{'>'}</p>
+										<p className="mr-4">{'>'}</p>
 									</div>
 								</div>
 							)}
 							{target === 'trap' && (
 								<div>
-									<div className="p-2 flex justify-between">
+									<div className="py-2 flex justify-between">
 										<p className="text-xl font-bold active:scale-90">
 											<a
 												className="text-white underline hover:text-gray-300"
@@ -164,11 +164,11 @@ function FilterCardsTab({ apiMode, routeName, isCardPeriodFilterOn, filters, rel
 												種類
 											</a>
 										</p>
-										<p className="mr-2">{'>'}</p>
+										<p className="mr-4">{'>'}</p>
 									</div>
 								</div>
 							)}
-							<div className="p-2 flex justify-between">
+							<div className="py-2 flex justify-between">
 								<p className="text-xl font-bold active:scale-90">
 									<a
 										className="text-white underline hover:text-gray-300"
@@ -176,7 +176,7 @@ function FilterCardsTab({ apiMode, routeName, isCardPeriodFilterOn, filters, rel
 										初登場時期
 									</a>
 								</p>
-								<p className="mr-2">{'>'}</p>
+								<p className="mr-4">{'>'}</p>
 							</div>
 						</div>
 						<div className="py-2 w-3/5 max-h-60vh overflow-y-scroll bg-gray-950 rounded-md">
