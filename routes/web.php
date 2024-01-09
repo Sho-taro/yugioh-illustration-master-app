@@ -137,7 +137,7 @@ Route::middleware(['admin'])->group(function () {
 
 
 // game
-Route::get('/', \App\Http\Controllers\IndexController::class)->name('index');
+Route::get('/game', \App\Http\Controllers\IndexController::class)->name('game');
 
 // Gallery
 Route::get('/gallery/setting', \App\Http\Controllers\Gallery\SettingController::class)->name('gallery.setting');
