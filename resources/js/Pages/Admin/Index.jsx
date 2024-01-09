@@ -10,7 +10,7 @@ function Index() {
 				<div className="mb-12 flex justify-between">
 					<h1 className="text-3xl font-bold">管理画面トップ</h1>
 					<div>
-						<Link href={route('index')} className="simple-button">
+						<Link href={route('game')} className="simple-button">
 							プレイ画面へ
 						</Link>
 					</div>

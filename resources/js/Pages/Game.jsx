@@ -287,7 +287,7 @@ function Game({ auth, cards }) {
 						showingModal={showingModal}
 					/>
 					<a
-						href="/"
+						href="/game"
 						className="shiny-button button mt-8 mb-10 text-sm sm:text-base px-5 py-3 sm:px-8 sm:py-4">
 						Play again
 					</a>
