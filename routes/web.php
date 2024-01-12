@@ -136,8 +136,11 @@ Route::middleware(['admin'])->group(function () {
     });
 
 
+// topページ
+Route::get('/', \App\Http\Controllers\IndexController::class)->name('index');
+
 // game
-Route::get('/game', \App\Http\Controllers\IndexController::class)->name('game');
+Route::get('/game', \App\Http\Controllers\Game\IndexController::class)->name('game');
 
 // Gallery
 Route::get('/gallery/setting', \App\Http\Controllers\Gallery\SettingController::class)->name('gallery.setting');
