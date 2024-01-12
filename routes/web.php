@@ -145,3 +145,9 @@ Route::get('/game', \App\Http\Controllers\Game\IndexController::class)->name('ga
 // Gallery
 Route::get('/gallery/setting', \App\Http\Controllers\Gallery\SettingController::class)->name('gallery.setting');
 Route::get('/gallery/play', \App\Http\Controllers\Gallery\PlayController::class)->name('gallery.play');
+
+// user_tags
+// ログイン時のみアクセス可能
+Route::middleware('auth')->group(function() {
+    Route::get('/tags/{userId}', \App\Http\Controllers\UserTag\IndexController::class)->name('tag.index');
+});
