@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Tag extends Model
+class ReleasedCardUserTag extends Model
 {
     use HasFactory;
 
-    // racesテーブルに明示的に紐付けする
-    protected $table = 'tags';
+    // released_card_user_tagsテーブルに明示的に紐付けする
+    protected $table = 'released_card_user_tags';
 
     /**
      * The attributes that are mass assignable.
@@ -18,6 +18,7 @@ class Tag extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'user_tag_id',
+        'released_card_id',
     ];
 }
