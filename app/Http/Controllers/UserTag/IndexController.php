@@ -17,7 +17,7 @@ class IndexController extends Controller
     {
         // dd($request->route('userId'));
         $user_id = $request->user()->id;   // ユーザのidを取得
-        $tags = UserTag::where('user_id', $user_id);
-        return inertia('UserTag/Index', ['user_tags', $tags]);
+        $tags = UserTag::where('user_id', $user_id)->get();
+        return inertia('UserTag/Index', ['userTags' => $tags]);
     }
 }

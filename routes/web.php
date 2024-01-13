@@ -150,4 +150,6 @@ Route::get('/gallery/play', \App\Http\Controllers\Gallery\PlayController::class)
 // ログイン時のみアクセス可能
 Route::middleware('auth')->group(function() {
     Route::get('/tags/{userId}', \App\Http\Controllers\UserTag\IndexController::class)->name('tag.index');
+    Route::post('/tags/{userId}', \App\Http\Controllers\UserTag\StoreController::class)->name('tag.store');
+    Route::get('/tags/{userId}/create', \App\Http\Controllers\UserTag\CreateController::class)->name('tag.create');
 });
