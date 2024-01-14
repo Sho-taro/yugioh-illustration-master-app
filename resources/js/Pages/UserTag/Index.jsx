@@ -6,21 +6,22 @@ function Index({ auth, userTags, message }) {
   return (
 		<>
 			<Link href={route('index')}>{'< '}TOPページに戻る</Link>
-      <div>
-        {message && (
-          <p style={{color: 'green'}}>{message}</p>
-        )}
+			<div>
+				{message && <p style={{ color: 'green' }}>{message}</p>}
 				{userTags && (
 					<ul>
 						{userTags.map(tag => (
-							<li key={tag.id}>{tag.name}</li>
+							// <li key={tag.id}>{tag.name}</li>
+							<li key={tag.id}>
+								<Link href={`/tags/${auth.user.id}/${tag.id}`}>{tag.name}</Link>
+							</li>
 						))}
 					</ul>
 				)}
 				{!userTags && <p>作成したMy Tagはありません。</p>}
 			</div>
 			<div>
-				<Link href={`/tags/${auth.user.id}/create`}>My Tagを新規作成</Link>
+				<Link href={`/tags/${auth.user.id}/create`}>+ My Tagを新規作成</Link>
 			</div>
 		</>
   );

@@ -152,4 +152,5 @@ Route::middleware('auth')->group(function() {
     Route::get('/tags/{userId}', \App\Http\Controllers\UserTag\IndexController::class)->name('tag.index');
     Route::post('/tags/{userId}', \App\Http\Controllers\UserTag\StoreController::class)->name('tag.store');
     Route::get('/tags/{userId}/create', \App\Http\Controllers\UserTag\CreateController::class)->name('tag.create');
+    Route::get('/tags/{userId}/{userTagId}', \App\Http\Controllers\UserTag\ShowController::class)->name('tag.show');
 });
