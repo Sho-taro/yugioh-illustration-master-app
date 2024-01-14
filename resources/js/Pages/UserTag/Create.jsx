@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { router } from '@inertiajs/react';
+import { Link } from '@inertiajs/react';
 import Layout from '@/Layouts/Layout';
 
 function Create({ auth, errors }) {
@@ -22,6 +23,7 @@ function Create({ auth, errors }) {
 
 	return (
 		<>
+			<Link href={`/tags/${auth.user.id}`}>{'< '}タグ一覧に戻る</Link>
 			<form action="" onSubmit={e => handleSubmit(e)}>
 				<div className="mb-2">
 					<label>

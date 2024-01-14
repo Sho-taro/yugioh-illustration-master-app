@@ -5,6 +5,7 @@ import Layout from '@/Layouts/Layout';
 function Index({ auth, userTags, message }) {
   return (
 		<>
+			<Link href={route('index')}>{'< '}TOPページに戻る</Link>
       <div>
         {message && (
           <p style={{color: 'green'}}>{message}</p>
