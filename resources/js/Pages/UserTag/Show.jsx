@@ -1,13 +1,17 @@
-import React from 'react'
+import React from 'react';
+import { Link } from '@inertiajs/react';
 import Layout from '@/Layouts/Layout';
 
 
-function Show({userId, userTagId}) {
+function Show({auth, userId, userTagId}) {
   return (
-		<div>
-			<p>userId: {userId}</p>
-			<p>userTagId: {userTagId}</p>
-		</div>
+		<>
+			<Link href={`/tags/${auth.user.id}`}>{'< '}タグ一覧に戻る</Link>
+			<div>
+				<p>userId: {userId}</p>
+        <p>userTagId: {userTagId}</p>
+			</div>
+		</>
   );
 }
 
