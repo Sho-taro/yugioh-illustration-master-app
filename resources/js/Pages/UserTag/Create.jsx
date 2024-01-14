@@ -3,7 +3,6 @@ import { router } from '@inertiajs/react';
 import Layout from '@/Layouts/Layout';
 
 function Create({ auth, errors }) {
-  console.log(errors);  // バリデーションエラーをデバック
 	const [inputValue, setInputValue] = useState('');
 	const [radioValue, setRadioValue] = useState('public');
 
@@ -24,32 +23,42 @@ function Create({ auth, errors }) {
 	return (
 		<>
 			<form action="" onSubmit={e => handleSubmit(e)}>
-				<input
-					type="text"
-					name="name"
-					placeholder="My Tag名を入力（最大20文字）"
-					onChange={e => handleInputChange(e)}
-					value={inputValue}
-				/>
-				{/* <label>
-					<input
-						type="radio"
-						name="status"
-						value="public"
-						onChange={e => handleRadioChange(e)}
-						defaultChecked
-					/>
-					公開
-				</label>
-				<label>
-					<input
-						type="radio"
-						name="status"
-						value="private"
-						onChange={e => handleRadioChange(e)}
-					/>
-					非公開
-				</label> */}
+				<div className="mb-2">
+					<label>
+						MyTag名:
+						<input
+							type="text"
+							name="name"
+							placeholder="最大20文字"
+							onChange={e => handleInputChange(e)}
+							value={inputValue}
+						/>
+					</label>
+					{errors.name && <p style={{ color: 'red' }}>{errors.name}</p>}
+				</div>
+				<div className="mb-2">
+					<span>公開/非公開:</span>
+					<label>
+						<input
+							type="radio"
+							name="status"
+							value="public"
+							onChange={e => handleRadioChange(e)}
+							defaultChecked
+						/>
+						公開
+					</label>
+					<label>
+						<input
+							type="radio"
+							name="status"
+							value="private"
+							onChange={e => handleRadioChange(e)}
+						/>
+						非公開
+					</label>
+					{errors.status && <p style={{ color: 'red' }}>{errors.status}</p>}
+				</div>
 				<button type="submit">新規作成</button>
 			</form>
 		</>
