@@ -17,6 +17,9 @@ class ShowController extends Controller
     {
         $user_id = $request->user()->id;
         $user_tag_id = $request->route('userTagId');
-        return inertia('UserTag/Show', ['userId' => $user_id, 'userTagId' => $user_tag_id]);
+
+        $user_tag = UserTag::where('id', $user_tag_id)->firstOrFail();
+        $released_card_user_tags = $user_tag->releasedCardUserTags;
+        return inertia('UserTag/Show', ['userTag' => $user_tag, 'releasedCards' => $released_card_user_tags]);
     }
 }
