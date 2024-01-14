@@ -23,4 +23,10 @@ class UserTag extends Model
         'status',
         'popularity'
     ];
+
+    public function releasedCardUserTags() :HasMany
+    {
+        // released_card_user_tagsテーブルの'user_tag_id'カラムから、自身（user_tagsテーブル）の'id'カラムと一致する値を検索して関連レコードを取得する
+        return $this->hasMany(releasedCardUserTags::class, 'user_tag_id', 'id');
+    }
 }

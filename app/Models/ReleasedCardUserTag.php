@@ -21,4 +21,11 @@ class ReleasedCardUserTag extends Model
         'user_tag_id',
         'released_card_id',
     ];
+
+    public function releasedCard() :BelongsTo
+    {
+        // ＊これだけ第２引数と第３引数の順番が逆
+        // 自身(released_card_user_tagsテーブル)の'released_card_id'カラムと一致する値を、released_cardsテーブルの'id'カラムから検索して関連レコードを取得する
+        return $this->belongsTo(ReleasedCard::class, 'released_card_id', 'id');
+    }
 }
