@@ -23,7 +23,7 @@ function Create({ auth, errors }) {
 
 	return (
 		<>
-			<Link href={`/tags/${auth.user.id}`}>{'< '}タグ一覧に戻る</Link>
+			<Link href={`/tags/${auth.user.id}`}>{'< '}MyTag一覧に戻る</Link>
 			<form action="" onSubmit={e => handleSubmit(e)}>
 				<div className="mb-2">
 					<label>

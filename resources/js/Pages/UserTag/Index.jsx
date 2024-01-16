@@ -21,7 +21,7 @@ function Index({ auth, userTags, message }) {
 				{!userTags && <p>作成したMy Tagはありません。</p>}
 			</div>
 			<div>
-				<Link href={`/tags/${auth.user.id}/create`}>+ My Tagを新規作成</Link>
+				<Link href={`/tags/${auth.user.id}/create`}>+ MyTagを新規作成</Link>
 			</div>
 		</>
   );

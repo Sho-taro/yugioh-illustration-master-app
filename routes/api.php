@@ -19,3 +19,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('/gallery/filterdcardsnum', \App\Http\Controllers\Gallery\FilteredCardsNumController::class)->name('gallery.filterdcardsnum');
+
+Route::post('/tags/addCards', \App\Http\Controllers\Api\UserTag\AddCardsStoreController::class)->name('api.addCards');
+Route::post('/tags/removeCards', \App\Http\Controllers\Api\UserTag\RemoveCardsStoreController::class)->name('api.removeCards');
