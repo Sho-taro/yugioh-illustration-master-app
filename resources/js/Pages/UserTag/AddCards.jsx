@@ -11,6 +11,8 @@ function AddCards({ auth, userTag, data, cardsNum, message, filters, releasedCar
   return (
 		<>
       <Link href={`/tags/${auth.user.id}/${userTag.id}`}>{'< '}MyTag詳細ページに戻る</Link>
+      <h2>MyTag「{userTag.name}」にカードを追加する</h2>
+      <h2>このMyTagに登録されているカード数: {releasedCardIds.length}</h2>
 			<details open>
 				<summary>絞り込み</summary>
 				<FilterCards

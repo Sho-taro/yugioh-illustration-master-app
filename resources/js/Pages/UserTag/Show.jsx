@@ -13,12 +13,19 @@ function Show({ auth, userTag, releasedCards }) {
 				<p>name: {userTag.name}</p>
 			</div>
 			<div>
+				<h2>このMyTagに登録されているカード数: {releasedCards.length}</h2>
 				<h2>このMyTagに登録されているカード一覧</h2>
-				<ul>
+				<div className="max-w-full flex flex-wrap">
 					{releasedCards.map(rc => (
-						<li key={rc.id}>{rc.released_card_id}</li>
+						<div key={rc.id} className="p-1">
+							<img
+								width="150px"
+								src={`/images/card-images/${rc.product_code}-${rc.list_number}.jpg`}
+								alt="イラスト"
+							/>
+						</div>
 					))}
-				</ul>
+				</div>
 			</div>
 			<div>
 				<Link href={`/tags/${auth.user.id}/${userTag.id}/addCards`}>+ カードを登録</Link>
