@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import CanvasMenuBar from './CanvasMaskModal';
+import { shuffleArray } from '@/utils/shuffleArray';
 
 function Canvas({ cards, animationState, setAnimationState, canvasCards }) {
 	const [showingMenuBar, setShowingMenuBar] = useState(false);
@@ -8,6 +9,7 @@ function Canvas({ cards, animationState, setAnimationState, canvasCards }) {
 	const canvas = useRef(null); // canvasをuseRefで取得
 
 	const cardsNum = cards.length;
+	const randomOrderCards = shuffleArray(cards);
 	const speed = 0.8;
 	let cardIndex = 0;
 
@@ -59,23 +61,23 @@ function Canvas({ cards, animationState, setAnimationState, canvasCards }) {
 
 		window.createCanvasCard = () => {
 			const imgInstance = new Image();
-			imgInstance.src = `/images/card-images/${cards[cardIndex].product_code}-${cards[cardIndex].list_number}.jpg`;
+			imgInstance.src = `/images/card-images/${randomOrderCards[cardIndex].product_code}-${randomOrderCards[cardIndex].list_number}.jpg`;
 			const magnification = 0.5 + Math.random() * 0.5; // 倍率 0.5以上1未満
 			if (cardIndex % 5 === 0) {
 				canvasCards.push({
 					img: imgInstance,
 					magnification: magnification,
-					x: (0.4 + Math.random() * 0.2) * (canvas.current.width - 300 * magnification),
+					x: (0.4 + Math.random() * 0.15) * (canvas.current.width - 300 * magnification),
 					y: -(300 * magnification),
-					cardData: { ...cards[cardIndex] },
+					cardData: { ...randomOrderCards[cardIndex] },
 				});
 			} else if (cardIndex % 5 === 1) {
 				canvasCards.push({
 					img: imgInstance,
 					magnification: magnification,
-					x: (0 + Math.random() * 0.2) * (canvas.current.width - 300 * magnification),
+					x: (0 + Math.random() * 0.1) * (canvas.current.width - 300 * magnification),
 					y: -(300 * magnification),
-					cardData: { ...cards[cardIndex] },
+					cardData: { ...randomOrderCards[cardIndex] },
 				});
 			} else if (cardIndex % 5 === 2) {
 				canvasCards.push({
@@ -83,23 +85,23 @@ function Canvas({ cards, animationState, setAnimationState, canvasCards }) {
 					magnification: magnification,
 					x: (0.6 + Math.random() * 0.2) * (canvas.current.width - 300 * magnification),
 					y: -(300 * magnification),
-					cardData: { ...cards[cardIndex] },
+					cardData: { ...randomOrderCards[cardIndex] },
 				});
 			} else if (cardIndex % 5 === 3) {
 				canvasCards.push({
 					img: imgInstance,
 					magnification: magnification,
-					x: (0.2 + Math.random() * 0.2) * (canvas.current.width - 300 * magnification),
+					x: (0.15 + Math.random() * 0.2) * (canvas.current.width - 300 * magnification),
 					y: -(300 * magnification),
-					cardData: { ...cards[cardIndex] },
+					cardData: { ...randomOrderCards[cardIndex] },
 				});
 			} else if (cardIndex % 5 === 4) {
 				canvasCards.push({
 					img: imgInstance,
 					magnification: magnification,
-					x: (0.8 + Math.random() * 0.2) * (canvas.current.width - 300 * magnification),
+					x: (0.9 + Math.random() * 0.1) * (canvas.current.width - 300 * magnification),
 					y: -(300 * magnification),
-					cardData: { ...cards[cardIndex] },
+					cardData: { ...randomOrderCards[cardIndex] },
 				});
 			}
 			if (cardIndex < cardsNum - 1) {
