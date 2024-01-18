@@ -20,8 +20,16 @@ class SettingController extends Controller
       $filters = $request->session()->get('filters');
     }
 
+    // データベースに登録されているreleased_cardsの数を取得
     $released_cards_num = ReleasedCard::count();
 
-    return inertia('Gallery/Setting', ['filters' => $filters, 'releasedCardsNum' => $released_cards_num]);
+    // ユーザーがログインしていたら、user_tagsを取得
+    // dd($request->user());
+    $user_tags = null;
+    if (!is_null($request->user())) {
+      $user_tags = $request->user()->userTags;
+    }
+
+    return inertia('Gallery/Setting', ['filters' => $filters, 'releasedCardsNum' => $released_cards_num, 'userTags' => $user_tags]);
   }
 }

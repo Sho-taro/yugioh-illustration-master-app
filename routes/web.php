@@ -144,7 +144,8 @@ Route::get('/game', \App\Http\Controllers\Game\IndexController::class)->name('ga
 
 // Gallery
 Route::get('/gallery/setting', \App\Http\Controllers\Gallery\SettingController::class)->name('gallery.setting');
-Route::get('/gallery/play', \App\Http\Controllers\Gallery\PlayController::class)->name('gallery.play');
+Route::get('/gallery/play/filter', [\App\Http\Controllers\Gallery\PlayController::class, 'filter'])->name('gallery.filter');
+Route::get('/gallery/play/userTag', [\App\Http\Controllers\Gallery\PlayController::class, 'applyUserTag'])->name('gallery.userTag');
 
 // user_tags
 // ログイン時のみアクセス可能
