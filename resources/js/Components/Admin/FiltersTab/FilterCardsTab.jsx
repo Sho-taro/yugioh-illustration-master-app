@@ -66,7 +66,7 @@ function FilterCardsTab({ apiMode, routeName, isCardPeriodFilterOn, filters, rel
 		<>
 			<div className="mb-6 text-left">
 				<label htmlFor="target-select" className="mr-4 text-xl font-bold">
-					絞り込み対象
+				対象
 				</label>
 				<select
 					name="target-select"
@@ -74,9 +74,9 @@ function FilterCardsTab({ apiMode, routeName, isCardPeriodFilterOn, filters, rel
 					onChange={e => handleChange(e)}
 					value={target}>
 					<option value="all">全て（モンスター・魔法・罠）</option>
-					<option value="monster">モンスター</option>
-					<option value="spell">魔法</option>
-					<option value="trap">罠</option>
+					<option value="monster">モンスターのみ</option>
+					<option value="spell">魔法のみ</option>
+					<option value="trap">罠のみ</option>
 				</select>
 			</div>
 			<div className="text-left">
