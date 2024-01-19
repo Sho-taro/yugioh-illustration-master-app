@@ -62,48 +62,57 @@ function Canvas({ cards, animationState, setAnimationState, canvasCards }) {
 		window.createCanvasCard = () => {
 			const imgInstance = new Image();
 			imgInstance.src = `/images/card-images/${randomOrderCards[cardIndex].product_code}-${randomOrderCards[cardIndex].list_number}.jpg`;
-			const magnification = 0.5 + Math.random() * 0.5; // 倍率 0.5以上1未満
+			const magnification = 0.6 + Math.random() * 0.4; // 倍率 0.6以上1未満
+			const imgSize = 270 * magnification;
 			if (cardIndex % 5 === 0) {
+				console.log('0', imgSize);
 				canvasCards.push({
 					img: imgInstance,
 					magnification: magnification,
-					x: (0.4 + Math.random() * 0.15) * (canvas.current.width - 300 * magnification),
-					y: -(300 * magnification),
+					imgSize: imgSize,
+					x: (0.4 + Math.random() * 0.15) * (canvas.current.width - imgSize),
+					y: imgSize * -1,
 					cardData: { ...randomOrderCards[cardIndex] },
 				});
 			} else if (cardIndex % 5 === 1) {
+				console.log('1', imgSize);
 				canvasCards.push({
 					img: imgInstance,
 					magnification: magnification,
-					x: (0 + Math.random() * 0.1) * (canvas.current.width - 300 * magnification),
-					y: -(300 * magnification),
+					imgSize: imgSize,
+					x: (0 + Math.random() * 0.1) * (canvas.current.width - imgSize),
+					y: imgSize * -1,
 					cardData: { ...randomOrderCards[cardIndex] },
 				});
 			} else if (cardIndex % 5 === 2) {
 				canvasCards.push({
 					img: imgInstance,
 					magnification: magnification,
-					x: (0.6 + Math.random() * 0.2) * (canvas.current.width - 300 * magnification),
-					y: -(300 * magnification),
+					imgSize: imgSize,
+					x: (0.6 + Math.random() * 0.2) * (canvas.current.width - imgSize),
+					y: imgSize * -1,
 					cardData: { ...randomOrderCards[cardIndex] },
 				});
 			} else if (cardIndex % 5 === 3) {
 				canvasCards.push({
 					img: imgInstance,
 					magnification: magnification,
-					x: (0.15 + Math.random() * 0.2) * (canvas.current.width - 300 * magnification),
-					y: -(300 * magnification),
+					imgSize: imgSize,
+					x: (0.15 + Math.random() * 0.2) * (canvas.current.width - imgSize),
+					y: imgSize * -1,
 					cardData: { ...randomOrderCards[cardIndex] },
 				});
 			} else if (cardIndex % 5 === 4) {
 				canvasCards.push({
 					img: imgInstance,
 					magnification: magnification,
-					x: (0.9 + Math.random() * 0.1) * (canvas.current.width - 300 * magnification),
-					y: -(300 * magnification),
+					imgSize: imgSize,
+					x: (0.9 + Math.random() * 0.1) * (canvas.current.width - imgSize),
+					y: imgSize * -1,
 					cardData: { ...randomOrderCards[cardIndex] },
 				});
 			}
+			console.log(canvasCards);
 			if (cardIndex < cardsNum - 1) {
 				cardIndex++;
 			} else {
@@ -120,8 +129,8 @@ function Canvas({ cards, animationState, setAnimationState, canvasCards }) {
 					canvasCard.img,
 					canvasCard.x,
 					canvasCard.y,
-					300 * canvasCard.magnification,
-					300 * canvasCard.magnification
+					canvasCard.imgSize,
+					canvasCard.imgSize
 				);
 			}
 			for (const canvasCard of canvasCards) {
