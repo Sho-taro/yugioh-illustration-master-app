@@ -3,9 +3,12 @@ import { Link } from '@inertiajs/react';
 import { router } from '@inertiajs/react';
 import Layout from '@/Layouts/Layout';
 
+import TogglingCheckMark from '@/Components/Admin/TogglingCheckMark';
+
 function Show({ auth, userTag, releasedCards, message, errors }) {
 	const [mode, setMode] = useState('normal');
 	const [userTagName, setUserTagName] = useState(userTag.name);
+	const [selectedRCIds, setSelectedRCIds] = useState([]);
 	const handleInputChange = e => {
 		setUserTagName(e.target.value);
 	};
@@ -20,11 +23,35 @@ function Show({ auth, userTag, releasedCards, message, errors }) {
 			userTagName: userTagName,
 		});
 	};
-	const deleteUserTag = (e) => {
+	const deleteUserTag = e => {
 		e.preventDefault();
 		// フォームの送信
 		router.delete(`/tags/${auth.user.id}/${userTag.id}`);
-	}
+	};
+	const deleteCards = e => {
+		e.preventDefault();
+		// フォームの送信
+		router.post(`/tags/${auth.user.id}/${userTag.id}/releasedCardUserTags`, {
+			releasedCardIds: selectedRCIds,
+		});
+	};
+	const cancelDeleteCards = () => {
+		setSelectedRCIds([]);
+		setMode('normal');
+	};
+	const toggleRCId = e => {
+		const targetRCId = Number(e.target.name);
+		if (selectedRCIds.includes(targetRCId)) {
+			// selectedRCIdsに含まれている場合、削除する
+			const index = selectedRCIds.indexOf(targetRCId); // 配列から削除したい要素のindexを取得
+			const selectedRCIdsCopy = selectedRCIds; // 配列をコピー
+			selectedRCIdsCopy.splice(index, 1); // 配列の要素を削除
+			setSelectedRCIds([...selectedRCIdsCopy]);
+		} else {
+			// selectedRCIdsに含まれていない場合、追加する
+			setSelectedRCIds([...selectedRCIds, targetRCId]);
+		}
+	};
 
 	return (
 		<>
@@ -69,23 +96,57 @@ function Show({ auth, userTag, releasedCards, message, errors }) {
 			<div>
 				<h2>登録カード数: {releasedCards.length}枚</h2>
 				<h2>登録カード一覧</h2>
-				<Link href={`/tags/${auth.user.id}/${userTag.id}/addCards`}>
-					+ カードを追加登録
-				</Link>
+				<div className="flex">
+					<Link href={`/tags/${auth.user.id}/${userTag.id}/releasedCardUserTags`}>
+						+ カードを追加登録
+					</Link>
+					<button onClick={() => setMode('deleteCards')} className="ml-6">
+						- カードを削除
+					</button>
+				</div>
+				{mode === 'deleteCards' && (
+					<div className="flex">
+						<p style={{ color: 'green' }}>
+							削除するカードを選択し、「削除する」ボタンを押して下さい。
+						</p>
+						<form onSubmit={e => deleteCards(e)}>
+							<button type="submit" disabled={selectedRCIds.length === 0} className="disabled:opacity-50">削除する</button>
+						</form>
+						<p onClick={() => cancelDeleteCards()} className="ml-4 underline">
+							キャンセル
+						</p>
+					</div>
+				)}
 				<div className="max-w-full flex flex-wrap">
 					{releasedCards.map(rc => (
 						<div key={rc.id} className="p-1">
-							<img
-								width="150px"
-								src={`/images/card-images/${rc.product_code}-${rc.list_number}.jpg`}
-								alt="イラスト"
-							/>
+							{mode === 'deleteCards' ? (
+								<div className="relative">
+									<img
+										width="150px"
+										src={`/images/card-images/${rc.product_code}-${rc.list_number}.jpg`}
+										className="cursor-pointer hover:opacity-60"
+										name={rc.id}
+										onClick={e => toggleRCId(e)}
+										alt="イラスト"
+									/>
+									<TogglingCheckMark releasedCardId={rc.id} selectedRCIds={selectedRCIds} />
+								</div>
+							) : (
+								<img
+									width="150px"
+									src={`/images/card-images/${rc.product_code}-${rc.list_number}.jpg`}
+									alt="イラスト"
+								/>
+							)}
 						</div>
 					))}
 				</div>
 			</div>
 			<form onSubmit={e => deleteUserTag(e)}>
-				<button type='submit' className="underline">このMyTagを削除</button>
+				<button type="submit" className="underline">
+					このMyTagを削除
+				</button>
 			</form>
 		</>
 	);

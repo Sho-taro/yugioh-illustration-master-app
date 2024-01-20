@@ -44,9 +44,9 @@ function SearchResultUserTag({ userId, userTagId, data, releasedCardIds, setRele
 									onClick={e => removeCard(e)}
 								/>
 								<img
-									src="/images/tag_fill.svg"
-									alt="tag（塗りつぶし）"
-									className="w-8 absolute bottom-2 left-2"
+									src="/images/tag_blue.svg"
+									alt="tag（青）"
+									className="w-8 absolute bottom-2 right-2"
 								/>
 							</div>
 						) : (
@@ -59,9 +59,9 @@ function SearchResultUserTag({ userId, userTagId, data, releasedCardIds, setRele
 									onClick={e => addCard(e)}
 								/>
 								<img
-									src="/images/tag_no_fill.svg"
-									alt="tag（塗りつぶしなし）"
-									className="w-8 absolute bottom-2 left-2"
+									src="/images/tag_white.svg"
+									alt="tag（白）"
+									className="w-8 absolute bottom-2 right-2"
 								/>
 							</div>
 						)}

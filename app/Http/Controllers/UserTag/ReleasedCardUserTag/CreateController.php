@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\UserTag;
+namespace App\Http\Controllers\UserTag\ReleasedCardUserTag;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Query\JoinClause;
 use Inertia\Inertia;
 
-class AddCardsController extends Controller
+class CreateController extends Controller
 {
   /**
    * Handle the incoming request.

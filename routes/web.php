@@ -156,5 +156,6 @@ Route::middleware('auth')->group(function() {
     Route::get('/tags/{userId}/{userTagId}', \App\Http\Controllers\UserTag\ShowController::class)->name('tag.show');
     Route::put('/tags/{userId}/{userTagId}', [\App\Http\Controllers\UserTag\UpdateController::class, 'updateUserTagName'])->name('tag.update.userTagName');
     Route::delete('/tags/{userId}/{userTagId}', [\App\Http\Controllers\UserTag\DestroyController::class, 'deleteUserTag'])->name('tag.delete.userTag');
-    Route::get('/tags/{userId}/{userTagId}/addCards', \App\Http\Controllers\UserTag\AddCardsController::class)->name('tag.addCards');
+    Route::get('/tags/{userId}/{userTagId}/releasedCardUserTags', \App\Http\Controllers\UserTag\ReleasedCardUserTag\CreateController::class)->name('tag.releasedCardUserTag.create');
+    Route::post('/tags/{userId}/{userTagId}/releasedCardUserTags', \App\Http\Controllers\UserTag\ReleasedCardUserTag\DestroyController::class)->name('tag.releasedCardUserTag.destroy');
 });
