@@ -16,6 +16,7 @@ class StoreController extends Controller
      */
     public function __invoke(StoreRequest $request)
     {
+        // 以下のバリデーションはここでは不要（FormRequestでバリデーションしているため）
         // $registered_user_tag = UserTag::create($request->validate([
         //     'name' => ['required', 'string', 'max:20'],    // 最大20文字
         //     'status' => ['required', 'string', \Illuminate\Validation\Rule::in(['public', 'private'])],

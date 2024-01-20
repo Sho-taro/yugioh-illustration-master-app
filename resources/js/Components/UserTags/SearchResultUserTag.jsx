@@ -2,7 +2,7 @@ import React from 'react';
 import axios, { isCancel, AxiosError } from 'axios';
 
 function SearchResultUserTag({ userId, userTagId, data, releasedCardIds, setReleasedCardIds }) {
-	console.log(releasedCardIds);
+	// console.log(releasedCardIds);
 	// タグにカードを登録する関数
 	const addCard = async e => {
 		try {
