@@ -65,7 +65,6 @@ function Canvas({ cards, animationState, setAnimationState, canvasCards }) {
 			const magnification = 0.6 + Math.random() * 0.4; // 倍率 0.6以上1未満
 			const imgSize = 270 * magnification;
 			if (cardIndex % 5 === 0) {
-				console.log('0', imgSize);
 				canvasCards.push({
 					img: imgInstance,
 					magnification: magnification,
@@ -75,7 +74,6 @@ function Canvas({ cards, animationState, setAnimationState, canvasCards }) {
 					cardData: { ...randomOrderCards[cardIndex] },
 				});
 			} else if (cardIndex % 5 === 1) {
-				console.log('1', imgSize);
 				canvasCards.push({
 					img: imgInstance,
 					magnification: magnification,
@@ -112,7 +110,6 @@ function Canvas({ cards, animationState, setAnimationState, canvasCards }) {
 					cardData: { ...randomOrderCards[cardIndex] },
 				});
 			}
-			console.log(canvasCards);
 			if (cardIndex < cardsNum - 1) {
 				cardIndex++;
 			} else {

@@ -52,7 +52,7 @@ function Setting({ auth, filters, releasedCardsNum, userTags, message }) {
 					<button onClick={() => setOption(null)}>{'< '}戻る</button>
 					<p>2. MyTagを選択する</p>
 					<form action={route('gallery.userTag')}>
-						{userTags.reverse().map((userTag, index) => (
+						{userTags.map((userTag, index) => (
 							<label key={userTag.id}>
 								<input type="radio" name="user-tag-id" value={userTag.id} defaultChecked={index === 0} />
 								{userTag.name}
