@@ -8,10 +8,19 @@ import SpellCardFilter from './SpellCardFilter';
 import TrapCardFilter from './TrapCardFilter';
 import CardPeriodFilter from './CardPeriodFilter';
 
-function FilterCards({ apiMode, routeName, isCardPeriodFilterOn, filters, releasedCardsNum }) {
+function FilterCards({ apiMode, routeName, routePath, isCardPeriodFilterOn, filters, releasedCardsNum }) {
 	const [target, setTarget] = useState('all');
 	const [filterResult, setFilterResult] = useState(0);
 	const filterForm = useRef(null);
+
+	// formの送信先
+	let formAction;
+	if (routeName) {
+		formAction = route(routeName);
+	} else if (routePath) {
+		formAction = routePath;
+	}
+
 	const handleChange = e => {
 		setTarget(e.target.value);
 	};
@@ -80,7 +89,7 @@ function FilterCards({ apiMode, routeName, isCardPeriodFilterOn, filters, releas
 				</select>
 			</div>
 			<div className="text-left">
-				<form action={route(routeName)} method="GET" ref={filterForm}>
+				<form action={formAction} method="GET" ref={filterForm}>
 					<input type="hidden" name="access-type" value="filtering" />
 					<input type="hidden" name="target" value={target} />
 					<CardNameFilter filters={filters} />

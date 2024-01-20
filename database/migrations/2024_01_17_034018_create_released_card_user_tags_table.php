@@ -16,6 +16,8 @@ return new class extends Migration
             $table->foreignId('user_tag_id')->constrained()->cascadeOnDelete();   // 外部キー制約。削除をカスケードする。
             $table->foreignId('released_card_id')->constrained()->cascadeOnDelete();   // 外部キー制約。削除をカスケードする。
             $table->timestamps();
+
+            $table->unique(['user_tag_id', 'released_card_id']);   // 複合ユニーク
         });
     }
 

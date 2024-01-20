@@ -1,5 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef } from 'react';
 import CanvasMenuBar from './CanvasMaskModal';
+import { shuffleArray } from '@/utils/shuffleArray';
 
 function Canvas({ cards, animationState, setAnimationState, canvasCards }) {
 	const [showingMenuBar, setShowingMenuBar] = useState(false);
@@ -8,7 +9,8 @@ function Canvas({ cards, animationState, setAnimationState, canvasCards }) {
 	const canvas = useRef(null); // canvasをuseRefで取得
 
 	const cardsNum = cards.length;
-	const speed = 0.8;
+	const randomOrderCards = shuffleArray(cards);
+	const speed = 0.4;
 	let cardIndex = 0;
 
 	// canvasアニメーションを一時停止/リスタートする関数
@@ -17,17 +19,17 @@ function Canvas({ cards, animationState, setAnimationState, canvasCards }) {
 			// 一時停止する処理
 			clearInterval(intervalId);
 			cancelAnimationFrame(animationFrameId);
-      setAnimationState('pausing');
-      // console.log('アニメーション停止')
+			setAnimationState('pausing');
+			// console.log('アニメーション停止')
 		} else if (animationState === 'pausing') {
 			// リスタートする処理
 			let id = setInterval(() => {
 				createCanvasCard();
 			}, 3000);
-      setIntervalId(id);
-      draw();
-      setAnimationState('playing');
-      // console.log('アニメーション再開')
+			setIntervalId(id);
+			draw();
+			setAnimationState('playing');
+			// console.log('アニメーション再開')
 		}
 	};
 
@@ -59,47 +61,53 @@ function Canvas({ cards, animationState, setAnimationState, canvasCards }) {
 
 		window.createCanvasCard = () => {
 			const imgInstance = new Image();
-			imgInstance.src = `/images/card-images/${cards[cardIndex].product_code}-${cards[cardIndex].list_number}.jpg`;
-			const magnification = 0.5 + Math.random() * 0.5; // 倍率 0.5以上1未満
+			imgInstance.src = `/images/card-images/${randomOrderCards[cardIndex].product_code}-${randomOrderCards[cardIndex].list_number}.jpg`;
+			const magnification = 0.6 + Math.random() * 0.4; // 倍率 0.6以上1未満
+			const imgSize = 270 * magnification;
 			if (cardIndex % 5 === 0) {
 				canvasCards.push({
 					img: imgInstance,
 					magnification: magnification,
-					x: (0.4 + Math.random() * 0.2) * (canvas.current.width - 300 * magnification),
-					y: -(300 * magnification),
-					cardData: { ...cards[cardIndex] },
+					imgSize: imgSize,
+					x: (0.45 + Math.random() * 0.15) * (canvas.current.width - imgSize),
+					y: imgSize * -1,
+					cardData: { ...randomOrderCards[cardIndex] },
 				});
 			} else if (cardIndex % 5 === 1) {
 				canvasCards.push({
 					img: imgInstance,
 					magnification: magnification,
-					x: (0 + Math.random() * 0.2) * (canvas.current.width - 300 * magnification),
-					y: -(300 * magnification),
-					cardData: { ...cards[cardIndex] },
+					imgSize: imgSize,
+					x: (0.05 + Math.random() * 0.1) * (canvas.current.width - imgSize),
+					y: imgSize * -1,
+					cardData: { ...randomOrderCards[cardIndex] },
 				});
 			} else if (cardIndex % 5 === 2) {
 				canvasCards.push({
 					img: imgInstance,
 					magnification: magnification,
-					x: (0.6 + Math.random() * 0.2) * (canvas.current.width - 300 * magnification),
-					y: -(300 * magnification),
-					cardData: { ...cards[cardIndex] },
+					imgSize: imgSize,
+					x: (0.65 + Math.random() * 0.2) * (canvas.current.width - imgSize),
+					y: imgSize * -1,
+					cardData: { ...randomOrderCards[cardIndex] },
 				});
 			} else if (cardIndex % 5 === 3) {
 				canvasCards.push({
 					img: imgInstance,
 					magnification: magnification,
-					x: (0.2 + Math.random() * 0.2) * (canvas.current.width - 300 * magnification),
-					y: -(300 * magnification),
-					cardData: { ...cards[cardIndex] },
+					imgSize: imgSize,
+					x: (0.15 + Math.random() * 0.2) * (canvas.current.width - imgSize),
+					y: imgSize * -1,
+					cardData: { ...randomOrderCards[cardIndex] },
 				});
 			} else if (cardIndex % 5 === 4) {
 				canvasCards.push({
 					img: imgInstance,
 					magnification: magnification,
-					x: (0.8 + Math.random() * 0.2) * (canvas.current.width - 300 * magnification),
-					y: -(300 * magnification),
-					cardData: { ...cards[cardIndex] },
+					imgSize: imgSize,
+					x: (0.85 + Math.random() * 0.1) * (canvas.current.width - imgSize),
+					y: imgSize * -1,
+					cardData: { ...randomOrderCards[cardIndex] },
 				});
 			}
 			if (cardIndex < cardsNum - 1) {
@@ -118,13 +126,18 @@ function Canvas({ cards, animationState, setAnimationState, canvasCards }) {
 					canvasCard.img,
 					canvasCard.x,
 					canvasCard.y,
-					300 * canvasCard.magnification,
-					300 * canvasCard.magnification
+					canvasCard.imgSize,
+					canvasCard.imgSize
 				);
 			}
 			for (const canvasCard of canvasCards) {
-				if (canvasCard.y <= canvas.current.height) {
-					canvasCard.y += speed * canvasCard.magnification ** 2;
+				if (canvasCard.y <= 0) {
+					canvasCard.y += speed * 2;
+				} else if (
+					canvasCard.y > 0 &&
+					canvasCard.y <= canvas.current.height
+				) {
+					canvasCard.y += speed + (canvasCard.magnification * 0.2);
 				}
 			}
 			for (let i = 0; i < canvasCards.length; i++) {
@@ -149,7 +162,7 @@ function Canvas({ cards, animationState, setAnimationState, canvasCards }) {
 		// クリーンアップ関数
 		return () => {
 			clearInterval(intervalId);
-      cancelAnimationFrame(animationFrameId);
+			cancelAnimationFrame(animationFrameId);
 		};
 	}, []);
 
@@ -162,9 +175,11 @@ function Canvas({ cards, animationState, setAnimationState, canvasCards }) {
 				className="cursor-none">
 				エラー:お使いのブラウザが古いため、アニメーションを表示できません。
 			</canvas>
-			{showingMenuBar && <CanvasMenuBar handleClick={pauseRestartCanvas} animationState={animationState} />}
+			{showingMenuBar && (
+				<CanvasMenuBar handleClick={pauseRestartCanvas} animationState={animationState} />
+			)}
 		</>
 	);
-};
+}
 
-export default Canvas
+export default Canvas;

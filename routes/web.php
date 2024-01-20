@@ -144,4 +144,18 @@ Route::get('/game', \App\Http\Controllers\Game\IndexController::class)->name('ga
 
 // Gallery
 Route::get('/gallery/setting', \App\Http\Controllers\Gallery\SettingController::class)->name('gallery.setting');
-Route::get('/gallery/play', \App\Http\Controllers\Gallery\PlayController::class)->name('gallery.play');
+Route::get('/gallery/play/filter', [\App\Http\Controllers\Gallery\PlayController::class, 'filter'])->name('gallery.filter');
+Route::get('/gallery/play/userTag', [\App\Http\Controllers\Gallery\PlayController::class, 'applyUserTag'])->name('gallery.userTag');
+
+// user_tags
+// ログイン時のみアクセス可能
+Route::middleware('auth')->group(function() {
+    Route::get('/tags/{userId}', \App\Http\Controllers\UserTag\IndexController::class)->name('tag.index');
+    Route::post('/tags/{userId}', \App\Http\Controllers\UserTag\StoreController::class)->name('tag.store');
+    Route::get('/tags/{userId}/create', \App\Http\Controllers\UserTag\CreateController::class)->name('tag.create');
+    Route::get('/tags/{userId}/{userTagId}', \App\Http\Controllers\UserTag\ShowController::class)->name('tag.show');
+    Route::put('/tags/{userId}/{userTagId}', [\App\Http\Controllers\UserTag\UpdateController::class, 'updateUserTagName'])->name('tag.update.userTagName');
+    Route::delete('/tags/{userId}/{userTagId}', [\App\Http\Controllers\UserTag\DestroyController::class, 'deleteUserTag'])->name('tag.delete.userTag');
+    Route::get('/tags/{userId}/{userTagId}/releasedCardUserTags', \App\Http\Controllers\UserTag\ReleasedCardUserTag\CreateController::class)->name('tag.releasedCardUserTag.create');
+    Route::post('/tags/{userId}/{userTagId}/releasedCardUserTags', \App\Http\Controllers\UserTag\ReleasedCardUserTag\DestroyController::class)->name('tag.releasedCardUserTag.destroy');
+});

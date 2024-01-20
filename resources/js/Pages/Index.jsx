@@ -26,9 +26,9 @@ function Index({auth}) {
 							}}>
 							ログアウト
 						</p>
+						<Link href={`/tags/${auth.user.id}`}>タグ一覧</Link>
 					</div>
 				)}
-				<Link href="">タグ一覧</Link>
 				<p>Galleryの説明</p>
 				<Link href={route('gallery.setting')}>Galleryで遊ぶ</Link>
 			</div>
