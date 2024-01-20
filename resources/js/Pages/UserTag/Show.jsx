@@ -8,18 +8,23 @@ function Show({ auth, userTag, releasedCards, message, errors }) {
 	const [userTagName, setUserTagName] = useState(userTag.name);
 	const handleInputChange = e => {
 		setUserTagName(e.target.value);
-  };
-  const cancelUpdate = () => {
-    setUserTagName(userTag.name);
-    setMode('normal');
-  }
-  const handleSubmit = (e) => {
+	};
+	const cancelUpdate = () => {
+		setUserTagName(userTag.name);
+		setMode('normal');
+	};
+	const updateName = e => {
 		e.preventDefault();
 		// フォームの送信
 		router.put(`/tags/${auth.user.id}/${userTag.id}`, {
 			userTagName: userTagName,
 		});
-  }
+	};
+	const deleteUserTag = (e) => {
+		e.preventDefault();
+		// フォームの送信
+		router.delete(`/tags/${auth.user.id}/${userTag.id}`);
+	}
 
 	return (
 		<>
@@ -37,7 +42,7 @@ function Show({ auth, userTag, releasedCards, message, errors }) {
 					</button>
 				</div>
 				{mode === 'updateName' && (
-					<form onSubmit={e => handleSubmit(e)}>
+					<form onSubmit={e => updateName(e)}>
 						<label>
 							新しいMyTag名を入力:{' '}
 							<input
@@ -62,8 +67,11 @@ function Show({ auth, userTag, releasedCards, message, errors }) {
 				)}
 			</div>
 			<div>
-				<h2>このMyTagに登録されているカード数: {releasedCards.length}</h2>
-				<h2>このMyTagに登録されているカード一覧</h2>
+				<h2>登録カード数: {releasedCards.length}枚</h2>
+				<h2>登録カード一覧</h2>
+				<Link href={`/tags/${auth.user.id}/${userTag.id}/addCards`}>
+					+ カードを追加登録
+				</Link>
 				<div className="max-w-full flex flex-wrap">
 					{releasedCards.map(rc => (
 						<div key={rc.id} className="p-1">
@@ -76,9 +84,9 @@ function Show({ auth, userTag, releasedCards, message, errors }) {
 					))}
 				</div>
 			</div>
-			<div>
-				<Link href={`/tags/${auth.user.id}/${userTag.id}/addCards`}>+ カードを登録</Link>
-			</div>
+			<form onSubmit={e => deleteUserTag(e)}>
+				<button type='submit' className="underline">このMyTagを削除</button>
+			</form>
 		</>
 	);
 }

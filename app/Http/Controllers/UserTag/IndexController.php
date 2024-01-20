@@ -15,9 +15,15 @@ class IndexController extends Controller
      */
     public function __invoke(Request $request)
     {
-        // dd($request->route('userId'));
-        $user_id = $request->user()->id;   // ユーザのidを取得
-        $tags = UserTag::where('user_id', $user_id)->orderBy('updated_at', 'DESC')->get();
-        return inertia('UserTag/Index', ['userTags' => $tags]);
+      // dd($request->route('userId'));
+      $user_id = $request->user()->id;   // ユーザのidを取得
+      $tags = UserTag::where('user_id', $user_id)->orderBy('updated_at', 'DESC')->get();
+
+      //
+      $message = null;
+      if ($request->session()->has('message')) {
+        $message = $request->session()->get('message');
+      }
+        return inertia('UserTag/Index', ['userTags' => $tags, 'message' => $message]);
     }
 }
