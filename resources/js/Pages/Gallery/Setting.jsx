@@ -47,19 +47,31 @@ function Setting({ auth, filters, releasedCardsNum, userTags, message }) {
 					</div>
 				</div>
 			)}
-			{option === 'myTag' && userTags !== null && (
+			{option === 'myTag' && (
 				<div>
 					<button onClick={() => setOption(null)}>{'< '}戻る</button>
 					<p>2. MyTagを選択する</p>
-					<form action={route('gallery.userTag')}>
-						{userTags.map((userTag, index) => (
-							<label key={userTag.id}>
-								<input type="radio" name="user-tag-id" value={userTag.id} defaultChecked={index === 0} />
-								{userTag.name}
-							</label>
-						))}
-						<button>決定</button>
-					</form>
+					{userTags.length >= 1 ? (
+						<form action={route('gallery.userTag')}>
+							{userTags.map((userTag, index) => (
+								<label key={userTag.id}>
+									<input
+										type="radio"
+										name="user-tag-id"
+										value={userTag.id}
+										defaultChecked={index === 0}
+									/>
+									{userTag.name}
+								</label>
+							))}
+							<button>決定</button>
+						</form>
+					) : (
+						<div>
+							<p style={{color: "red"}}>作成したMyTagがありません。</p>
+							<button disabled className="disabled:opacity-50">決定</button>
+						</div>
+					)}
 				</div>
 			)}
 		</>
