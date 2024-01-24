@@ -20,7 +20,7 @@ export default function BasicMenu({ buttonValue }) {
 	return (
 		<div>
 			{/* Stackタグの中がIcon button */}
-			<div onClick={handleClick} className="px-2 py-1 rounded-md hover:bg-gray-800">
+			<div onClick={handleClick} className="px-1 rounded-md hover:bg-gray-800">
 				<AccountCircleIcon fontSize="large" sx={{ color: 'white' }} />
 				<Button
 					size="large"

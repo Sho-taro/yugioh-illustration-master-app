@@ -18,7 +18,7 @@ function Header({ auth, needOnlyLogo }) {
 							<img
 								src="/images/app-icon_no_bg.png"
 								alt="appアイコン"
-								width="56px"
+								width="50px"
 								className="hover:opacity-60"
 							/>
 						</Link>
@@ -44,7 +44,7 @@ function Header({ auth, needOnlyLogo }) {
 									<div className="flex items-center">
 										<BasicMenuHeader buttonValue={auth.user.name} />
 									</div>
-									<div className="ml-6 p-2 rounded-md bg-red-700 hover:bg-red-800">
+									<div className="ml-6 px-2 py-1 rounded-md bg-red-700 hover:bg-red-800">
 										<Link href={`/tags/${auth.user.id}`}>
 											<LoyaltyIcon fontSize="large" sx={{ color: 'white' }} />
 											<Typography variant="h6" component="span">
