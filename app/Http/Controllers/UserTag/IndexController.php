@@ -17,7 +17,7 @@ class IndexController extends Controller
     {
       // dd($request->route('userId'));
       $user_id = $request->user()->id;   // ユーザのidを取得
-      $tags_data = UserTag::where('user_id', $user_id)->orderBy('updated_at', 'DESC')->paginate(5);
+      $tags_data = UserTag::where('user_id', $user_id)->orderBy('updated_at', 'DESC')->paginate(5)->withQueryString();
 
       //
       $message = null;

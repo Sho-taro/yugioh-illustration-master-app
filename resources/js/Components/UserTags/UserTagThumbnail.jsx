@@ -1,34 +1,34 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import axios, { isCancel, AxiosError } from 'axios';
 
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 
 function UserTagThumbnail({ userTag, mapIndex }) {
-  const [releasedCards, setReleasedCards] = useState([]);
-  const [releasedCardsNum, setReleasedCardsNum] = useState(null);
+	const [releasedCards, setReleasedCards] = useState([]);
+	const [releasedCardsNum, setReleasedCardsNum] = useState(null);
 
-  // releasedCardsのレコードを取得する関数
-  const getReleasedCards = async (userTagId) => {
-    try {
-      const res = await axios.post(route('api.getReleasedCards'), {
-        userTagId: userTagId,
-      })
-      // console.log(res.data)
-      setReleasedCards([...res.data.releasedCards]);
-      setReleasedCardsNum(res.data.releasedCardsNum);
-    } catch (err) {
-      console.log(err);
-    };
-  }
+	// releasedCardsのレコードを取得する関数
+	const getReleasedCards = async userTagId => {
+		try {
+			const res = await axios.post(route('api.getReleasedCards'), {
+				userTagId: userTagId,
+			});
+			// console.log(res.data)
+			setReleasedCards([...res.data.releasedCards]);
+			setReleasedCardsNum(res.data.releasedCardsNum);
+		} catch (err) {
+			console.log(err);
+		}
+	};
 
-  useEffect(() => {
-    setTimeout(() => {
-      // 同時にたくさんのXHLをしずぎないように、リクエストにラグを持たせる
-      getReleasedCards(userTag.id);
-    }, mapIndex * 400)
-  }, []);
+	useEffect(() => {
+		setTimeout(() => {
+			// 同時にたくさんのXHLをしずぎないように、リクエストにラグを持たせる
+			getReleasedCards(userTag.id);
+		}, mapIndex * 400);
+	}, []);
 
-  return (
+	return (
 		<div>
 			<div className="flex justify-between py-1">
 				<p className="text-2xl font-bold">{userTag.name}</p>
@@ -41,7 +41,7 @@ function UserTagThumbnail({ userTag, mapIndex }) {
 					</p>
 				)}
 			</div>
-			{releasedCardsNum >= 1 ? (
+			{releasedCardsNum >= 1 && (
 				<div className="flex items-center h-32">
 					{releasedCards.map(releasedCard => (
 						<img
@@ -55,7 +55,8 @@ function UserTagThumbnail({ userTag, mapIndex }) {
 						<MoreHorizIcon fontSize="large" sx={{ color: 'gray' }} />
 					)}
 				</div>
-			) : (
+			)}
+			{releasedCardsNum !== null && releasedCardsNum === 0 && (
 				<div className="h-32 flex justify-center items-center">
 					<p style={{ color: 'grey' }} className="italic">
 						タグ付けされたカードはありません。
@@ -63,7 +64,7 @@ function UserTagThumbnail({ userTag, mapIndex }) {
 				</div>
 			)}
 		</div>
-  );
+	);
 }
 
-export default UserTagThumbnail
+export default UserTagThumbnail;
