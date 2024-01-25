@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { Link } from '@inertiajs/react';
 import Header from '@/Components/Header';
 import Pagination from '@/Components/Admin/Pageination';
@@ -9,9 +9,8 @@ import Button from '@mui/material/Button';
 import AddIcon from '@mui/icons-material/Add';
 import UserTagThumbnail from '@/Components/UserTags/UserTagThumbnail';
 
-
 function Index({ auth, userTagsNum, userTagsData, message }) {
-  return (
+	return (
 		<>
 			<Header auth={auth} needOnlyLogo={true} />
 			<div className="w-3/5 mx-auto">
@@ -21,7 +20,7 @@ function Index({ auth, userTagsNum, userTagsData, message }) {
 				<div className="w-5/6 mx-auto mt-8">
 					<div className="mb-6 flex justify-between items-start">
 						<Typography variant="h5" component="h2">
-							MyTag{' '}一覧
+							MyTag 一覧
 						</Typography>
 						<Link href={`/tags/${auth.user.id}/create`}>
 							<Button
@@ -39,7 +38,11 @@ function Index({ auth, userTagsNum, userTagsData, message }) {
 						</Link>
 					</div>
 					<div>
-						{message && <p style={{ color: 'green' }} className="mb-4">{message}</p>}
+						{message && (
+							<p style={{ color: 'green' }} className="mb-4">
+								{message}
+							</p>
+						)}
 						{userTagsData.data ? (
 							<div>
 								<div className="mb-2 flex justify-end">
@@ -47,9 +50,7 @@ function Index({ auth, userTagsNum, userTagsData, message }) {
 								</div>
 								<ul>
 									{userTagsData.data.map((tag, mapIndex) => (
-										<li
-											key={tag.id}
-											className="px-2 mb-6 rounded-md bg-gray-900 hover:bg-gray-800">
+										<li key={tag.id}>
 											<Link href={`/tags/${auth.user.id}/${tag.id}`}>
 												<UserTagThumbnail
 													userTag={tag}
@@ -68,11 +69,10 @@ function Index({ auth, userTagsNum, userTagsData, message }) {
 				</div>
 			</div>
 		</>
-  );
+	);
 }
 
 // Persistent Layoutsの設定
 Index.layout = page => <Layout title="My Tag 一覧" children={page} />;
 
-
-export default Index
+export default Index;
