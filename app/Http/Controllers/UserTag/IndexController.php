@@ -17,6 +17,7 @@ class IndexController extends Controller
     {
       // dd($request->route('userId'));
       $user_id = $request->user()->id;   // ユーザのidを取得
+      $tags_num = UserTag::where('user_id', $user_id)->count();
       $tags_data = UserTag::where('user_id', $user_id)->orderBy('updated_at', 'DESC')->paginate(5)->withQueryString();
 
       //
@@ -24,6 +25,6 @@ class IndexController extends Controller
       if ($request->session()->has('message')) {
         $message = $request->session()->get('message');
       }
-        return inertia('UserTag/Index', ['userTagsData' => $tags_data, 'message' => $message]);
+        return inertia('UserTag/Index', ['userTagsNum' => $tags_num, 'userTagsData' => $tags_data, 'message' => $message]);
     }
 }

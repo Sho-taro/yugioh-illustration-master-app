@@ -5,24 +5,23 @@ import Pagination from '@/Components/Admin/Pageination';
 import Layout from '@/Layouts/Layout';
 
 import Typography from '@mui/material/Typography';
-import LoyaltyIcon from '@mui/icons-material/Loyalty';
 import Button from '@mui/material/Button';
 import AddIcon from '@mui/icons-material/Add';
 import UserTagThumbnail from '@/Components/UserTags/UserTagThumbnail';
 
 
-function Index({ auth, userTagsData, message }) {
+function Index({ auth, userTagsNum, userTagsData, message }) {
   return (
 		<>
 			<Header auth={auth} needOnlyLogo={true} />
 			<div className="w-3/5 mx-auto">
 				<Link href={route('index')} className=" text-white hover:opacity-60">
-					{'< '}TOPページに戻る
+					{'< '}戻る
 				</Link>
-				<div className="w-5/6 mx-auto mt-4">
-					<div className="mb-4 flex justify-between items-end">
-						<Typography variant="h4" component="h2">
-							MyTag一覧
+				<div className="w-5/6 mx-auto mt-8">
+					<div className="mb-6 flex justify-between items-start">
+						<Typography variant="h5" component="h2">
+							MyTag{' '}一覧
 						</Typography>
 						<Link href={`/tags/${auth.user.id}/create`}>
 							<Button
@@ -40,14 +39,17 @@ function Index({ auth, userTagsData, message }) {
 						</Link>
 					</div>
 					<div>
-						{message && <p style={{ color: 'green' }}>{message}</p>}
+						{message && <p style={{ color: 'green' }} className="mb-4">{message}</p>}
 						{userTagsData.data ? (
 							<div>
+								<div className="mb-2 flex justify-end">
+									<p>（全{userTagsNum}件）</p>
+								</div>
 								<ul>
 									{userTagsData.data.map((tag, mapIndex) => (
 										<li
 											key={tag.id}
-											className="p-2 mb-6 rounded-md bg-gray-900 hover:bg-gray-800">
+											className="px-2 mb-6 rounded-md bg-gray-900 hover:bg-gray-800">
 											<Link href={`/tags/${auth.user.id}/${tag.id}`}>
 												<UserTagThumbnail
 													userTag={tag}
