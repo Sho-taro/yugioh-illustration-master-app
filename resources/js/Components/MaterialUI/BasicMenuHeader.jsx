@@ -42,6 +42,14 @@ export default function BasicMenu({ buttonValue }) {
 			<Menu
 				id="basic-menu"
 				anchorEl={anchorEl}
+				anchorOrigin={{
+					vertical: 'bottom',
+					horizontal: 'right',
+				}}
+				transformOrigin={{
+					vertical: 'top',
+					horizontal: 'right',
+				}}
 				open={open}
 				onClose={handleClose}
 				MenuListProps={{
