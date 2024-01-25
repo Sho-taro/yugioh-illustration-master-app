@@ -11,7 +11,7 @@ import Divider from '@mui/material/Divider';
 function Header({ auth, needOnlyLogo }) {
 	return (
 		<div className="mb-20">
-			<div className="w-full fixed top-0 bg-color-layout">
+			<div className="w-full fixed top-0 bg-color-layout z-50">
 				<div className="px-8 my-2 flex justify-between items-center">
 					<div>
 						<Link href={route('index')}>
