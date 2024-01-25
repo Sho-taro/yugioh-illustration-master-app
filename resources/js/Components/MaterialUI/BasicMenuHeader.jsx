@@ -3,6 +3,7 @@ import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 import { router } from '@inertiajs/react';
@@ -34,7 +35,7 @@ export default function BasicMenu({ buttonValue }) {
 					aria-controls={open ? 'basic-menu' : undefined}
 					aria-haspopup="true"
 					aria-expanded={open ? 'true' : undefined}
-					endIcon={<KeyboardArrowDownIcon />}
+					endIcon={open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
 					disableRipple={true}>
 					{buttonValue}
 				</Button>
