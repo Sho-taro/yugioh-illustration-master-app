@@ -17,13 +17,13 @@ class IndexController extends Controller
     {
       // dd($request->route('userId'));
       $user_id = $request->user()->id;   // ユーザのidを取得
-      $tags = UserTag::where('user_id', $user_id)->orderBy('updated_at', 'DESC')->get();
+      $tags_data = UserTag::where('user_id', $user_id)->orderBy('updated_at', 'DESC')->paginate(5);
 
       //
       $message = null;
       if ($request->session()->has('message')) {
         $message = $request->session()->get('message');
       }
-        return inertia('UserTag/Index', ['userTags' => $tags, 'message' => $message]);
+        return inertia('UserTag/Index', ['userTagsData' => $tags_data, 'message' => $message]);
     }
 }

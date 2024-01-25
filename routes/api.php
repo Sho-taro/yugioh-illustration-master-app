@@ -22,3 +22,4 @@ Route::post('/gallery/filterdcardsnum', \App\Http\Controllers\Gallery\FilteredCa
 
 Route::post('/tags/addCards', \App\Http\Controllers\Api\UserTag\AddCardsStoreController::class)->name('api.addCards');
 Route::post('/tags/removeCards', \App\Http\Controllers\Api\UserTag\RemoveCardsStoreController::class)->name('api.removeCards');
+Route::post('/tags/releasedCards', [\App\Http\Controllers\Api\UserTag\ThumbnailController::class, 'getReleasedCards'])->name('api.getReleasedCards');
