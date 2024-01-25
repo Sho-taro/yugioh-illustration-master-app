@@ -6,6 +6,7 @@ import Layout from '@/Layouts/Layout';
 
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import Divider from '@mui/material/Divider';
 import AddIcon from '@mui/icons-material/Add';
 import UserTagThumbnail from '@/Components/UserTags/UserTagThumbnail';
 
@@ -14,14 +15,21 @@ function Index({ auth, userTagsNum, userTagsData, message }) {
 		<>
 			<Header auth={auth} needOnlyLogo={true} />
 			<div className="w-3/5 mx-auto">
-				<Link href={route('index')} className=" text-white hover:opacity-60">
+				<Link
+					href={route('index')}
+					className="p-1 text-white rounded-full hover:bg-gray-800">
 					{'< '}戻る
 				</Link>
-				<div className="w-5/6 mx-auto mt-8">
-					<div className="mb-6 flex justify-between items-start">
-						<Typography variant="h5" component="h2">
+				<div className="w-5/6 mx-auto mt-2">
+					<div className="mb-4">
+						<Typography variant="h4" component="h2" sx={{ textAlign: 'center' }}>
 							MyTag 一覧
 						</Typography>
+					</div>
+					<div className="mb-2 flex justify-between items-end">
+						<p>
+							全 <span className="text-xl font-bold">{userTagsNum}</span> 件
+						</p>
 						<Link href={`/tags/${auth.user.id}/create`}>
 							<Button
 								variant="outlined"
@@ -37,7 +45,8 @@ function Index({ auth, userTagsNum, userTagsData, message }) {
 							</Button>
 						</Link>
 					</div>
-					<div>
+					<Divider variant="full" sx={{ borderColor: 'rgba(200, 200, 200, 0.7)' }} />
+					<div className="mt-12">
 						{message && (
 							<p style={{ color: 'green' }} className="mb-4">
 								{message}
@@ -45,9 +54,6 @@ function Index({ auth, userTagsNum, userTagsData, message }) {
 						)}
 						{userTagsData.data ? (
 							<div>
-								<div className="mb-2 flex justify-end">
-									<p>（全{userTagsNum}件）</p>
-								</div>
 								<ul>
 									{userTagsData.data.map((tag, mapIndex) => (
 										<li key={tag.id}>

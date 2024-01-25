@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios, { isCancel, AxiosError } from 'axios';
 
 import LoyaltyIcon from '@mui/icons-material/Loyalty';
-import Divider from '@mui/material/Divider';
+// import Divider from '@mui/material/Divider';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 
 function UserTagThumbnail({ userTag, mapIndex }) {
@@ -31,8 +31,8 @@ function UserTagThumbnail({ userTag, mapIndex }) {
 	}, []);
 
 	return (
-		<div className="px-2 mb-6 rounded-md bg-gray-900 hover:bg-gray-800">
-			<div className="flex justify-between py-3 px-4">
+		<div className="px-6 py-3 mb-8 rounded-md bg-gray-900 hover:bg-gray-800">
+			<div className="flex justify-between mb-2">
 				<div className="flex items-center">
 					<LoyaltyIcon sx={{ color: 'red', opacity: '0.75' }} />
 					<p className="ml-1 text-2xl font-bold">{userTag.name}</p>
@@ -46,9 +46,9 @@ function UserTagThumbnail({ userTag, mapIndex }) {
 					</p>
 				)}
 			</div>
-			<Divider variant="full" sx={{ borderColor: 'rgba(200, 200, 200, 0.7)' }} />
+			{/* <Divider variant="full" sx={{ borderColor: 'rgba(200, 200, 200, 0.7)' }} /> */}
 			{releasedCardsNum >= 1 && (
-				<div className="flex items-center py-3 px-4">
+				<div className="flex items-center mb-1">
 					{releasedCards.map(releasedCard => (
 						<img
 							key={releasedCard.id}
@@ -63,7 +63,7 @@ function UserTagThumbnail({ userTag, mapIndex }) {
 				</div>
 			)}
 			{releasedCardsNum !== null && releasedCardsNum === 0 && (
-				<div className="h-32 flex justify-center items-center">
+				<div className="h-28 flex justify-center items-center">
 					<p style={{ color: 'grey' }} className="italic">
 						タグ付けされたカードはありません。
 					</p>
