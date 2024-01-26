@@ -34,7 +34,7 @@ function UserTagThumbnail({ userTag, mapIndex }) {
 		<div className="px-6 py-3 mb-8 rounded-md bg-gray-900 hover:bg-gray-800">
 			<div className="flex justify-between mb-2">
 				<div className="flex items-center">
-					<LoyaltyIcon sx={{ color: 'red', opacity: '0.75' }} />
+					<LoyaltyIcon sx={{ color: 'white', opacity: '0.75' }} />
 					<p className="ml-1 text-2xl font-bold">{userTag.name}</p>
 				</div>
 				{releasedCardsNum === null ? (
