@@ -7,10 +7,12 @@ import Layout from '@/Layouts/Layout';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
-import AddIcon from '@mui/icons-material/Add';
+// import AddIcon from '@mui/icons-material/Add';
 import UserTagThumbnail from '@/Components/UserTags/UserTagThumbnail';
+// import CreateUserTagModalButton from '@/Components/MaterialUI/CreateUserTagModalButton';
+import CreateUserTagPopoverButton from '@/Components/MaterialUI/CreateUserTagPopoverButton';
 
-function Index({ auth, userTagsNum, userTagsData, message }) {
+function Index({ auth, errors, userTagsNum, userTagsData, message }) {
 	let showingMinIndex; // 枚数表示の最小値
 	userTagsNum === 0
 		? (showingMinIndex = 0)
@@ -38,10 +40,9 @@ function Index({ auth, userTagsNum, userTagsData, message }) {
 					<div className="mb-2 flex justify-between items-end">
 						<p>
 							全 <span className="text-xl font-bold">{userTagsNum}</span> 件 （
-							{showingMinIndex} - {showingMaxIndex} 件を表示中
-							）
+							{showingMinIndex} - {showingMaxIndex} 件を表示中 ）
 						</p>
-						<Link href={`/tags/${auth.user.id}/create`}>
+						{/* <Link href={`/tags/${auth.user.id}/create`}>
 							<Button
 								variant="outlined"
 								color="error"
@@ -54,7 +55,9 @@ function Index({ auth, userTagsNum, userTagsData, message }) {
 								startIcon={<AddIcon sx={{ color: 'red' }} />}>
 								MyTagを新規作成
 							</Button>
-						</Link>
+						</Link> */}
+						{/* <CreateUserTagModalButton auth={auth} errors={errors} /> */}
+						<CreateUserTagPopoverButton auth={auth} errors={errors} />
 					</div>
 					<Divider variant="full" sx={{ borderColor: 'rgba(200, 200, 200, 0.7)' }} />
 					<div className="mt-12">

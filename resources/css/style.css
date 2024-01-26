@@ -138,13 +138,13 @@ a {
   color: rgb(29, 78, 216);
 }
 
-input[type="text"] {
+/* input[type="text"] {
   min-width: 100px;
   padding: 0.2rem 0.5rem;
   background-color: aliceblue;
   border: solid 1px #808080;
   border-radius: 3px;
-}
+} */
 
 /* checkbox */
 input[type=checkbox] {
