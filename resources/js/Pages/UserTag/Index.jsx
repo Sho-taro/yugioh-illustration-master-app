@@ -9,10 +9,10 @@ import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
 // import AddIcon from '@mui/icons-material/Add';
 import UserTagThumbnail from '@/Components/UserTags/UserTagThumbnail';
-// import CreateUserTagModalButton from '@/Components/MaterialUI/CreateUserTagModalButton';
-import CreateUserTagPopoverButton from '@/Components/MaterialUI/CreateUserTagPopoverButton';
+import CreateUserTagModalButton from '@/Components/MaterialUI/CreateUserTagModalButton';
+// import CreateUserTagPopoverButton from '@/Components/MaterialUI/CreateUserTagPopoverButton';
 
-function Index({ auth, errors, userTagsNum, userTagsData, message }) {
+function Index({ auth, errors, userTagsNum, userTagsData, messages }) {
 	let showingMinIndex; // 枚数表示の最小値
 	userTagsNum === 0
 		? (showingMinIndex = 0)
@@ -56,14 +56,18 @@ function Index({ auth, errors, userTagsNum, userTagsData, message }) {
 								MyTagを新規作成
 							</Button>
 						</Link> */}
-						{/* <CreateUserTagModalButton auth={auth} errors={errors} /> */}
-						<CreateUserTagPopoverButton auth={auth} errors={errors} />
+						<CreateUserTagModalButton
+							auth={auth}
+							message={messages.storeUTMsg}
+							errors={errors}
+						/>
+						{/* <CreateUserTagPopoverButton auth={auth} errors={errors} /> */}
 					</div>
 					<Divider variant="full" sx={{ borderColor: 'rgba(200, 200, 200, 0.7)' }} />
 					<div className="mt-12">
-						{message && (
+						{messages.deleteUTMsg && (
 							<p style={{ color: 'green' }} className="mb-4">
-								{message}
+								{messages.deleteUTMsg}
 							</p>
 						)}
 						{userTagsData.data ? (

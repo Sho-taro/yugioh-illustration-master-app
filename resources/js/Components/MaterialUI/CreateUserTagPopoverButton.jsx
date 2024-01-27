@@ -8,7 +8,7 @@ import AddIcon from '@mui/icons-material/Add';
 import Box from '@mui/material/Box';
 import Create from '@/Pages/UserTag/Create';
 
-export default function BasicPopover({auth, errors}) {
+export default function CreateUserTagPopoverButton({ auth, errors }) {
 	const [anchorEl, setAnchorEl] = React.useState(null);
 
 	const handleClick = event => {
@@ -42,11 +42,15 @@ export default function BasicPopover({auth, errors}) {
 			<Popover
 				id={id}
 				open={open}
-				anchorEl={anchorEl}
 				onClose={handleClose}
+				anchorEl={anchorEl}
 				anchorOrigin={{
 					vertical: 'bottom',
-					horizontal: 'left',
+					horizontal: 'right',
+				}}
+				transformOrigin={{
+					vertical: 'top',
+					horizontal: 'right',
 				}}>
 				<Box sx={{ width: '28rem', p: 4 }}>
 					<Typography

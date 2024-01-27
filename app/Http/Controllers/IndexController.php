@@ -13,6 +13,9 @@ class IndexController extends Controller
      */
     public function __invoke(Request $request)
     {
-        return inertia('Index', []);
+      // $request->session()->put('messages', []);  // messagesというキーでセッション値が配列のセッションを作成
+      // dd($request->session()->all());  // 全てのセッション値を表示
+
+      return inertia('Index', []);
     }
 }

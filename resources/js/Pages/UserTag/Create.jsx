@@ -3,10 +3,11 @@ import { router } from '@inertiajs/react';
 // import { Link } from '@inertiajs/react';
 import Layout from '@/Layouts/Layout';
 
+import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 
-function Create({ auth, errors, handleClose }) {
+function Create({ auth, message, errors, handleClose }) {
 	const [inputValue, setInputValue] = useState('');
 	const [radioValue, setRadioValue] = useState('public');
 
@@ -74,7 +75,12 @@ function Create({ auth, errors, handleClose }) {
 				</label>
 				{errors.status && <p style={{ color: 'red' }}>{errors.status}</p>}
 			</div>
-			<Button
+			{message && (
+				<Typography sx={{ textAlign: 'center', color: 'green', m: '1rem 0' }}>
+					{message}
+				</Typography>
+			)}
+			{/* <Button
 				variant="contained"
 				disabled={inputValue.length === 0}
 				disableRipple
@@ -89,7 +95,34 @@ function Create({ auth, errors, handleClose }) {
 				sx={{ textTransform: 'none', ml: '1rem' }}
 				onClick={handleClose}>
 				キャンセル
-			</Button>
+			</Button> */}
+			<div className="flex flex-col">
+				<Button
+					variant="contained"
+					color="error"
+					sx={{
+						mt: '2rem',
+						textTransform: 'none',
+						borderRadius: '0.5rem',
+					}}
+					disabled={inputValue.length === 0}
+					disableRipple={true}
+					onClick={formSubmit}>
+					新規作成
+				</Button>
+				<Button
+					variant={message ? "outlined" : "text"}
+					color="error"
+					sx={{
+						mt: '0.8rem',
+						textTransform: 'none',
+						borderRadius: '0.5rem',
+					}}
+					disableRipple={true}
+					onClick={handleClose}>
+					{message ? "閉じる": "キャンセル"}
+				</Button>
+			</div>
 		</form>
 	);
 }
