@@ -49,7 +49,11 @@ function Create({ auth, message, errors, handleClose }) {
 					value={inputValue}
 					onChange={e => handleInputChange(e)}
 				/>
-				{errors.name && <p style={{ color: 'red' }}>エラー: {errors.name}</p>}
+				{errors.name && (
+					<Typography sx={{ textAlign: 'center', color: 'red', m: '1rem 0' }}>
+						エラー: {errors.name}
+					</Typography>
+				)}
 			</div>
 			{/* 公開/非公開については調整中のため、非表示（hidden） */}
 			<div className="mb-2 hidden">
@@ -111,7 +115,7 @@ function Create({ auth, message, errors, handleClose }) {
 					新規作成
 				</Button>
 				<Button
-					variant={message ? "outlined" : "text"}
+					variant={message ? 'outlined' : 'text'}
 					color="error"
 					sx={{
 						mt: '0.8rem',
@@ -120,7 +124,7 @@ function Create({ auth, message, errors, handleClose }) {
 					}}
 					disableRipple={true}
 					onClick={handleClose}>
-					{message ? "閉じる": "キャンセル"}
+					{message ? '閉じる' : 'キャンセル'}
 				</Button>
 			</div>
 		</form>

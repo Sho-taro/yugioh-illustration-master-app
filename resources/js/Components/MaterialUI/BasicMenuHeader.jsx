@@ -27,6 +27,7 @@ export default function BasicMenu({ buttonValue }) {
 					size="large"
 					id="basic-button"
 					sx={{
+						color: 'white',
 						padding: '0.2rem 0.4rem 0.2rem 0.1rem',
 						textTransform: 'none',
 						fontSize: '1.5rem',

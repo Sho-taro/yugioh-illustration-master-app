@@ -1,30 +1,35 @@
 import React, { useState } from 'react';
 import { Link } from '@inertiajs/react';
 import { router } from '@inertiajs/react';
+import Header from '@/Components/Header';
+import Pagination from '@/Components/Admin/Pageination';
 import Layout from '@/Layouts/Layout';
-
 import TogglingCheckMark from '@/Components/Admin/TogglingCheckMark';
 
-function Show({ auth, userTag, releasedCards, message, errors }) {
+import Typography from '@mui/material/Typography';
+import LoyaltyIcon from '@mui/icons-material/Loyalty';
+// import Button from '@mui/material/Button';
+import Divider from '@mui/material/Divider';
+import BasicMenuEditUserTag from '@/Components/MaterialUI/BasicMenuEditUserTag';
+import DeleteUserTagModalButton from '@/Components/MaterialUI/DeleteUserTagModalButton';
+import UpdateUserTagNameModalButton from '@/Components/MaterialUI/UpdateUserTagNameModalButton';
+// import IconButton from '@mui/material/IconButton';
+// import EditIcon from '@mui/icons-material/Edit';
+import TooltipBackButton from '@/Components/MaterialUI/TooltipBackButton';
+
+function Show({ auth, userTag, releasedCardsNum, releasedCardsData, messages, errors }) {
 	const [mode, setMode] = useState('normal');
-	const [userTagName, setUserTagName] = useState(userTag.name);
 	const [selectedRCIds, setSelectedRCIds] = useState([]);
-	const handleInputChange = e => {
-		setUserTagName(e.target.value);
-	};
-	const cancelUpdate = () => {
-		setUserTagName(userTag.name);
-		setMode('normal');
-	};
-	const updateName = e => {
-		e.preventDefault();
-		// フォームの送信
-		router.put(`/tags/${auth.user.id}/${userTag.id}`, {
-			userTagName: userTagName,
-		});
-	};
-	const deleteUserTag = e => {
-		e.preventDefault();
+	let showingMinIndex; // 枚数表示の最小値
+	releasedCardsNum === 0
+		? (showingMinIndex = 0)
+		: (showingMinIndex = 1 + (releasedCardsData.current_page - 1) * 50);
+	let showingMaxIndex; // 枚数表示の最大値
+	releasedCardsData.current_page * 50 >= releasedCardsNum
+		? (showingMaxIndex = releasedCardsNum)
+		: (showingMaxIndex = releasedCardsData.current_page * 50);
+
+	const deleteUserTag = () => {
 		// フォームの送信
 		router.delete(`/tags/${auth.user.id}/${userTag.id}`);
 	};
@@ -34,6 +39,8 @@ function Show({ auth, userTag, releasedCards, message, errors }) {
 		router.post(`/tags/${auth.user.id}/${userTag.id}/releasedCardUserTags`, {
 			releasedCardIds: selectedRCIds,
 		});
+		setSelectedRCIds([]);
+		setMode('normal');
 	};
 	const cancelDeleteCards = () => {
 		setSelectedRCIds([]);
@@ -55,99 +62,127 @@ function Show({ auth, userTag, releasedCards, message, errors }) {
 
 	return (
 		<>
-			<Link href={`/tags/${auth.user.id}`}>{'< '}MyTag一覧に戻る</Link>
-			<div>
-				{message && <span style={{ color: 'green' }}>{message}</span>}
-				<p>userTagId: {userTag.id}</p>
-				<p>userId: {userTag.user_id}</p>
-				<div className="flex">
-					<p>name: {userTag.name}</p>
-					<button
-						className="ml-4 inline-block underline"
-						onClick={() => setMode('updateName')}>
-						MyTag名を変更
-					</button>
-				</div>
-				{mode === 'updateName' && (
-					<form onSubmit={e => updateName(e)}>
-						<label>
-							新しいMyTag名を入力:{' '}
-							<input
-								type="text"
-								onChange={e => handleInputChange(e)}
-								value={userTagName}
-							/>
-							{errors.userTagName && (
-								<span style={{ color: 'red' }}>{errors.userTagName}</span>
-							)}
-						</label>
-						<button
-							type="submit"
-							disabled={userTagName === userTag.name}
-							className="disabled:opacity-50">
-							変更
-						</button>
-						<span onClick={cancelUpdate} className="underline">
-							キャンセル
-						</span>
-					</form>
-				)}
-			</div>
-			<div>
-				<h2>登録カード数: {releasedCards.length}枚</h2>
-				<h2>登録カード一覧</h2>
-				<div className="flex">
-					<Link href={`/tags/${auth.user.id}/${userTag.id}/releasedCardUserTags`}>
-						+ カードを追加登録
-					</Link>
-					<button onClick={() => setMode('deleteCards')} className="ml-6">
-						- カードを削除
-					</button>
-				</div>
-				{mode === 'deleteCards' && (
-					<div className="flex">
-						<p style={{ color: 'green' }}>
-							削除するカードを選択し、「削除する」ボタンを押して下さい。
-						</p>
-						<form onSubmit={e => deleteCards(e)}>
-							<button type="submit" disabled={selectedRCIds.length === 0} className="disabled:opacity-50">削除する</button>
-						</form>
-						<p onClick={() => cancelDeleteCards()} className="ml-4 underline">
-							キャンセル
-						</p>
+			<Header auth={auth} needOnlyLogo={true} />
+			<div className="w-3/5 mx-auto">
+				<TooltipBackButton href={`/tags/${auth.user.id}`} />
+				<div className="w-5/6 mx-auto mt-2">
+					<div className="mb-4">
+						<Typography variant="h4" component="h2" sx={{ textAlign: 'center' }}>
+							MyTag 詳細
+						</Typography>
 					</div>
-				)}
-				<div className="max-w-full flex flex-wrap">
-					{releasedCards.map(rc => (
-						<div key={rc.id} className="p-1">
-							{mode === 'deleteCards' ? (
-								<div className="relative">
-									<img
-										width="150px"
-										src={`/images/card-images/${rc.product_code}-${rc.list_number}.jpg`}
-										className="cursor-pointer hover:opacity-60"
-										name={rc.id}
-										onClick={e => toggleRCId(e)}
-										alt="イラスト"
+					<div className="px-6 pt-5 pb-3 mb-8 rounded-md bg-gray-900">
+						<div className="mb-6 flex justify-between items-start">
+							<div className="flex items-center">
+								<LoyaltyIcon sx={{ color: 'white', opacity: '0.75' }} />
+								<p className="ml-1 text-2xl font-bold">{userTag.name}</p>
+								<div className="ml-4 mt-2">
+									<UpdateUserTagNameModalButton
+										auth={auth}
+										userTag={userTag}
+										message={messages.updateUTMsg}
+										errors={errors}
 									/>
-									<TogglingCheckMark releasedCardId={rc.id} selectedRCIds={selectedRCIds} />
+								</div>
+							</div>
+							{/* <BasicMenuEditUserTag
+								auth={auth}
+								userTag={userTag}
+								releasedCardsNum={releasedCardsNum}
+								setMode={setMode}
+								deleteUserTag={deleteUserTag}
+							/> */}
+						</div>
+
+						{/* {messages.updateUTMsg && <span style={{ color: 'green' }}>{messages.updateUTMsg}</span>} */}
+						<div>
+							<div className="flex justify-between items-end">
+								<p>
+									タグ付けされたカード{' '}
+									<span className="text-2xl font-bold">{releasedCardsNum}</span>枚
+									（{showingMinIndex} - {showingMaxIndex} 枚を表示中 ）
+								</p>
+								<BasicMenuEditUserTag
+									auth={auth}
+									userTag={userTag}
+									releasedCardsNum={releasedCardsNum}
+									setMode={setMode}
+									deleteUserTag={deleteUserTag}
+								/>
+							</div>
+							<Divider
+								variant="full"
+								sx={{ mt: '0.4rem', borderColor: 'rgba(200, 200, 200, 0.7)' }}
+							/>
+							{mode === 'deleteCards' && (
+								<div className="my-8">
+									<p style={{ color: 'green' }}>
+										タグ付けを解除するカードを選択し、「解除する」ボタンを押して下さい。
+									</p>
+									<div className="mt-2 flex items-center">
+										<form onSubmit={e => deleteCards(e)}>
+											<button
+												type="submit"
+												disabled={selectedRCIds.length === 0}
+												className="px-5 py-2 bg-red-700 rounded-md hover:bg-red-800 disabled:pointer-events-none disabled:opacity-40">
+												<Typography>解除する</Typography>
+											</button>
+										</form>
+										<button
+											type="button"
+											onClick={() => cancelDeleteCards()}
+											className="ml-4 px-5 py-2 bg-gray-200 rounded-md hover:bg-red-100">
+											<Typography
+												component="button"
+												sx={{ color: '#d32f2f' }}>
+												キャンセル
+											</Typography>
+										</button>
+									</div>
+								</div>
+							)}
+							{releasedCardsNum >= 1 ? (
+								<div className="mt-4 max-w-full grid grid-cols-5">
+									{releasedCardsData.data.map(rc => (
+										<div key={rc.id} className="p-1">
+											{mode === 'deleteCards' ? (
+												<div className="relative">
+													<img
+														src={`/images/card-images/${rc.product_code}-${rc.list_number}.jpg`}
+														className="cursor-pointer hover:opacity-60"
+														name={rc.id}
+														onClick={e => toggleRCId(e)}
+														alt="イラスト"
+													/>
+													<TogglingCheckMark
+														releasedCardId={rc.id}
+														selectedRCIds={selectedRCIds}
+													/>
+												</div>
+											) : (
+												<img
+													src={`/images/card-images/${rc.product_code}-${rc.list_number}.jpg`}
+													alt="イラスト"
+												/>
+											)}
+										</div>
+									))}
 								</div>
 							) : (
-								<img
-									width="150px"
-									src={`/images/card-images/${rc.product_code}-${rc.list_number}.jpg`}
-									alt="イラスト"
-								/>
+								<div className="h-28 flex justify-center items-center">
+									<p style={{ color: 'grey' }} className="italic">
+										タグ付けされたカードはありません。
+									</p>
+								</div>
 							)}
+							<Pagination data={releasedCardsData} />
 						</div>
-					))}
+					</div>
+					<div className="flex justify-center mb-12">
+						<DeleteUserTagModalButton deleteUserTag={deleteUserTag} />
+					</div>
 				</div>
 			</div>
-			<form onSubmit={e => deleteUserTag(e)}>
-				<button type="submit" className="underline">
-					このMyTagを削除
-				</button>
-			</form>
 		</>
 	);
 }

@@ -31,10 +31,6 @@ class IndexController extends Controller
       if ($request->session()->has('updateUTMsg')) {
         $messages['updateUTMsg'] = $request->session()->get('updateUTMsg');
       }
-      // もしフラッシュセッションのメッセージが何もなければ、$messagesはnullにしておく
-      // if (count($messages) === 0) {
-      //   $messages = null;
-      // }
 
       // dd($messages);
 
