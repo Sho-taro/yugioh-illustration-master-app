@@ -15,6 +15,7 @@ import TooltipBackButton from '@/Components/MaterialUI/TooltipBackButton';
 
 
 function Index({ auth, errors, userTagsNum, userTagsData, messages }) {
+	const [storeMsg, setStoreMsg] = React.useState(messages.storeUTMsg);
 	let showingMinIndex; // 枚数表示の最小値
 	userTagsNum === 0
 		? (showingMinIndex = 0)
@@ -23,6 +24,10 @@ function Index({ auth, errors, userTagsNum, userTagsData, messages }) {
 	userTagsData.current_page * 5 >= userTagsNum
 		? (showingMaxIndex = userTagsNum)
 		: (showingMaxIndex = userTagsData.current_page * 5);
+
+	React.useEffect(() => {
+		setStoreMsg(messages.storeUTMsg);
+	}, [messages]);
 
 	return (
 		<>
@@ -56,7 +61,8 @@ function Index({ auth, errors, userTagsNum, userTagsData, messages }) {
 						</Link> */}
 						<CreateUserTagModalButton
 							auth={auth}
-							message={messages.storeUTMsg}
+							message={storeMsg}
+							setStoreMsg={setStoreMsg}
 							errors={errors}
 						/>
 						{/* <CreateUserTagPopoverButton auth={auth} errors={errors} /> */}

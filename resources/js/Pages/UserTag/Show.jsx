@@ -20,6 +20,7 @@ import TooltipBackButton from '@/Components/MaterialUI/TooltipBackButton';
 function Show({ auth, userTag, releasedCardsNum, releasedCardsData, messages, errors }) {
 	const [mode, setMode] = useState('normal');
 	const [selectedRCIds, setSelectedRCIds] = useState([]);
+	const [updateMsg, setUpdateMsg] = useState(messages.updateUTMsg);
 	let showingMinIndex; // 枚数表示の最小値
 	releasedCardsNum === 0
 		? (showingMinIndex = 0)
@@ -59,6 +60,9 @@ function Show({ auth, userTag, releasedCardsNum, releasedCardsData, messages, er
 			setSelectedRCIds([...selectedRCIds, targetRCId]);
 		}
 	};
+	React.useEffect(() => {
+		setUpdateMsg(messages.updateUTMsg);
+	}, [messages]);
 
 	return (
 		<>
@@ -80,7 +84,8 @@ function Show({ auth, userTag, releasedCardsNum, releasedCardsData, messages, er
 									<UpdateUserTagNameModalButton
 										auth={auth}
 										userTag={userTag}
-										message={messages.updateUTMsg}
+										message={updateMsg}
+										setUpdateMsg={setUpdateMsg}
 										errors={errors}
 									/>
 								</div>
@@ -94,7 +99,7 @@ function Show({ auth, userTag, releasedCardsNum, releasedCardsData, messages, er
 							/> */}
 						</div>
 
-						{/* {messages.updateUTMsg && <span style={{ color: 'green' }}>{messages.updateUTMsg}</span>} */}
+						{/* {updateMsg && <span style={{ color: 'green' }}>{updateMsg}</span>} */}
 						<div>
 							<div className="flex justify-between items-end">
 								<p>

@@ -32,10 +32,13 @@ const modalStyle = {
 	p: 4,
 };
 
-function CreateUserTagModalButton({auth, message, errors}) {
+function CreateUserTagModalButton({ auth, message, setStoreMsg, errors }) {
 	const [open, setOpen] = React.useState(false);
 	const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+	const handleClose = () => {
+		setStoreMsg(null);
+		setOpen(false);
+	};
 
 	return (
 		<div>
@@ -67,7 +70,12 @@ function CreateUserTagModalButton({auth, message, errors}) {
 							sx={{ textAlign: 'center', mb: '2rem' }}>
 							MyTagを新規作成
 						</Typography>
-						<Create auth={auth} message={message} errors={errors} handleClose={handleClose} />
+						<Create
+							auth={auth}
+							message={message}
+							errors={errors}
+							handleClose={handleClose}
+						/>
 					</Box>
 				</Box>
 			</Modal>

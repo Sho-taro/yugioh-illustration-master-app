@@ -36,11 +36,15 @@ const modalStyle = {
 	p: 4,
 };
 
-function UpdateUserTagNameModalButton({auth, userTag, message, errors}) {
+function UpdateUserTagNameModalButton({auth, userTag, message, setUpdateMsg, errors}) {
   const [open, setOpen] = React.useState(false);
 	const [userTagName, setUserTagName] = React.useState(userTag.name);   // 新しいuserTag名
 	const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const handleClose = () => {
+    setUserTagName(userTag.name);
+    setUpdateMsg(null);
+    setOpen(false);
+  };
 
   const handleInputChange = e => {
 		setUserTagName(e.target.value);
