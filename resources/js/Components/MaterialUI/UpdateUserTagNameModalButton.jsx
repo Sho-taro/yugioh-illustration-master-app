@@ -101,7 +101,8 @@ function UpdateUserTagNameModalButton({auth, userTag, message, setUpdateMsg, err
 							variant="filled"
 							placeholder="最大20文字"
 							helperText="(作成済みのMyTagと同一の名前をつけることはできません)"
-							fullWidth
+              fullWidth
+              autoFocus
 							// required
 							// error={Boolean(errors.userTagName)}
 							name="userTagName"

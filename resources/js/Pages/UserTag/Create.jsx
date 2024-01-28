@@ -43,6 +43,7 @@ function Create({ auth, message, errors, handleClose }) {
 					placeholder="最大20文字"
 					helperText="(作成済みのMyTagと同一の名前をつけることはできません)"
 					fullWidth
+					autoFocus
 					// required
 					// error={Boolean(errors.name)}
 					name="name"
