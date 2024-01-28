@@ -11,6 +11,8 @@ import Divider from '@mui/material/Divider';
 import UserTagThumbnail from '@/Components/UserTags/UserTagThumbnail';
 import CreateUserTagModalButton from '@/Components/MaterialUI/CreateUserTagModalButton';
 // import CreateUserTagPopoverButton from '@/Components/MaterialUI/CreateUserTagPopoverButton';
+import TooltipBackButton from '@/Components/MaterialUI/TooltipBackButton';
+
 
 function Index({ auth, errors, userTagsNum, userTagsData, messages }) {
 	let showingMinIndex; // 枚数表示の最小値
@@ -26,11 +28,7 @@ function Index({ auth, errors, userTagsNum, userTagsData, messages }) {
 		<>
 			<Header auth={auth} needOnlyLogo={true} />
 			<div className="w-3/5 mx-auto">
-				<Link
-					href={route('index')}
-					className="p-1 text-white rounded-full hover:bg-gray-800">
-					{'< '}戻る
-				</Link>
+				<TooltipBackButton href={route('index')} />
 				<div className="w-5/6 mx-auto mt-2">
 					<div className="mb-4">
 						<Typography variant="h4" component="h2" sx={{ textAlign: 'center' }}>
