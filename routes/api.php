@@ -18,6 +18,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::get('/getData/frameTypes', [\App\Http\Controllers\Api\GetDataController::class , 'getFrameTypesData'])->name('api.getData.frameTypes');
+
 Route::post('/gallery/filterdcardsnum', \App\Http\Controllers\Gallery\FilteredCardsNumController::class)->name('gallery.filterdcardsnum');
 
 Route::post('/tags/addCards', \App\Http\Controllers\Api\UserTag\AddCardsStoreController::class)->name('api.addCards');
