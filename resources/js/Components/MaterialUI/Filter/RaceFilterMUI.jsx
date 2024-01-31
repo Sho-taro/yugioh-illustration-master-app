@@ -16,7 +16,7 @@ import Chip from '@mui/material/Chip';
 
 import { isCheckboxOn } from '@/utils/isCheckboxOn';
 
-import getFrameTypeData from '@/utils/getDBDataFuncs/getFrameTypeData';
+import getRaceData from '@/utils/getDBDataFuncs/getRaceData';
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -29,10 +29,10 @@ const MenuProps = {
 	},
 };
 
-function getStyles(frameType, frameTypes, theme) {
+function getStyles(race, races, theme) {
 	return {
 		fontWeight:
-			frameTypes.indexOf(frameType) === -1
+			races.indexOf(race) === -1
 				? theme.typography.fontWeightRegular
 				: theme.typography.fontWeightMedium,
 	};
@@ -40,14 +40,14 @@ function getStyles(frameType, frameTypes, theme) {
 
 function FrameTypeFilterMUI({ filters }) {
 	const theme = useTheme();
-	const [frameTypeArray, setFrameTypeArray] = React.useState([]);
-	const [frameTypes, setFrameTypes] = React.useState([]);
+	const [raceArray, setRaceArray] = React.useState([]);
+	const [races, setRaces] = React.useState([]);
 
 	const handleChange = event => {
 		const {
 			target: { value },
 		} = event;
-		setFrameTypes(
+		setRaces(
 			// On autofill we get a stringified value.
 			typeof value === 'string' ? value.split(',') : value
 		);
@@ -55,9 +55,9 @@ function FrameTypeFilterMUI({ filters }) {
 
 	React.useEffect(() => {
 		// console.log('useEffect');
-		getFrameTypeData()
+		getRaceData()
 			.then(data => {
-				setFrameTypeArray([...data]);
+				setRaceArray([...data]);
 			})
 			.catch(err => {
 				console.log(err);
@@ -71,7 +71,7 @@ function FrameTypeFilterMUI({ filters }) {
 					multiple
 					displayEmpty
 					autoWidth
-					value={frameTypes}
+					value={races}
 					onChange={handleChange}
 					// input={<OutlinedInput id="select-multiple-chip" label="Chip" />}   // labelの文字指定
 					renderValue={selected => {
@@ -94,14 +94,14 @@ function FrameTypeFilterMUI({ filters }) {
 					}}
 					MenuProps={MenuProps}
 					inputProps={{ 'aria-label': 'Without label' }}>
-					{frameTypeArray.map(frameType => (
+					{raceArray.map(race => (
 						<MenuItem
-							key={frameType.name_en}
-							value={frameType.name_en}
+							key={race.name_en}
+							value={race.name_en}
 							disableRipple
-							style={getStyles(frameType.name_en, frameTypes, theme)}>
-							<Checkbox checked={frameTypes.indexOf(frameType.name_en) > -1} />
-							<ListItemText primary={frameType.name_ja} />
+							style={getStyles(race.name_en, races, theme)}>
+							<Checkbox checked={races.indexOf(race.name_en) > -1} />
+							<ListItemText primary={race.name_ja} />
 						</MenuItem>
 					))}
 				</Select>
