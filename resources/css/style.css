@@ -802,3 +802,10 @@ td {
   box-shadow: 0 0 0px rgb(81, 86, 255);
   background-color: rgba(100, 100, 100, 0.5);
 }
+
+.pagination-span span {
+  color: white;
+}
+.pagination-span {
+  font-size: 1.25rem;
+}
