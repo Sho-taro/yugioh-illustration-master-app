@@ -27,7 +27,7 @@ const modalStyle = {
 	top: '50%',
 	left: '50%',
 	transform: 'translate(-50%, -50%)',
-	width: '55rem',
+	width: '40rem',
 	maxHeight: '95vh',
 	overflowY: 'scroll',   // 要素が縦方向にはみ出した場合、スクロールする
 	bgcolor: 'background.paper',

@@ -151,21 +151,32 @@ function Filter({
 	return (
 		<>
 			<div className="p-2 bg-white">
-				<FormControl variant="filled" sx={{ mb: '1rem' }}>
-					<InputLabel id="select-label">カードの種類</InputLabel>
-					<Select
-						labelId="select-label"
-						id="select"
-						value={target}
-						onChange={e => handleChange(e)}
-						inputProps={{ 'aria-label': 'Without label' }}>
-						<MenuItem value="all">全て（モンスター・魔法・罠）</MenuItem>
-						<MenuItem value="monster">モンスターのみ</MenuItem>
-						<MenuItem value="spell">魔法のみ</MenuItem>
-						<MenuItem value="trap">罠のみ</MenuItem>
-					</Select>
-					{/* <FormHelperText component="label">必須</FormHelperText> */}
-				</FormControl>
+				<div className="flex justify-between items-center">
+					<FormControl variant="filled" sx={{ mb: '1rem' }}>
+						<InputLabel id="select-label">カードの種類</InputLabel>
+						<Select
+							labelId="select-label"
+							id="select"
+							value={target}
+							onChange={e => handleChange(e)}
+							inputProps={{ 'aria-label': 'Without label' }}>
+							<MenuItem value="all">全て（モンスター・魔法・罠）</MenuItem>
+							<MenuItem value="monster">モンスターのみ</MenuItem>
+							<MenuItem value="spell">魔法のみ</MenuItem>
+							<MenuItem value="trap">罠のみ</MenuItem>
+						</Select>
+						{/* <FormHelperText component="label">必須</FormHelperText> */}
+					</FormControl>
+					<Button
+						variant="text"
+						size="large"
+						color="info"
+						disableRipple
+						sx={{ textTransform: 'none', textDecoration: 'underline' }}
+						onClick={clearAllFilters}>
+						絞り込み条件をクリア
+					</Button>
+				</div>
 				<div className="mb-12 w-9/10 ml-4 pl-2 border-l-4 border-gray-200">
 					<CardNameFilterMUI
 						filters={filters}
@@ -215,7 +226,7 @@ function Filter({
 						<span className="font-bold text-xl">{filterResult}</span> 枚のカードがヒット
 					</p>
 				)}
-				<div className="w-1/3 mx-auto flex flex-col">
+				<div className="w-2/5 mx-auto flex flex-col">
 					<Button
 						variant="contained"
 						size="large"
@@ -232,20 +243,11 @@ function Filter({
 							size="large"
 							color="error"
 							disableRipple
-							sx={{ textTransform: 'none', mb: '0.8rem' }}
+							sx={{ textTransform: 'none' }}
 							onClick={handleClose}>
 							キャンセル
 						</Button>
 					)}
-					<Button
-						variant="text"
-						size="large"
-						color="info"
-						disableRipple
-						sx={{ textTransform: 'none', textDecoration: 'underline' }}
-						onClick={clearAllFilters}>
-						絞り込み条件をクリア
-					</Button>
 				</div>
 			</div>
 		</>

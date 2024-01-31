@@ -29,7 +29,7 @@ function CardNameFilterMUI({ filters, cardName, setCardName }) {
 				// required
 				// error={Boolean(errors.name)}
 				value={cardName}
-				sx={{ minWidth: '40rem' }}
+				sx={{ minWidth: '25rem' }}
 				onChange={e => handleChange(e)}
 			/>
 		</div>
