@@ -23,7 +23,8 @@ Route::get('/getData/races', [\App\Http\Controllers\Api\GetDataController::class
 Route::get('/getData/attributes', [\App\Http\Controllers\Api\GetDataController::class , 'getAttributeData'])->name('api.getData.attributes');
 Route::get('/getData/levelOrRanks', [\App\Http\Controllers\Api\GetDataController::class , 'getLevelOrRankData'])->name('api.getData.levelOrRanks');
 Route::get('/getData/linkValues', [\App\Http\Controllers\Api\GetDataController::class , 'getLinkValueData'])->name('api.getData.linkValues');
-Route::get('/getData/playTypes', [\App\Http\Controllers\Api\GetDataController::class , 'getPlayTypeData'])->name('api.getData.playTypes');
+Route::get('/getData/playTypes/spell', [\App\Http\Controllers\Api\GetDataController::class , 'getSpellPlayTypeData'])->name('api.getData.playTypes.spell');
+Route::get('/getData/playTypes/trap', [\App\Http\Controllers\Api\GetDataController::class , 'getTrapPlayTypeData'])->name('api.getData.playTypes.trap');
 Route::get('/getData/periods', [\App\Http\Controllers\Api\GetDataController::class , 'getPeriodData'])->name('api.getData.periods');
 
 

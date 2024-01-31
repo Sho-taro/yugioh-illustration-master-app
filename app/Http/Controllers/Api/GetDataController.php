@@ -7,12 +7,17 @@ use Illuminate\Http\Request;
 use App\Models\FrameType;
 use App\Models\Race;
 use App\Models\Attribute;
+use Illuminate\Support\Facades\DB;
+use App\Models\Period;
+
 
 class GetDataController extends Controller
 {
   public function getFrameTypeData (Request $request)
   {
-    $frameTypeData = FrameType::orderBy('frame_type_code', 'ASC')->get();
+    $frameTypeData = FrameType::whereNotIn('name_en', ['spell', 'trap', 'token', 'skill'])
+      ->orderBy('frame_type_code', 'ASC')
+      ->get();
 
     return response()->json($frameTypeData);
   }
@@ -29,5 +34,32 @@ class GetDataController extends Controller
     $attributeData = Attribute::orderBy('attribute_code', 'ASC')->get();
 
     return response()->json($attributeData);
+  }
+
+  public function getSpellPlayTypeData (Request $request)
+  {
+    // spell_trap_play_typesはモデルを作っていないため、DBファサードで対応
+    $playTypeData = DB::table('spell_trap_play_types')->where('name_en', '<>', 'Counter')
+      ->orderBy('play_type_code', 'ASC')
+      ->get();
+
+    return response()->json($playTypeData);
+  }
+
+  public function getTrapPlayTypeData (Request $request)
+  {
+    // spell_trap_play_typesはモデルを作っていないため、DBファサードで対応
+    $playTypeData = DB::table('spell_trap_play_types')->whereNotIn('name_en', ['Field', 'Equip', 'Quick-play', 'Ritual'])
+      ->orderBy('play_type_code', 'ASC')
+      ->get();
+
+    return response()->json($playTypeData);
+  }
+
+  public function getPeriodData (Request $request)
+  {
+    $periodData = Period::orderBy('period_code', 'ASC')->get();
+
+    return response()->json($periodData);
   }
 }

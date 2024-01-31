@@ -2,12 +2,6 @@ import React from 'react';
 import { useState, useEffect, useRef } from 'react';
 import axios, { isCancel, AxiosError } from 'axios';
 
-// import CardNameFilter from '@/Components/Admin/Filters/CardNameFilter';
-import MonsterCardFilter from '@/Components/Admin/Filters/MonsterCardFilter';
-import SpellCardFilter from '@/Components/Admin/Filters/SpellCardFilter';
-import TrapCardFilter from '@/Components/Admin/Filters/TrapCardFilter';
-import CardPeriodFilter from '@/Components/Admin/Filters/CardPeriodFilter';
-
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
@@ -17,6 +11,9 @@ import Typography from '@mui/material/Typography';
 
 import CardNameFilterMUI from '@/Components/MaterialUI/Filter/CardNameFilterMUI';
 import MonsterCardFilterMUI from '@/Components/MaterialUI/Filter/MonsterCardFilterMUI';
+import SpellCardFilterMUI from '@/Components/MaterialUI/Filter/SpellCardFilterMUI';
+import TrapCardFilterMUI from '@/Components/MaterialUI/Filter/TrapCardFilterMUI';
+import CommonFilterMUI from '@/Components/MaterialUI/Filter/CommonFilterMUI';
 
 function Filter({
 	apiMode,
@@ -90,22 +87,6 @@ function Filter({
 
 	return (
 		<>
-			{/* <div className="text-left">
-				<label htmlFor="target-select" className="mr-4">
-					絞り込み対象
-				</label>
-				<select
-					name="target-select"
-					id="target-select"
-					onChange={e => handleChange(e)}
-					value={target}>
-					<option value="all">全て（モンスター・魔法・罠）</option>
-					<option value="monster">モンスター</option>
-					<option value="spell">魔法</option>
-					<option value="trap">罠</option>
-				</select>
-			</div> */}
-
 			<div className="p-2 bg-white">
 				<FormControl variant="filled" sx={{ mb: '1rem', minWidth: '16rem' }}>
 					<InputLabel id="select-label">カードの種類</InputLabel>
@@ -127,18 +108,9 @@ function Filter({
 					<input type="hidden" name="target" value={target} />
 					<CardNameFilterMUI filters={filters} />
 					{target === 'monster' && <MonsterCardFilterMUI filters={filters} />}
-				</form>
-			</div>
-
-			<div className="text-left">
-				<form action={formAction} method="GET" ref={filterForm}>
-					{/* <input type="hidden" name="access-type" value="filtering" />
-					<input type="hidden" name="target" value={target} /> */}
-					{/* <CardNameFilter filters={filters} /> */}
-					{/* {target === 'monster' && <MonsterCardFilter filters={filters} />} */}
-					{target === 'spell' && <SpellCardFilter filters={filters} />}
-					{target === 'trap' && <TrapCardFilter filters={filters} />}
-					{isCardPeriodFilterOn && <CardPeriodFilter filters={filters} />}
+					{target === 'spell' && <SpellCardFilterMUI filters={filters} />}
+					{target === 'trap' && <TrapCardFilterMUI filters={filters} />}
+					{isCardPeriodFilterOn && <CommonFilterMUI filters={filters} />}
 					<div className="flex justify-between items-center mt-4">
 						{apiMode === 'on' && (
 							<p style={{ color: 'black' }}>

@@ -17,7 +17,7 @@ function CardNameFilterMUI({ filters }) {
 
 	return (
 		<div className="mb-4 flex items-center">
-			<Typography component="label" sx={{ width: '5rem', mr: '1rem' }}>
+			<Typography component="label" sx={{ width: '7rem', mr: '1rem', textAlign: 'right' }}>
 				カード名:
 			</Typography>
 			<TextField
