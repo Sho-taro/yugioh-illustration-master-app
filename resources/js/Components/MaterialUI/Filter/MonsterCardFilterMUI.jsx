@@ -3,6 +3,7 @@ import Typography from '@mui/material/Typography';
 
 import FrameTypeFilterMUI from '@/Components/MaterialUI/Filter/FrameTypeFilterMUI';
 import RaceFilterMUI from '@/Components/MaterialUI/Filter/RaceFilterMUI';
+import AttributeFilterMUI from '@/Components/MaterialUI/Filter/AttributeFilterMUI';
 
 function MonsterCardFilterMUI({filter}) {
   return (

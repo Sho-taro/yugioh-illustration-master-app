@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\FrameType;
 use App\Models\Race;
+use App\Models\Attribute;
 
 class GetDataController extends Controller
 {
@@ -21,5 +22,12 @@ class GetDataController extends Controller
     $raceData = Race::orderBy('race_code', 'ASC')->get();
 
     return response()->json($raceData);
+  }
+
+  public function getAttributeData (Request $request)
+  {
+    $attributeData = Attribute::orderBy('attribute_code', 'ASC')->get();
+
+    return response()->json($attributeData);
   }
 }

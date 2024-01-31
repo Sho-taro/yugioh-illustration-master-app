@@ -16,7 +16,7 @@ import Chip from '@mui/material/Chip';
 
 import { isCheckboxOn } from '@/utils/isCheckboxOn';
 
-import getRaceData from '@/utils/getDBDataFuncs/getRaceData';
+import getAttributeData from '@/utils/getDBDataFuncs/getAttributeData';
 
 const ITEM_HEIGHT = 96;
 const ITEM_PADDING_TOP = 8;
@@ -29,25 +29,25 @@ const MenuProps = {
 	},
 };
 
-function getStyles(race, races, theme) {
+function getStyles(attribute, attributes, theme) {
 	return {
 		fontWeight:
-			races.indexOf(race) === -1
+			attributes.indexOf(attribute) === -1
 				? theme.typography.fontWeightRegular
 				: theme.typography.fontWeightMedium,
 	};
 }
 
-function RaceFilterMUI({ filters }) {
+function AttributeFilterMUI({ filters }) {
 	const theme = useTheme();
-	const [raceArray, setRaceArray] = React.useState([]);
-	const [races, setRaces] = React.useState([]);
+	const [attributeArray, setAttributeArray] = React.useState([]);
+	const [attributes, setAttributes] = React.useState([]);
 
 	const handleChange = event => {
 		const {
 			target: { value },
 		} = event;
-		setRaces(
+		setAttributes(
 			// On autofill we get a stringified value.
 			typeof value === 'string' ? value.split(',') : value
 		);
@@ -55,9 +55,9 @@ function RaceFilterMUI({ filters }) {
 
 	React.useEffect(() => {
 		// console.log('useEffect');
-		getRaceData()
+		getAttributeData()
 			.then(data => {
-				setRaceArray([...data]);
+				setAttributeArray([...data]);
 			})
 			.catch(err => {
 				console.log(err);
@@ -71,7 +71,7 @@ function RaceFilterMUI({ filters }) {
 					multiple
 					displayEmpty
 					autoWidth
-					value={races}
+					value={attributes}
 					onChange={handleChange}
 					// input={<OutlinedInput id="select-multiple-chip" label="Chip" />}   // labelの文字指定
 					renderValue={selected => {
@@ -94,14 +94,14 @@ function RaceFilterMUI({ filters }) {
 					}}
 					MenuProps={MenuProps}
 					inputProps={{ 'aria-label': 'Without label' }}>
-					{raceArray.map(race => (
+					{attributeArray.map(attribute => (
 						<MenuItem
-							key={race.name_en}
-							value={race.name_en}
+							key={attribute.name_en}
+							value={attribute.name_en}
 							disableRipple
-							style={getStyles(race.name_en, races, theme)}>
-							<Checkbox checked={races.indexOf(race.name_en) > -1} />
-							<ListItemText primary={race.name_ja} />
+							style={getStyles(attribute.name_en, attributes, theme)}>
+							<Checkbox checked={attributes.indexOf(attribute.name_en) > -1} />
+							<ListItemText primary={attribute.name_ja} />
 						</MenuItem>
 					))}
 				</Select>
@@ -110,4 +110,4 @@ function RaceFilterMUI({ filters }) {
 	);
 }
 
-export default RaceFilterMUI;
+export default AttributeFilterMUI;
