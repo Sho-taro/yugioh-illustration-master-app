@@ -17,6 +17,7 @@ import Chip from '@mui/material/Chip';
 import { isCheckboxOn } from '@/utils/isCheckboxOn';
 
 import getFrameTypeData from '@/utils/getDBDataFuncs/getFrameTypeData';
+import { getFrameTypeNameJa } from '@/utils/getNameJaFunctions';
 
 const ITEM_HEIGHT = 96;
 const ITEM_PADDING_TOP = 8;
@@ -87,7 +88,7 @@ function FrameTypeFilterMUI({ filters }) {
 						return (
 							<Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
 								{selected.map(value => (
-									<Chip key={value} label={value} />
+									<Chip key={value} label={getFrameTypeNameJa(value)} />
 								))}
 							</Box>
 						);

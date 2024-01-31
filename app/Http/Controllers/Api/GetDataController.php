@@ -58,7 +58,7 @@ class GetDataController extends Controller
 
   public function getPeriodData (Request $request)
   {
-    $periodData = Period::orderBy('period_code', 'ASC')->get();
+    $periodData = Period::orderBy('period_code', 'DESC')->get();
 
     return response()->json($periodData);
   }

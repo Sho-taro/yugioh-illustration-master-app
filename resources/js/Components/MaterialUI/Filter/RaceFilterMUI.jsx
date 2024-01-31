@@ -17,6 +17,7 @@ import Chip from '@mui/material/Chip';
 import { isCheckboxOn } from '@/utils/isCheckboxOn';
 
 import getRaceData from '@/utils/getDBDataFuncs/getRaceData';
+import { getRaceNameJa } from '@/utils/getNameJaFunctions';
 
 const ITEM_HEIGHT = 96;
 const ITEM_PADDING_TOP = 8;
@@ -87,7 +88,7 @@ function RaceFilterMUI({ filters }) {
 						return (
 							<Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
 								{selected.map(value => (
-									<Chip key={value} label={value} />
+									<Chip key={value} label={getRaceNameJa(value)} />
 								))}
 							</Box>
 						);

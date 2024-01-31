@@ -107,10 +107,10 @@ function Filter({
 					<input type="hidden" name="access-type" value="filtering" />
 					<input type="hidden" name="target" value={target} />
 					<CardNameFilterMUI filters={filters} />
+					{isCardPeriodFilterOn && <CommonFilterMUI filters={filters} />}
 					{target === 'monster' && <MonsterCardFilterMUI filters={filters} />}
 					{target === 'spell' && <SpellCardFilterMUI filters={filters} />}
 					{target === 'trap' && <TrapCardFilterMUI filters={filters} />}
-					{isCardPeriodFilterOn && <CommonFilterMUI filters={filters} />}
 					<div className="flex justify-between items-center mt-4">
 						{apiMode === 'on' && (
 							<p style={{ color: 'black' }}>
