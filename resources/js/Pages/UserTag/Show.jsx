@@ -99,7 +99,9 @@ function Show({ auth, userTag, releasedCardsNum, releasedCardsData, messages, er
 							/> */}
 						</div>
 
-						{/* {updateMsg && <span style={{ color: 'green' }}>{updateMsg}</span>} */}
+						{messages.deleteUTMsg && (
+							<span style={{ color: 'green' }}>{messages.deleteUTMsg}</span>
+						)}
 						<div>
 							<div className="flex justify-between items-end">
 								<p>

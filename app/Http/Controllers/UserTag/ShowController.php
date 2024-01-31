@@ -39,9 +39,9 @@ class ShowController extends Controller
       // if ($request->session()->has('storeUTMsg')) {
       //   $messages['storeUTMsg'] = $request->session()->get('storeUTMsg');
       // }
-      // if ($request->session()->has('deleteUTMsg')) {
-      //   $messages['deleteUTMsg'] = $request->session()->get('deleteUTMsg');
-      // }
+      if ($request->session()->has('deleteUTMsg')) {
+        $messages['deleteUTMsg'] = $request->session()->get('deleteUTMsg');
+      }
       if ($request->session()->has('updateUTMsg')) {
         $messages['updateUTMsg'] = $request->session()->get('updateUTMsg');
       }

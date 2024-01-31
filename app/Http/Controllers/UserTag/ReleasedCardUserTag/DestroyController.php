@@ -32,6 +32,6 @@ class DestroyController extends Controller
 
         $user_id = $request->user()->id;
 
-        return redirect("/tags/{$user_id}/{$user_tag_id}")->with('message', '選択したカードのタグ付けを解除しました。');
+        return redirect("/tags/{$user_id}/{$user_tag_id}")->with('deleteUTMsg', '選択したカードのタグ付けを解除しました。');
     }
 }
