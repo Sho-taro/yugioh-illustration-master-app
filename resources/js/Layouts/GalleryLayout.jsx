@@ -8,7 +8,7 @@ function Layout({title, children}) {
 			{/* <Head>
         <title>{title}</title>
       </Head> */}
-			<div className="layout-bg min-h-full p-2">
+			<div className="layout-bg min-h-full">
 				{children}
 			</div>
 		</>
