@@ -77,6 +77,7 @@ function UpdateUserTagNameModalButton({auth, userTag, message, setUpdateMsg, err
 					aria-label="edit"
 					size="small"
 					disableRipple={true}
+					sx={{ border: '1px solid gray', borderRadius: '0.5rem' }}
 					onClick={handleOpen}>
 					<EditIcon fontSize="small" sx={{ color: 'white' }} />
 				</IconButton>
@@ -101,8 +102,8 @@ function UpdateUserTagNameModalButton({auth, userTag, message, setUpdateMsg, err
 							variant="filled"
 							placeholder="最大20文字"
 							helperText="(作成済みのMyTagと同一の名前をつけることはできません)"
-              fullWidth
-              autoFocus
+							fullWidth
+							autoFocus
 							// required
 							// error={Boolean(errors.userTagName)}
 							name="userTagName"

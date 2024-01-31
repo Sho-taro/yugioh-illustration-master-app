@@ -7,7 +7,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import Typography from '@mui/material/Typography';
+// import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import SearchIcon from '@mui/icons-material/Search';
 // import FormHelperText from '@mui/material/FormHelperText';
@@ -19,12 +19,13 @@ import TrapCardFilterMUI from '@/Components/MaterialUI/Filter/TrapCardFilterMUI'
 import CommonFilterMUI from '@/Components/MaterialUI/Filter/CommonFilterMUI';
 
 function Filter({
-	apiMode, // 'on' または 'off'
 	routeName,
 	routePath,
 	isPeriodFilterOn,
 	filters,
-	releasedCardsNum,
+	apiMode, // 'on' または 'off'
+	releasedCardsNum,   // apiModeが'on'なら必須
+	handleClose,   // モーダルウィンドウを閉じる関数（モーダルで使用しない場合、無くていい）
 }) {
 	const [filterResult, setFilterResult] = useState(0);
 
@@ -40,13 +41,13 @@ function Filter({
 	const [trapPlayTypes, setTrapPlayTypes] = useState([]);
 	const [periods, setPeriods] = useState([]);
 
-	// formの送信先
-	let formAction;
+	// routerの送信先パス
+	let routerURL;
 	if (routeName) {
-		formAction = route(routeName);
+		routerURL = route(routeName);
 	}
 	if (routePath) {
-		formAction = routePath;
+		routerURL = routePath;
 	}
 
 	const handleChange = e => {
@@ -66,7 +67,7 @@ function Filter({
 	// 絞り込みを実行する関数
 	const handleSearchButtonClick = () => {
 		if (target === 'all') {
-			router.get(formAction, {
+			router.get(routerURL, {
 				// 絞り込み条件
 				'access-type': 'filtering',
 				target: target,
@@ -74,7 +75,7 @@ function Filter({
 				periods: periods,
 			});
 		} else if (target === 'monster') {
-			router.get(formAction, {
+			router.get(routerURL, {
 				// 絞り込み条件
 				'access-type': 'filtering',
 				target: target,
@@ -87,7 +88,7 @@ function Filter({
 				periods: periods,
 			});
 		} else if (target === 'spell') {
-			router.get(formAction, {
+			router.get(routerURL, {
 				// 絞り込み条件
 				'access-type': 'filtering',
 				target: target,
@@ -96,7 +97,7 @@ function Filter({
 				periods: periods,
 			});
 		} else if (target === 'trap') {
-			router.get(formAction, {
+			router.get(routerURL, {
 				// 絞り込み条件
 				'access-type': 'filtering',
 				target: target,
@@ -106,6 +107,10 @@ function Filter({
 			});
 		}
 	};
+	// 絞り込み条件をすべてクリアする関数
+	const clearAllFilters = () => {
+		router.get(routerURL);
+	}
 
 	// axiosを使用してHTTPリクエストを送信
 	// const getFilterResult = async formData => {
@@ -146,7 +151,7 @@ function Filter({
 	return (
 		<>
 			<div className="p-2 bg-white">
-				<FormControl variant="filled" sx={{ mb: '1rem', minWidth: '16rem' }}>
+				<FormControl variant="filled" sx={{ mb: '1rem' }}>
 					<InputLabel id="select-label">カードの種類</InputLabel>
 					<Select
 						labelId="select-label"
@@ -161,62 +166,85 @@ function Filter({
 					</Select>
 					{/* <FormHelperText component="label">必須</FormHelperText> */}
 				</FormControl>
-				{/* <input type="hidden" name="access-type" value="filtering" />
-				<input type="hidden" name="target" value={target} /> */}
-				<CardNameFilterMUI
-					filters={filters}
-					cardName={cardName}
-					setCardName={setCardName}
-				/>
-				{target === 'monster' && (
-					<MonsterCardFilterMUI
+				<div className="mb-12 w-9/10 ml-4 pl-2 border-l-4 border-gray-200">
+					<CardNameFilterMUI
 						filters={filters}
-						frameTypes={frameTypes}
-						setFrameTypes={setFrameTypes}
-						races={races}
-						setRaces={setRaces}
-						attributes={attributes}
-						setAttributes={setAttributes}
-						levelOrRanks={levelOrRanks}
-						setLevelOrRanks={setLevelOrRanks}
-						linkValues={linkValues}
-						setLinkValues={setLinkValues}
+						cardName={cardName}
+						setCardName={setCardName}
 					/>
-				)}
-				{target === 'spell' && (
-					<SpellCardFilterMUI
-						filters={filters}
-						spellPlayTypes={spellPlayTypes}
-						setSpellPlayTypes={setSpellPlayTypes}
-					/>
-				)}
-				{target === 'trap' && (
-					<TrapCardFilterMUI
-						filters={filters}
-						trapPlayTypes={trapPlayTypes}
-						setTrapPlayTypes={setTrapPlayTypes}
-					/>
-				)}
-				{isPeriodFilterOn && (
-					<CommonFilterMUI filters={filters} periods={periods} setPeriods={setPeriods} />
-				)}
-				<div className="flex justify-between items-center mt-4">
-					{apiMode === 'on' && (
-						<p style={{ color: 'black' }}>
-							全{releasedCardsNum}枚中{' '}
-							<span className="font-bold text-xl">{filterResult}</span>{' '}
-							枚のカードがヒット
-						</p>
+					{target === 'monster' && (
+						<MonsterCardFilterMUI
+							filters={filters}
+							frameTypes={frameTypes}
+							setFrameTypes={setFrameTypes}
+							races={races}
+							setRaces={setRaces}
+							attributes={attributes}
+							setAttributes={setAttributes}
+							levelOrRanks={levelOrRanks}
+							setLevelOrRanks={setLevelOrRanks}
+							linkValues={linkValues}
+							setLinkValues={setLinkValues}
+						/>
 					)}
+					{target === 'spell' && (
+						<SpellCardFilterMUI
+							filters={filters}
+							spellPlayTypes={spellPlayTypes}
+							setSpellPlayTypes={setSpellPlayTypes}
+						/>
+					)}
+					{target === 'trap' && (
+						<TrapCardFilterMUI
+							filters={filters}
+							trapPlayTypes={trapPlayTypes}
+							setTrapPlayTypes={setTrapPlayTypes}
+						/>
+					)}
+					{isPeriodFilterOn && (
+						<CommonFilterMUI
+							filters={filters}
+							periods={periods}
+							setPeriods={setPeriods}
+						/>
+					)}
+				</div>
+				{apiMode === 'on' && (
+					<p style={{ color: 'black' }} className="mb-4">
+						全{releasedCardsNum}枚中{' '}
+						<span className="font-bold text-xl">{filterResult}</span> 枚のカードがヒット
+					</p>
+				)}
+				<div className="w-1/3 mx-auto flex flex-col">
 					<Button
 						variant="contained"
 						size="large"
 						color="error"
 						disableRipple
 						startIcon={<SearchIcon />}
-						sx={{ color: 'white', textTransform: 'none' }}
+						sx={{ color: 'white', textTransform: 'none', mb: '0.8rem' }}
 						onClick={() => handleSearchButtonClick()}>
 						絞り込む
+					</Button>
+					{handleClose && (
+						<Button
+							variant="text"
+							size="large"
+							color="error"
+							disableRipple
+							sx={{ textTransform: 'none', mb: '0.8rem' }}
+							onClick={handleClose}>
+							キャンセル
+						</Button>
+					)}
+					<Button
+						variant="text"
+						size="large"
+						color="info"
+						disableRipple
+						sx={{ textTransform: 'none', textDecoration: 'underline' }}
+						onClick={clearAllFilters}>
+						絞り込み条件をクリア
 					</Button>
 				</div>
 			</div>

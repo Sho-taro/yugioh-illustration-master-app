@@ -70,7 +70,7 @@ function Show({ auth, userTag, releasedCardsNum, releasedCardsData, messages, er
 			<div className="w-3/5 mx-auto">
 				<TooltipBackButton href={`/tags/${auth.user.id}`} />
 				<div className="w-5/6 mx-auto mt-2">
-					<div className="mb-4">
+					<div className="mb-8">
 						<Typography variant="h4" component="h2" sx={{ textAlign: 'center' }}>
 							MyTag 詳細
 						</Typography>
@@ -98,12 +98,15 @@ function Show({ auth, userTag, releasedCardsNum, releasedCardsData, messages, er
 								deleteUserTag={deleteUserTag}
 							/> */}
 						</div>
-
 						{messages.deleteUTMsg && (
 							<span style={{ color: 'green' }}>{messages.deleteUTMsg}</span>
 						)}
 						<div>
-							<div className="flex justify-between items-end">
+							<Divider
+								variant="full"
+								sx={{ mb: '0.4rem', borderColor: 'rgba(200, 200, 200, 0.7)' }}
+							/>
+							<div className="mb-6 flex justify-between items-start">
 								<p>
 									タグ付けされたカード{' '}
 									<span className="text-2xl font-bold">{releasedCardsNum}</span>枚
@@ -117,10 +120,6 @@ function Show({ auth, userTag, releasedCardsNum, releasedCardsData, messages, er
 									deleteUserTag={deleteUserTag}
 								/>
 							</div>
-							<Divider
-								variant="full"
-								sx={{ mt: '0.4rem', borderColor: 'rgba(200, 200, 200, 0.7)' }}
-							/>
 							{mode === 'deleteCards' && (
 								<div className="my-8">
 									<p style={{ color: 'green' }}>

@@ -79,7 +79,7 @@ class CreateController extends Controller
       $data = $releasedCards_query->orderBy('card_ja_kana', 'ASC')->paginate(30)          // 日本語カード名（読み）の昇順
                                                                   ->withQueryString();   // URLのカスタマイズ（現在開いているページのクエリストリングを全て追加）
 
-      return inertia('UserTag/AddCards', ['cardsNum' => $cards_num, 'userTag' => $user_tag, 'data' => $data, 'releasedCardIdArray' => $released_card_id_arr]);
+      return inertia('UserTag/AddCards', ['cardsNum' => $cards_num, 'filteredCardsNum' => $cards_num, 'userTag' => $user_tag, 'data' => $data, 'releasedCardIdArray' => $released_card_id_arr]);
 
     } else if ($request->input('access-type') === 'filtering') {
       // 絞り込みボタンを押して再アクセスしてきた場合
@@ -308,14 +308,14 @@ class CreateController extends Controller
       }
 
       // dd($releasedCards_query->count());
-      $message = "{$releasedCards_query->count()} 枚のカードが見つかりました。";
+      $filtered_cards_num = $releasedCards_query->count();
 
       // クエリを実行してレコードを取得
       $data = $releasedCards_query->orderBy('card_ja_kana', 'ASC')->paginate(30)          // 日本語カード名（読み）の昇順
                                                                   ->withQueryString();   // URLのカスタマイズ（現在開いているページのクエリストリングを全て追加）
       // dd($data);
 
-      return inertia('UserTag/AddCards', ['userTag' => $user_tag, 'data' => $data, 'cardsNum' => $cards_num, 'message' => $message, 'filters' => $filters,  'releasedCardIdArray' => $released_card_id_arr]);
+      return inertia('UserTag/AddCards', ['userTag' => $user_tag, 'data' => $data, 'cardsNum' => $cards_num, 'filteredCardsNum' => $filtered_cards_num, 'filters' => $filters,  'releasedCardIdArray' => $released_card_id_arr]);
     }
   }
 }

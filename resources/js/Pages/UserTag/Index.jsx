@@ -13,7 +13,6 @@ import CreateUserTagModalButton from '@/Components/MaterialUI/CreateUserTagModal
 // import CreateUserTagPopoverButton from '@/Components/MaterialUI/CreateUserTagPopoverButton';
 import TooltipBackButton from '@/Components/MaterialUI/TooltipBackButton';
 
-
 function Index({ auth, errors, userTagsNum, userTagsData, messages }) {
 	const [storeMsg, setStoreMsg] = React.useState(messages.storeUTMsg);
 	let showingMinIndex; // 枚数表示の最小値
@@ -35,30 +34,20 @@ function Index({ auth, errors, userTagsNum, userTagsData, messages }) {
 			<div className="w-3/5 mx-auto">
 				<TooltipBackButton href={route('index')} />
 				<div className="w-5/6 mx-auto mt-2">
-					<div className="mb-4">
+					<div className="mb-8">
 						<Typography variant="h4" component="h2" sx={{ textAlign: 'center' }}>
 							MyTag 一覧
 						</Typography>
 					</div>
-					<div className="mb-2 flex justify-between items-end">
+					<Divider
+						variant="full"
+						sx={{ mb: '0.4rem', borderColor: 'rgba(200, 200, 200, 0.7)' }}
+					/>
+					<div className="flex justify-between items-start">
 						<p>
 							全 <span className="text-xl font-bold">{userTagsNum}</span> 件 （
 							{showingMinIndex} - {showingMaxIndex} 件を表示中 ）
 						</p>
-						{/* <Link href={`/tags/${auth.user.id}/create`}>
-							<Button
-								variant="outlined"
-								color="error"
-								size="large"
-								style={{ color: 'red' }}
-								sx={{
-									textTransform: 'none',
-									border: '1px solid red',
-								}}
-								startIcon={<AddIcon sx={{ color: 'red' }} />}>
-								MyTagを新規作成
-							</Button>
-						</Link> */}
 						<CreateUserTagModalButton
 							auth={auth}
 							message={storeMsg}
@@ -67,7 +56,6 @@ function Index({ auth, errors, userTagsNum, userTagsData, messages }) {
 						/>
 						{/* <CreateUserTagPopoverButton auth={auth} errors={errors} /> */}
 					</div>
-					<Divider variant="full" sx={{ borderColor: 'rgba(200, 200, 200, 0.7)' }} />
 					<div className="mt-12">
 						{messages.deleteUTMsg && (
 							<p style={{ color: 'green' }} className="mb-4">
