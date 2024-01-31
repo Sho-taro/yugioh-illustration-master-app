@@ -38,9 +38,8 @@ function getStyles(linkValue, linkValues, theme) {
 	};
 }
 
-function LinkValueFilterMUI({ filters }) {
+function LinkValueFilterMUI({ filters, linkValues, setLinkValues }) {
 	const theme = useTheme();
-	const [linkValues, setLinkValues] = React.useState([]);
 
 	const handleChange = event => {
 		const {

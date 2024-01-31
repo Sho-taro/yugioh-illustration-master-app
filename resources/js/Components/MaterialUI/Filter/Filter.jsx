@@ -1,12 +1,15 @@
 import React from 'react';
 import { useState, useEffect, useRef } from 'react';
 import axios, { isCancel, AxiosError } from 'axios';
+import { router } from '@inertiajs/react';
 
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import SearchIcon from '@mui/icons-material/Search';
 // import FormHelperText from '@mui/material/FormHelperText';
 
 import CardNameFilterMUI from '@/Components/MaterialUI/Filter/CardNameFilterMUI';
@@ -16,74 +19,129 @@ import TrapCardFilterMUI from '@/Components/MaterialUI/Filter/TrapCardFilterMUI'
 import CommonFilterMUI from '@/Components/MaterialUI/Filter/CommonFilterMUI';
 
 function Filter({
-	apiMode,
+	apiMode, // 'on' または 'off'
 	routeName,
 	routePath,
-	isCardPeriodFilterOn,
+	isPeriodFilterOn,
 	filters,
 	releasedCardsNum,
 }) {
-	const [target, setTarget] = useState('all');
 	const [filterResult, setFilterResult] = useState(0);
-	const filterForm = useRef(null);
+
+	// フォーム送信用に保持しておくデータ
+	const [target, setTarget] = useState('all');
+	const [cardName, setCardName] = useState('');
+	const [frameTypes, setFrameTypes] = useState([]);
+	const [races, setRaces] = useState([]);
+	const [attributes, setAttributes] = useState([]);
+	const [levelOrRanks, setLevelOrRanks] = useState([]);
+	const [linkValues, setLinkValues] = useState([]);
+	const [spellPlayTypes, setSpellPlayTypes] = useState([]);
+	const [trapPlayTypes, setTrapPlayTypes] = useState([]);
+	const [periods, setPeriods] = useState([]);
 
 	// formの送信先
 	let formAction;
 	if (routeName) {
 		formAction = route(routeName);
-	} else if (routePath) {
+	}
+	if (routePath) {
 		formAction = routePath;
 	}
 
 	const handleChange = e => {
-		setTarget(e.target.value);
+		setTarget(e.target.value); // targetを変更
+		// すべてのuseStateを初期値に戻す
+		setCardName('');
+		setFrameTypes([]);
+		setRaces([]);
+		setAttributes([]);
+		setLevelOrRanks([]);
+		setLinkValues([]);
+		setSpellPlayTypes([]);
+		setTrapPlayTypes([]);
+		setPeriods([]);
 	};
 
-	// formの内容をFormDataオブジェクトを通して取得する関数
-	const getFormData = () => {
-		const filterFormData = new FormData(filterForm.current);
-		const filterFormDataEntries = [...filterFormData.entries()];
-		return filterFormDataEntries;
-	};
-	// axiosを使用してHTTPリクエストを送信
-	const getFilterResult = async formData => {
-		try {
-			const res = await axios.post(route('gallery.filterdcardsnum'), {
-				body: formData,
+	// 絞り込みを実行する関数
+	const handleSearchButtonClick = () => {
+		if (target === 'all') {
+			router.get(formAction, {
+				// 絞り込み条件
+				'access-type': 'filtering',
+				target: target,
+				'card-name': cardName,
+				periods: periods,
 			});
-			// console.log(res.data);
-			setFilterResult(res.data); // Promiseオブジェクトの[[PromiseResult]]プロパティの内容は今このタイミングでしか参照できない
-			return res;
-		} catch (err) {
-			console.log(err);
+		} else if (target === 'monster') {
+			router.get(formAction, {
+				// 絞り込み条件
+				'access-type': 'filtering',
+				target: target,
+				'card-name': cardName,
+				'frame-types': frameTypes,
+				races: races,
+				attributes: attributes,
+				'level-or-ranks': levelOrRanks,
+				'link-values': linkValues,
+				periods: periods,
+			});
+		} else if (target === 'spell') {
+			router.get(formAction, {
+				// 絞り込み条件
+				'access-type': 'filtering',
+				target: target,
+				'card-name': cardName,
+				'play-types': spellPlayTypes,
+				periods: periods,
+			});
+		} else if (target === 'trap') {
+			router.get(formAction, {
+				// 絞り込み条件
+				'access-type': 'filtering',
+				target: target,
+				'card-name': cardName,
+				'play-types': trapPlayTypes,
+				periods: periods,
+			});
 		}
 	};
 
-	useEffect(() => {
-		if (!filters) {
-			return;
-		} else {
-			setTarget(filters.target);
-		}
-	}, []);
+	// axiosを使用してHTTPリクエストを送信
+	// const getFilterResult = async formData => {
+	// 	try {
+	// 		const res = await axios.post(route('gallery.filteredcardsnum'), {
+	// 			// formの内容
+	// 		});
+	// 		// console.log(res.data);
+	// 		setFilterResult(res.data); // Promiseオブジェクトの[[PromiseResult]]プロパティの内容は今このタイミングでしか参照できない
+	// 		return res;
+	// 	} catch (err) {
+	// 		console.log(err);
+	// 	}
+	// };
 	useEffect(() => {
 		if (apiMode !== 'on') return;
-		// form内の全てのinput要素にchangeイベントハンドラーを設定する
-		const filterFormElements = filterForm.current.elements;
-		for (let i = 0; i < filterFormElements.length; i++) {
-			if (filterFormElements[i].nodeName === 'BUTTON') {
-				continue;
-			} else if (filterFormElements[i].nodeName === 'INPUT') {
-				filterFormElements[i].onchange = () => {
-					// AJAXの処理
-					const filterFormDataEntries = getFormData();
-					const res = getFilterResult(filterFormDataEntries);
-					// console.log(res);
-				};
-			}
-		}
-		getFilterResult(getFormData());
+		// 現時点での絞り込み条件に何枚のカードが該当するか表示するための処理
 	}, [target]);
+	useEffect(() => {
+		if (!filters) return;
+		// 前回の絞り込み条件を再現する
+		setTarget(filters.target);
+		filters['card-name'] && setCardName(filters['card-name']);
+		filters['frame-types'] && setFrameTypes([...filters['frame-types']]);
+		filters['races'] && setRaces([...filters['races']]);
+		filters['attributes'] && setAttributes([...filters['attributes']]);
+		filters['level-or-ranks'] && setLevelOrRanks([...filters['level-or-ranks']]);
+		filters['link-values'] && setLinkValues([...filters['link-values']]);
+		if (filters.target === 'spell' && filters['play-types']) {
+			setSpellPlayTypes([...filters['play-types']]);
+		}
+		if (filters.target === 'trap' && filters['play-types']) {
+			setTrapPlayTypes([...filters['play-types']]);
+		}
+		filters['periods'] && setPeriods([...filters['periods']]);
+	}, [filters]);
 
 	return (
 		<>
@@ -103,27 +161,64 @@ function Filter({
 					</Select>
 					{/* <FormHelperText component="label">必須</FormHelperText> */}
 				</FormControl>
-				<form action={formAction} method="GET" ref={filterForm}>
-					<input type="hidden" name="access-type" value="filtering" />
-					<input type="hidden" name="target" value={target} />
-					<CardNameFilterMUI filters={filters} />
-					{isCardPeriodFilterOn && <CommonFilterMUI filters={filters} />}
-					{target === 'monster' && <MonsterCardFilterMUI filters={filters} />}
-					{target === 'spell' && <SpellCardFilterMUI filters={filters} />}
-					{target === 'trap' && <TrapCardFilterMUI filters={filters} />}
-					<div className="flex justify-between items-center mt-4">
-						{apiMode === 'on' && (
-							<p style={{ color: 'black' }}>
-								全{releasedCardsNum}枚中{' '}
-								<span className="font-bold text-xl">{filterResult}</span>{' '}
-								枚のカードがヒットしました
-							</p>
-						)}
-						<button className="block ml-4 px-2 py-1 border-2 border-solid border-gray-300 rounded-md">
-							この条件で絞り込む
-						</button>
-					</div>
-				</form>
+				{/* <input type="hidden" name="access-type" value="filtering" />
+				<input type="hidden" name="target" value={target} /> */}
+				<CardNameFilterMUI
+					filters={filters}
+					cardName={cardName}
+					setCardName={setCardName}
+				/>
+				{target === 'monster' && (
+					<MonsterCardFilterMUI
+						filters={filters}
+						frameTypes={frameTypes}
+						setFrameTypes={setFrameTypes}
+						races={races}
+						setRaces={setRaces}
+						attributes={attributes}
+						setAttributes={setAttributes}
+						levelOrRanks={levelOrRanks}
+						setLevelOrRanks={setLevelOrRanks}
+						linkValues={linkValues}
+						setLinkValues={setLinkValues}
+					/>
+				)}
+				{target === 'spell' && (
+					<SpellCardFilterMUI
+						filters={filters}
+						spellPlayTypes={spellPlayTypes}
+						setSpellPlayTypes={setSpellPlayTypes}
+					/>
+				)}
+				{target === 'trap' && (
+					<TrapCardFilterMUI
+						filters={filters}
+						trapPlayTypes={trapPlayTypes}
+						setTrapPlayTypes={setTrapPlayTypes}
+					/>
+				)}
+				{isPeriodFilterOn && (
+					<CommonFilterMUI filters={filters} periods={periods} setPeriods={setPeriods} />
+				)}
+				<div className="flex justify-between items-center mt-4">
+					{apiMode === 'on' && (
+						<p style={{ color: 'black' }}>
+							全{releasedCardsNum}枚中{' '}
+							<span className="font-bold text-xl">{filterResult}</span>{' '}
+							枚のカードがヒット
+						</p>
+					)}
+					<Button
+						variant="contained"
+						size="large"
+						color="error"
+						disableRipple
+						startIcon={<SearchIcon />}
+						sx={{ color: 'white', textTransform: 'none' }}
+						onClick={() => handleSearchButtonClick()}>
+						絞り込む
+					</Button>
+				</div>
 			</div>
 		</>
 	);

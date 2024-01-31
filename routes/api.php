@@ -28,7 +28,7 @@ Route::get('/getData/playTypes/trap', [\App\Http\Controllers\Api\GetDataControll
 Route::get('/getData/periods', [\App\Http\Controllers\Api\GetDataController::class , 'getPeriodData'])->name('api.getData.periods');
 
 
-Route::post('/gallery/filterdcardsnum', \App\Http\Controllers\Gallery\FilteredCardsNumController::class)->name('gallery.filterdcardsnum');
+Route::post('/gallery/filteredcardsnum', \App\Http\Controllers\Gallery\FilteredCardsNumController::class)->name('gallery.filteredcardsnum');
 
 Route::post('/tags/addCards', \App\Http\Controllers\Api\UserTag\AddCardsStoreController::class)->name('api.addCards');
 Route::post('/tags/removeCards', \App\Http\Controllers\Api\UserTag\RemoveCardsStoreController::class)->name('api.removeCards');

@@ -38,9 +38,8 @@ function getStyles(levelOrRank, levelOrRanks, theme) {
 	};
 }
 
-function LevelOrRankFilterMUI({ filters }) {
+function LevelOrRankFilterMUI({ filters, levelOrRanks, setLevelOrRanks }) {
 	const theme = useTheme();
-	const [levelOrRanks, setLevelOrRanks] = React.useState([]);
 
 	const handleChange = event => {
 		const {

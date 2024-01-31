@@ -30,25 +30,24 @@ const MenuProps = {
 	},
 };
 
-function getStyles(playType, playTypes, theme) {
+function getStyles(spellPlayType, spellPlayTypes, theme) {
 	return {
 		fontWeight:
-			playTypes.indexOf(playType) === -1
+			spellPlayTypes.indexOf(spellPlayType) === -1
 				? theme.typography.fontWeightRegular
 				: theme.typography.fontWeightMedium,
 	};
 }
 
-function SpellPlayTypeFilterMUI({ filters }) {
+function SpellPlayTypeFilterMUI({ filters, spellPlayTypes, setSpellPlayTypes }) {
 	const theme = useTheme();
-	const [playTypeArray, setPlayTypeArray] = React.useState([]);
-	const [playTypes, setPlayTypes] = React.useState([]);
+	const [spellPlayTypeArray, setSpellPlayTypeArray] = React.useState([]);
 
 	const handleChange = event => {
 		const {
 			target: { value },
 		} = event;
-		setPlayTypes(
+		setSpellPlayTypes(
 			// On autofill we get a stringified value.
 			typeof value === 'string' ? value.split(',') : value
 		);
@@ -58,7 +57,7 @@ function SpellPlayTypeFilterMUI({ filters }) {
 		// console.log('useEffect');
 		getSpellPlayTypeData()
 			.then(data => {
-				setPlayTypeArray([...data]);
+				setSpellPlayTypeArray([...data]);
 			})
 			.catch(err => {
 				console.log(err);
@@ -72,7 +71,7 @@ function SpellPlayTypeFilterMUI({ filters }) {
 					multiple
 					displayEmpty
 					autoWidth
-					value={playTypes}
+					value={spellPlayTypes}
 					onChange={handleChange}
 					// input={<OutlinedInput id="select-multiple-chip" label="Chip" />}   // labelの文字指定
 					renderValue={selected => {
@@ -95,14 +94,14 @@ function SpellPlayTypeFilterMUI({ filters }) {
 					}}
 					MenuProps={MenuProps}
 					inputProps={{ 'aria-label': 'Without label' }}>
-					{playTypeArray.map(playType => (
+					{spellPlayTypeArray.map(spellPlayType => (
 						<MenuItem
-							key={playType.name_en}
-							value={playType.name_en}
+							key={spellPlayType.name_en}
+							value={spellPlayType.name_en}
 							disableRipple
-							style={getStyles(playType.name_en, playTypes, theme)}>
-							<Checkbox checked={playTypes.indexOf(playType.name_en) > -1} />
-							<ListItemText primary={playType.name_ja} />
+							style={getStyles(spellPlayType.name_en, spellPlayTypes, theme)}>
+							<Checkbox checked={spellPlayTypes.indexOf(spellPlayType.name_en) > -1} />
+							<ListItemText primary={spellPlayType.name_ja} />
 						</MenuItem>
 					))}
 				</Select>

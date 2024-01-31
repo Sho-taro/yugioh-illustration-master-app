@@ -39,10 +39,9 @@ function getStyles(race, races, theme) {
 	};
 }
 
-function RaceFilterMUI({ filters }) {
+function RaceFilterMUI({ filters, races, setRaces }) {
 	const theme = useTheme();
 	const [raceArray, setRaceArray] = React.useState([]);
-	const [races, setRaces] = React.useState([]);
 
 	const handleChange = event => {
 		const {

@@ -2,8 +2,8 @@ import React from 'react';
 import Typography from '@mui/material/Typography';
 import SpellPlayTypeFilterMUI from '@/Components/MaterialUI/Filter/SpellPlayTypeFilterMUI';
 
-function SpellCardFilterMUI({filter}) {
-  return (
+function SpellCardFilterMUI({ filter, spellPlayTypes, setSpellPlayTypes }) {
+	return (
 		<>
 			<div className="mb-4 flex items-center">
 				<Typography
@@ -11,10 +11,14 @@ function SpellCardFilterMUI({filter}) {
 					sx={{ width: '7rem', mr: '1rem', textAlign: 'right' }}>
 					分類:
 				</Typography>
-				<SpellPlayTypeFilterMUI filter={filter} />
+				<SpellPlayTypeFilterMUI
+					filter={filter}
+					spellPlayTypes={spellPlayTypes}
+					setSpellPlayTypes={setSpellPlayTypes}
+				/>
 			</div>
 		</>
-  );
+	);
 }
 
 export default SpellCardFilterMUI;

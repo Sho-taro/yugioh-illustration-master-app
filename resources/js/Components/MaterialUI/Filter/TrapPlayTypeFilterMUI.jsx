@@ -30,25 +30,24 @@ const MenuProps = {
 	},
 };
 
-function getStyles(playType, playTypes, theme) {
+function getStyles(trapPlayType, trapPlayTypes, theme) {
 	return {
 		fontWeight:
-			playTypes.indexOf(playType) === -1
+			trapPlayTypes.indexOf(trapPlayType) === -1
 				? theme.typography.fontWeightRegular
 				: theme.typography.fontWeightMedium,
 	};
 }
 
-function TrapPlayTypeFilterMUI({ filters }) {
+function TrapPlayTypeFilterMUI({ filters, trapPlayTypes, setTrapPlayTypes }) {
 	const theme = useTheme();
-	const [playTypeArray, setPlayTypeArray] = React.useState([]);
-	const [playTypes, setPlayTypes] = React.useState([]);
+	const [trapPlayTypeArray, setTrapPlayTypeArray] = React.useState([]);
 
 	const handleChange = event => {
 		const {
 			target: { value },
 		} = event;
-		setPlayTypes(
+		setTrapPlayTypes(
 			// On autofill we get a stringified value.
 			typeof value === 'string' ? value.split(',') : value
 		);
@@ -58,7 +57,7 @@ function TrapPlayTypeFilterMUI({ filters }) {
 		// console.log('useEffect');
 		getTrapPlayTypeData()
 			.then(data => {
-				setPlayTypeArray([...data]);
+				setTrapPlayTypeArray([...data]);
 			})
 			.catch(err => {
 				console.log(err);
@@ -72,7 +71,7 @@ function TrapPlayTypeFilterMUI({ filters }) {
 					multiple
 					displayEmpty
 					autoWidth
-					value={playTypes}
+					value={trapPlayTypes}
 					onChange={handleChange}
 					// input={<OutlinedInput id="select-multiple-chip" label="Chip" />}   // labelの文字指定
 					renderValue={selected => {
@@ -95,14 +94,14 @@ function TrapPlayTypeFilterMUI({ filters }) {
 					}}
 					MenuProps={MenuProps}
 					inputProps={{ 'aria-label': 'Without label' }}>
-					{playTypeArray.map(playType => (
+					{trapPlayTypeArray.map(trapPlayType => (
 						<MenuItem
-							key={playType.name_en}
-							value={playType.name_en}
+							key={trapPlayType.name_en}
+							value={trapPlayType.name_en}
 							disableRipple
-							style={getStyles(playType.name_en, playTypes, theme)}>
-							<Checkbox checked={playTypes.indexOf(playType.name_en) > -1} />
-							<ListItemText primary={playType.name_ja} />
+							style={getStyles(trapPlayType.name_en, trapPlayTypes, theme)}>
+							<Checkbox checked={trapPlayTypes.indexOf(trapPlayType.name_en) > -1} />
+							<ListItemText primary={trapPlayType.name_ja} />
 						</MenuItem>
 					))}
 				</Select>

@@ -38,10 +38,9 @@ function getStyles(period, periods, theme) {
 	};
 }
 
-function PeriodFilterMUI({ filters }) {
+function PeriodFilterMUI({ filters, periods, setPeriods }) {
 	const theme = useTheme();
 	const [periodArray, setPeriodArray] = React.useState([]);
-	const [periods, setPeriods] = React.useState([]);
 
 	const handleChange = event => {
 		const {

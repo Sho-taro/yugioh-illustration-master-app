@@ -18,6 +18,9 @@ class CreateController extends Controller
    */
   public function __invoke(Request $request)
   {
+    // 登録されているカードのレコード数を取得
+    $cards_num = DB::table('released_cards')->count();
+
     $user_tag_id = $request->route('userTagId');    // クエリパラメータを取得
     $user_tag = UserTag::where('id', $user_tag_id)->firstOrFail();  // UserTagモデルを取得
 
@@ -76,7 +79,7 @@ class CreateController extends Controller
       $data = $releasedCards_query->orderBy('card_ja_kana', 'ASC')->paginate(30)          // 日本語カード名（読み）の昇順
                                                                   ->withQueryString();   // URLのカスタマイズ（現在開いているページのクエリストリングを全て追加）
 
-      return inertia('UserTag/AddCards', ['userTag' => $user_tag, 'data' => $data, 'releasedCardIdArray' => $released_card_id_arr]);
+      return inertia('UserTag/AddCards', ['cardsNum' => $cards_num, 'userTag' => $user_tag, 'data' => $data, 'releasedCardIdArray' => $released_card_id_arr]);
 
     } else if ($request->input('access-type') === 'filtering') {
       // 絞り込みボタンを押して再アクセスしてきた場合
@@ -87,8 +90,6 @@ class CreateController extends Controller
       // $request->session()->put('filtering', $filters);   // セッションに保存
       // dd($request->session()->get('filtering'));
 
-			// 登録されているカードのレコード数を取得
-      $cards_num = DB::table('released_cards')->count();
 
       // カードの絞り込み対象を取得
       $target = $request->input('target');

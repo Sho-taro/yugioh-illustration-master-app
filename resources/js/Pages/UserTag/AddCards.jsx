@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import { Link } from '@inertiajs/react';
-import FilterCards from '@/Components/Admin/Filters/FilterCards';
+// import FilterCards from '@/Components/Admin/Filters/FilterCards';
 import SearchResultUserTag from '@/Components/UserTags/SearchResultUserTag';
 import Pagination from '@/Components/Admin/Pageination';
 import Layout from '@/Layouts/Layout';
@@ -24,9 +24,11 @@ function AddCards({ auth, userTag, data, cardsNum, message, filters, releasedCar
 				/>
 			</details> */}
 			<Filter
+				apiMode="on"
 				routePath={`/tags/${auth.user.id}/${userTag.id}/releasedCardUserTags`}
-				isCardPeriodFilterOn={true}
+				isPeriodFilterOn={true}
 				filters={filters}
+				releasedCardsNum={cardsNum}
 			/>
 			<div className="w-2/3 mx-auto mb-8">
 				<p className="mt-4 mb-2 w-full text-center border">↓ 検索結果 ↓</p>

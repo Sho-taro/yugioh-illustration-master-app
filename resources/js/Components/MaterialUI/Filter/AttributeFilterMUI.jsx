@@ -39,10 +39,9 @@ function getStyles(attribute, attributes, theme) {
 	};
 }
 
-function AttributeFilterMUI({ filters }) {
+function AttributeFilterMUI({ filters, attributes, setAttributes }) {
 	const theme = useTheme();
 	const [attributeArray, setAttributeArray] = React.useState([]);
-	const [attributes, setAttributes] = React.useState([]);
 
 	const handleChange = event => {
 		const {

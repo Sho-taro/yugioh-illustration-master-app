@@ -39,10 +39,9 @@ function getStyles(frameType, frameTypes, theme) {
 	};
 }
 
-function FrameTypeFilterMUI({ filters }) {
+function FrameTypeFilterMUI({ filters, frameTypes, setFrameTypes }) {
 	const theme = useTheme();
 	const [frameTypeArray, setFrameTypeArray] = React.useState([]);
-	const [frameTypes, setFrameTypes] = React.useState([]);
 
 	const handleChange = event => {
 		const {

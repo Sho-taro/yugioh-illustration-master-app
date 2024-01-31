@@ -2,9 +2,7 @@ import React, { useState, useEffect } from 'react';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 
-function CardNameFilterMUI({ filters }) {
-	const [cardName, setCardName] = useState('');
-
+function CardNameFilterMUI({ filters, cardName, setCardName }) {
 	const handleChange = e => {
 		setCardName(e.target.value);
 	};
