@@ -47,7 +47,7 @@ function Header({ auth, needOnlyLogo }) {
 									<div className="ml-6 rounded-md bg-red-700 hover:bg-red-800">
 										<Link href={`/tags/${auth.user.id}`} className="block px-2 py-1">
 											<LoyaltyIcon fontSize="large" sx={{ color: 'white' }} />
-											<Typography variant="h6" component="span">
+											<Typography variant="h6" component="span" sx={{color: 'white'}}>
 												{' '}
 												MyTag一覧
 											</Typography>

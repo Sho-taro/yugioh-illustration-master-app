@@ -27,7 +27,7 @@ function UserTagThumbnail({ userTag, mapIndex }) {
 		setTimeout(() => {
 			// 同時にたくさんのXHLをしずぎないように、リクエストにラグを持たせる
 			getReleasedCards(userTag.id);
-		}, mapIndex * 400);
+		}, mapIndex * 200);
 	}, []);
 
 	return (
