@@ -225,7 +225,7 @@ function Filter({
 						絞り込み条件をクリア
 					</Button>
 				</div>
-				<div className="mb-12 w-9/10 ml-4 pl-2 border-l-4 border-gray-200">
+				<div className="mb-12 w-9/10 ml-4 pl-2 border-l-2 border-gray-200">
 					<CardNameFilterMUI
 						filters={filters}
 						cardName={cardName}
