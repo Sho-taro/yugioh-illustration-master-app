@@ -24,8 +24,8 @@ function Filter({
 	isPeriodFilterOn,
 	filters,
 	apiMode, // 'on' または 'off'
-	releasedCardsNum,   // apiModeが'on'なら必須
-	handleClose,   // モーダルウィンドウを閉じる関数（モーダルで使用しない場合、無くていい）
+	releasedCardsNum, // apiModeが'on'なら必須
+	handleClose, // モーダルウィンドウを閉じる関数（モーダルで使用しない場合、無くていい）
 }) {
 	const [filterResult, setFilterResult] = useState(0);
 
@@ -110,25 +110,54 @@ function Filter({
 	// 絞り込み条件をすべてクリアする関数
 	const clearAllFilters = () => {
 		router.get(routerURL);
-	}
+	};
 
-	// axiosを使用してHTTPリクエストを送信
-	// const getFilterResult = async formData => {
-	// 	try {
-	// 		const res = await axios.post(route('gallery.filteredcardsnum'), {
-	// 			// formの内容
-	// 		});
-	// 		// console.log(res.data);
-	// 		setFilterResult(res.data); // Promiseオブジェクトの[[PromiseResult]]プロパティの内容は今このタイミングでしか参照できない
-	// 		return res;
-	// 	} catch (err) {
-	// 		console.log(err);
-	// 	}
-	// };
-	useEffect(() => {
-		if (apiMode !== 'on') return;
-		// 現時点での絞り込み条件に何枚のカードが該当するか表示するための処理
-	}, [target]);
+	// XHRで絞り込み条件に合致するカードの枚数を取得する関数
+	const getFilterResult = async () => {
+		try {
+			let filter;
+			if (target === 'all') {
+				filter = {
+					target: target,
+					'card-name': cardName,
+					periods: periods,
+				};
+			} else if (target === 'monster') {
+				filter = {
+					target: target,
+					'card-name': cardName,
+					'frame-types': frameTypes,
+					races: races,
+					attributes: attributes,
+					'level-or-ranks': levelOrRanks,
+					'link-values': linkValues,
+					periods: periods,
+				};
+			} else if (target === 'spell') {
+				filter = {
+					target: target,
+					'card-name': cardName,
+					'play-types': spellPlayTypes,
+					periods: periods,
+				};
+			} else if (target === 'trap') {
+				filter = {
+					target: target,
+					'card-name': cardName,
+					'play-types': trapPlayTypes,
+					periods: periods,
+				};
+			}
+			const res = await axios.post(route('api.filteredCardsNum'), {
+				...filter,
+			});
+			// console.log(res.data);
+			setFilterResult(res.data); // Promiseオブジェクトの[[PromiseResult]]プロパティの内容は今このタイミングでしか参照できない
+		} catch (err) {
+			console.log(err);
+		}
+	};
+
 	useEffect(() => {
 		if (!filters) return;
 		// 前回の絞り込み条件を再現する
@@ -147,6 +176,25 @@ function Filter({
 		}
 		filters['periods'] && setPeriods([...filters['periods']]);
 	}, [filters]);
+
+	useEffect(() => {
+		if (apiMode !== 'on') return;
+		// 現時点での絞り込み条件に何枚のカードが該当するか表示するための処理
+		setTimeout(() => {
+			// 0.5秒後にXHRを実行することで、useStateの値が空の状態でXHRが実行されてしまう不具合を防ぐ
+			getFilterResult();
+		}, 500);
+	}, [
+		cardName,
+		frameTypes,
+		races,
+		attributes,
+		levelOrRanks,
+		linkValues,
+		spellPlayTypes,
+		trapPlayTypes,
+		periods,
+	]);
 
 	return (
 		<>

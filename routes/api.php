@@ -29,6 +29,7 @@ Route::get('/getData/periods', [\App\Http\Controllers\Api\GetDataController::cla
 
 
 Route::post('/gallery/filteredcardsnum', \App\Http\Controllers\Gallery\FilteredCardsNumController::class)->name('gallery.filteredcardsnum');
+Route::post('/filters/filteredCardsNum', \App\Http\Controllers\Api\GetFilteredCardsNumController::class)->name('api.filteredCardsNum');
 
 Route::post('/tags/addCards', \App\Http\Controllers\Api\UserTag\AddCardsStoreController::class)->name('api.addCards');
 Route::post('/tags/removeCards', \App\Http\Controllers\Api\UserTag\RemoveCardsStoreController::class)->name('api.removeCards');
