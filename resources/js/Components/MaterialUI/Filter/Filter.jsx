@@ -21,11 +21,12 @@ import CommonFilterMUI from '@/Components/MaterialUI/Filter/CommonFilterMUI';
 function Filter({
 	routeName,
 	routePath,
-	isPeriodFilterOn,
+	isPeriodFilterOn, // true　または false
 	filters,
 	apiMode, // 'on' または 'off'
 	releasedCardsNum, // apiModeが'on'なら必須
-	handleClose, // モーダルウィンドウを閉じる関数（モーダルで使用しない場合、無くていい）
+	handleClose, // モーダルウィンドウを閉じる関数（モーダルで使用しない場合、nullでいい）
+	buttonValue  // ボタンに表示される文字列。nullの場合、'絞り込む'になる
 }) {
 	const [filterResult, setFilterResult] = useState(0);
 
@@ -215,15 +216,19 @@ function Filter({
 						</Select>
 						{/* <FormHelperText component="label">必須</FormHelperText> */}
 					</FormControl>
-					<Button
-						variant="text"
-						size="large"
-						color="info"
-						disableRipple
-						sx={{ textTransform: 'none', textDecoration: 'underline' }}
-						onClick={clearAllFilters}>
-						絞り込み条件をクリア
-					</Button>
+					{/* ↓ handleCloseがpropで渡されている（＝filterをモーダルで使用している）なら、クリアボタンを表示 */}
+					{/* todo: クリアボタンの処理（clearAllFilters）がバグの温床なので、要修正 */}
+					{handleClose && (
+						<Button
+							variant="text"
+							size="large"
+							color="info"
+							disableRipple
+							sx={{ textTransform: 'none', textDecoration: 'underline' }}
+							onClick={clearAllFilters}>
+							絞り込み条件をクリア
+						</Button>
+					)}
 				</div>
 				<div className="mb-12 w-9/10 ml-4 pl-2 border-l-2 border-gray-200">
 					<CardNameFilterMUI
@@ -283,7 +288,7 @@ function Filter({
 						startIcon={<SearchIcon />}
 						sx={{ color: 'white', textTransform: 'none', mb: '0.8rem' }}
 						onClick={() => handleSearchButtonClick()}>
-						絞り込む
+						{buttonValue ? buttonValue : '絞り込む'}
 					</Button>
 					{handleClose && (
 						<Button

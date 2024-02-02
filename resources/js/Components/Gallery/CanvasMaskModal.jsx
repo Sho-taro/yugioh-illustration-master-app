@@ -32,7 +32,7 @@ function CanvasMenuBar({ handleClick, animationState }) {
 						</button>
 					</div> */}
 					<div className="mr-8 hover:opacity-50 active:scale-90">
-						<a href={route('gallery.setting')} className="text-xl text-white font-bold">
+						<a href={route('index')} className="text-xl text-white font-bold">
 							<img
 								src="/images/close-white.svg"
 								alt="閉じるボタン"

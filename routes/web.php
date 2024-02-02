@@ -144,8 +144,11 @@ Route::get('/game', \App\Http\Controllers\Game\IndexController::class)->name('ga
 
 // Gallery
 Route::get('/gallery/setting', \App\Http\Controllers\Gallery\SettingController::class)->name('gallery.setting');
+Route::get('/gallery/randomMode', \App\Http\Controllers\Gallery\RandomModeController::class)->name('gallery.randomMode');
+Route::get('/gallery/myTagMode', \App\Http\Controllers\Gallery\MyTagModeController::class)->name('gallery.myTagMode');
 Route::get('/gallery/play/filter', [\App\Http\Controllers\Gallery\PlayController::class, 'filter'])->name('gallery.filter');
 Route::get('/gallery/play/userTag', [\App\Http\Controllers\Gallery\PlayController::class, 'applyUserTag'])->name('gallery.userTag');
+
 
 // user_tags
 // ログイン時のみアクセス可能

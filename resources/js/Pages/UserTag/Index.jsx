@@ -33,7 +33,7 @@ function Index({ auth, errors, userTagsNum, userTagsData, messages }) {
 			<Header auth={auth} needOnlyLogo={true} />
 			<div className="w-3/5 mx-auto">
 				<TooltipBackButton href={route('index')} />
-				<div className="w-5/6 mx-auto mt-2">
+				<div className="max-w-fit mx-auto mt-2" style={{minWidth: "80%"}}>
 					<div className="mb-8">
 						<Typography variant="h4" component="h2" sx={{ textAlign: 'center' }}>
 							MyTag 一覧
@@ -62,11 +62,11 @@ function Index({ auth, errors, userTagsNum, userTagsData, messages }) {
 								{messages.deleteUTMsg}
 							</p>
 						)}
-						{userTagsData.data ? (
+						{userTagsData.data.length > 0 ? (
 							<div>
 								<ul>
 									{userTagsData.data.map((tag, mapIndex) => (
-										<li key={tag.id}>
+										<li key={tag.id} className="mb-8">
 											<Link href={`/tags/${auth.user.id}/${tag.id}`}>
 												<UserTagThumbnail
 													userTag={tag}
@@ -79,7 +79,7 @@ function Index({ auth, errors, userTagsNum, userTagsData, messages }) {
 								<Pagination data={userTagsData} />
 							</div>
 						) : (
-							<p>作成したMy Tagはありません。</p>
+							<p className="text-center italic" style={{color: 'gray'}}>作成したMy Tagはありません。</p>
 						)}
 					</div>
 				</div>
