@@ -13,44 +13,39 @@ function Index({ auth }) {
 		<>
 			<Header auth={auth} needOnlyLogo={false} />
 			<div className="w-3/5 mx-auto">
-				<Typography
-					variant="h4"
-					component="h2"
-					sx={{ textAlign: 'center', my: '2rem' }}>
+				<Typography variant="h4" component="h2" sx={{ textAlign: 'center', my: '2rem' }}>
 					遊戯王 Illustration Master へようこそ
 				</Typography>
 				<Typography variant="p" component="p" sx={{ textAlign: 'center' }}>
 					遊戯王 Illustration
-					Masterは、遊戯王を代表するカードたちのイラストが次々と流れてくるアプリです。イラストを眺めながらデッキ構築を考えたり、作業用デスクトップとして使用したり、いつでも遊戯王の世界感を味わうことができます。
+					Masterは、遊戯王カードのイラストが次々と流れてくるアプリです。
+				</Typography>
+				<Typography variant="p" component="p" sx={{ textAlign: 'center' }}>
+					イラストを眺めながらデッキ構築を考えたり、作業用デスクトップとして使用したり、
+				</Typography>
+				<Typography variant="p" component="p" sx={{ textAlign: 'center' }}>
+					いつでも遊戯王の世界感を楽しむことができます。
 				</Typography>
 				<div className="my-4 flex justify-center">
 					<img
 						src="/images/gallery.png"
 						alt="galleryイメージ"
-						className="w-2/3 border border-solid border-white"
+						className="w-2/3 border border-solid border-white rounded-md"
 					/>
+					{/* <img src="/images/laptop.jpg" alt="laptop" /> */}
 				</div>
-				<Typography
-					variant="h5"
-					component="h3"
-					sx={{ textAlign: 'center', mt: '4rem' }}>
+				<Typography variant="h5" component="h3" sx={{ textAlign: 'center', mt: '4rem' }}>
 					ー 遊び方 ー
 				</Typography>
 				<div className="mb-8 flex justify-center">
 					<div className="w-2/5">
-						<Typography
-							variant="h6"
-							component="h4"
-							sx={{ textAlign: 'center' }}>
+						<Typography variant="h6" component="h4" sx={{ textAlign: 'center' }}>
 							気軽に楽しむなら
 						</Typography>
 						<div className="flex justify-center">
-							<ArrowDropDownRoundedIcon
-								fontSize="large"
-								sx={{ color: 'gray' }}
-							/>
+							<ArrowDropDownRoundedIcon fontSize="large" sx={{ color: 'gray' }} />
 						</div>
-						<div className=" p-2 bg-gray-800 rounded-md">
+						<div className="p-2 text-center bg-gray-800 rounded-md">
 							<Typography
 								variant="h6"
 								component="p"
@@ -84,19 +79,13 @@ function Index({ auth }) {
 						sx={{ borderColor: 'gray', mx: '2rem' }}
 					/>
 					<div className="w-2/5">
-						<Typography
-							variant="h6"
-							component="h4"
-							sx={{ textAlign: 'center' }}>
+						<Typography variant="h6" component="h4" sx={{ textAlign: 'center' }}>
 							じっくり楽しむなら
 						</Typography>
 						<div className="flex justify-center">
-							<ArrowDropDownRoundedIcon
-								fontSize="large"
-								sx={{ color: 'gray' }}
-							/>
+							<ArrowDropDownRoundedIcon fontSize="large" sx={{ color: 'gray' }} />
 						</div>
-						<div className=" p-2 bg-gray-800 rounded-md">
+						<div className="p-2 text-center bg-gray-800 rounded-md">
 							<Typography
 								variant="h6"
 								component="p"

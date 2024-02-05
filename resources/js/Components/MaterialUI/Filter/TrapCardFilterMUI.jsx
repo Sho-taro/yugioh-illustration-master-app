@@ -5,7 +5,7 @@ import TrapPlayTypeFilterMUI from '@/Components/MaterialUI/Filter/TrapPlayTypeFi
 function TrapCardFilterMUI({ filter, trapPlayTypes, setTrapPlayTypes }) {
 	return (
 		<>
-			<div className="mb-4 flex items-center">
+			{/* <div className="mb-4 flex items-center">
 				<Typography
 					component="label"
 					sx={{ width: '7rem', mr: '1rem', textAlign: 'right' }}>
@@ -16,7 +16,12 @@ function TrapCardFilterMUI({ filter, trapPlayTypes, setTrapPlayTypes }) {
 					trapPlayTypes={trapPlayTypes}
 					setTrapPlayTypes={setTrapPlayTypes}
 				/>
-			</div>
+			</div> */}
+			<TrapPlayTypeFilterMUI
+				filter={filter}
+				trapPlayTypes={trapPlayTypes}
+				setTrapPlayTypes={setTrapPlayTypes}
+			/>
 		</>
 	);
 }

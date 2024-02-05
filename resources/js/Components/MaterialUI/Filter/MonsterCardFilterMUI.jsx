@@ -22,7 +22,7 @@ function MonsterCardFilterMUI({
 }) {
 	return (
 		<>
-			<div className="mb-4 flex items-center">
+			{/* <div className="mb-2 flex items-center">
 				<Typography
 					component="label"
 					sx={{ width: '7rem', mr: '1rem', textAlign: 'right' }}>
@@ -30,7 +30,7 @@ function MonsterCardFilterMUI({
 				</Typography>
 				<FrameTypeFilterMUI filter={filter} frameTypes={frameTypes} setFrameTypes={setFrameTypes} />
 			</div>
-			<div className="mb-4 flex items-center">
+			<div className="flex items-center">
 				<Typography
 					component="label"
 					sx={{ width: '7rem', mr: '1rem', textAlign: 'right' }}>
@@ -38,7 +38,7 @@ function MonsterCardFilterMUI({
 				</Typography>
 				<RaceFilterMUI filter={filter} races={races} setRaces={setRaces} />
 			</div>
-			<div className="mb-4 flex items-center">
+			<div className="flex items-center">
 				<Typography
 					component="label"
 					sx={{ width: '7rem', mr: '1rem', textAlign: 'right' }}>
@@ -46,7 +46,7 @@ function MonsterCardFilterMUI({
 				</Typography>
 				<AttributeFilterMUI filter={filter} attributes={attributes} setAttributes={setAttributes} />
 			</div>
-			<div className="mb-4 flex items-center">
+			<div className="flex items-center">
 				<Typography
 					component="label"
 					sx={{ width: '7rem', mr: '1rem', textAlign: 'right' }}>
@@ -54,14 +54,19 @@ function MonsterCardFilterMUI({
 				</Typography>
 				<LevelOrRankFilterMUI filter={filter} levelOrRanks={levelOrRanks} setLevelOrRanks={setLevelOrRanks} />
 			</div>
-			<div className="mb-4 flex items-center">
+			<div className="flex items-center">
 				<Typography
 					component="label"
 					sx={{ width: '7rem', mr: '1rem', textAlign: 'right' }}>
 					Link-:
 				</Typography>
 				<LinkValueFilterMUI filter={filter} linkValues={linkValues} setLinkValues={setLinkValues} />
-			</div>
+			</div> */}
+				<FrameTypeFilterMUI filter={filter} frameTypes={frameTypes} setFrameTypes={setFrameTypes} />
+				<RaceFilterMUI filter={filter} races={races} setRaces={setRaces} />
+				<AttributeFilterMUI filter={filter} attributes={attributes} setAttributes={setAttributes} />
+				<LevelOrRankFilterMUI filter={filter} levelOrRanks={levelOrRanks} setLevelOrRanks={setLevelOrRanks} />
+				<LinkValueFilterMUI filter={filter} linkValues={linkValues} setLinkValues={setLinkValues} />
 		</>
 	);
 }

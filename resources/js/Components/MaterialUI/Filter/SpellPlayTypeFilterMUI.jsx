@@ -28,6 +28,9 @@ const MenuProps = {
 			width: 250,
 		},
 	},
+	getContentAnchorEl: null, // anchorOrigin, transformOrigin が変更可能になるように元々ポップオーバーの基準となっている要素を解除
+	anchorOrigin: { vertical: 'top', horizontal: 'right' }, // ポップオーバーの表示起点
+	transformOrigin: { vertical: 'top', horizontal: 'left' }, // 表示時の transform の起点
 };
 
 function getStyles(spellPlayType, spellPlayTypes, theme) {
@@ -66,41 +69,86 @@ function SpellPlayTypeFilterMUI({ filters, spellPlayTypes, setSpellPlayTypes }) 
 
 	return (
 		<div>
-			<FormControl sx={{ minWidth: '20rem' }}>
+			<FormControl sx={{ width: '25rem' }}>
 				<Select
+					variant="standard"
 					multiple
 					displayEmpty
-					autoWidth
+					// autoWidth
 					value={spellPlayTypes}
 					onChange={handleChange}
 					// input={<OutlinedInput id="select-multiple-chip" label="Chip" />}   // labelの文字指定
 					renderValue={selected => {
-						if (selected.length === 0) {
-							// return <em className="text-gray">指定なし</em>;
-							return (
-								<Typography component="em" sx={{ color: 'gray' }}>
-									指定なし
-								</Typography>
-							);
-						}
-						// return selected.join(', ');
+						// if (selected.length === 0) {
+						// 	// return <em className="text-gray">指定なし</em>;
+						// 	return (
+						// 		<Typography component="em" sx={{ color: 'gray' }}>
+						// 			指定なし
+						// 		</Typography>
+						// 	);
+						// }
+						// // return selected.join(', ');
+						// return (
+						// 	<Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+						// 		{selected.map(value => (
+						// 			<Chip key={value} label={getPlayTypeNameJa(value)} />
+						// 		))}
+						// 	</Box>
+						// );
 						return (
-							<Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-								{selected.map(value => (
-									<Chip key={value} label={getPlayTypeNameJa(value)} />
-								))}
+							<Box
+								sx={{
+									display: 'flex',
+									justifyContent: 'space-between',
+									alignItems: 'center',
+									py: '0.5rem',
+								}}>
+								<Typography component="p" sx={{ ml: '1rem' }}>
+									分類
+								</Typography>
+								<div className="mr-4">
+									{selected.length === 0 ? (
+										<Typography component="em" sx={{ color: 'gray' }}>
+											指定なし
+										</Typography>
+									) : (
+										<Box
+											sx={{
+												ml: '2rem',
+												display: 'flex',
+												flexWrap: 'wrap',
+												gap: 0.5,
+											}}>
+											{selected.map(value => (
+												<Chip
+													key={value}
+													label={getPlayTypeNameJa(value)}
+												/>
+											))}
+										</Box>
+									)}
+								</div>
 							</Box>
 						);
 					}}
 					MenuProps={MenuProps}
 					inputProps={{ 'aria-label': 'Without label' }}>
+					{/* ↓ menu先頭に表示用 */}
+					<MenuItem
+						// value=''
+						disableRipple
+						disabled>
+						<ListItemText primary="分類" />
+					</MenuItem>
 					{spellPlayTypeArray.map(spellPlayType => (
 						<MenuItem
 							key={spellPlayType.name_en}
 							value={spellPlayType.name_en}
 							disableRipple
 							style={getStyles(spellPlayType.name_en, spellPlayTypes, theme)}>
-							<Checkbox checked={spellPlayTypes.indexOf(spellPlayType.name_en) > -1} />
+							<Checkbox
+								checked={spellPlayTypes.indexOf(spellPlayType.name_en) > -1}
+							/>
 							<ListItemText primary={spellPlayType.name_ja} />
 						</MenuItem>
 					))}

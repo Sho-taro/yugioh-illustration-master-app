@@ -5,7 +5,7 @@ import SpellPlayTypeFilterMUI from '@/Components/MaterialUI/Filter/SpellPlayType
 function SpellCardFilterMUI({ filter, spellPlayTypes, setSpellPlayTypes }) {
 	return (
 		<>
-			<div className="mb-4 flex items-center">
+			{/* <div className="mb-4 flex items-center">
 				<Typography
 					component="label"
 					sx={{ width: '7rem', mr: '1rem', textAlign: 'right' }}>
@@ -16,7 +16,12 @@ function SpellCardFilterMUI({ filter, spellPlayTypes, setSpellPlayTypes }) {
 					spellPlayTypes={spellPlayTypes}
 					setSpellPlayTypes={setSpellPlayTypes}
 				/>
-			</div>
+			</div> */}
+			<SpellPlayTypeFilterMUI
+				filter={filter}
+				spellPlayTypes={spellPlayTypes}
+				setSpellPlayTypes={setSpellPlayTypes}
+			/>
 		</>
 	);
 }

@@ -27,14 +27,16 @@ const modalStyle = {
 	top: '50%',
 	left: '50%',
 	transform: 'translate(-50%, -50%)',
-	width: '40rem',
-	maxHeight: '95vh',
-	overflowY: 'scroll',   // 要素が縦方向にはみ出した場合、スクロールする
+	width: 'fit-content',
+	height: 'fit-content',
+	overflowY: 'scroll', // 要素が縦方向にはみ出した場合、スクロールする
 	bgcolor: 'background.paper',
 	border: '0px solid #000',
 	borderRadius: '0.5rem',
 	boxShadow: 24,
-	p: 4,
+	px: '4rem',
+	pt: '2rem',
+	pb: '1rem',
 };
 
 function FilterModalButton({
@@ -94,13 +96,13 @@ function FilterModalButton({
 				hideBackdrop>
 				<Box sx={maskStyle}>
 					<Box sx={modalStyle}>
-						<Typography
+						{/* <Typography
 							id="modal-modal-title"
 							variant="h6"
 							component="h2"
-							sx={{ textAlign: 'center' }}>
+							sx={{ textAlign: 'center', mb: '1.5rem' }}>
 							カードを絞り込む
-						</Typography>
+						</Typography> */}
 						<Filter
 							routeName={routeName}
 							routePath={routePath}

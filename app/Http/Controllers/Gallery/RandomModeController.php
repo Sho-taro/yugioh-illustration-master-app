@@ -18,11 +18,12 @@ class RandomModeController extends Controller
       $released_cards_num = DB::table('released_cards')->count();
 
       // もしセッションにgallery_filtersがあるなら取得
-      $filters = null;
-      if ($request->session()->has('gallery_filters')) {
-        $filters = $request->session()->get('gallery_filters');
-      }
+      // $filters = null;
+      // if ($request->session()->has('gallery_filters')) {
+      //   $filters = $request->session()->get('gallery_filters');
+      // }
 
-      return inertia('Gallery/RandomMode', ['releasedCardsNum' => $released_cards_num, 'filters' => $filters, ]);
+      // return inertia('Gallery/RandomMode', ['releasedCardsNum' => $released_cards_num, 'filters' => $filters, ]);
+      return inertia('Gallery/RandomMode', ['releasedCardsNum' => $released_cards_num, ]);
     }
 }

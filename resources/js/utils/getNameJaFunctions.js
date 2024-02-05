@@ -101,5 +101,18 @@ const getPlayTypeNameJa = pl => {
 	return playTypeNameJa;
 };
 
+const getTargetJa = target => {
+	const targetJaArray = {
+		all: '全て（モンスター・魔法・罠）',
+		monster: 'モンスターのみ',
+		spell: '魔法のみ',
+		trap: '罠のみ'
+	}
+
+	const targetJa = targetJaArray[target];
+
+	return targetJa;
+}
+
 // 名前付きエクスポート
-export { getFrameTypeNameJa, getRaceNameJa, getAttributeNameJa, getPlayTypeNameJa };
+export { getFrameTypeNameJa, getRaceNameJa, getAttributeNameJa, getPlayTypeNameJa, getTargetJa };

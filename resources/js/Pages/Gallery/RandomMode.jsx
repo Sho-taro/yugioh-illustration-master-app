@@ -7,7 +7,7 @@ import Typography from '@mui/material/Typography';
 import Filter from '@/Components/MaterialUI/Filter/Filter';
 import TooltipBackButton from '@/Components/MaterialUI/TooltipBackButton';
 
-function RandomMode({auth, releasedCardsNum, filters, errorMsg}) {
+function RandomMode({auth, releasedCardsNum, errorMsg}) {
   return (
 		<>
 			<Header auth={auth} needOnlyLogo={true} />
@@ -36,11 +36,11 @@ function RandomMode({auth, releasedCardsNum, filters, errorMsg}) {
 							</Typography>
 						</div>
 					)}
-					<div className="my-6 p-4 bg-white rounded-md">
+					<div className="my-6 p-4 max-w-fit mx-auto bg-white rounded-md">
 						<Filter
 							routeName="gallery.filter"
 							isPeriodFilterOn={true}
-							filters={filters}
+							filters={null}
 							apiMode="on"
 							releasedCardsNum={releasedCardsNum}
 							handleClose={null}

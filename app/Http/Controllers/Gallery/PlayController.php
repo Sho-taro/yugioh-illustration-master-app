@@ -20,7 +20,7 @@ class PlayController extends Controller
       // dd($filters);
 
       // $filtersをセッションに保存
-      $request->session()->put('gallery_filters', $filters);
+      // $request->session()->put('gallery_filters', $filters);
 
       // カードの絞り込み対象を取得
       $target = $request->input('target');
