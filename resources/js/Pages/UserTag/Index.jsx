@@ -33,7 +33,7 @@ function Index({ auth, errors, userTagsNum, userTagsData, messages }) {
 			<Header auth={auth} needOnlyLogo={true} />
 			<div className="w-3/5 mx-auto">
 				<TooltipBackButton href={route('index')} />
-				<div className="max-w-fit mx-auto mt-2" style={{minWidth: "80%"}}>
+				<div className="max-w-fit mx-auto mt-2" style={{ minWidth: '80%' }}>
 					<div className="mb-8">
 						<Typography variant="h4" component="h2" sx={{ textAlign: 'center' }}>
 							MyTag 一覧
@@ -63,23 +63,25 @@ function Index({ auth, errors, userTagsNum, userTagsData, messages }) {
 							</p>
 						)}
 						{userTagsData.data.length > 0 ? (
-							<div>
-								<ul>
-									{userTagsData.data.map((tag, mapIndex) => (
-										<li key={tag.id} className="mb-8">
-											<Link href={`/tags/${auth.user.id}/${tag.id}`}>
+							<div className="flex flex-col">
+								{userTagsData.data.map((tag, mapIndex) => (
+										<div className="mb-8 border-4 border-gray-800 rounded-xl">
+											<Link
+												key={tag.id}
+												href={`/tags/${auth.user.id}/${tag.id}`}>
 												<UserTagThumbnail
 													userTag={tag}
 													mapIndex={mapIndex}
 												/>
 											</Link>
-										</li>
-									))}
-								</ul>
+										</div>
+								))}
 								<Pagination data={userTagsData} />
 							</div>
 						) : (
-							<p className="text-center italic" style={{color: 'gray'}}>作成したMy Tagはありません。</p>
+							<p className="text-center italic" style={{ color: 'gray' }}>
+								作成したMy Tagはありません。
+							</p>
 						)}
 					</div>
 				</div>

@@ -70,12 +70,12 @@ function Show({ auth, userTag, releasedCardsNum, releasedCardsData, messages, er
 			<div className="w-3/5 mx-auto">
 				<TooltipBackButton href={`/tags/${auth.user.id}`} />
 				<div className="w-5/6 mx-auto mt-2">
-					<div className="mb-8">
+					{/* <div className="mb-8">
 						<Typography variant="h4" component="h2" sx={{ textAlign: 'center' }}>
 							MyTag 詳細
 						</Typography>
-					</div>
-					<div className="px-6 pt-5 pb-3 mb-8 rounded-md bg-gray-900">
+					</div> */}
+					<div className="px-6 pt-5 pb-3 mb-8 border-4 border-gray-800 rounded-md bg-gray-900">
 						<div className="mb-6 flex justify-between items-start">
 							<div className="flex items-center">
 								<LoyaltyIcon sx={{ color: 'white', opacity: '0.75' }} />
