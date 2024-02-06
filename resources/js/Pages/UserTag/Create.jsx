@@ -28,7 +28,7 @@ function Create({ auth, message, errors, handleClose }) {
 		<form>
 			<div className="mb-2">
 				{/* <label>
-					MyTag名:
+					Myタグ名:
 					<input
 						type="text"
 						name="name"
@@ -38,10 +38,10 @@ function Create({ auth, message, errors, handleClose }) {
 					/>
 				</label> */}
 				<TextField
-					label="MyTag名"
+					label="Myタグ名"
 					variant="filled"
 					placeholder="最大20文字"
-					// helperText="(作成済みのMyTagと同一の名前をつけることはできません)"
+					// helperText="(作成済みのMyタグと同一の名前をつけることはできません)"
 					fullWidth
 					autoFocus
 					// required

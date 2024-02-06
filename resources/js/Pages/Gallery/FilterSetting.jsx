@@ -28,7 +28,7 @@ function FilterSetting({ auth, releasedCardsNum, errorMsg }) {
 					)}
 					<div>
 						<Typography variant="p" component="p">
-							このモードでは、絞り込み条件に合致するイラストのみ流れてきます。
+							このモードでは、絞り込み条件に合致するカードのみ流れてきます。
 						</Typography>
 						<Typography variant="p" component="p">
 							手順に従って絞り込み条件を入力し、「この条件でスタート」ボタンを押して下さい。

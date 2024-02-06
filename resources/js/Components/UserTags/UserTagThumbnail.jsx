@@ -38,10 +38,10 @@ function UserTagThumbnail({ userTag, mapIndex }) {
 					<p className="ml-1 text-2xl font-bold">{userTag.name}</p>
 				</div>
 				{releasedCardsNum === null ? (
-					<p>タグ付けされたカード - 枚</p>
+					<p>登録カード - 枚</p>
 				) : (
 					<p>
-						タグ付けされたカード{' '}
+						登録カード{' '}
 						<span className="text-2xl font-bold">{releasedCardsNum}</span>枚
 					</p>
 				)}
@@ -65,7 +65,7 @@ function UserTagThumbnail({ userTag, mapIndex }) {
 			{releasedCardsNum !== null && releasedCardsNum === 0 && (
 				<div className="h-28 flex justify-center items-center">
 					<p style={{ color: 'grey' }} className="italic">
-						タグ付けされたカードはありません。
+						登録されたカードはありません。
 					</p>
 				</div>
 			)}

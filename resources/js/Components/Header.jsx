@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from '@inertiajs/react';
-// import { router } from '@inertiajs/react';
+import { router } from '@inertiajs/react';
 
 import Typography from '@mui/material/Typography';
 import BasicMenuHeader from '@/Components/MaterialUI/BasicMenuHeader';
@@ -9,6 +9,10 @@ import LoyaltyIcon from '@mui/icons-material/Loyalty';
 import Divider from '@mui/material/Divider';
 
 function Header({ auth, needOnlyLogo }) {
+	const handleUserTagBtnClick = () => {
+		router.get(`/tags/${auth.user.id}`);
+	};
+
 	return (
 		<div>
 			<div className="w-full fixed top-0 left-0 bg-color-layout z-50">
@@ -48,19 +52,20 @@ function Header({ auth, needOnlyLogo }) {
 									<div className="flex items-center">
 										<BasicMenuHeader buttonValue={auth.user.name} />
 									</div>
-									<div className="ml-6 rounded-md bg-red-700 hover:bg-red-800">
-										<Link
-											href={`/tags/${auth.user.id}`}
-											className="block px-2 py-1">
-											<LoyaltyIcon fontSize="large" sx={{ color: 'white' }} />
-											<Typography
-												variant="h6"
-												component="span"
-												sx={{ color: 'white' }}>
-												{' '}
-												Myタグ一覧
-											</Typography>
-										</Link>
+									<div
+										className="ml-6 px-2 py-1 cursor-pointer rounded-md bg-red-700 hover:bg-red-800 flex items-center"
+										onClick={handleUserTagBtnClick}>
+										<LoyaltyIcon
+											fontSize="medium"
+											sx={{ color: 'white', mr: '0.5rem' }}
+										/>
+										<Typography
+											variant="h6"
+											component="span"
+											sx={{ color: 'white' }}>
+											{' '}
+											Myタグ一覧
+										</Typography>
 									</div>
 								</div>
 							)}

@@ -78,7 +78,7 @@ function Index({ auth }) {
 								/>
 							</div>
 							<Typography variant="p" component="p">
-								流れてくるイラストはランダムに選ばれます。
+								流れてくるカードはランダムに選ばれます。
 							</Typography>
 							<Typography variant="p" component="p">
 								１クリックですぐに遊ぶことができ、初めて利用する方や気軽に楽しみたい方におすすめです。
@@ -108,7 +108,7 @@ function Index({ auth }) {
 								絞り込みモード
 							</Typography>
 							<Typography variant="p" component="p">
-								絞り込み条件に合致するイラストのみ流れてきます。
+								絞り込み条件に合致するカードのみ流れてきます。
 							</Typography>
 							<Typography variant="p" component="p">
 								カードの種類（モンスター・魔法・罠）や種族、属性、初収録時期など、様々な条件で絞り込むことができます。
@@ -138,10 +138,10 @@ function Index({ auth }) {
 								Myタグモード
 							</Typography>
 							<Typography variant="p" component="p">
-								事前に「Myタグ」を作成し、お気に入りのイラストを登録しておきます。
+								事前に「Myタグ」を作成し、お気に入りのカードを登録しておきます。
 							</Typography>
 							<Typography variant="p" component="p">
-								このモードでは、「Myタグ」に登録したイラストのみ流れてきます。お気に入りのイラストだけを存分に楽しむことができます。
+								このモードでは、「Myタグ」に登録したカードのみ流れてきます。お気に入りのカードだけを存分に楽しむことができます。
 							</Typography>
 							{!auth.user && (
 								<Typography variant="p" component="p">

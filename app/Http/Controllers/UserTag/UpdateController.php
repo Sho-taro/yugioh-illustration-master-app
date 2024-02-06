@@ -23,6 +23,6 @@ class UpdateController extends Controller
 
         $user_id = $request->user()->id;
 
-        return redirect("/tags/{$user_id}/{$user_tag_id}")->with('updateUTMsg', 'MyTag名を変更しました。');
+        return redirect("/tags/{$user_id}/{$user_tag_id}")->with('updateUTMsg', "Myタグ名を「{$request->input('userTagName')}」に変更しました。");
     }
 }

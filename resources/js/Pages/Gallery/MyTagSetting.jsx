@@ -42,7 +42,7 @@ function MyTagSetting({ auth, userTags, errorMsg }) {
 						Myタグモード
 					</Typography>
 					<Typography variant="p" component="p">
-						このモードでは、Myタグに登録されているイラストのみ流れてきます。
+						このモードでは、Myタグに登録されているカードのみ流れてきます。
 					</Typography>
 					<Typography variant="p" component="p">
 						対象とするMyタグを１つ選択し、「このMyタグでスタート」ボタンを押して下さい。

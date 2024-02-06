@@ -36,7 +36,7 @@ function Index({ auth, errors, userTagsNum, userTagsData, messages }) {
 				<div className="max-w-fit mx-auto mt-2" style={{ minWidth: '80%' }}>
 					<div className="mb-8">
 						<Typography variant="h4" component="h2" sx={{ textAlign: 'center' }}>
-							MyTag 一覧
+							Myタグ一覧
 						</Typography>
 					</div>
 					<Divider
@@ -65,16 +65,11 @@ function Index({ auth, errors, userTagsNum, userTagsData, messages }) {
 						{userTagsData.data.length > 0 ? (
 							<div className="flex flex-col">
 								{userTagsData.data.map((tag, mapIndex) => (
-										<div className="mb-8 border-4 border-gray-800 rounded-xl">
-											<Link
-												key={tag.id}
-												href={`/tags/${auth.user.id}/${tag.id}`}>
-												<UserTagThumbnail
-													userTag={tag}
-													mapIndex={mapIndex}
-												/>
-											</Link>
-										</div>
+									<div className="mb-8 border-4 border-gray-800 rounded-xl">
+										<Link key={tag.id} href={`/tags/${auth.user.id}/${tag.id}`}>
+											<UserTagThumbnail userTag={tag} mapIndex={mapIndex} />
+										</Link>
+									</div>
 								))}
 								<Pagination data={userTagsData} />
 							</div>

@@ -33,10 +33,10 @@ function AddCards({ auth, userTag, data, cardsNum, filteredCardsNum, filters, re
 				<div className="w-5/6 mx-auto mt-2">
 					<div className="mb-12">
 						<Typography variant="p" component="p">
-							MyTag「{userTag.name}」をタグ付けするカードをクリックして下さい。
+							Myタグ「{userTag.name}」に登録するカードをクリックして下さい。
 						</Typography>
 						<Typography variant="p" component="p">
-							タグ付けされたカード{' '}
+							登録カード{' '}
 							<span className="text-2xl font-bold">{releasedCardIds.length}</span>枚
 						</Typography>
 					</div>
@@ -78,6 +78,6 @@ function AddCards({ auth, userTag, data, cardsNum, filteredCardsNum, filters, re
 }
 
 // Persistent Layoutsの設定
-AddCards.layout = page => <Layout title="MyTag カード登録" children={page} />;
+AddCards.layout = page => <Layout title="Myタグ カード登録" children={page} />;
 
 export default AddCards

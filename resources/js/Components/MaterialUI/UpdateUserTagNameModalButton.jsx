@@ -70,9 +70,9 @@ function UpdateUserTagNameModalButton({auth, userTag, message, setUpdateMsg, err
 				}}
 				disableRipple={true}
 				onClick={handleOpen}>
-				MyTag名を変更
+				Myタグ名を変更
 			</Button> */}
-			<Tooltip title="MyTag名を変更する" arrow>
+			<Tooltip title="Myタグ名を変更する" arrow>
 				<IconButton
 					aria-label="edit"
 					size="small"
@@ -95,13 +95,13 @@ function UpdateUserTagNameModalButton({auth, userTag, message, setUpdateMsg, err
 							variant="h6"
 							component="h2"
 							sx={{ textAlign: 'center' }}>
-							MyTag名を変更
+							Myタグ名を変更
 						</Typography>
 						<TextField
-							label="MyTag名"
+							label="Myタグ名"
 							variant="filled"
 							placeholder="最大20文字"
-							// helperText="(作成済みのMyTagと同一の名前をつけることはできません)"
+							// helperText="(作成済みのMyタグと同一の名前をつけることはできません)"
 							fullWidth
 							autoFocus
 							// required

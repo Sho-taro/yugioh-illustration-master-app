@@ -52,7 +52,7 @@ export default function BasicModal({ deleteUserTag }) {
 				// startIcon={<DeleteIcon sx={{ color: 'red' }} />}
 				disableRipple={true}
 				onClick={handleOpen}>
-				このMyTagを削除する
+				このMyタグを削除する
 			</Button>
 			<Modal
 				open={open}
@@ -67,12 +67,12 @@ export default function BasicModal({ deleteUserTag }) {
 							variant="h6"
 							component="h2"
 							sx={{ textAlign: 'center' }}>
-							MyTagを削除
+							Myタグを削除
 						</Typography>
 						<Typography
 							id="modal-modal-description"
 							sx={{ mt: 2, textAlign: 'center' }}>
-							一度削除したMyTagは復元できません。削除しますか？
+							一度削除したMyタグは復元できません。削除しますか？
 						</Typography>
 						<div className="flex flex-col">
 							<Button

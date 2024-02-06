@@ -34,6 +34,6 @@ class StoreController extends Controller
 
       $user_id = $request->user()->id;
 
-      return redirect("/tags/{$user_id}")->with('storeUTMsg', "My Tag「{$request->input('name')}」を新規作成しました。");
+      return redirect("/tags/{$user_id}")->with('storeUTMsg', "Myタグ「{$request->input('name')}」を新規作成しました。");
     }
 }

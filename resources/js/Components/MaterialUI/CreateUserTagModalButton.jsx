@@ -54,7 +54,7 @@ function CreateUserTagModalButton({ auth, message, setStoreMsg, errors }) {
 				}}
 				disableRipple
 				startIcon={<AddIcon sx={{ color: 'red' }} />}>
-				MyTagを新規作成
+				Myタグを新規作成
 			</Button>
 			<Modal
 				open={open}
@@ -68,7 +68,7 @@ function CreateUserTagModalButton({ auth, message, setStoreMsg, errors }) {
 							variant="h6"
 							component="h2"
 							sx={{ textAlign: 'center', mb: '2rem' }}>
-							MyTagを新規作成
+							Myタグを新規作成
 						</Typography>
 						<Create
 							auth={auth}

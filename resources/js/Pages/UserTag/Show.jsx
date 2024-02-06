@@ -72,7 +72,7 @@ function Show({ auth, userTag, releasedCardsNum, releasedCardsData, messages, er
 				<div className="w-5/6 mx-auto mt-2">
 					{/* <div className="mb-8">
 						<Typography variant="h4" component="h2" sx={{ textAlign: 'center' }}>
-							MyTag 詳細
+							Myタグ 詳細
 						</Typography>
 					</div> */}
 					<div className="px-6 pt-5 pb-3 mb-8 border-4 border-gray-800 rounded-md bg-gray-900">
@@ -98,9 +98,6 @@ function Show({ auth, userTag, releasedCardsNum, releasedCardsData, messages, er
 								deleteUserTag={deleteUserTag}
 							/> */}
 						</div>
-						{messages.deleteUTMsg && (
-							<span style={{ color: 'green' }}>{messages.deleteUTMsg}</span>
-						)}
 						<div>
 							<Divider
 								variant="full"
@@ -108,7 +105,7 @@ function Show({ auth, userTag, releasedCardsNum, releasedCardsData, messages, er
 							/>
 							<div className="mb-6 flex justify-between items-start">
 								<p>
-									タグ付けされたカード{' '}
+									登録カード{' '}
 									<span className="text-2xl font-bold">{releasedCardsNum}</span>枚
 									（{showingMinIndex} - {showingMaxIndex} 枚を表示中 ）
 								</p>
@@ -120,30 +117,33 @@ function Show({ auth, userTag, releasedCardsNum, releasedCardsData, messages, er
 									deleteUserTag={deleteUserTag}
 								/>
 							</div>
+							{messages.deleteUTMsg && (
+								<span style={{ color: 'green' }}>{messages.deleteUTMsg}</span>
+							)}
 							{mode === 'deleteCards' && (
-								<div className="my-8">
+								<div className="my-6">
 									<p style={{ color: 'green' }}>
-										タグ付けを解除するカードを選択し、「解除する」ボタンを押して下さい。
+										削除するカードを選択し、「削除する」ボタンを押して下さい。
 									</p>
 									<div className="mt-2 flex items-center">
-										<form onSubmit={e => deleteCards(e)}>
-											<button
-												type="submit"
-												disabled={selectedRCIds.length === 0}
-												className="px-5 py-2 bg-red-700 rounded-md hover:bg-red-800 disabled:pointer-events-none disabled:opacity-40">
-												<Typography>解除する</Typography>
-											</button>
-										</form>
 										<button
 											type="button"
 											onClick={() => cancelDeleteCards()}
-											className="ml-4 px-5 py-2 bg-gray-200 rounded-md hover:bg-red-100">
+											className="px-5 py-2 bg-gray-200 rounded-md hover:bg-red-100">
 											<Typography
 												component="button"
 												sx={{ color: '#d32f2f' }}>
 												キャンセル
 											</Typography>
 										</button>
+										<form onSubmit={e => deleteCards(e)}>
+											<button
+												type="submit"
+												disabled={selectedRCIds.length === 0}
+												className="ml-4 px-5 py-2 bg-red-700 rounded-md hover:bg-red-800 disabled:pointer-events-none disabled:opacity-40">
+												<Typography>削除する</Typography>
+											</button>
+										</form>
 									</div>
 								</div>
 							)}
@@ -177,7 +177,7 @@ function Show({ auth, userTag, releasedCardsNum, releasedCardsData, messages, er
 							) : (
 								<div className="h-28 flex justify-center items-center">
 									<p style={{ color: 'grey' }} className="italic">
-										タグ付けされたカードはありません。
+										登録されたカードはありません。
 									</p>
 								</div>
 							)}
@@ -194,6 +194,6 @@ function Show({ auth, userTag, releasedCardsNum, releasedCardsData, messages, er
 }
 
 // Persistent Layoutsの設定
-Show.layout = page => <Layout title="MyTag 詳細" children={page} />;
+Show.layout = page => <Layout title="Myタグ 詳細" children={page} />;
 
 export default Show;

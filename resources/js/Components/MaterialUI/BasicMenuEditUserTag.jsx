@@ -64,15 +64,15 @@ export default function BasicMenu({ auth, userTag, releasedCardsNum, setMode, de
 				<MenuItem onClick={handleClose} disableRipple>
 					<AddIcon sx={{ color: 'gray', mr: '0.5rem' }} />
 					<Link href={`/tags/${auth.user.id}/${userTag.id}/releasedCardUserTags`}>
-						<Typography>カードをタグ付け</Typography>
+						<Typography>カードを登録する</Typography>
 					</Link>
 				</MenuItem>
-				{/* タグ付けされたカードが0枚であれば、解除ボタンは非表示 */}
+				{/* 登録カードが0枚であれば、削除ボタンは非表示 */}
 				{releasedCardsNum >= 1 && (
 					<MenuItem onClick={handleClose} disableRipple>
 						<RemoveIcon sx={{ color: 'gray', mr: '0.5rem' }} />
 						<button onClick={() => setMode('deleteCards')}>
-							<Typography>カードのタグ付けを解除</Typography>
+							<Typography>カードを削除する</Typography>
 						</button>
 					</MenuItem>
 				)}
@@ -84,14 +84,14 @@ export default function BasicMenu({ auth, userTag, releasedCardsNum, setMode, de
 							e.preventDefault();
 							router.post('/logout');
 						}}>
-						MyTag名を変更
+						Myタグ名を変更
 					</p>
 				</MenuItem> */}
 				{/* <MenuItem onClick={handleClose} disableRipple>
 					<DeleteIcon sx={{ color: 'gray', mr: '0.5rem' }} />
 					<form onSubmit={e => deleteUserTag(e)}>
 						<button type="submit">
-							<Typography>このMyTagを削除</Typography>
+							<Typography>このMyタグを削除</Typography>
 						</button>
 					</form>
 				</MenuItem> */}
