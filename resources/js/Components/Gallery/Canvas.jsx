@@ -146,7 +146,7 @@ function Canvas({ cards, animationState, setAnimationState, canvasCards }) {
 			}
 
 			let FrameId = requestAnimationFrame(draw); // draw関数を繰り返す
-			console.log(FrameId);
+			// console.log(FrameId);
 			setAnimationFrameId(FrameId);
 		};
 
