@@ -4,30 +4,31 @@ namespace App\Http\Controllers\Gallery;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\ReleasedCard;
-use Inertia\Inertia;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Query\JoinClause;
+// use App\Models\UserTag;
+// use App\Models\ReleasedCardUserTag;
+use Inertia\Inertia;
 
-class PlayController extends Controller
+class FilterPlayController extends Controller
 {
     /**
      * Handle the incoming request.
      */
     public function __invoke(Request $request)
     {
-      $filters = $request->input();
+        $filters = $request->input();
       // dd($filters);
 
       // $filtersをセッションに保存
-      $request->session()->put('filters', $filters);
+      // $request->session()->put('gallery_filters', $filters);
 
       // カードの絞り込み対象を取得
       $target = $request->input('target');
       // カード検索のキーワードを変数に代入
       $keyword = $request->input('card-name');
 
-      // cardsテーブルのクエリビルダインスタンスを取得
+      // released_cardsテーブルのクエリビルダインスタンスを取得
       $releasedCards_query = DB::table('released_cards');
 
       // 絞り込み対象がmonsterの場合
@@ -69,27 +70,27 @@ class PlayController extends Controller
 
 
         // frame_typeの条件で絞り込みするクエリを生成
-        if (!is_null($request->input('frame-types'))) {
+        if (!empty($request->input('frame-types'))) {
           $releasedCards_query->whereIn('frame_types.name_en', $request->input('frame-types'));
         }
 
         // raceの条件で絞り込みするクエリを生成
-        if (!is_null($request->input('races'))) {
+        if (!empty($request->input('races'))) {
           $releasedCards_query->whereIn('races.name_en', $request->input('races'));
         }
 
         // attributeの条件で絞り込みするクエリを生成
-        if (!is_null($request->input('attributes'))) {
+        if (!empty($request->input('attributes'))) {
           $releasedCards_query->whereIn('attributes.name_en', $request->input('attributes'));
         }
 
         // level_or_rankの条件で絞り込みするクエリを生成
-        if (!is_null($request->input('level-or-ranks'))) {
+        if (!empty($request->input('level-or-ranks'))) {
           $releasedCards_query->whereIn('monster_card_details.level_or_rank', $request->input('level-or-ranks'));
         }
 
         // link_valueの条件で絞り込みするクエリを生成
-        if (!is_null($request->input('link-values'))) {
+        if (!empty($request->input('link-values'))) {
           $releasedCards_query->whereIn('monster_card_details.link_value', $request->input('link-values'));
         }
       } else if ($target === 'spell') {
@@ -127,7 +128,7 @@ class PlayController extends Controller
         $releasedCards_query->where('frame_types.name_en', '=', 'spell');
 
         // play-typeの条件で絞り込みするクエリを生成
-        if (!is_null($request->input('play-types'))) {
+        if (!empty($request->input('play-types'))) {
           $releasedCards_query->whereIn('spell_trap_play_types.name_en', $request->input('play-types'));
         }
       } else if ($target === 'trap') {
@@ -165,7 +166,7 @@ class PlayController extends Controller
         $releasedCards_query->where('frame_types.name_en', '=', 'trap');
 
         // play-typeの条件で絞り込みするクエリを生成
-        if (!is_null($request->input('play-types'))) {
+        if (!empty($request->input('play-types'))) {
           $releasedCards_query->whereIn('spell_trap_play_types.name_en', $request->input('play-types'));
         }
       } else if ($target === 'all') {
@@ -210,7 +211,7 @@ class PlayController extends Controller
       }
 
       // periodの条件で絞り込みするクエリを生成
-      if (!is_null($request->input('periods'))) {
+      if (!empty($request->input('periods'))) {
         $releasedCards_query->whereIn('periods.name', $request->input('periods'));
       }
 
@@ -243,15 +244,13 @@ class PlayController extends Controller
       // dd($releasedCards_query->count());
       if ($releasedCards_query->count() === 0) {
         $released_cards_num = ReleasedCard::count();
-        return inertia('Gallery/Setting', ['message' => '該当するカードがありません。絞り込み条件を変更して下さい。', 'releasedCardsNum' => $released_cards_num]);
+        return inertia('Gallery/RandomMode', ['errorMsg' => '該当するカードがありません。絞り込み条件を変更して下さい。', 'releasedCardsNum' => $released_cards_num, 'filters' => $filters]);
       }
-
-      $message = "{$releasedCards_query->count()} 枚のカードが見つかりました。";
 
       // クエリを実行してレコードを取得
       $cards = $releasedCards_query->orderBy('card_ja_kana', 'ASC')->get();          // 日本語カード名（読み）の昇順
       // dd($data);
 
-      return inertia('Gallery/Gallery', ['cards' => $cards, 'message' => $message]);
+      return inertia('Gallery/Gallery', ['cards' => $cards]);
     }
-  }
+}

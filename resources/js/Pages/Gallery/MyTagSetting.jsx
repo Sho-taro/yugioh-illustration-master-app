@@ -11,13 +11,23 @@ import Divider from '@mui/material/Divider';
 
 import TooltipBackButton from '@/Components/MaterialUI/TooltipBackButton';
 
-function MyTagMode({ auth, userTags, errorMsg }) {
+function MyTagSetting({ auth, userTags, errorMsg }) {
 	const [targetUserTagId, setTargetUserTagId] = useState(null);
 	const targetUTClassName = 'mb-8 border-4 border-green-800 rounded-xl relative';
 	const notTargetUTClassName = 'mb-8 border-4 border-gray-800 rounded-xl cursor-pointer relative';
+
+	// UserTagをクリックされたときのハンドラー
+	const handleUTClick = clickedUTId => {
+		if (clickedUTId === targetUserTagId) {
+			setTargetUserTagId(null);
+		} else {
+			setTargetUserTagId(clickedUTId);
+		}
+	};
+	// スタートボタンをクリックされたときのハンドラー
 	const handleBtnClick = () => {
 		if (!targetUserTagId) return;
-		router.get(route('gallery.userTag'), {
+		router.get(route('gallery.play.myTag'), {
 			'user-tag-id': targetUserTagId,
 		});
 	};
@@ -29,13 +39,13 @@ function MyTagMode({ auth, userTags, errorMsg }) {
 				<TooltipBackButton href={route('index')} />
 				<div className="max-w-fit mx-auto text-center" style={{ minWidth: '80%' }}>
 					<Typography variant="h5" component="h2" sx={{ fontWeight: 700, mb: '1rem' }}>
-						MyTagモード
+						Myタグモード
 					</Typography>
 					<Typography variant="p" component="p">
-						MyTagモードでは、MyTagに登録したイラストのみ登場します。
+						このモードでは、Myタグに登録されているイラストのみ流れてきます。
 					</Typography>
 					<Typography variant="p" component="p">
-						対象とするMyTagを１つ選択し、スタートボタンを押して下さい。
+						対象とするMyタグを１つ選択し、「このMyタグでスタート」ボタンを押して下さい。
 					</Typography>
 					{errorMsg && (
 						<div className="mt-6">
@@ -57,7 +67,7 @@ function MyTagMode({ auth, userTags, errorMsg }) {
 											? targetUTClassName
 											: notTargetUTClassName
 									}
-									onClick={() => setTargetUserTagId(userTag.id)}>
+									onClick={() => handleUTClick(userTag.id)}>
 									<UserTagThumbnail userTag={userTag} mapIndex={mapIndex} />
 									{targetUserTagId === userTag.id ? (
 										<div className="absolute top-1/2 left-0 -translate-x-12 -translate-y-1/2">
@@ -83,14 +93,14 @@ function MyTagMode({ auth, userTags, errorMsg }) {
 						</p>
 					)}
 
-					<div className="mb-8 text-center w-fit mx-auto">
+					<div className="mb-20 text-center w-fit mx-auto">
 						{!targetUserTagId && (
 							<Typography
 								variant="p"
 								component="p"
 								sx={{ mb: '1rem' }}
 								style={{ color: 'red' }}>
-								MyTagが選択されていません。
+								Myタグが選択されていません。
 							</Typography>
 						)}
 						<Button
@@ -101,7 +111,7 @@ function MyTagMode({ auth, userTags, errorMsg }) {
 							disabled={!targetUserTagId}
 							onClick={handleBtnClick}
 							sx={{ textTransform: 'none' }}>
-							スタート
+							このMyタグでスタート!
 						</Button>
 					</div>
 				</div>
@@ -111,6 +121,6 @@ function MyTagMode({ auth, userTags, errorMsg }) {
 }
 
 // Persistent Layoutsの設定
-MyTagMode.layout = page => <Layout title="トップページ" children={page} />;
+MyTagSetting.layout = page => <Layout title="トップページ" children={page} />;
 
-export default MyTagMode;
+export default MyTagSetting;

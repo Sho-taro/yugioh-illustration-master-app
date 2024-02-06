@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\DB;
 
-class RandomModeController extends Controller
+class FilterSettingController extends Controller
 {
     /**
      * Handle the incoming request.
@@ -24,6 +24,6 @@ class RandomModeController extends Controller
       // }
 
       // return inertia('Gallery/RandomMode', ['releasedCardsNum' => $released_cards_num, 'filters' => $filters, ]);
-      return inertia('Gallery/RandomMode', ['releasedCardsNum' => $released_cards_num, ]);
+      return inertia('Gallery/FilterSetting', ['releasedCardsNum' => $released_cards_num, ]);
     }
 }

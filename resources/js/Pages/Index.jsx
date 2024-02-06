@@ -10,14 +10,14 @@ import Button from '@mui/material/Button';
 
 function Index({ auth }) {
 	const handleRandomBtnClick = () => {
-		router.get(route('gallery.randomMode'));
-	}
+		router.get(route('gallery.play.random'));
+	};
 	const handleFilterBtnClick = () => {
-		router.get(route(''));
-	}
+		router.get(route('gallery.setting.filter'));
+	};
 	const handleMyTagBtnClick = () => {
-		router.get(route('gallery.myTagMode'));
-	}
+		router.get(route('gallery.setting.myTag'));
+	};
 	return (
 		<>
 			<Header auth={auth} needOnlyLogo={false} />
@@ -58,7 +58,7 @@ function Index({ auth }) {
 					sx={{ mt: '6rem', mb: '1rem', fontWeight: '700' }}>
 					選べる３つの遊び方
 				</Typography>
-				<div className="mb-8 flex justify-center">
+				<div className="mb-20 flex justify-center">
 					<div className="w-1/4">
 						{/* <Typography variant="h6" component="h4">
 							気軽に楽しむなら
@@ -78,7 +78,10 @@ function Index({ auth }) {
 								/>
 							</div>
 							<Typography variant="p" component="p">
-								流れてくるイラストはランダムに選ばれます。初めて利用する方や気軽に楽しみたい方におすすめです。
+								流れてくるイラストはランダムに選ばれます。
+							</Typography>
+							<Typography variant="p" component="p">
+								１クリックですぐに遊ぶことができ、初めて利用する方や気軽に楽しみたい方におすすめです。
 							</Typography>
 							<div className="mt-6 mb-4 flex justify-center">
 								<Button
@@ -105,7 +108,10 @@ function Index({ auth }) {
 								絞り込みモード
 							</Typography>
 							<Typography variant="p" component="p">
-								絞り込み条件に合致するイラストのみ流れてきます。カードの種類（モンスター・魔法・罠）や種族、属性、初収録時期など、様々な条件で絞り込むことができます。
+								絞り込み条件に合致するイラストのみ流れてきます。
+							</Typography>
+							<Typography variant="p" component="p">
+								カードの種類（モンスター・魔法・罠）や種族、属性、初収録時期など、様々な条件で絞り込むことができます。
 							</Typography>
 							<div className="mt-6 mb-4 flex justify-center">
 								<Button
