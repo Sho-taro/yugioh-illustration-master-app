@@ -18,6 +18,9 @@ class DestroyController extends Controller
         // dd($request->input('releasedCardIds'));
         $user_tag_id = $request->route('userTagId');
 
+        // 削除するカードの枚数を取得
+        $num = count($request->input('releasedCardIds'));
+
         $released_card_user_tags = ReleasedCardUserTag::where('user_tag_id', $user_tag_id)
             ->whereIn('released_card_id', $request->input('releasedCardIds'))
             ->get();
@@ -32,6 +35,6 @@ class DestroyController extends Controller
 
         $user_id = $request->user()->id;
 
-        return redirect("/tags/{$user_id}/{$user_tag_id}")->with('message', '登録カードを正常に削除しました。');
+        return redirect("/tags/{$user_id}/{$user_tag_id}")->with('deleteUTMsg', "{$num}枚のカードを削除しました。");
     }
 }

@@ -22,6 +22,6 @@ class DestroyController extends Controller
       //user_idを取得
       $user_id = (int)$request->user()->id;
 
-      return redirect("/tags/{$user_id}")->with('message', "MyTag「{$user_tag_name}」を削除しました。");
+      return redirect("/tags/{$user_id}")->with('deleteUTMsg', "Myタグ「{$user_tag_name}」を削除しました。");
     }
 }

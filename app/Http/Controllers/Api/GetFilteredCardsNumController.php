@@ -1,31 +1,23 @@
 <?php
 
-namespace App\Http\Controllers\Gallery;
+namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\ReleasedCard;
-use Inertia\Inertia;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Query\JoinClause;
+use App\Models\ReleasedCard;
 
-class PlayController extends Controller
+class GetFilteredCardsNumController extends Controller
 {
     /**
      * Handle the incoming request.
      */
     public function __invoke(Request $request)
     {
-      $filters = $request->input();
-      // dd($filters);
-
-      // $filtersをセッションに保存
-      $request->session()->put('filters', $filters);
-
-      // カードの絞り込み対象を取得
-      $target = $request->input('target');
-      // カード検索のキーワードを変数に代入
-      $keyword = $request->input('card-name');
+      // 絞り込み条件に合致するカードの枚数を取得する関数
+      $target = $request->input('target');  // カードの絞り込み対象を取得
+      $keyword = $request->input('card-name'); // カード検索のキーワードを取得
 
       // cardsテーブルのクエリビルダインスタンスを取得
       $releasedCards_query = DB::table('released_cards');
@@ -36,24 +28,6 @@ class PlayController extends Controller
             ->select(
               'released_cards.id as released_card_id',
               'cards.id as card_id',
-              'released_cards.product_code',
-              'released_cards.list_number',
-              'products.name_ja as product_ja',
-              'products.name_en as product_en',
-              'products.release_date',
-              'periods.name as period',
-              'cards.name_ja as card_ja',
-              'cards.name_ja_kana as card_ja_kana',
-              'cards.name_en as card_en',
-              'frame_types.name_ja as frame_type_ja',
-              'frame_types.name_en as frame_type_en',
-              'archetypes.name_ja as archetype',
-              'races.name_ja as race',
-              'attributes.name_ja as attribute',
-              'monster_card_details.attack',
-              'monster_card_details.defense',
-              'monster_card_details.level_or_rank',
-              'monster_card_details.link_value',
             )
             ->join('products', 'released_cards.product_code', '=', 'products.product_code')
             ->join('periods', function (JoinClause $join) {
@@ -69,27 +43,27 @@ class PlayController extends Controller
 
 
         // frame_typeの条件で絞り込みするクエリを生成
-        if (!is_null($request->input('frame-types'))) {
+        if (!empty($request->input('frame-types'))) {
           $releasedCards_query->whereIn('frame_types.name_en', $request->input('frame-types'));
         }
 
         // raceの条件で絞り込みするクエリを生成
-        if (!is_null($request->input('races'))) {
+        if (!empty($request->input('races'))) {
           $releasedCards_query->whereIn('races.name_en', $request->input('races'));
         }
 
         // attributeの条件で絞り込みするクエリを生成
-        if (!is_null($request->input('attributes'))) {
+        if (!empty($request->input('attributes'))) {
           $releasedCards_query->whereIn('attributes.name_en', $request->input('attributes'));
         }
 
         // level_or_rankの条件で絞り込みするクエリを生成
-        if (!is_null($request->input('level-or-ranks'))) {
+        if (!empty($request->input('level-or-ranks'))) {
           $releasedCards_query->whereIn('monster_card_details.level_or_rank', $request->input('level-or-ranks'));
         }
 
         // link_valueの条件で絞り込みするクエリを生成
-        if (!is_null($request->input('link-values'))) {
+        if (!empty($request->input('link-values'))) {
           $releasedCards_query->whereIn('monster_card_details.link_value', $request->input('link-values'));
         }
       } else if ($target === 'spell') {
@@ -98,19 +72,6 @@ class PlayController extends Controller
             ->select(
               'released_cards.id as released_card_id',
               'cards.id as card_id',
-              'released_cards.product_code',
-              'released_cards.list_number',
-              'products.name_ja as product_ja',
-              'products.name_en as product_en',
-              'products.release_date',
-              'periods.name as period',
-              'cards.name_ja as card_ja',
-              'cards.name_ja_kana as card_ja_kana',
-              'cards.name_en as card_en',
-              'frame_types.name_ja as frame_type_ja',
-              'frame_types.name_en as frame_type_en',
-              'archetypes.name_ja as archetype',
-              'spell_trap_play_types.name_ja as play_type',
             )
             ->join('products', 'released_cards.product_code', '=', 'products.product_code')
             ->join('periods', function (JoinClause $join) {
@@ -127,7 +88,7 @@ class PlayController extends Controller
         $releasedCards_query->where('frame_types.name_en', '=', 'spell');
 
         // play-typeの条件で絞り込みするクエリを生成
-        if (!is_null($request->input('play-types'))) {
+        if (!empty($request->input('play-types'))) {
           $releasedCards_query->whereIn('spell_trap_play_types.name_en', $request->input('play-types'));
         }
       } else if ($target === 'trap') {
@@ -136,19 +97,6 @@ class PlayController extends Controller
             ->select(
               'released_cards.id as released_card_id',
               'cards.id as card_id',
-              'released_cards.product_code',
-              'released_cards.list_number',
-              'products.name_ja as product_ja',
-              'products.name_en as product_en',
-              'products.release_date',
-              'periods.name as period',
-              'cards.name_ja as card_ja',
-              'cards.name_ja_kana as card_ja_kana',
-              'cards.name_en as card_en',
-              'frame_types.name_ja as frame_type_ja',
-              'frame_types.name_en as frame_type_en',
-              'archetypes.name_ja as archetype',
-              'spell_trap_play_types.name_ja as play_type',
             )
             ->join('products', 'released_cards.product_code', '=', 'products.product_code')
             ->join('periods', function (JoinClause $join) {
@@ -165,7 +113,7 @@ class PlayController extends Controller
         $releasedCards_query->where('frame_types.name_en', '=', 'trap');
 
         // play-typeの条件で絞り込みするクエリを生成
-        if (!is_null($request->input('play-types'))) {
+        if (!empty($request->input('play-types'))) {
           $releasedCards_query->whereIn('spell_trap_play_types.name_en', $request->input('play-types'));
         }
       } else if ($target === 'all') {
@@ -173,25 +121,6 @@ class PlayController extends Controller
             ->select(
               'released_cards.id as released_card_id',
               'cards.id as card_id',
-              'released_cards.product_code',
-              'released_cards.list_number',
-              'products.name_ja as product_ja',
-              'products.name_en as product_en',
-              'products.release_date',
-              'periods.name as period',
-              'cards.name_ja as card_ja',
-              'cards.name_ja_kana as card_ja_kana',
-              'cards.name_en as card_en',
-              'frame_types.name_ja as frame_type_ja',
-              'frame_types.name_en as frame_type_en',
-              // 'archetypes.name_ja as archetype',   // 今は不要
-              'attributes.name_ja as attribute',
-              'monster_card_details.attack',
-              'races.name_ja as race',
-              'attributes.name_ja as attribute',
-              'monster_card_details.level_or_rank',
-              'monster_card_details.link_value',
-              'spell_trap_play_types.name_ja as play_type',
             )
             ->join('products', 'released_cards.product_code', '=', 'products.product_code')
             ->join('periods', function (JoinClause $join) {
@@ -210,7 +139,7 @@ class PlayController extends Controller
       }
 
       // periodの条件で絞り込みするクエリを生成
-      if (!is_null($request->input('periods'))) {
+      if (!empty($request->input('periods'))) {
         $releasedCards_query->whereIn('periods.name', $request->input('periods'));
       }
 
@@ -240,18 +169,6 @@ class PlayController extends Controller
         // select * from cards where (name_ja LIKE "%$val1%" or name_ja_kana LIKE "%$val1%") and (name_ja LIKE "%$val2%" or name_ja_kana LIKE "%$val2%") and (...);
       }
 
-      // dd($releasedCards_query->count());
-      if ($releasedCards_query->count() === 0) {
-        $released_cards_num = ReleasedCard::count();
-        return inertia('Gallery/Setting', ['message' => '該当するカードがありません。絞り込み条件を変更して下さい。', 'releasedCardsNum' => $released_cards_num]);
-      }
-
-      $message = "{$releasedCards_query->count()} 枚のカードが見つかりました。";
-
-      // クエリを実行してレコードを取得
-      $cards = $releasedCards_query->orderBy('card_ja_kana', 'ASC')->get();          // 日本語カード名（読み）の昇順
-      // dd($data);
-
-      return inertia('Gallery/Gallery', ['cards' => $cards, 'message' => $message]);
+      return response()->json($releasedCards_query->count());
     }
-  }
+}

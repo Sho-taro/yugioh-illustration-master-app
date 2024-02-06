@@ -23,7 +23,7 @@ class UpdateNameRequest extends FormRequest
     {
         return [
             // ここにバリデーションを記述する
-            'userTagName' => ['required', 'string', 'max:20'],    // 最大20文字
+            'userTagName' => ['required', 'string', 'max:20',  'unique:user_tags,name'],    // 最大20文字
         ];
     }
 }

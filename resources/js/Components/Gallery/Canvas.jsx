@@ -25,7 +25,7 @@ function Canvas({ cards, animationState, setAnimationState, canvasCards }) {
 			// リスタートする処理
 			let id = setInterval(() => {
 				createCanvasCard();
-			}, 3000);
+			}, 3500);
 			setIntervalId(id);
 			draw();
 			setAnimationState('playing');
@@ -62,14 +62,14 @@ function Canvas({ cards, animationState, setAnimationState, canvasCards }) {
 		window.createCanvasCard = () => {
 			const imgInstance = new Image();
 			imgInstance.src = `/images/card-images/${randomOrderCards[cardIndex].product_code}-${randomOrderCards[cardIndex].list_number}.jpg`;
-			const magnification = 0.6 + Math.random() * 0.4; // 倍率 0.6以上1未満
-			const imgSize = 270 * magnification;
+			const magnification = 0.5 + Math.random() * 0.5; // 倍率 0.6以上1未満
+			const imgSize = 330 * magnification;
 			if (cardIndex % 5 === 0) {
 				canvasCards.push({
 					img: imgInstance,
 					magnification: magnification,
 					imgSize: imgSize,
-					x: (0.45 + Math.random() * 0.15) * (canvas.current.width - imgSize),
+					x: (0.4 + Math.random() * 0.2) * (canvas.current.width - imgSize),
 					y: imgSize * -1,
 					cardData: { ...randomOrderCards[cardIndex] },
 				});
@@ -78,7 +78,7 @@ function Canvas({ cards, animationState, setAnimationState, canvasCards }) {
 					img: imgInstance,
 					magnification: magnification,
 					imgSize: imgSize,
-					x: (0.05 + Math.random() * 0.1) * (canvas.current.width - imgSize),
+					x: (0 + Math.random() * 0.15) * (canvas.current.width - imgSize),
 					y: imgSize * -1,
 					cardData: { ...randomOrderCards[cardIndex] },
 				});
@@ -105,7 +105,7 @@ function Canvas({ cards, animationState, setAnimationState, canvasCards }) {
 					img: imgInstance,
 					magnification: magnification,
 					imgSize: imgSize,
-					x: (0.85 + Math.random() * 0.1) * (canvas.current.width - imgSize),
+					x: (0.85 + Math.random() * 0.15) * (canvas.current.width - imgSize),
 					y: imgSize * -1,
 					cardData: { ...randomOrderCards[cardIndex] },
 				});
@@ -130,23 +130,23 @@ function Canvas({ cards, animationState, setAnimationState, canvasCards }) {
 					canvasCard.imgSize
 				);
 			}
-			for (const canvasCard of canvasCards) {
-				if (canvasCard.y <= 0) {
-					canvasCard.y += speed * 2;
-				} else if (
-					canvasCard.y > 0 &&
-					canvasCard.y <= canvas.current.height
-				) {
-					canvasCard.y += speed + (canvasCard.magnification * 0.2);
-				}
-			}
+			// for (const canvasCard of canvasCards) {
+			// 	if (canvasCard.y <= 0) {
+			// 		canvasCard.y += speed * 2;
+			// 	} else if (canvasCard.y > 0 && canvasCard.y <= canvas.current.height) {
+			// 		canvasCard.y += speed + canvasCard.magnification * 0.2;
+			// 	}
+			// }
 			for (let i = 0; i < canvasCards.length; i++) {
 				if (canvasCards[i].y > canvas.current.height) {
-					canvasCards.splice(i, 1);
+					canvasCards.splice(i, 1); // canvasの下端より下に出たcanvasCardは削除する
+				} else {
+					canvasCards[i].y += speed + canvasCards[i].magnification * 0.2; // canvasCardを下に動かす
 				}
 			}
 
 			let FrameId = requestAnimationFrame(draw); // draw関数を繰り返す
+			console.log(FrameId);
 			setAnimationFrameId(FrameId);
 		};
 
@@ -154,7 +154,7 @@ function Canvas({ cards, animationState, setAnimationState, canvasCards }) {
 		createCanvasCard();
 		let id = setInterval(() => {
 			createCanvasCard();
-		}, 3000);
+		}, 3500);
 		setIntervalId(id);
 
 		draw();

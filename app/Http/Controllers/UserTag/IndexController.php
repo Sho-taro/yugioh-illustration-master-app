@@ -17,13 +17,23 @@ class IndexController extends Controller
     {
       // dd($request->route('userId'));
       $user_id = $request->user()->id;   // ユーザのidを取得
-      $tags = UserTag::where('user_id', $user_id)->orderBy('updated_at', 'DESC')->get();
+      $tags_num = UserTag::where('user_id', $user_id)->count();
+      $tags_data = UserTag::where('user_id', $user_id)->orderBy('updated_at', 'DESC')->paginate(5)->withQueryString();
 
-      //
-      $message = null;
-      if ($request->session()->has('message')) {
-        $message = $request->session()->get('message');
+      // フラッシュセッションのメッセージを格納
+      $messages = [];
+      if ($request->session()->has('storeUTMsg')) {
+        $messages['storeUTMsg'] = $request->session()->get('storeUTMsg');
       }
-        return inertia('UserTag/Index', ['userTags' => $tags, 'message' => $message]);
+      if ($request->session()->has('deleteUTMsg')) {
+        $messages['deleteUTMsg'] = $request->session()->get('deleteUTMsg');
+      }
+      if ($request->session()->has('updateUTMsg')) {
+        $messages['updateUTMsg'] = $request->session()->get('updateUTMsg');
+      }
+
+      // dd($messages);
+
+      return inertia('UserTag/Index', ['userTagsNum' => $tags_num, 'userTagsData' => $tags_data, 'messages' => $messages]);
     }
 }

@@ -25,7 +25,7 @@ function FilterCardsTab({ apiMode, routeName, isCardPeriodFilterOn, filters, rel
   // axiosを使用してHTTPリクエストを送信
   const getFilterResult = async formData => {
 		try {
-			const res = await axios.post(route('gallery.filterdcardsnum'), {
+			const res = await axios.post(route('gallery.filteredcardsnum'), {
 				body: formData,
 			});
 			// console.log(res.data);

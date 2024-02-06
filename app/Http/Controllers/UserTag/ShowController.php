@@ -29,14 +29,23 @@ class ShowController extends Controller
       }
 
       // released_cardsを取得
-      $released_cards = ReleasedCard::whereIn('id', $released_card_id_arr)->get();
+      $released_cards_data = ReleasedCard::whereIn('id', $released_card_id_arr)->paginate(50)->withQueryString();
 
-      //
-      $message = null;
-      if ($request->session()->has('message')) {
-        $message = $request->session()->get('message');
+      // released_cardsの件数を取得
+      $released_cards_num = count($released_card_id_arr);
+
+      // フラッシュセッションのメッセージを格納
+      $messages = [];
+      // if ($request->session()->has('storeUTMsg')) {
+      //   $messages['storeUTMsg'] = $request->session()->get('storeUTMsg');
+      // }
+      if ($request->session()->has('deleteUTMsg')) {
+        $messages['deleteUTMsg'] = $request->session()->get('deleteUTMsg');
+      }
+      if ($request->session()->has('updateUTMsg')) {
+        $messages['updateUTMsg'] = $request->session()->get('updateUTMsg');
       }
 
-      return inertia('UserTag/Show', ['userTag' => $user_tag, 'releasedCards' => $released_cards, 'message' => $message]);
+      return inertia('UserTag/Show', ['userTag' => $user_tag, 'releasedCardsNum' => $released_cards_num, 'releasedCardsData' => $released_cards_data, 'messages' => $messages]);
     }
 }

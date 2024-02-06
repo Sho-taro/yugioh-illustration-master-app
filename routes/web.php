@@ -143,9 +143,12 @@ Route::get('/', \App\Http\Controllers\IndexController::class)->name('index');
 Route::get('/game', \App\Http\Controllers\Game\IndexController::class)->name('game');
 
 // Gallery
-Route::get('/gallery/setting', \App\Http\Controllers\Gallery\SettingController::class)->name('gallery.setting');
-Route::get('/gallery/play/filter', [\App\Http\Controllers\Gallery\PlayController::class, 'filter'])->name('gallery.filter');
-Route::get('/gallery/play/userTag', [\App\Http\Controllers\Gallery\PlayController::class, 'applyUserTag'])->name('gallery.userTag');
+Route::get('/gallery/setting/filter', \App\Http\Controllers\Gallery\FilterSettingController::class)->name('gallery.setting.filter');
+Route::get('/gallery/setting/myTag', \App\Http\Controllers\Gallery\MyTagSettingController::class)->name('gallery.setting.myTag');
+Route::get('/gallery/play/random', \App\Http\Controllers\Gallery\RandomPlayController::class)->name('gallery.play.random');
+Route::get('/gallery/play/filter', \App\Http\Controllers\Gallery\FilterPlayController::class)->name('gallery.play.filter');
+Route::get('/gallery/play/myTag', \App\Http\Controllers\Gallery\MyTagPlayController::class)->name('gallery.play.myTag');
+
 
 // user_tags
 // ログイン時のみアクセス可能
