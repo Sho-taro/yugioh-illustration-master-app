@@ -38,14 +38,14 @@ function Create({ auth, message, errors, handleClose }) {
 					/>
 				</label> */}
 				<TextField
-					label="MyTag名を入力"
+					label="MyTag名"
 					variant="filled"
 					placeholder="最大20文字"
-					helperText="(作成済みのMyTagと同一の名前をつけることはできません)"
+					// helperText="(作成済みのMyTagと同一の名前をつけることはできません)"
 					fullWidth
 					autoFocus
 					// required
-					// error={Boolean(errors.name)}
+					error={Boolean(errors.name)}
 					name="name"
 					value={inputValue}
 					onChange={e => handleInputChange(e)}

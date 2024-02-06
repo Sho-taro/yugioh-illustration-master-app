@@ -98,14 +98,14 @@ function UpdateUserTagNameModalButton({auth, userTag, message, setUpdateMsg, err
 							MyTag名を変更
 						</Typography>
 						<TextField
-							label="MyTag名を入力"
+							label="MyTag名"
 							variant="filled"
 							placeholder="最大20文字"
-							helperText="(作成済みのMyTagと同一の名前をつけることはできません)"
+							// helperText="(作成済みのMyTagと同一の名前をつけることはできません)"
 							fullWidth
 							autoFocus
 							// required
-							// error={Boolean(errors.userTagName)}
+							error={Boolean(errors.userTagName)}
 							name="userTagName"
 							value={userTagName}
 							onChange={e => handleInputChange(e)}
