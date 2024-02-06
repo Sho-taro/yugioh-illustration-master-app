@@ -29,13 +29,17 @@ function Header({ auth, needOnlyLogo }) {
 								<div className="flex items-center">
 									{/* 見た目はh6で、実際の出力はpタグ */}
 									<Typography variant="h6" component="p">
-										<Link href={route('login')} className="text-white">
-											ログイン
+										<Link
+											href={route('register')}
+											className="text-white hover:text-gray-400">
+											ユーザー登録
 										</Link>
 									</Typography>
 									<Typography variant="h6" component="p">
-										<Link href={route('register')} className="text-white ml-8">
-											ユーザー登録
+										<Link
+											href={route('login')}
+											className="text-white ml-8 hover:text-gray-400">
+											ログイン
 										</Link>
 									</Typography>
 								</div>
@@ -45,11 +49,16 @@ function Header({ auth, needOnlyLogo }) {
 										<BasicMenuHeader buttonValue={auth.user.name} />
 									</div>
 									<div className="ml-6 rounded-md bg-red-700 hover:bg-red-800">
-										<Link href={`/tags/${auth.user.id}`} className="block px-2 py-1">
+										<Link
+											href={`/tags/${auth.user.id}`}
+											className="block px-2 py-1">
 											<LoyaltyIcon fontSize="large" sx={{ color: 'white' }} />
-											<Typography variant="h6" component="span" sx={{color: 'white'}}>
+											<Typography
+												variant="h6"
+												component="span"
+												sx={{ color: 'white' }}>
 												{' '}
-												MyTag一覧
+												Myタグ一覧
 											</Typography>
 										</Link>
 									</div>
@@ -60,8 +69,7 @@ function Header({ auth, needOnlyLogo }) {
 				</div>
 				<Divider sx={{ borderColor: 'rgba(200, 200, 200, 0.7)' }} />
 			</div>
-			<div className="h-20">
-			</div>
+			<div className="h-20"></div>
 		</div>
 	);
 }
