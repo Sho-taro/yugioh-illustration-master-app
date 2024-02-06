@@ -1,62 +1,84 @@
 import React, { useState } from 'react';
-import { Link } from '@inertiajs/react';
+import { Link, router } from '@inertiajs/react';
 import Header from '@/Components/Header';
 import Layout from '@/Layouts/Layout';
 
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import Button from '@mui/material/Button';
-import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
+// import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
 
 function Index({ auth }) {
+	const handleRandomBtnClick = () => {
+		router.get(route('gallery.randomMode'));
+	}
+	const handleFilterBtnClick = () => {
+		router.get(route(''));
+	}
+	const handleMyTagBtnClick = () => {
+		router.get(route('gallery.myTagMode'));
+	}
 	return (
 		<>
 			<Header auth={auth} needOnlyLogo={false} />
-			<div className="w-3/5 mx-auto">
-				<Typography variant="h4" component="h2" sx={{ textAlign: 'center', my: '2rem' }}>
-					遊戯王 Illustration Master へようこそ
+			<div className="w-4/5 mx-auto text-center">
+				<Typography
+					variant="h3"
+					component="h2"
+					sx={{ mt: '3rem', mb: '4rem', fontWeight: '700' }}>
+					遊戯王を愛する、決闘者へ
 				</Typography>
-				<Typography variant="p" component="p" sx={{ textAlign: 'center' }}>
-					遊戯王 Illustration
-					Masterは、遊戯王カードのイラストが次々と流れてくるアプリです。
+				<Typography variant="h6" component="p">
+					遊戯王 Illustration Masterは、
+					<Typography variant="h6" component="span" sx={{ fontWeight: '700' }}>
+						遊戯王カードのイラストが次々と流れてくるアプリ
+					</Typography>
+					です。
 				</Typography>
-				<Typography variant="p" component="p" sx={{ textAlign: 'center' }}>
+				<Typography variant="h6" component="p">
 					イラストを眺めながらデッキ構築を考えたり、作業用デスクトップとして使用したり、
 				</Typography>
-				<Typography variant="p" component="p" sx={{ textAlign: 'center' }}>
+				<Typography variant="h6" component="p">
 					いつでも遊戯王の世界感を楽しむことができます。
 				</Typography>
-				<div className="my-4 flex justify-center">
+				<div className="mt-8 mb-10 flex justify-center">
 					<img
-						src="/images/gallery.png"
+						src="/images/gallery06.png"
 						alt="galleryイメージ"
-						className="w-2/3 border border-solid border-white rounded-md"
+						className="rounded-md"
+						style={{ width: '52.5rem' }}
 					/>
 					{/* <img src="/images/laptop.jpg" alt="laptop" /> */}
+					<div className="w-20"></div>
 				</div>
-				<Typography variant="h5" component="h3" sx={{ textAlign: 'center', mt: '4rem' }}>
-					ー 遊び方 ー
+				<Divider variant="middle" sx={{ borderColor: 'gray' }} />
+				<Typography
+					variant="h4"
+					component="h3"
+					sx={{ mt: '6rem', mb: '1rem', fontWeight: '700' }}>
+					選べる３つの遊び方
 				</Typography>
 				<div className="mb-8 flex justify-center">
-					<div className="w-2/5">
-						<Typography variant="h6" component="h4" sx={{ textAlign: 'center' }}>
+					<div className="w-1/4">
+						{/* <Typography variant="h6" component="h4">
 							気軽に楽しむなら
 						</Typography>
 						<div className="flex justify-center">
 							<ArrowDropDownRoundedIcon fontSize="large" sx={{ color: 'gray' }} />
-						</div>
+						</div> */}
 						<div className="p-2 text-center bg-gray-800 rounded-md">
-							<Typography
-								variant="h6"
-								component="p"
-								sx={{ textAlign: 'center', fontWeight: 700 }}>
-								ランダムモード
-							</Typography>
+							<div className="flex justify-center items-center">
+								<Typography variant="h6" component="p" sx={{ fontWeight: 700 }}>
+									ランダムモード
+								</Typography>
+								<img
+									src="/images/beginner_icon.svg"
+									alt="初心者マーク"
+									className="w-5 ml-1"
+								/>
+							</div>
 							<Typography variant="p" component="p">
-								このモードでは、ランダムに選ばれたイラストたちが登場します。絞り込み条件を指定すれば、登場するイラストを絞り込むこともできます。
-							</Typography>
-							<Typography variant="p" component="p">
-								（ユーザー登録・ログインは不要です）
+								流れてくるイラストはランダムに選ばれます。初めて利用する方や気軽に楽しみたい方におすすめです。
 							</Typography>
 							<div className="mt-6 mb-4 flex justify-center">
 								<Button
@@ -64,43 +86,74 @@ function Index({ auth }) {
 									color="error"
 									size="large"
 									disableRipple
+									onClick={handleRandomBtnClick}
 									sx={{ textTransform: 'none' }}>
-									<Link href={route('gallery.randomMode')}>
-										<Typography>ランダムモードで遊ぶ</Typography>
-									</Link>
+									ランダムモードで遊ぶ
 								</Button>
 							</div>
 						</div>
 					</div>
-					<Divider
-						orientation="vertical"
-						variant="middle"
-						flexItem
-						sx={{ borderColor: 'gray', mx: '2rem' }}
-					/>
-					<div className="w-2/5">
-						<Typography variant="h6" component="h4" sx={{ textAlign: 'center' }}>
+					<div className="w-1/4 ml-8">
+						{/* <Typography variant="h6" component="h4">
+							気軽に楽しむなら
+						</Typography>
+						<div className="flex justify-center">
+							<ArrowDropDownRoundedIcon fontSize="large" sx={{ color: 'gray' }} />
+						</div> */}
+						<div className="p-2 text-center bg-gray-800 rounded-md">
+							<Typography variant="h6" component="p" sx={{ fontWeight: 700 }}>
+								絞り込みモード
+							</Typography>
+							<Typography variant="p" component="p">
+								絞り込み条件に合致するイラストのみ流れてきます。カードの種類（モンスター・魔法・罠）や種族、属性、初収録時期など、様々な条件で絞り込むことができます。
+							</Typography>
+							<div className="mt-6 mb-4 flex justify-center">
+								<Button
+									variant="contained"
+									color="error"
+									size="large"
+									disableRipple
+									onClick={handleFilterBtnClick}
+									sx={{ textTransform: 'none' }}>
+									絞り込みモードで遊ぶ
+								</Button>
+							</div>
+						</div>
+					</div>
+					<div className="w-1/4 ml-8">
+						{/* <Typography variant="h6" component="h4">
 							じっくり楽しむなら
 						</Typography>
 						<div className="flex justify-center">
 							<ArrowDropDownRoundedIcon fontSize="large" sx={{ color: 'gray' }} />
-						</div>
+						</div> */}
 						<div className="p-2 text-center bg-gray-800 rounded-md">
-							<Typography
-								variant="h6"
-								component="p"
-								sx={{ textAlign: 'center', fontWeight: 700 }}>
-								MyTagモード
+							<Typography variant="h6" component="p" sx={{ fontWeight: 700 }}>
+								Myタグモード
 							</Typography>
 							<Typography variant="p" component="p">
-								事前にMyTagを作成し、お気に入りのイラストを登録しておきます。
+								事前に「Myタグ」を作成し、お気に入りのイラストを登録しておきます。
 							</Typography>
 							<Typography variant="p" component="p">
-								このモードでは、MyTagに登録したイラストのみ登場します。そのため、お気に入りのイラストたちをより存分に楽しむことができます。
+								このモードでは、「Myタグ」に登録したイラストのみ流れてきます。お気に入りのイラストだけを存分に楽しむことができます。
 							</Typography>
-							<Typography variant="p" component="p">
-								（ユーザー登録・ログインが必要です）
-							</Typography>
+							{!auth.user && (
+								<Typography variant="p" component="p">
+									（
+									<Link
+										href={route('register')}
+										className="text-white underline hover:text-gray-400">
+										ユーザー登録
+									</Link>
+									・
+									<Link
+										href={route('login')}
+										className="text-white underline  hover:text-gray-400">
+										ログイン
+									</Link>
+									が必要です）
+								</Typography>
+							)}
 							<div className="mt-6 mb-4 flex justify-center">
 								<Button
 									variant="contained"
@@ -108,10 +161,9 @@ function Index({ auth }) {
 									size="large"
 									disableRipple
 									disabled={!auth.user} // 未ログインならdisabled
+									onClick={handleMyTagBtnClick}
 									sx={{ textTransform: 'none' }}>
-									<Link href={route('gallery.myTagMode')}>
-										<Typography>MyTagモードで遊ぶ</Typography>
-									</Link>
+									Myタグモードで遊ぶ
 								</Button>
 							</div>
 						</div>

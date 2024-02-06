@@ -33,7 +33,7 @@ p, h1, h2, h3, h4, label {
 }
 
 .bg-color-layout {
-  background-color: rgba(18, 20, 27, 1);
+  background-color: rgb(18, 20, 27)
 }
 /* .adminLayout-bg {
   background-color: rgb(232, 232, 241);
