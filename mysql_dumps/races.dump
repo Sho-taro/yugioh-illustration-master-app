@@ -1,0 +1,56 @@
+-- MySQL dump 10.13  Distrib 8.0.32, for Linux (x86_64)
+--
+-- Host: localhost    Database: yugioh_illustration_master_app
+-- ------------------------------------------------------
+-- Server version	8.0.32
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8mb4 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `races`
+--
+
+DROP TABLE IF EXISTS `races`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `races` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `race_code` varchar(8) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name_ja` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name_en` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `races_race_code_unique` (`race_code`)
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `races`
+--
+
+LOCK TABLES `races` WRITE;
+/*!40000 ALTER TABLE `races` DISABLE KEYS */;
+INSERT INTO `races` VALUES (1,'RA0001','魔法使い族','Spellcaster','2023-12-16 03:14:08','2023-12-16 03:14:08'),(2,'RA0002','ドラゴン族','Dragon','2023-12-16 03:14:34','2023-12-16 03:14:34'),(3,'RA0003','アンデット族','Zombie','2023-12-16 03:14:50','2023-12-16 03:14:50'),(4,'RA0004','戦士族','Warrior','2023-12-16 03:15:07','2023-12-16 03:15:07'),(5,'RA0005','獣戦士族','Beast-Warrior','2023-12-16 03:15:31','2023-12-16 03:15:31'),(6,'RA0006','獣族','Beast','2023-12-16 03:15:46','2023-12-16 03:15:46'),(7,'RA0007','鳥獣族','Winged Beast','2023-12-16 03:16:06','2023-12-16 03:16:06'),(8,'RA0008','悪魔族','Fiend','2023-12-16 03:16:52','2023-12-16 03:16:52'),(9,'RA0009','天使族','Fairy','2023-12-16 03:17:06','2023-12-16 03:17:06'),(10,'RA0010','昆虫族','Insect','2023-12-16 03:17:47','2023-12-16 03:17:47'),(11,'RA0011','恐竜族','Dinosaur','2023-12-16 03:18:01','2023-12-16 03:18:01'),(12,'RA0012','爬虫類族','Reptile','2023-12-16 03:18:13','2023-12-16 03:18:13'),(13,'RA0013','魚族','Fish','2023-12-16 03:18:29','2023-12-16 03:18:29'),(14,'RA0014','海竜族','Sea Serpent','2023-12-16 03:18:42','2023-12-16 03:18:42'),(15,'RA0015','水族','Aqua','2023-12-16 03:19:04','2023-12-16 03:19:04'),(16,'RA0016','炎族','Pyro','2023-12-16 03:19:54','2023-12-16 03:19:54'),(17,'RA0017','雷族','Thunder','2023-12-16 03:20:09','2023-12-16 03:20:09'),(18,'RA0018','岩石族','Rock','2023-12-16 03:20:24','2023-12-16 03:20:24'),(19,'RA0019','植物族','Plant','2023-12-16 03:20:40','2023-12-16 03:20:40'),(20,'RA0020','機械族','Machine','2023-12-16 03:20:56','2023-12-16 03:20:56'),(21,'RA0021','サイキック族','Psychic','2023-12-16 03:21:09','2023-12-16 03:21:09'),(22,'RA0022','幻竜族','Wyrm','2023-12-16 03:21:25','2023-12-16 03:21:25'),(23,'RA0023','サイバース族','Cyberse','2023-12-16 03:21:40','2023-12-16 03:21:40'),(24,'RA0024','幻想魔族','Illusion Type','2023-12-16 03:21:54','2023-12-16 03:21:54'),(25,'RA0025','幻神獣族','Divine-Beast','2023-12-16 03:22:07','2023-12-16 03:22:07'),(26,'RA0026','創造神族','Creator-God','2023-12-16 03:22:20','2023-12-16 03:22:20');
+/*!40000 ALTER TABLE `races` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2024-02-07  3:55:38

@@ -1,0 +1,57 @@
+-- MySQL dump 10.13  Distrib 8.0.32, for Linux (x86_64)
+--
+-- Host: localhost    Database: yugioh_illustration_master_app
+-- ------------------------------------------------------
+-- Server version	8.0.32
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8mb4 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `periods`
+--
+
+DROP TABLE IF EXISTS `periods`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `periods` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `period_code` varchar(8) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `start_date` date NOT NULL,
+  `end_date` date NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `periods_period_code_unique` (`period_code`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `periods`
+--
+
+LOCK TABLES `periods` WRITE;
+/*!40000 ALTER TABLE `periods` DISABLE KEYS */;
+INSERT INTO `periods` VALUES (1,'PE0001','１期','1999-01-01','2000-03-31','2023-12-16 02:31:30','2023-12-16 02:31:30'),(2,'PE0002','２期','2000-04-01','2002-04-30','2023-12-16 02:32:58','2023-12-16 02:32:58'),(3,'PE0003','３期','2002-05-01','2004-04-30','2023-12-16 02:33:41','2023-12-16 02:33:41'),(4,'PE0004','４期','2004-05-01','2006-04-30','2023-12-16 02:34:02','2023-12-16 02:34:02'),(5,'PE0005','５期','2006-05-01','2008-02-29','2023-12-16 02:34:36','2023-12-16 02:34:36'),(6,'PE0006','６期','2008-03-01','2010-02-28','2023-12-16 02:35:03','2023-12-16 02:35:03'),(7,'PE0007','７期','2010-03-01','2012-02-29','2023-12-16 02:35:45','2023-12-16 02:35:45'),(8,'PE0008','８期','2012-03-01','2014-03-20','2023-12-16 02:36:06','2023-12-16 02:36:06'),(9,'PE0009','９期','2014-03-21','2017-03-24','2023-12-16 02:36:33','2023-12-16 02:36:33'),(10,'PE0010','10期','2017-03-25','2020-03-31','2023-12-16 02:37:10','2023-12-16 02:37:10'),(11,'PE0011','11期','2020-04-01','2023-03-31','2023-12-16 02:37:34','2023-12-16 02:37:34'),(12,'PE0012','12期','2023-04-01','2030-12-31','2023-12-16 02:37:56','2023-12-16 02:37:56');
+/*!40000 ALTER TABLE `periods` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2024-02-07  3:57:03
