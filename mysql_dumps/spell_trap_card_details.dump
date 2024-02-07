@@ -1,0 +1,58 @@
+-- MySQL dump 10.13  Distrib 8.0.32, for Linux (x86_64)
+--
+-- Host: localhost    Database: yugioh_illustration_master_app
+-- ------------------------------------------------------
+-- Server version	8.0.32
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8mb4 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `spell_trap_card_details`
+--
+
+DROP TABLE IF EXISTS `spell_trap_card_details`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `spell_trap_card_details` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `card_official_id` varchar(8) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `play_type_code` varchar(8) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `spell_trap_card_details_card_official_id_unique` (`card_official_id`),
+  KEY `spell_trap_card_details_play_type_code_foreign` (`play_type_code`),
+  CONSTRAINT `spell_trap_card_details_card_official_id_foreign` FOREIGN KEY (`card_official_id`) REFERENCES `cards` (`card_official_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `spell_trap_card_details_play_type_code_foreign` FOREIGN KEY (`play_type_code`) REFERENCES `spell_trap_play_types` (`play_type_code`) ON DELETE RESTRICT ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `spell_trap_card_details`
+--
+
+LOCK TABLES `spell_trap_card_details` WRITE;
+/*!40000 ALTER TABLE `spell_trap_card_details` DISABLE KEYS */;
+INSERT INTO `spell_trap_card_details` VALUES (3,'37630732','PL0001','2023-12-21 13:41:24','2023-12-21 13:41:24'),(4,'40605147','PL0007','2023-12-21 14:38:45','2023-12-21 14:38:45'),(5,'37478723','PL0003','2023-12-24 20:31:54','2023-12-24 20:31:54'),(6,'33017655','PL0002','2023-12-24 20:33:07','2023-12-24 20:33:07'),(7,'73616671','PL0005','2023-12-24 20:34:18','2023-12-24 20:34:18'),(8,'60369732','PL0006','2023-12-24 20:36:23','2023-12-24 20:36:23'),(9,'35059553','PL0004','2023-12-24 20:38:00','2023-12-24 20:38:00'),(10,'60442460','PL0004','2023-12-24 20:41:28','2023-12-24 20:41:28'),(11,'63086455','PL0001','2023-12-24 20:43:05','2023-12-24 20:43:05');
+/*!40000 ALTER TABLE `spell_trap_card_details` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2024-02-07  3:56:08
