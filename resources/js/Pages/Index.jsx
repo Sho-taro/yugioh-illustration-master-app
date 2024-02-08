@@ -43,7 +43,7 @@ function Index({ auth }) {
 				</Typography>
 				<div className="mt-8 mb-10 flex justify-center">
 					<img
-						src="/images/gallery06.png"
+						src="/images/gallery07.png"
 						alt="galleryイメージ"
 						className="rounded-md"
 						style={{ width: '52.5rem' }}
