@@ -35,6 +35,19 @@ function Canvas({ cards, animationState, setAnimationState, canvasCards }) {
 
 	useEffect(() => {
 		if (!canvas.current.getContext) return; // ユーザが使用しているブラウザがcanvas未対応だった場合、early return
+		// タッチ可能な端末で、ピンチイン・ピンチアウト操作を無効化
+		// touchmoveイベントを使ってピンチ操作を無効化。
+		// 指が画面上を動いたときのタッチ数をチェックし、二本以上の指が動いた場合に操作をキャンセル
+		document.addEventListener(
+			'touchmove',
+			e => {
+				if (e.touches.length > 1) {
+					e.preventDefault();
+				}
+				console.log('touchmoveイベントが発火しました。');
+			},
+			{ passive: false }
+		);
 		// windowのサイズが変更されたら、canvasのサイズもそれにあわせて変更する
 		window.addEventListener('resize', () => {
 			canvas.current.width = window.innerWidth * devicePixelRatio;
@@ -58,7 +71,7 @@ function Canvas({ cards, animationState, setAnimationState, canvasCards }) {
 		// ↓ canvasCardの影の設定
 		ctx.shadowOffsetX = 0;
 		ctx.shadowOffsetY = 0;
-		ctx.shadowBlur = 15 * devicePixelRatio;
+		ctx.shadowBlur = 10 * devicePixelRatio;
 		ctx.shadowColor = 'rgb(190, 188, 188)';
 
 		window.createCanvasCard = () => {
@@ -118,7 +131,7 @@ function Canvas({ cards, animationState, setAnimationState, canvasCards }) {
 			} else {
 				cardIndex = 0;
 			}
-			console.log(canvasCards);
+			// console.log(canvasCards);
 		};
 
 		window.draw = () => {
@@ -178,7 +191,7 @@ function Canvas({ cards, animationState, setAnimationState, canvasCards }) {
 				width={window.innerWidth * devicePixelRatio}
 				height={window.innerHeight * devicePixelRatio}
 				style={{ width: window.innerWidth, height: window.innerHeight }}>
-				エラー:お使いのブラウザが古いため、アニメーションを表示できません。
+				エラー: お使いのブラウザはcanvas要素に非対応です。
 			</canvas>
 			{showingMenuBar && (
 				<CanvasMenuBar handleClick={pauseRestartCanvas} animationState={animationState} />
