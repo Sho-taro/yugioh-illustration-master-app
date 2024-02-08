@@ -173,6 +173,8 @@ function Canvas({ cards, animationState, setAnimationState, canvasCards }) {
 				ref={canvas}
 				className="cursor-none"
 				// width, height, styleの設定で、高画質で表示できるようにした
+				// devicePixelRationは、css ピクセルに対する物理ピクセルの比率。
+				// Retinaディスプレイなどの高画質対応のマシンでは、devicePixelRatioの値は 2 近くになる（この値が大きくなるほど高画質？）。
 				width={window.innerWidth * devicePixelRatio}
 				height={window.innerHeight * devicePixelRatio}
 				style={{ width: window.innerWidth, height: window.innerHeight }}>
