@@ -78,8 +78,8 @@ function Canvas({ cards, animationState, setAnimationState, canvasCards }) {
 			const imgInstance = new Image();
 			imgInstance.src = `/images/card-images/${randomOrderCards[cardIndex].product_code}-${randomOrderCards[cardIndex].list_number}.jpg`;
 			// const magnification = 0.5 + Math.random() * 0.5; // 倍率 0.5以上1未満
-			const percent = 50 + Math.floor(Math.random() * 50); // パーセント 50以上100未満　の整数 （Canvasアニメーションでは、できるだけ浮動小数点ではなく整数型を使った方が良い）
-			const imgSize = Math.floor((330 * devicePixelRatio * percent) / 100);
+			const percent = 60 + Math.floor(Math.random() * 40); // パーセント 50以上100未満　の整数 （Canvasアニメーションでは、できるだけ浮動小数点ではなく整数型を使った方が良い）
+			const imgSize = Math.floor((320 * devicePixelRatio * percent) / 100);
 			if (cardIndex % 5 === 0) {
 				canvasCards.push({
 					img: imgInstance,
