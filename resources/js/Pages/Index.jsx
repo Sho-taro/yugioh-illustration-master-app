@@ -46,10 +46,10 @@ function Index({ auth }) {
 						src="/images/gallery07.png"
 						alt="galleryイメージ"
 						className="rounded-md"
-						style={{ width: '52.5rem' }}
+						style={{ width: '52rem' }}
 					/>
 					{/* <img src="/images/laptop.jpg" alt="laptop" /> */}
-					<div className="w-20"></div>
+					<div className="w-16"></div>
 				</div>
 				<Divider variant="middle" sx={{ borderColor: 'gray' }} />
 				<Typography
