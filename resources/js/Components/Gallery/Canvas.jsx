@@ -10,7 +10,7 @@ function Canvas({ cards, animationState, setAnimationState, canvasCards }) {
 
 	const cardsNum = cards.length;
 	const randomOrderCards = shuffleArray(cards);
-	const speed = 0.4;
+	const speed = 0.4 * devicePixelRatio;
 	let cardIndex = 0;
 
 	// canvasアニメーションを一時停止/リスタートする関数
@@ -37,8 +37,10 @@ function Canvas({ cards, animationState, setAnimationState, canvasCards }) {
 		if (!canvas.current.getContext) return; // ユーザが使用しているブラウザがcanvas未対応だった場合、early return
 		// windowのサイズが変更されたら、canvasのサイズもそれにあわせて変更する
 		window.addEventListener('resize', () => {
-			canvas.current.width = window.innerWidth;
-			canvas.current.height = window.innerHeight;
+			canvas.current.width = window.innerWidth * devicePixelRatio;
+			canvas.current.height = window.innerHeight * devicePixelRatio;
+			canvas.current.style.width = window.innerWidth;
+			canvas.current.style.height = window.innerHeight;
 		});
 		// 一定時間動かなかったらカーソルとメニューバーを非表示
 		let timer;
@@ -53,59 +55,60 @@ function Canvas({ cards, animationState, setAnimationState, canvasCards }) {
 		});
 
 		const ctx = canvas.current.getContext('2d'); // 描画コンテクストを取得
-		// ↓ canvasCardのbox-shadowの設定
+		// ↓ canvasCardの影の設定
 		ctx.shadowOffsetX = 0;
 		ctx.shadowOffsetY = 0;
-		ctx.shadowBlur = 15;
+		ctx.shadowBlur = 15 * devicePixelRatio;
 		ctx.shadowColor = 'rgb(190, 188, 188)';
 
 		window.createCanvasCard = () => {
 			const imgInstance = new Image();
 			imgInstance.src = `/images/card-images/${randomOrderCards[cardIndex].product_code}-${randomOrderCards[cardIndex].list_number}.jpg`;
-			const magnification = 0.5 + Math.random() * 0.5; // 倍率 0.6以上1未満
-			const imgSize = 330 * magnification;
+			// const magnification = 0.5 + Math.random() * 0.5; // 倍率 0.5以上1未満
+			const percent = 50 + Math.floor(Math.random() * 50); // パーセント 50以上100未満　の整数 （Canvasアニメーションでは、できるだけ浮動小数点ではなく整数型を使った方が良い）
+			const imgSize = Math.floor((330 * devicePixelRatio * percent) / 100);
 			if (cardIndex % 5 === 0) {
 				canvasCards.push({
 					img: imgInstance,
-					magnification: magnification,
+					percent: percent,
 					imgSize: imgSize,
-					x: (0.4 + Math.random() * 0.2) * (canvas.current.width - imgSize),
+					x: Math.floor((0.4 + Math.random() * 0.2) * (canvas.current.width - imgSize)),
 					y: imgSize * -1,
 					cardData: { ...randomOrderCards[cardIndex] },
 				});
 			} else if (cardIndex % 5 === 1) {
 				canvasCards.push({
 					img: imgInstance,
-					magnification: magnification,
+					percent: percent,
 					imgSize: imgSize,
-					x: (0 + Math.random() * 0.15) * (canvas.current.width - imgSize),
+					x: Math.floor((0 + Math.random() * 0.15) * (canvas.current.width - imgSize)),
 					y: imgSize * -1,
 					cardData: { ...randomOrderCards[cardIndex] },
 				});
 			} else if (cardIndex % 5 === 2) {
 				canvasCards.push({
 					img: imgInstance,
-					magnification: magnification,
+					percent: percent,
 					imgSize: imgSize,
-					x: (0.65 + Math.random() * 0.2) * (canvas.current.width - imgSize),
+					x: Math.floor((0.65 + Math.random() * 0.2) * (canvas.current.width - imgSize)),
 					y: imgSize * -1,
 					cardData: { ...randomOrderCards[cardIndex] },
 				});
 			} else if (cardIndex % 5 === 3) {
 				canvasCards.push({
 					img: imgInstance,
-					magnification: magnification,
+					percent: percent,
 					imgSize: imgSize,
-					x: (0.15 + Math.random() * 0.2) * (canvas.current.width - imgSize),
+					x: Math.floor((0.15 + Math.random() * 0.2) * (canvas.current.width - imgSize)),
 					y: imgSize * -1,
 					cardData: { ...randomOrderCards[cardIndex] },
 				});
 			} else if (cardIndex % 5 === 4) {
 				canvasCards.push({
 					img: imgInstance,
-					magnification: magnification,
+					percent: percent,
 					imgSize: imgSize,
-					x: (0.85 + Math.random() * 0.15) * (canvas.current.width - imgSize),
+					x: Math.floor((0.85 + Math.random() * 0.15) * (canvas.current.width - imgSize)),
 					y: imgSize * -1,
 					cardData: { ...randomOrderCards[cardIndex] },
 				});
@@ -115,6 +118,7 @@ function Canvas({ cards, animationState, setAnimationState, canvasCards }) {
 			} else {
 				cardIndex = 0;
 			}
+			console.log(canvasCards);
 		};
 
 		window.draw = () => {
@@ -130,18 +134,15 @@ function Canvas({ cards, animationState, setAnimationState, canvasCards }) {
 					canvasCard.imgSize
 				);
 			}
-			// for (const canvasCard of canvasCards) {
-			// 	if (canvasCard.y <= 0) {
-			// 		canvasCard.y += speed * 2;
-			// 	} else if (canvasCard.y > 0 && canvasCard.y <= canvas.current.height) {
-			// 		canvasCard.y += speed + canvasCard.magnification * 0.2;
-			// 	}
-			// }
 			for (let i = 0; i < canvasCards.length; i++) {
 				if (canvasCards[i].y > canvas.current.height) {
 					canvasCards.splice(i, 1); // canvasの下端より下に出たcanvasCardは削除する
 				} else {
-					canvasCards[i].y += speed + canvasCards[i].magnification * 0.2; // canvasCardを下に動かす
+					canvasCards[i].y +=
+						Math.floor((speed + (0.2 * canvasCards[i].percent) / 100) * 100) / 100; // canvasCardを下に動かす  // y座標に + 0.5 ~ 0.6
+					// console.log(i,
+					// 	Math.floor((speed + (0.2 * canvasCards[i].percent) / 100) * 100) / 100
+					// );
 				}
 			}
 
@@ -170,9 +171,11 @@ function Canvas({ cards, animationState, setAnimationState, canvasCards }) {
 		<>
 			<canvas
 				ref={canvas}
-				width={window.innerWidth}
-				height={window.innerHeight}
-				className="cursor-none">
+				className="cursor-none"
+				// width, height, styleの設定で、高画質で表示できるようにした
+				width={window.innerWidth * devicePixelRatio}
+				height={window.innerHeight * devicePixelRatio}
+				style={{ width: window.innerWidth, height: window.innerHeight }}>
 				エラー:お使いのブラウザが古いため、アニメーションを表示できません。
 			</canvas>
 			{showingMenuBar && (
