@@ -20,9 +20,9 @@ function Header({ auth, needOnlyLogo }) {
 					<div>
 						<Link href={route('index')}>
 							<img
-								src="/images/app-icon_no_bg.png"
-								alt="appアイコン"
-								width="50px"
+								src="/images/logo_small.png"
+								alt="logoアイコン"
+								width="120px"
 								className="hover:opacity-60"
 							/>
 						</Link>
@@ -72,7 +72,7 @@ function Header({ auth, needOnlyLogo }) {
 						</div>
 					)}
 				</div>
-				<Divider sx={{ borderColor: 'rgba(200, 200, 200, 0.7)' }} />
+				<Divider sx={{ borderColor: 'rgba(200, 200, 200, 0.3)' }} />
 			</div>
 			<div className="h-20"></div>
 		</div>
