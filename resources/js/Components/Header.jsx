@@ -20,7 +20,7 @@ function Header({ auth, needOnlyLogo }) {
 					<div>
 						<Link href={route('index')}>
 							<img
-								src="/images/logo_small.png"
+								src="/images/logo.png"
 								alt="logoアイコン"
 								width="120px"
 								className="hover:opacity-60"

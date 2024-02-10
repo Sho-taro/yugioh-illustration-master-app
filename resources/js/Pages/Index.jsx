@@ -22,12 +22,29 @@ function Index({ auth }) {
 		<>
 			<Header auth={auth} needOnlyLogo={false} />
 			<div className="w-4/5 mx-auto text-center">
-				<div className="flex justify-center">
-					<img src="/images/logo_large.png" alt="ロゴ大" style={{ width: '30rem' }} />
+				<div className="h-screen flex flex-col justify-center">
+					<div className="mb-32 flex justify-center">
+						<img src="/images/logo.png" alt="ロゴ画像" style={{ width: '36rem' }} />
+					</div>
+					<Typography variant="h3" component="h2" sx={{ mb: '8rem', fontWeight: '700' }}>
+						遊戯王を愛する、
+						<ruby>
+							決闘者<rt className="text-xs">デュエリスト</rt>
+						</ruby>
+						へ
+					</Typography>
 				</div>
-				<Typography variant="h3" component="h2" sx={{ mb: '4rem', fontWeight: '700' }}>
-					遊戯王を愛する、決闘者へ
-				</Typography>
+				<Divider variant="middle" sx={{ borderColor: 'gray' }} />
+				<div className="mt-40 mb-12 flex justify-center">
+					<img
+						src="/images/gallery07.png"
+						alt="galleryイメージ"
+						className="rounded-md"
+						style={{ width: '48rem' }}
+					/>
+					{/* <img src="/images/laptop.jpg" alt="laptop" /> */}
+					<div className="w-12"></div>
+				</div>
 				<Typography variant="h6" component="p">
 					<Typography variant="h6" component="span" sx={{ fontWeight: '700' }}>
 						ILLUST. FALL
@@ -40,27 +57,24 @@ function Index({ auth }) {
 					</Typography>
 					です。
 				</Typography>
+				<div className="mt-40 mb-12 flex justify-center">
+					<img
+						src="/images/use_case.png"
+						alt="本アプリの使用例 イラスト"
+						style={{ width: '28rem' }}
+					/>
+				</div>
 				<Typography variant="h6" component="p">
 					イラストを眺めながらデッキ構築を考えたり、作業用デスクトップとして使用したり、
 				</Typography>
 				<Typography variant="h6" component="p">
 					いつでも遊戯王の世界感を楽しむことができます。
 				</Typography>
-				<div className="mt-8 mb-10 flex justify-center">
-					<img
-						src="/images/gallery07.png"
-						alt="galleryイメージ"
-						className="rounded-md"
-						style={{ width: '48rem' }}
-					/>
-					{/* <img src="/images/laptop.jpg" alt="laptop" /> */}
-					<div className="w-12"></div>
-				</div>
-				<Divider variant="middle" sx={{ borderColor: 'gray' }} />
+				<Divider variant="middle" sx={{ mt: '10rem', borderColor: 'gray' }} />
 				<Typography
 					variant="h4"
 					component="h3"
-					sx={{ mt: '6rem', mb: '2rem', fontWeight: '700' }}>
+					sx={{ mt: '10rem', mb: '2rem', fontWeight: '700' }}>
 					選べる３つの遊び方
 				</Typography>
 				<div className="mb-20 flex justify-center items-start">
@@ -123,7 +137,7 @@ function Index({ auth }) {
 							事前に「Myタグ」を作成し、好きなカードを登録しておきます。
 						</Typography>
 						<Typography variant="p" component="p">
-							「Myタグ」に登録したカードのみ降ってくるモードです。お気に入りのカードやこだわりのカードだけを存分に楽しむことができます。
+							「Myタグ」に登録したカードのみ降ってくるモードです。お気に入りのカードやこだわりのカードだけをじっくり楽しみたい方におすすめです。
 						</Typography>
 						{!auth.user && (
 							<Typography variant="p" component="p">
