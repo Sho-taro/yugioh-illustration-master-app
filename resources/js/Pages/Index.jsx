@@ -77,8 +77,8 @@ function Index({ auth }) {
 					sx={{ mt: '10rem', mb: '2rem', fontWeight: '700' }}>
 					選べる３つの遊び方
 				</Typography>
-				<Typography variant="h6" component="p" sx={{mb: '2rem'}}>
-					いつでも遊戯王の世界感を楽しむことができます。
+				<Typography variant="h6" component="p" sx={{ mb: '2rem' }}>
+					利用シーンに最適なモードをお選びいただけます。
 				</Typography>
 				<div className="mb-20 flex justify-center items-start">
 					<div className="w-1/4 p-2 pt-4 text-center bg-gray-800 rounded-md">
