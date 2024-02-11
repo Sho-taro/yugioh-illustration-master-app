@@ -25,7 +25,7 @@ function Canvas({ cards, animationState, setAnimationState, canvasCards }) {
 			// リスタートする処理
 			let id = setInterval(() => {
 				createCanvasCard();
-			}, 3500);
+			}, 3000);
 			setIntervalId(id);
 			draw();
 			setAnimationState('playing');
@@ -44,7 +44,7 @@ function Canvas({ cards, animationState, setAnimationState, canvasCards }) {
 				if (e.touches.length > 1) {
 					e.preventDefault();
 				}
-				console.log('touchmoveイベントが発火しました。');
+				// console.log('touchmoveイベントが発火しました。');
 			},
 			{ passive: false }
 		);
@@ -78,50 +78,57 @@ function Canvas({ cards, animationState, setAnimationState, canvasCards }) {
 			const imgInstance = new Image();
 			imgInstance.src = `/images/card-images/${randomOrderCards[cardIndex].product_code}-${randomOrderCards[cardIndex].list_number}.jpg`;
 			// const magnification = 0.5 + Math.random() * 0.5; // 倍率 0.5以上1未満
-			const percent = 60 + Math.floor(Math.random() * 40); // パーセント 50以上100未満　の整数 （Canvasアニメーションでは、できるだけ浮動小数点ではなく整数型を使った方が良い）
-			const imgSize = Math.floor((320 * devicePixelRatio * percent) / 100);
-			if (cardIndex % 5 === 0) {
+			const percent = 50 + Math.floor(Math.random() * 50); // パーセント 50以上100未満　の整数 （Canvasアニメーションでは、できるだけ浮動小数点ではなく整数型を使った方が良い）
+			// const imgSize = Math.floor((320 * devicePixelRatio * percent) / 100);
+			const imgSize = Math.floor(((canvas.current.width / 6) * 1.2 * percent) / 100);
+			const cardIndexMod5 = cardIndex % 5;
+			if (cardIndexMod5 === 0) {
 				canvasCards.push({
 					img: imgInstance,
 					percent: percent,
 					imgSize: imgSize,
-					x: Math.floor((0.4 + Math.random() * 0.2) * (canvas.current.width - imgSize)),
+					// x: Math.floor((0.4 + Math.random() * 0.2) * (canvas.current.width - imgSize)),
+					x: (canvas.current.width / 5) * 3 + (canvas.current.width / 5 - imgSize) / 2,
 					y: imgSize * -1,
 					cardData: { ...randomOrderCards[cardIndex] },
 				});
-			} else if (cardIndex % 5 === 1) {
+			} else if (cardIndexMod5 === 1) {
 				canvasCards.push({
 					img: imgInstance,
 					percent: percent,
 					imgSize: imgSize,
-					x: Math.floor((0 + Math.random() * 0.15) * (canvas.current.width - imgSize)),
+					// x: Math.floor((0 + Math.random() * 0.15) * (canvas.current.width - imgSize)),
+					x: (canvas.current.width / 5) * 1 + (canvas.current.width / 5 - imgSize) / 2,
 					y: imgSize * -1,
 					cardData: { ...randomOrderCards[cardIndex] },
 				});
-			} else if (cardIndex % 5 === 2) {
+			} else if (cardIndexMod5 === 2) {
 				canvasCards.push({
 					img: imgInstance,
 					percent: percent,
 					imgSize: imgSize,
-					x: Math.floor((0.65 + Math.random() * 0.2) * (canvas.current.width - imgSize)),
+					// x: Math.floor((0.65 + Math.random() * 0.2) * (canvas.current.width - imgSize)),
+					x: (canvas.current.width / 5) * 4 + (canvas.current.width / 5 - imgSize) / 2,
 					y: imgSize * -1,
 					cardData: { ...randomOrderCards[cardIndex] },
 				});
-			} else if (cardIndex % 5 === 3) {
+			} else if (cardIndexMod5 === 3) {
 				canvasCards.push({
 					img: imgInstance,
 					percent: percent,
 					imgSize: imgSize,
-					x: Math.floor((0.15 + Math.random() * 0.2) * (canvas.current.width - imgSize)),
+					// x: Math.floor((0.15 + Math.random() * 0.2) * (canvas.current.width - imgSize)),
+					x: (canvas.current.width / 5) * 0 + (canvas.current.width / 5 - imgSize) / 2,
 					y: imgSize * -1,
 					cardData: { ...randomOrderCards[cardIndex] },
 				});
-			} else if (cardIndex % 5 === 4) {
+			} else if (cardIndexMod5 === 4) {
 				canvasCards.push({
 					img: imgInstance,
 					percent: percent,
 					imgSize: imgSize,
-					x: Math.floor((0.85 + Math.random() * 0.15) * (canvas.current.width - imgSize)),
+					// x: Math.floor((0.85 + Math.random() * 0.15) * (canvas.current.width - imgSize)),
+					x: (canvas.current.width / 5) * 2 + (canvas.current.width / 5 - imgSize) / 2,
 					y: imgSize * -1,
 					cardData: { ...randomOrderCards[cardIndex] },
 				});
@@ -168,7 +175,7 @@ function Canvas({ cards, animationState, setAnimationState, canvasCards }) {
 		createCanvasCard();
 		let id = setInterval(() => {
 			createCanvasCard();
-		}, 3500);
+		}, 3000);
 		setIntervalId(id);
 
 		draw();
