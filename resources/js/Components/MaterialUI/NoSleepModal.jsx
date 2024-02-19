@@ -4,7 +4,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 
-function NoSleepModal({open, handleOpen, handleClose, enableNoSleep }) {
+function NoSleepModal({open, handleClose, enableNoSleep }) {
 	const maskStyle = {
 		position: 'fixed',
 		top: '0',
@@ -46,7 +46,7 @@ function NoSleepModal({open, handleOpen, handleClose, enableNoSleep }) {
 						variant="h6"
 						component="h2"
 						sx={{ textAlign: 'center' }}>
-						アニメーション中はディスプレイの自動スリープ機能がOFFになります。
+						アニメーション中は、ディスプレイの自動スリープ機能がOFFになります。
 					</Typography>
 					<div className="flex flex-col">
 						<Button
