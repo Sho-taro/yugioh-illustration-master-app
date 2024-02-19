@@ -2,14 +2,13 @@ import React from 'react';
 // import { Link } from '@inertiajs/react';
 
 function CanvasMenuBar({ handleClick, animationState }) {
+
 	return (
 		<>
 			<div className="canvas-menu-bar">
 				<div className="h-full flex justify-end items-center">
 					<div className="mr-8 h-10 hover:opacity-50 active:scale-90">
-						<button
-							onClick={handleClick}
-							className="text-xl text-white font-bold">
+						<button onClick={handleClick} className="text-xl text-white font-bold">
 							{animationState === 'playing' && (
 								<img
 									src="/images/pause-white.svg"
