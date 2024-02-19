@@ -26,6 +26,7 @@
         "@mui/icons-material": "^5.15.6",
         "@mui/material": "^5.15.6",
         "animejs": "^3.2.1",
-        "framer-motion": "^10.16.4"
+        "framer-motion": "^10.16.4",
+        "nosleep.js": "^0.12.0"
     }
 }

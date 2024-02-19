@@ -2,16 +2,33 @@ import React, { useState, useEffect, useRef } from 'react';
 import CanvasMenuBar from './CanvasMaskModal';
 import { shuffleArray } from '@/utils/shuffleArray';
 
+import NoSleep from 'nosleep.js';
+import NoSleepModal from '../MaterialUI/NoSleepModal';
+
 function Canvas({ cards, animationState, setAnimationState, canvasCards }) {
 	const [showingMenuBar, setShowingMenuBar] = useState(false);
 	const [intervalId, setIntervalId] = useState(null);
 	const [animationFrameId, setAnimationFrameId] = useState(null);
+	const [open, setOpen] = useState(false); // MUI modal
 	const canvas = useRef(null); // canvasをuseRefで取得
 
 	const cardsNum = cards.length;
 	const randomOrderCards = shuffleArray(cards);
 	const speed = 0.4 * devicePixelRatio;
 	let cardIndex = 0;
+
+	// MUI modal
+	const handleOpen = () => setOpen(true);
+	const handleClose = () => setOpen(false);
+
+	const noSleep = new NoSleep();
+	// Enable wake lock.
+	const enableNoSleep = () => {
+		// document.removeEventListener('click', enableNoSleep, false);
+		noSleep.enable();
+		// console.log('noSleepを有効化しました。');
+		handleClose();
+	};
 
 	// canvasアニメーションを一時停止/リスタートする関数
 	const pauseRestartCanvas = () => {
@@ -35,6 +52,9 @@ function Canvas({ cards, animationState, setAnimationState, canvasCards }) {
 
 	useEffect(() => {
 		if (!canvas.current.getContext) return; // ユーザが使用しているブラウザがcanvas未対応だった場合、early return
+
+		handleOpen(); // モーダルウィンドウを表示
+
 		// タッチ可能な端末で、ピンチイン・ピンチアウト操作を無効化
 		// touchmoveイベントを使ってピンチ操作を無効化。
 		// 指が画面上を動いたときのタッチ数をチェックし、二本以上の指が動いた場合に操作をキャンセル
@@ -182,6 +202,7 @@ function Canvas({ cards, animationState, setAnimationState, canvasCards }) {
 
 		// クリーンアップ関数
 		return () => {
+			noSleep.disable(); // noSleepを無効化
 			clearInterval(intervalId);
 			cancelAnimationFrame(animationFrameId);
 		};
@@ -200,6 +221,12 @@ function Canvas({ cards, animationState, setAnimationState, canvasCards }) {
 				style={{ width: window.innerWidth, height: window.innerHeight }}>
 				エラー: お使いのブラウザはcanvas要素に非対応です。
 			</canvas>
+			<NoSleepModal
+				open={open}
+				handleOpen={handleOpen}
+				handleClose={handleClose}
+				enableNoSleep={enableNoSleep}
+			/>
 			{showingMenuBar && (
 				<CanvasMenuBar handleClick={pauseRestartCanvas} animationState={animationState} />
 			)}
