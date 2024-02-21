@@ -7,14 +7,13 @@ import NoSleepModal from '../MaterialUI/NoSleepModal';
 
 function Canvas({ cards, animationState, setAnimationState, canvasCards }) {
 	const [showingMenuBar, setShowingMenuBar] = useState(false);
-	const [intervalId, setIntervalId] = useState(null);
 	const [animationFrameId, setAnimationFrameId] = useState(null);
 	const [open, setOpen] = useState(false); // MUI modal
 	const canvas = useRef(null); // canvasをuseRefで取得
 
 	const cardsNum = cards.length;
 	const randomOrderCards = shuffleArray(cards);
-	const speed = 0.4 * devicePixelRatio;
+	const speed = 0.3 * devicePixelRatio;
 	let cardIndex = 0;
 
 	let timer; // カーソルを非表示にするためのタイマー
@@ -36,27 +35,15 @@ function Canvas({ cards, animationState, setAnimationState, canvasCards }) {
 	const pauseRestartCanvas = () => {
 		if (animationState === 'playing') {
 			// 一時停止する処理
-			clearInterval(intervalId);
 			cancelAnimationFrame(animationFrameId);
 			setAnimationState('pausing');
 			// console.log('アニメーション停止')
 		} else if (animationState === 'pausing') {
 			// リスタートする処理
-			let id = setInterval(() => {
-				createCanvasCard();
-			}, 3000);
-			setIntervalId(id);
 			draw();
 			setAnimationState('playing');
 			// console.log('アニメーション再開')
 		}
-	};
-	// windowのサイズが変更されたとき、canvasのサイズもそれにあわせて変更する関数
-	const resizeCanvas = () => {
-		canvas.current.width = window.innerWidth * devicePixelRatio;
-		canvas.current.height = window.innerHeight * devicePixelRatio;
-		canvas.current.style.width = window.innerWidth;
-		canvas.current.style.height = window.innerHeight;
 	};
 	// 一定時間動かなかったらカーソルとメニューバーを非表示にする関数
 	const hideCursor = () => {
@@ -87,8 +74,6 @@ function Canvas({ cards, animationState, setAnimationState, canvasCards }) {
 			},
 			{ passive: false }
 		);
-		// windowのサイズが変更されたら、canvasのサイズもそれにあわせて変更する
-		window.addEventListener('resize', resizeCanvas);
 		window.addEventListener('mousemove', hideCursor);
 
 		const ctx = canvas.current.getContext('2d'); // 描画コンテクストを取得
@@ -101,78 +86,59 @@ function Canvas({ cards, animationState, setAnimationState, canvasCards }) {
 		window.createCanvasCard = () => {
 			const imgInstance = new Image();
 			imgInstance.src = `/images/card-images/${randomOrderCards[cardIndex].product_code}-${randomOrderCards[cardIndex].list_number}.jpg`;
-			// const magnification = 0.5 + Math.random() * 0.5; // 倍率 0.5以上1未満
-			const percent = 50 + Math.floor(Math.random() * 50); // パーセント 50以上100未満　の整数 （Canvasアニメーションでは、できるだけ浮動小数点ではなく整数型を使った方が良い）
-			// const imgSize = Math.floor((320 * devicePixelRatio * percent) / 100);
-			const imgSize = Math.floor(((canvas.current.width / 6) * 1.2 * percent) / 100);
-			const cardIndexMod5 = cardIndex % 5;
-			const xCorrection = Math.floor(imgSize * (Math.random() * 0.2 - 0.1));
-			if (cardIndexMod5 === 0) {
+			const imgSize = Math.floor((canvas.current.width / 5) * 0.95);
+			if (cardIndex % 5 === 0) {
 				canvasCards.push({
 					img: imgInstance,
-					percent: percent,
 					imgSize: imgSize,
-					// x: Math.floor((0.4 + Math.random() * 0.2) * (canvas.current.width - imgSize)),
-					x:
-						(canvas.current.width / 5) * 3 +
-						(canvas.current.width / 5 - imgSize) / 2 +
-						xCorrection,
+					x: Math.floor(
+						canvas.current.width / 5 * 2 + (canvas.current.width / 5 - imgSize) / 2
+					),
 					y: imgSize * -1,
 					cardData: { ...randomOrderCards[cardIndex] },
 				});
-			} else if (cardIndexMod5 === 1) {
+			} else if (cardIndex % 5 === 1) {
 				canvasCards.push({
 					img: imgInstance,
-					percent: percent,
 					imgSize: imgSize,
-					// x: Math.floor((0 + Math.random() * 0.15) * (canvas.current.width - imgSize)),
-					x:
-						(canvas.current.width / 5) * 1 +
-						(canvas.current.width / 5 - imgSize) / 2 +
-						xCorrection,
+					x: Math.floor(
+						canvas.current.width / 5 * 3 + (canvas.current.width / 5 - imgSize) / 2
+					),
 					y: imgSize * -1,
 					cardData: { ...randomOrderCards[cardIndex] },
 				});
-			} else if (cardIndexMod5 === 2) {
+			} else if (cardIndex % 5 === 2) {
 				canvasCards.push({
 					img: imgInstance,
-					percent: percent,
 					imgSize: imgSize,
-					// x: Math.floor((0.65 + Math.random() * 0.2) * (canvas.current.width - imgSize)),
-					x:
-						(canvas.current.width / 5) * 4 +
-						(canvas.current.width / 5 - imgSize) / 2 -
-						Math.abs(xCorrection),
+					x: Math.floor(
+						(canvas.current.width / 5) * 1 + (canvas.current.width / 5 - imgSize) / 2
+					),
 					y: imgSize * -1,
 					cardData: { ...randomOrderCards[cardIndex] },
 				});
-			} else if (cardIndexMod5 === 3) {
+			} else if (cardIndex % 5 === 3) {
 				canvasCards.push({
 					img: imgInstance,
-					percent: percent,
 					imgSize: imgSize,
-					// x: Math.floor((0.15 + Math.random() * 0.2) * (canvas.current.width - imgSize)),
-					x:
-						(canvas.current.width / 5) * 0 +
-						(canvas.current.width / 5 - imgSize) / 2 +
-						Math.abs(xCorrection),
+					x: Math.floor(
+						(canvas.current.width / 5) * 4 + (canvas.current.width / 5 - imgSize) / 2
+					),
 					y: imgSize * -1,
 					cardData: { ...randomOrderCards[cardIndex] },
 				});
-			} else if (cardIndexMod5 === 4) {
+			} else if (cardIndex % 5 === 4) {
 				canvasCards.push({
 					img: imgInstance,
-					percent: percent,
 					imgSize: imgSize,
-					// x: Math.floor((0.85 + Math.random() * 0.15) * (canvas.current.width - imgSize)),
-					x:
-						(canvas.current.width / 5) * 2 +
-						(canvas.current.width / 5 - imgSize) / 2 +
-						xCorrection,
+					x: Math.floor(
+						(canvas.current.width / 5) * 0 + (canvas.current.width / 5 - imgSize) / 2
+					),
 					y: imgSize * -1,
 					cardData: { ...randomOrderCards[cardIndex] },
 				});
 			}
+
 			if (cardIndex < cardsNum - 1) {
 				cardIndex++;
 			} else {
@@ -183,6 +149,7 @@ function Canvas({ cards, animationState, setAnimationState, canvasCards }) {
 
 		window.draw = () => {
 			ctx.clearRect(0, 0, canvas.current.width, canvas.current.height); // canvas内全体を初期化
+			// イラストの描画
 			for (const canvasCard of canvasCards) {
 				// imageの描画
 				// ctx.drawImage(imageオブジェクト, x, y, width, height);
@@ -194,16 +161,25 @@ function Canvas({ cards, animationState, setAnimationState, canvasCards }) {
 					canvasCard.imgSize
 				);
 			}
+			// ここからイラスト表示位置の更新
 			for (let i = 0; i < canvasCards.length; i++) {
 				if (canvasCards[i].y > canvas.current.height) {
 					canvasCards.splice(i, 1); // canvasの下端より下に出たcanvasCardは削除する
 				} else {
-					canvasCards[i].y +=
-						Math.floor((speed + (0.2 * canvasCards[i].percent) / 100) * 100) / 100; // canvasCardを下に動かす  // y座標に + 0.5 ~ 0.6
+					canvasCards[i].y += speed; // canvasCardを下に動かす
 					// console.log(i,
 					// 	Math.floor((speed + (0.2 * canvasCards[i].percent) / 100) * 100) / 100
 					// );
 				}
+			}
+
+			// 最新のイラストが1/5ちょっとまで表示されたら、次のイラストのオブジェクトを作成
+			if (
+				canvasCards[canvasCards.length - 1].y >
+				-canvasCards[canvasCards.length - 1].imgSize / 5 * 3.95
+			) {
+				createCanvasCard();
+				// console.log(canvasCards);
 			}
 
 			let FrameId = requestAnimationFrame(draw); // draw関数を繰り返す
@@ -213,21 +189,15 @@ function Canvas({ cards, animationState, setAnimationState, canvasCards }) {
 
 		setAnimationState('playing');
 		createCanvasCard();
-		let id = setInterval(() => {
-			createCanvasCard();
-		}, 3000);
-		setIntervalId(id);
 
 		draw();
 
 		// クリーンアップ関数
 		return () => {
 			noSleep.disable(); // noSleepを無効化
-			window.removeEventListener('resize', resizeCanvas);
 			window.removeEventListener('mousemove', hideCursor);
 			window.draw = null;
 			window.createCanvasCard = null;
-			clearInterval(intervalId);
 			cancelAnimationFrame(animationFrameId);
 		};
 	}, []);
