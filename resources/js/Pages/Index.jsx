@@ -6,6 +6,7 @@ import Layout from '@/Layouts/Layout';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import Button from '@mui/material/Button';
+import HeaderSP from '@/Components/HeaderSP';
 // import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
 
 function Index({ auth }) {
@@ -37,11 +38,15 @@ function Index({ auth }) {
 
 	return (
 		<>
-			<Header auth={auth} needOnlyLogo={false} />
+			{windowWidth > 648 ? (
+				<Header auth={auth} needOnlyLogo={false} />
+			) : (
+				<HeaderSP/>
+			)}
 			<div className="w-4/5 mx-auto text-center">
 				<div className="h-screen flex flex-col justify-center">
 					<Typography
-						variant={windowWidth >= 648 ? 'h5' : 'h7'}
+						variant={windowWidth > 648 ? 'h5' : 'h7'}
 						component="h2"
 						sx={{ mb: '4rem', fontWeight: '700' }}>
 						遊戯王を愛する デュエリストへ
@@ -165,9 +170,21 @@ function Index({ auth }) {
 						<Typography variant="p" component="p">
 							「Myタグ」に登録したカードのみ降ってくるモードです。お気に入りのカードやこだわりのカードだけをじっくり楽しみたい方におすすめです。
 						</Typography>
-						{!auth.user && (
-							<Typography variant="p" component="p">
+						{windowWidth <= 648 && (
+							<Typography
+								variant="p"
+								component="p"
+								sx={{ mt: '0.5rem', fontSize: '0.8rem' }}>
 								（
+								※スマートフォンからはご利用いただけません。画面の大きいPCやタブレットからご利用下さい。）
+							</Typography>
+						)}
+						{!auth.user && (
+							<Typography
+								variant="p"
+								component="p"
+								sx={{ mt: '0.5rem', fontSize: '0.8rem' }}>
+								（ ※
 								<Link
 									href={route('register')}
 									className="text-white underline hover:text-gray-400">
@@ -188,7 +205,7 @@ function Index({ auth }) {
 								color="error"
 								size="large"
 								disableRipple
-								disabled={!auth.user} // 未ログインならdisabled
+								disabled={windowWidth <= 648 || !auth.user} // スマートフォンまたは未ログインならdisabled
 								onClick={handleMyTagBtnClick}
 								sx={{ textTransform: 'none' }}>
 								Myタグモードで遊ぶ
