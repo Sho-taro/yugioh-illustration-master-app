@@ -11,6 +11,7 @@ import GalleryLayout from '@/Layouts/GalleryLayout';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import TooltipBackButton from '@/Components/MaterialUI/TooltipBackButton';
+import AuthContainer from '@/Components/AuthContainer';
 
 export default function Login({ status, canResetPassword }) {
 	const { data, setData, post, processing, errors, reset } = useForm({
@@ -31,7 +32,7 @@ export default function Login({ status, canResetPassword }) {
 
 	return (
 		<div className="min-h-screen flex justify-center items-center">
-			<div className="w-1/4 mx-auto">
+			<AuthContainer>
 				{status && <div className="mb-4 font-medium text-sm text-green-600">{status}</div>}
 				<TooltipBackButton href={route('index')} title="Topページへ戻る" />
 				<Typography
@@ -119,7 +120,7 @@ export default function Login({ status, canResetPassword }) {
 						)} */}
 					</div>
 				</form>
-			</div>
+			</AuthContainer>
 		</div>
 		// <GuestLayout>
 		// 	<Head title="ログイン" />
