@@ -5,6 +5,7 @@ import Header from '@/Components/Header';
 import Pagination from '@/Components/Admin/Pageination';
 import Layout from '@/Layouts/Layout';
 import TogglingCheckMark from '@/Components/Admin/TogglingCheckMark';
+import UserTagContainer from '@/Components/UserTagContainer';
 
 import Typography from '@mui/material/Typography';
 import LoyaltyIcon from '@mui/icons-material/Loyalty';
@@ -67,9 +68,9 @@ function Show({ auth, userTag, releasedCardsNum, releasedCardsData, messages, er
 	return (
 		<>
 			<Header auth={auth} needOnlyLogo={true} />
-			<div className="w-3/5 mx-auto">
+			<UserTagContainer>
 				<TooltipBackButton href={`/tags/${auth.user.id}`} />
-				<div className="w-5/6 mx-auto mt-2">
+				<div className="w-9/10 mx-auto mt-2">
 					{/* <div className="mb-8">
 						<Typography variant="h4" component="h2" sx={{ textAlign: 'center' }}>
 							Myタグ 詳細
@@ -188,7 +189,7 @@ function Show({ auth, userTag, releasedCardsNum, releasedCardsData, messages, er
 						<DeleteUserTagModalButton deleteUserTag={deleteUserTag} />
 					</div>
 				</div>
-			</div>
+			</UserTagContainer>
 		</>
 	);
 }

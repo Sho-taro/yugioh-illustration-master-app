@@ -9,6 +9,7 @@ import GalleryLayout from '@/Layouts/GalleryLayout';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import TooltipBackButton from '@/Components/MaterialUI/TooltipBackButton';
+import AuthContainer from '@/Components/AuthContainer';
 
 export default function Register() {
 	const { data, setData, post, processing, errors, reset } = useForm({
@@ -30,7 +31,7 @@ export default function Register() {
 
 	return (
 		<div className="min-h-screen flex justify-center items-center">
-			<div className="w-1/4 mx-auto">
+			<AuthContainer>
 				<TooltipBackButton href={route('index')} title="Topページへ戻る" />
 				<Typography
 					variant="h5"
@@ -145,7 +146,7 @@ export default function Register() {
 						</Link>
 					</div>
 				</form>
-			</div>
+			</AuthContainer>
 		</div>
 	);
 }

@@ -41,29 +41,32 @@ function UserTagThumbnail({ userTag, mapIndex }) {
 					<p>登録カード - 枚</p>
 				) : (
 					<p>
-						登録カード{' '}
-						<span className="text-2xl font-bold">{releasedCardsNum}</span>枚
+						登録カード <span className="text-2xl font-bold">{releasedCardsNum}</span>枚
 					</p>
 				)}
 			</div>
 			{/* <Divider variant="full" sx={{ borderColor: 'rgba(200, 200, 200, 0.7)' }} /> */}
 			{releasedCardsNum >= 1 && (
-				<div className="flex items-center mb-1">
-					{releasedCards.map(releasedCard => (
-						<img
-							key={releasedCard.id}
-							className="w-28 aspect-auto mx-1"
-							src={`/images/card-images/${releasedCard.product_code}-${releasedCard.list_number}.jpg`}
-							alt="イラスト"
-						/>
+				<div className="grid grid-cols-6 mb-1">
+					{releasedCards.map((releasedCard, i) => (
+						<div key={i} className="p-1 lg:p-2">
+							<img
+								key={releasedCard.id}
+								className="aspect-square"
+								src={`/images/card-images/${releasedCard.product_code}-${releasedCard.list_number}.jpg`}
+								alt="イラスト"
+							/>
+						</div>
 					))}
-					{releasedCardsNum >= 7 && (
-						<MoreHorizIcon fontSize="large" sx={{ color: 'gray' }} />
+					{releasedCardsNum >= 6 && (
+						<div className="aspect-square flex justify-center items-center">
+							<MoreHorizIcon fontSize="large" sx={{ color: 'gray' }} />
+						</div>
 					)}
 				</div>
 			)}
 			{releasedCardsNum !== null && releasedCardsNum === 0 && (
-				<div className="h-28 flex justify-center items-center">
+				<div className="h-20 flex justify-center items-center">
 					<p style={{ color: 'grey' }} className="italic">
 						登録されたカードはありません。
 					</p>
