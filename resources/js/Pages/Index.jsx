@@ -40,7 +40,10 @@ function Index({ auth }) {
 			<Header auth={auth} needOnlyLogo={false} />
 			<div className="w-4/5 mx-auto text-center">
 				<div className="h-screen flex flex-col justify-center">
-					<Typography variant="h5" component="h2" sx={{ mb: '2rem', fontWeight: '700' }}>
+					<Typography
+						variant={windowWidth >= 648 ? 'h5' : 'h7'}
+						component="h2"
+						sx={{ mb: '4rem', fontWeight: '700' }}>
 						遊戯王を愛する デュエリストへ
 					</Typography>
 					<div className="mb-32 flex justify-center">
@@ -92,7 +95,7 @@ function Index({ auth }) {
 				</Typography>
 				<Divider variant="middle" sx={{ mt: '10rem', borderColor: 'gray' }} />
 				<Typography
-					variant="h4"
+					variant={windowWidth >= 648 ? 'h4' : 'h5'}
 					component="h3"
 					sx={{ mt: '10rem', mb: '2rem', fontWeight: '700' }}>
 					選べる３つの遊び方
