@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, router } from '@inertiajs/react';
 import Header from '@/Components/Header';
 import Layout from '@/Layouts/Layout';
@@ -9,6 +9,8 @@ import Button from '@mui/material/Button';
 // import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
 
 function Index({ auth }) {
+	const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
 	const handleRandomBtnClick = () => {
 		router.get(route('gallery.play.random'));
 	};
@@ -18,21 +20,39 @@ function Index({ auth }) {
 	const handleMyTagBtnClick = () => {
 		router.get(route('gallery.setting.myTag'));
 	};
+
+	useEffect(() => {
+		const handleResize = () => {
+			setWindowWidth(window.innerWidth);
+			// console.log(window.innerWidth);
+		};
+		window.addEventListener('resize', handleResize);
+
+		const clearUpFnc = () => {
+			window.removeEventListener('resize', handleResize);
+		};
+
+		return clearUpFnc;
+	}, []);
+
 	return (
 		<>
 			<Header auth={auth} needOnlyLogo={false} />
 			<div className="w-4/5 mx-auto text-center">
 				<div className="h-screen flex flex-col justify-center">
+					<Typography variant="h5" component="h2" sx={{ mb: '2rem', fontWeight: '700' }}>
+						遊戯王を愛する デュエリストへ
+					</Typography>
 					<div className="mb-32 flex justify-center">
 						<img src="/images/logo.png" alt="ロゴ画像" style={{ width: '36rem' }} />
 					</div>
-					<Typography variant="h3" component="h2" sx={{ mb: '8rem', fontWeight: '700' }}>
+					{/* <Typography variant="h3" component="h2" sx={{ mb: '8rem', fontWeight: '700' }}>
 						遊戯王を愛する、
 						<ruby>
 							決闘者<rt className="text-xs">デュエリスト</rt>
 						</ruby>
 						へ
-					</Typography>
+					</Typography> */}
 				</div>
 				<Divider variant="middle" sx={{ borderColor: 'gray' }} />
 				<div className="mt-40 mb-12 flex justify-center">
@@ -80,8 +100,8 @@ function Index({ auth }) {
 				<Typography variant="h6" component="p" sx={{ mb: '2rem' }}>
 					利用シーンに最適なモードをお選びいただけます。
 				</Typography>
-				<div className="mb-20 flex justify-center items-start">
-					<div className="w-1/4 p-2 pt-4 text-center bg-gray-800 rounded-md">
+				<div className="mb-20 flex flex-col items-center lg:flex-row lg:justify-around lg:items-start">
+					<div className="p-2 pt-4 mb-8 lg:mb-0 w-full lg:w-3/10 text-center bg-gray-800 rounded-md">
 						<div className="mb-4 flex justify-center items-center">
 							<Typography variant="h6" component="p" sx={{ fontWeight: 700 }}>
 								ランダムモード
@@ -110,7 +130,7 @@ function Index({ auth }) {
 							</Button>
 						</div>
 					</div>
-					<div className="w-1/4 ml-8 p-2 pt-4 text-center bg-gray-800 rounded-md">
+					<div className="p-2 pt-4 mb-8 lg:mb-0 w-full lg:w-3/10 text-center bg-gray-800 rounded-md">
 						<Typography variant="h6" component="p" sx={{ mb: '1rem', fontWeight: 700 }}>
 							絞り込みモード
 						</Typography>
@@ -132,7 +152,7 @@ function Index({ auth }) {
 							</Button>
 						</div>
 					</div>
-					<div className="w-1/4 ml-8 p-2 pt-4 text-center bg-gray-800 rounded-md">
+					<div className="p-2 pt-4 mb-8 lg:mb-0 w-full lg:w-3/10 text-center bg-gray-800 rounded-md">
 						<Typography variant="h6" component="p" sx={{ mb: '1rem', fontWeight: 700 }}>
 							Myタグモード
 						</Typography>
