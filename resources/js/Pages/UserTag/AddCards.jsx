@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react';
 import { Link } from '@inertiajs/react';
 // import FilterCards from '@/Components/Admin/Filters/FilterCards';
 import SearchResultUserTag from '@/Components/UserTags/SearchResultUserTag';
@@ -11,9 +11,17 @@ import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import FilterModalButton from '@/Components/MaterialUI/Filter/FilterModalButton';
 import TooltipBackButton from '@/Components/MaterialUI/TooltipBackButton';
+import UserTagContainer from '@/Components/UserTagContainer';
 
-
-function AddCards({ auth, userTag, data, cardsNum, filteredCardsNum, filters, releasedCardIdArray }) {
+function AddCards({
+	auth,
+	userTag,
+	data,
+	cardsNum,
+	filteredCardsNum,
+	filters,
+	releasedCardIdArray,
+}) {
 	const [releasedCardIds, setReleasedCardIds] = useState([...releasedCardIdArray]);
 
 	let showingMinIndex; // 枚数表示の最小値
@@ -25,12 +33,12 @@ function AddCards({ auth, userTag, data, cardsNum, filteredCardsNum, filters, re
 		? (showingMaxIndex = filteredCardsNum)
 		: (showingMaxIndex = data.current_page * 30);
 
-  return (
+	return (
 		<>
 			<Header auth={auth} needOnlyLogo={true} />
-			<div className="w-3/5 mx-auto">
+			<UserTagContainer>
 				<TooltipBackButton href={`/tags/${auth.user.id}/${userTag.id}`} />
-				<div className="w-5/6 mx-auto mt-2">
+				<div className="w-9/10 mx-auto mt-2">
 					<div className="mb-12">
 						<Typography variant="p" component="p">
 							Myタグ「{userTag.name}」に登録するカードをクリックして下さい。
@@ -72,12 +80,12 @@ function AddCards({ auth, userTag, data, cardsNum, filteredCardsNum, filters, re
 						{data && <Pagination data={data} />}
 					</div>
 				</div>
-			</div>
+			</UserTagContainer>
 		</>
-  );
+	);
 }
 
 // Persistent Layoutsの設定
 AddCards.layout = page => <Layout title="Myタグ カード登録" children={page} />;
 
-export default AddCards
+export default AddCards;

@@ -18,7 +18,7 @@ class ThumbnailController extends Controller
       ->select('released_card_id')
       ->where('user_tag_id', $user_tag_id)
       ->orderBy('updated_at', 'DESC')
-      ->limit(6)
+      ->limit(5)
       ->get();
 
     // released_cardのidが格納された配列を作る

@@ -12,6 +12,7 @@ import UserTagThumbnail from '@/Components/UserTags/UserTagThumbnail';
 import CreateUserTagModalButton from '@/Components/MaterialUI/CreateUserTagModalButton';
 // import CreateUserTagPopoverButton from '@/Components/MaterialUI/CreateUserTagPopoverButton';
 import TooltipBackButton from '@/Components/MaterialUI/TooltipBackButton';
+import UserTagContainer from '@/Components/UserTagContainer';
 
 function Index({ auth, errors, userTagsNum, userTagsData, messages }) {
 	const [storeMsg, setStoreMsg] = React.useState(messages.storeUTMsg);
@@ -31,7 +32,7 @@ function Index({ auth, errors, userTagsNum, userTagsData, messages }) {
 	return (
 		<>
 			<Header auth={auth} needOnlyLogo={true} />
-			<div className="w-3/5 mx-auto">
+			<UserTagContainer>
 				<TooltipBackButton href={route('index')} />
 				<div className="max-w-fit mx-auto mt-2" style={{ minWidth: '80%' }}>
 					<div className="mb-8">
@@ -65,7 +66,7 @@ function Index({ auth, errors, userTagsNum, userTagsData, messages }) {
 						{userTagsData.data.length > 0 ? (
 							<div className="flex flex-col">
 								{userTagsData.data.map((tag, mapIndex) => (
-									<div className="mb-8 border-4 border-gray-800 rounded-xl">
+									<div key={mapIndex} className="mb-8 border-4 border-gray-800 rounded-xl">
 										<Link key={tag.id} href={`/tags/${auth.user.id}/${tag.id}`}>
 											<UserTagThumbnail userTag={tag} mapIndex={mapIndex} />
 										</Link>
@@ -80,7 +81,7 @@ function Index({ auth, errors, userTagsNum, userTagsData, messages }) {
 						)}
 					</div>
 				</div>
-			</div>
+			</UserTagContainer>
 		</>
 	);
 }

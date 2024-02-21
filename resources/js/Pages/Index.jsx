@@ -38,15 +38,11 @@ function Index({ auth }) {
 
 	return (
 		<>
-			{windowWidth > 648 ? (
-				<Header auth={auth} needOnlyLogo={false} />
-			) : (
-				<HeaderSP/>
-			)}
+			{windowWidth > 640 ? <Header auth={auth} needOnlyLogo={false} /> : <HeaderSP />}
 			<div className="w-4/5 mx-auto text-center">
 				<div className="h-screen flex flex-col justify-center">
 					<Typography
-						variant={windowWidth > 648 ? 'h5' : 'h7'}
+						variant={windowWidth > 640 ? 'h5' : 'h7'}
 						component="h2"
 						sx={{ mb: '4rem', fontWeight: '700' }}>
 						遊戯王を愛する デュエリストへ
@@ -100,7 +96,7 @@ function Index({ auth }) {
 				</Typography>
 				<Divider variant="middle" sx={{ mt: '10rem', borderColor: 'gray' }} />
 				<Typography
-					variant={windowWidth >= 648 ? 'h4' : 'h5'}
+					variant={windowWidth >= 640 ? 'h4' : 'h5'}
 					component="h3"
 					sx={{ mt: '10rem', mb: '2rem', fontWeight: '700' }}>
 					選べる３つの遊び方
@@ -148,12 +144,22 @@ function Index({ auth }) {
 						<Typography variant="p" component="p">
 							カードの種類（モンスター・魔法・罠）や種族、属性、初収録時期など、様々な条件で絞り込むことができます。
 						</Typography>
+						{windowWidth <= 640 && (
+							<Typography
+								variant="p"
+								component="p"
+								sx={{ mt: '0.5rem', fontSize: '0.8rem' }}>
+								（
+								※スマートフォンからはご利用いただけません。画面の大きいPCやタブレットからご利用下さい。）
+							</Typography>
+						)}
 						<div className="mt-6 mb-4 flex justify-center">
 							<Button
 								variant="contained"
 								color="error"
 								size="large"
 								disableRipple
+								disabled={windowWidth <= 640} // スマートフォンからはdisabled
 								onClick={handleFilterBtnClick}
 								sx={{ textTransform: 'none' }}>
 								絞り込みモードで遊ぶ
@@ -170,7 +176,7 @@ function Index({ auth }) {
 						<Typography variant="p" component="p">
 							「Myタグ」に登録したカードのみ降ってくるモードです。お気に入りのカードやこだわりのカードだけをじっくり楽しみたい方におすすめです。
 						</Typography>
-						{windowWidth <= 648 && (
+						{windowWidth <= 640 && (
 							<Typography
 								variant="p"
 								component="p"
@@ -205,7 +211,7 @@ function Index({ auth }) {
 								color="error"
 								size="large"
 								disableRipple
-								disabled={windowWidth <= 648 || !auth.user} // スマートフォンまたは未ログインならdisabled
+								disabled={windowWidth <= 640 || !auth.user} // スマートフォンまたは未ログインならdisabled
 								onClick={handleMyTagBtnClick}
 								sx={{ textTransform: 'none' }}>
 								Myタグモードで遊ぶ

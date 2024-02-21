@@ -8,14 +8,15 @@ import Typography from '@mui/material/Typography';
 
 import Filter from '@/Components/MaterialUI/Filter/Filter';
 import TooltipBackButton from '@/Components/MaterialUI/TooltipBackButton';
+import UserTagContainer from '@/Components/UserTagContainer';
 
 function FilterSetting({ auth, releasedCardsNum, errorMsg }) {
 	return (
 		<>
 			<Header auth={auth} needOnlyLogo={true} />
-			<div className="w-3/5 mx-auto">
+			<UserTagContainer>
 				<TooltipBackButton href={route('index')} />
-				<div className="w-5/6 mx-auto text-center">
+				<div className="w-9/10 mx-auto text-center">
 					<Typography variant="h5" component="h2" sx={{ fontWeight: 700, mb: '1rem' }}>
 						絞り込みモード
 					</Typography>
@@ -33,7 +34,7 @@ function FilterSetting({ auth, releasedCardsNum, errorMsg }) {
 						<Typography variant="p" component="p">
 							手順に従って絞り込み条件を入力し、「この条件でスタート」ボタンを押して下さい。
 						</Typography>
-						<div className="my-6 px-16 py-8 max-w-fit mx-auto bg-white rounded-md text-left">
+						<div className="my-6 px-4 md:px-8 py-8 max-w-fit mx-auto bg-white rounded-md text-left">
 							<Filter
 								routeName="gallery.play.filter"
 								isPeriodFilterOn={true}
@@ -46,7 +47,7 @@ function FilterSetting({ auth, releasedCardsNum, errorMsg }) {
 						</div>
 					</div>
 				</div>
-			</div>
+			</UserTagContainer>
 		</>
 	);
 }

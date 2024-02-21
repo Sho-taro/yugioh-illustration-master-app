@@ -50,19 +50,23 @@ function SearchResultUserTag({ userId, userTagId, data, releasedCardIds, setRele
 									alt="tag（青）"
 									className="w-8 absolute bottom-2 right-2"
 								/> */}
-								<LoyaltyIcon
-									sx={{
-										color: 'tomato',
-										width: '2.5rem',
-										height: '2.5rem',
-										p: '0.3rem',
-										backgroundColor: 'white',
-										borderRadius: '10rem',
-										position: 'absolute',
-										bottom: '0.5rem',
-										right: '0.5rem',
-									}}
-								/>
+								<div className="w-8 h-8 lg:w-10 lg:h-10 flex justify-center items-center absolute bottom-2 right-2">
+									<LoyaltyIcon
+										sx={{
+											color: 'tomato',
+											width: '100%',
+											height: '100%',
+											// width: '2.5rem',
+											// height: '2.5rem',
+											p: '0.3rem',
+											backgroundColor: 'white',
+											borderRadius: '10rem',
+											// position: 'absolute',
+											// bottom: '0.5rem',
+											// right: '0.5rem',
+										}}
+									/>
+								</div>
 							</div>
 						) : (
 							<div className="relative">
@@ -78,22 +82,26 @@ function SearchResultUserTag({ userId, userTagId, data, releasedCardIds, setRele
 									alt="tag（白）"
 									className="w-8 absolute bottom-2 right-2"
 								/> */}
-								<LoyaltyIcon
-									sx={{
-										color: 'gray',
-										width: '2.5rem',
-										height: '2.5rem',
-										p: '0.3rem',
-										backgroundColor: 'white',
-										borderRadius: '10rem',
-										position: 'absolute',
-										bottom: '0.5rem',
-										right: '0.5rem',
-									}}
-								/>
+								<div className="w-8 h-8 lg:w-10 lg:h-10 flex justify-center items-center absolute bottom-2 right-2">
+									<LoyaltyIcon
+										sx={{
+											color: 'gray',
+											width: '100%',
+											height: '100%',
+											// width: '2.5rem',
+											// height: '2.5rem',
+											p: '0.3rem',
+											backgroundColor: 'white',
+											borderRadius: '10rem',
+											// position: 'absolute',
+											// bottom: '0.5rem',
+											// right: '0.5rem',
+										}}
+									/>
+								</div>
 							</div>
 						)}
-						<p>{card.card_ja}</p>
+						<p className="text-xs lg:text-base">{card.card_ja}</p>
 					</div>
 				))}
 			</div>
