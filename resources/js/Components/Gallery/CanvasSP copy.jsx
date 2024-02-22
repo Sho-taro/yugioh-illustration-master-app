@@ -5,8 +5,9 @@ import { shuffleArray } from '@/utils/shuffleArray';
 import NoSleep from 'nosleep.js';
 import NoSleepModal from '../MaterialUI/NoSleepModal';
 
-function CanvasSP({ cards, canvasCards }) {
+function CanvasSP({ cards, animationState, setAnimationState, canvasCards }) {
 	const [showingMenuBar, setShowingMenuBar] = useState(false);
+	const [animationFrameId, setAnimationFrameId] = useState(null);
 	const [open, setOpen] = useState(false); // MUI modal
 	const canvas = useRef(null); // canvasをuseRefで取得
 
@@ -14,7 +15,6 @@ function CanvasSP({ cards, canvasCards }) {
 	const randomOrderCards = shuffleArray(cards);
 	const speed = 0.3 * devicePixelRatio;
 	let cardIndex = 0;
-	let animationFrameId = null;
 
 	let timer; // カーソルを非表示にするためのタイマー
 
@@ -32,24 +32,24 @@ function CanvasSP({ cards, canvasCards }) {
 	};
 
 	// canvasアニメーションを一時停止/リスタートする関数
-	// const pauseRestartCanvas = () => {
-	// 	if (animationState === 'playing') {
-	// 		// 一時停止する処理
-	// 		cancelAnimationFrame(animationFrameId);
-	// 		setAnimationState('pausing');
-	// 		// console.log('アニメーション停止')
-	// 	} else if (animationState === 'pausing') {
-	// 		// リスタートする処理
-	// 		draw();
-	// 		setAnimationState('playing');
-	// 		// console.log('アニメーション再開')
-	// 	}
-	// };
+	const pauseRestartCanvas = () => {
+		if (animationState === 'playing') {
+			// 一時停止する処理
+			cancelAnimationFrame(animationFrameId);
+			setAnimationState('pausing');
+			// console.log('アニメーション停止')
+		} else if (animationState === 'pausing') {
+			// リスタートする処理
+			draw();
+			setAnimationState('playing');
+			// console.log('アニメーション再開')
+		}
+	};
 	// 一定時間動かなかったらカーソルとメニューバーを非表示にする関数
 	const hideCursor = () => {
 		canvas.current.classList.remove('cursor-none');
 		setShowingMenuBar(true);
-		clearTimeout(timer); // 非表示にするまでのタイマーをリセット
+		clearTimeout(timer);
 		timer = setTimeout(() => {
 			canvas.current.classList.add('cursor-none');
 			setShowingMenuBar(false);
@@ -74,7 +74,7 @@ function CanvasSP({ cards, canvasCards }) {
 			},
 			{ passive: false }
 		);
-		document.addEventListener('mousemove', hideCursor);
+		window.addEventListener('mousemove', hideCursor);
 
 		const ctx = canvas.current.getContext('2d'); // 描画コンテクストを取得
 		// ↓ canvasCardの影の設定
@@ -83,7 +83,7 @@ function CanvasSP({ cards, canvasCards }) {
 		ctx.shadowBlur = 10 * devicePixelRatio;
 		ctx.shadowColor = 'rgb(190, 188, 188)';
 
-		const createCanvasCard = () => {
+		window.createCanvasCard = () => {
 			const imgInstance = new Image();
 			imgInstance.src = `/images/card-images/${randomOrderCards[cardIndex].product_code}-${randomOrderCards[cardIndex].list_number}.jpg`;
 			const imgSize = Math.floor((canvas.current.width / 2) * 0.95);
@@ -114,8 +114,7 @@ function CanvasSP({ cards, canvasCards }) {
 			// console.log(canvasCards);
 		};
 
-		const draw = () => {
-			// console.log('draw関数が呼び出されました');
+		window.draw = () => {
 			ctx.clearRect(0, 0, canvas.current.width, canvas.current.height); // canvas内全体を初期化
 			// イラストの描画
 			for (const canvasCard of canvasCards) {
@@ -150,11 +149,12 @@ function CanvasSP({ cards, canvasCards }) {
 				// console.log(canvasCards);
 			}
 
-			animationFrameId = requestAnimationFrame(draw); // draw関数を繰り返す
-			// console.log(animationFrameId);
+			let FrameId = requestAnimationFrame(draw); // draw関数を繰り返す
+			// console.log(FrameId);
+			setAnimationFrameId(FrameId);
 		};
 
-		// setAnimationState('playing');
+		setAnimationState('playing');
 		createCanvasCard();
 
 		draw();
@@ -162,9 +162,9 @@ function CanvasSP({ cards, canvasCards }) {
 		// クリーンアップ関数
 		return () => {
 			noSleep.disable(); // noSleepを無効化
-			document.removeEventListener('mousemove', hideCursor);
-			// window.draw = null;
-			// window.createCanvasCard = null;
+			window.removeEventListener('mousemove', hideCursor);
+			window.draw = null;
+			window.createCanvasCard = null;
 			cancelAnimationFrame(animationFrameId);
 		};
 	}, []);
@@ -184,8 +184,7 @@ function CanvasSP({ cards, canvasCards }) {
 			</canvas>
 			<NoSleepModal open={open} handleClose={handleClose} enableNoSleep={enableNoSleep} />
 			{showingMenuBar && (
-				// <CanvasMenuBar handleClick={pauseRestartCanvas} animationState={animationState} />
-				<CanvasMenuBar />
+				<CanvasMenuBar handleClick={pauseRestartCanvas} animationState={animationState} />
 			)}
 		</>
 	);
