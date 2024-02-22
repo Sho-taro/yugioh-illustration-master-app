@@ -7,7 +7,6 @@ import NoSleepModal from '../MaterialUI/NoSleepModal';
 
 function Canvas({ cards, canvasCards }) {
 	const [showingMenuBar, setShowingMenuBar] = useState(false);
-	const [animationFrameId, setAnimationFrameId] = useState(null);
 	const [open, setOpen] = useState(false); // MUI modal
 	const canvas = useRef(null); // canvasをuseRefで取得
 
@@ -15,6 +14,7 @@ function Canvas({ cards, canvasCards }) {
 	const randomOrderCards = shuffleArray(cards);
 	const speed = 0.3 * devicePixelRatio;
 	let cardIndex = 0;
+	let animationFrameId = null;
 
 	let timer; // カーソルを非表示にするためのタイマー
 
@@ -49,7 +49,7 @@ function Canvas({ cards, canvasCards }) {
 	const hideCursor = () => {
 		canvas.current.classList.remove('cursor-none');
 		setShowingMenuBar(true);
-		clearTimeout(timer);
+		clearTimeout(timer); // 非表示にするまでのタイマーをリセット
 		timer = setTimeout(() => {
 			canvas.current.classList.add('cursor-none');
 			setShowingMenuBar(false);
@@ -83,7 +83,7 @@ function Canvas({ cards, canvasCards }) {
 		ctx.shadowBlur = 10 * devicePixelRatio;
 		ctx.shadowColor = 'rgb(190, 188, 188)';
 
-		window.createCanvasCard = () => {
+		const createCanvasCard = () => {
 			const imgInstance = new Image();
 			imgInstance.src = `/images/card-images/${randomOrderCards[cardIndex].product_code}-${randomOrderCards[cardIndex].list_number}.jpg`;
 			const imgSize = Math.floor((canvas.current.width / 5) * 0.95);
@@ -92,7 +92,7 @@ function Canvas({ cards, canvasCards }) {
 					img: imgInstance,
 					imgSize: imgSize,
 					x: Math.floor(
-						canvas.current.width / 5 * 2 + (canvas.current.width / 5 - imgSize) / 2
+						(canvas.current.width / 5) * 2 + (canvas.current.width / 5 - imgSize) / 2
 					),
 					y: imgSize * -1,
 					cardData: { ...randomOrderCards[cardIndex] },
@@ -102,7 +102,7 @@ function Canvas({ cards, canvasCards }) {
 					img: imgInstance,
 					imgSize: imgSize,
 					x: Math.floor(
-						canvas.current.width / 5 * 3 + (canvas.current.width / 5 - imgSize) / 2
+						(canvas.current.width / 5) * 3 + (canvas.current.width / 5 - imgSize) / 2
 					),
 					y: imgSize * -1,
 					cardData: { ...randomOrderCards[cardIndex] },
@@ -147,7 +147,8 @@ function Canvas({ cards, canvasCards }) {
 			// console.log(canvasCards);
 		};
 
-		window.draw = () => {
+		const draw = () => {
+			// console.log('draw関数が呼び出されました');
 			ctx.clearRect(0, 0, canvas.current.width, canvas.current.height); // canvas内全体を初期化
 			// イラストの描画
 			for (const canvasCard of canvasCards) {
@@ -176,15 +177,14 @@ function Canvas({ cards, canvasCards }) {
 			// 最新のイラストが1/5ちょっとまで表示されたら、次のイラストのオブジェクトを作成
 			if (
 				canvasCards[canvasCards.length - 1].y >
-				-canvasCards[canvasCards.length - 1].imgSize / 5 * 3.95
+				(-canvasCards[canvasCards.length - 1].imgSize / 5) * 3.95
 			) {
 				createCanvasCard();
 				// console.log(canvasCards);
 			}
 
-			let FrameId = requestAnimationFrame(draw); // draw関数を繰り返す
-			// console.log(FrameId);
-			setAnimationFrameId(FrameId);
+			animationFrameId = requestAnimationFrame(draw); // draw関数を繰り返す
+			// console.log(animationFrameId);
 		};
 
 		// setAnimationState('playing');
@@ -196,8 +196,8 @@ function Canvas({ cards, canvasCards }) {
 		return () => {
 			noSleep.disable(); // noSleepを無効化
 			document.removeEventListener('mousemove', hideCursor);
-			window.draw = null;
-			window.createCanvasCard = null;
+			// window.draw = null;
+			// window.createCanvasCard = null;
 			cancelAnimationFrame(animationFrameId);
 		};
 	}, []);
@@ -218,7 +218,7 @@ function Canvas({ cards, canvasCards }) {
 			<NoSleepModal open={open} handleClose={handleClose} enableNoSleep={enableNoSleep} />
 			{showingMenuBar && (
 				// <CanvasMenuBar handleClick={pauseRestartCanvas} animationState={animationState} />
-				<CanvasMenuBar/>
+				<CanvasMenuBar />
 			)}
 		</>
 	);
