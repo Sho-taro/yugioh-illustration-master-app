@@ -5,7 +5,7 @@ import { shuffleArray } from '@/utils/shuffleArray';
 import NoSleep from 'nosleep.js';
 import NoSleepModal from '../MaterialUI/NoSleepModal';
 
-function Canvas({ cards, animationState, setAnimationState, canvasCards }) {
+function Canvas({ cards, canvasCards }) {
 	const [showingMenuBar, setShowingMenuBar] = useState(false);
 	const [animationFrameId, setAnimationFrameId] = useState(null);
 	const [open, setOpen] = useState(false); // MUI modal
@@ -32,19 +32,19 @@ function Canvas({ cards, animationState, setAnimationState, canvasCards }) {
 	};
 
 	// canvasアニメーションを一時停止/リスタートする関数
-	const pauseRestartCanvas = () => {
-		if (animationState === 'playing') {
-			// 一時停止する処理
-			cancelAnimationFrame(animationFrameId);
-			setAnimationState('pausing');
-			// console.log('アニメーション停止')
-		} else if (animationState === 'pausing') {
-			// リスタートする処理
-			draw();
-			setAnimationState('playing');
-			// console.log('アニメーション再開')
-		}
-	};
+	// const pauseRestartCanvas = () => {
+	// 	if (animationState === 'playing') {
+	// 		// 一時停止する処理
+	// 		cancelAnimationFrame(animationFrameId);
+	// 		setAnimationState('pausing');
+	// 		// console.log('アニメーション停止')
+	// 	} else if (animationState === 'pausing') {
+	// 		// リスタートする処理
+	// 		draw();
+	// 		setAnimationState('playing');
+	// 		// console.log('アニメーション再開')
+	// 	}
+	// };
 	// 一定時間動かなかったらカーソルとメニューバーを非表示にする関数
 	const hideCursor = () => {
 		canvas.current.classList.remove('cursor-none');
@@ -187,7 +187,7 @@ function Canvas({ cards, animationState, setAnimationState, canvasCards }) {
 			setAnimationFrameId(FrameId);
 		};
 
-		setAnimationState('playing');
+		// setAnimationState('playing');
 		createCanvasCard();
 
 		draw();
@@ -217,7 +217,8 @@ function Canvas({ cards, animationState, setAnimationState, canvasCards }) {
 			</canvas>
 			<NoSleepModal open={open} handleClose={handleClose} enableNoSleep={enableNoSleep} />
 			{showingMenuBar && (
-				<CanvasMenuBar handleClick={pauseRestartCanvas} animationState={animationState} />
+				// <CanvasMenuBar handleClick={pauseRestartCanvas} animationState={animationState} />
+				<CanvasMenuBar/>
 			)}
 		</>
 	);

@@ -4,7 +4,7 @@ import CanvasSP from '@/Components/Gallery/CanvasSP';
 import GalleryLayout from '@/Layouts/GalleryLayout';
 
 function Gallery({ cards }) {
-	const [animationState, setAnimationState] = useState('waiting');
+	// const [animationState, setAnimationState] = useState('waiting');
 	const canvasCards = [];
 	const windowWidth = window.innerWidth;
 
@@ -13,15 +13,15 @@ function Gallery({ cards }) {
 			{windowWidth > 640 ? (
 				<Canvas
 					cards={cards}
-					animationState={animationState}
-					setAnimationState={setAnimationState}
+					// animationState={animationState}
+					// setAnimationState={setAnimationState}
 					canvasCards={canvasCards}
 				/>
 			) : (
 				<CanvasSP
 					cards={cards}
-					animationState={animationState}
-					setAnimationState={setAnimationState}
+					// animationState={animationState}
+					// setAnimationState={setAnimationState}
 					canvasCards={canvasCards}
 				/>
 			)}

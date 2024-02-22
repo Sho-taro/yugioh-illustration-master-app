@@ -1,13 +1,13 @@
 import React from 'react';
 // import { Link } from '@inertiajs/react';
 
-function CanvasMenuBar({ handleClick, animationState }) {
+function CanvasMenuBar({}) {
 
 	return (
 		<>
 			<div className="canvas-menu-bar">
 				<div className="h-full flex justify-end items-center">
-					<div className="mr-8 h-10 hover:opacity-50 active:scale-90">
+					{/* <div className="mr-8 h-10 hover:opacity-50 active:scale-90">
 						<button onClick={handleClick} className="text-xl text-white font-bold">
 							{animationState === 'playing' && (
 								<img
@@ -24,7 +24,7 @@ function CanvasMenuBar({ handleClick, animationState }) {
 								/>
 							)}
 						</button>
-					</div>
+					</div> */}
 					{/* <div className="mr-8 hover:opacity-50 active:scale-90">
 						<button className="text-xl text-white font-bold">
 							設定
