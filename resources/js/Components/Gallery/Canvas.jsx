@@ -74,7 +74,7 @@ function Canvas({ cards, canvasCards }) {
 			},
 			{ passive: false }
 		);
-		window.addEventListener('mousemove', hideCursor);
+		document.addEventListener('mousemove', hideCursor);
 
 		const ctx = canvas.current.getContext('2d'); // 描画コンテクストを取得
 		// ↓ canvasCardの影の設定
@@ -195,7 +195,7 @@ function Canvas({ cards, canvasCards }) {
 		// クリーンアップ関数
 		return () => {
 			noSleep.disable(); // noSleepを無効化
-			window.removeEventListener('mousemove', hideCursor);
+			document.removeEventListener('mousemove', hideCursor);
 			window.draw = null;
 			window.createCanvasCard = null;
 			cancelAnimationFrame(animationFrameId);
