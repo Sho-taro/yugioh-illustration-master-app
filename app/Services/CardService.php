@@ -3,7 +3,8 @@
 namespace App\Services;
 
 class CardService {
-  public function getCardType($frame_type_code) {
+  public function getCardType($frame_type_code): string
+  {
     if ($frame_type_code === 'FR0014' || $frame_type_code === 'FR0015') {
       return 'spell/trap';
     } else if ($frame_type_code === 'FR0016') {
