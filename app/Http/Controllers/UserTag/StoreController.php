@@ -22,17 +22,18 @@ class StoreController extends Controller
       //     'status' => ['required', 'string', \Illuminate\Validation\Rule::in(['public', 'private'])],
       // ]));
 
+      $user_id = $request->user()->id;
+
       $user_tag = new UserTag;
-      $user_tag->user_id = $request->user()->id;
+      $user_tag->user_id = $user_id;
       $user_tag->name = $request->input('name');
       // $user_tag->status = $request->input('status');
       $user_tag->status = 'public';
       $user_tag->popularity = 0;
       $user_tag->save();  // 保存
 
-      $tags = UserTag::where('user_id', $request->user()->id)->get();
+      // $tags = UserTag::where('user_id', $request->user()->id)->get();
 
-      $user_id = $request->user()->id;
 
       return redirect("/tags/{$user_id}")->with('storeUTMsg', "Myタグ「{$request->input('name')}」を新規作成しました。");
     }
