@@ -28,6 +28,6 @@ class IndexTest extends TestCase
         // HTTPリクエスト
         $response = $this->get("/tags/{$user->id}");
 
-        $response->assertStatus(200);
+        $response->assertStatus(200);   // 注意: assertStatusを使用する際は npm run dev でViteを起動する必要がある
     }
 }
