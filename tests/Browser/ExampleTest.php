@@ -15,7 +15,7 @@ class ExampleTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->visit('/')
-                    ->screenshot('SS')   // スクリーンショットを撮影（保存先はtests/Browser/screenshotsディレクトリ）
+                    // ->screenshot('SS')   // スクリーンショットを撮影（保存先はtests/Browser/screenshotsディレクトリ）
                     // ->assertSee('遊戯王');
                     ->assertSee('Laravel');
         });
