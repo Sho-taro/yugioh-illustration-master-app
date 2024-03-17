@@ -20,15 +20,26 @@ export default function Login({ status, canResetPassword }) {
 		remember: false,
 	});
 
+	const handleBtnClick = () => {
+		post(route('login'));
+	};
+
+	// テストユーザーとしてログイン情報を入力する関数
+	const loginAsTestUser = () => {
+		// setData('email', 'testuser@example.com');
+		// setData('password', 'testtest');
+		setData({
+			...data,
+			email: 'test@example.com',
+			password: 'testtest',
+		});
+	};
+
 	useEffect(() => {
 		return () => {
 			reset('password');
 		};
 	}, []);
-
-	const handleBtnClick = () => {
-		post(route('login'));
-	};
 
 	return (
 		<div className="min-h-screen flex justify-center items-center">
@@ -111,6 +122,9 @@ export default function Login({ status, canResetPassword }) {
 							className="block mt-6 text-gray-500 underline">
 							まだ登録がお済みでない方はこちら
 						</Link>
+						<span className="mt-6 text-gray-500 underline" onClick={loginAsTestUser}>
+							テストユーザーとしてログインする
+						</span>
 						{/* {canResetPassword && (
 							<Link
 								href={route('password.request')}
