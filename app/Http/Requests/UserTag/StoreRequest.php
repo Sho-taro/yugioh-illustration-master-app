@@ -24,7 +24,8 @@ class StoreRequest extends FormRequest
     {
         return [
             // ここにuser_tagsのバリデーションを記述する
-            'name' => ['required', 'string', 'max:20', 'unique:user_tags,name'],    // 最大20文字
+            // 'name' => ['required', 'string', 'max:20', 'unique:user_tags,name'],    // 最大20文字
+            'name' => ['required', 'string', 'max:20'],    // 最大20文字
             'status' => ['required', 'string', \Illuminate\Validation\Rule::in(['public', 'private'])],
         ];
     }
