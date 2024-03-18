@@ -1,13 +1,12 @@
-
-
+![/public/images/logo.png]
 ## 概要
-
-遊戯王は誕生から25周年を迎え、ますます深みのあるコンテンツとなりました。カードの種類は10,000種を越えるなか、四半期ごとに新たなカードが誕生し、ゲーム環境は目まぐるしく変化し続けています。
-遊戯王の魅力の１つに、スタン落ち（古いカードが対戦で使えなくなること）がないことが挙げられます。そのため、古いカードがリメイク・強化されて再登場することもあり、遊戯王がプレイヤー・コレクターから長く愛される理由だと言えます。
-しかし、カードの種類が増え続ける一方で、一体どれほどの人が１枚１枚のカードイラストの魅力に気づけているでしょうか。本アプリは、１枚１枚のカードイラストの魅力に目を向けて欲しいという思いで作られました。
+人気カードゲーム『遊戯王』のイラストが高画質で鑑賞できるアプリです。
 
 ## 遊び方
-
+ご利用シーンに合わせて、３つのモードから最適なモードを選んで下さい。
+- ランダムモード
+- 絞り込みモード
+- Myタグモード
 Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
 You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
