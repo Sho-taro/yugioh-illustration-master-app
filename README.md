@@ -1,51 +1,51 @@
+# 遊戯王 ILLUST. FALL（イラストフォール）
+(URL: [http://yugiohim.com](http://yugiohim.com))
 
+![ロゴ画像](/public/images/gallery08.png)
 
 ## 概要
 
-遊戯王は誕生から25周年を迎え、ますます深みのあるコンテンツとなりました。カードの種類は10,000種を越えるなか、四半期ごとに新たなカードが誕生し、ゲーム環境は目まぐるしく変化し続けています。
-遊戯王の魅力の１つに、スタン落ち（古いカードが対戦で使えなくなること）がないことが挙げられます。そのため、古いカードがリメイク・強化されて再登場することもあり、遊戯王がプレイヤー・コレクターから長く愛される理由だと言えます。
-しかし、カードの種類が増え続ける一方で、一体どれほどの人が１枚１枚のカードイラストの魅力に気づけているでしょうか。本アプリは、１枚１枚のカードイラストの魅力に目を向けて欲しいという思いで作られました。
+人気カードゲーム『遊戯王』のイラストが高画質で鑑賞できるアプリです。
+
+## このアプリを作った背景
+
+2022年に『遊戯王マスターデュエル』がリリースされインターネット上で対戦できるようになるなど、遊戯王はデジタルコンテンツとしてもますます注目を集めています。
+しかし、遊戯王カードのイラスト画像を高画質で楽しめるサービスは、遊戯王公式が提供しているものも含めて未だ存在しません。
+そこで、遊戯王カードの高画質なイラストをスマートフォンやPC、タブレットなどのデバイスで楽しんでいただけるサービスを開発しました。
 
 ## 遊び方
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+３つのモードの中からモードを選択し、簡単な条件を指定するだけですぐに遊べます。
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+**ランダムモード**
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+表示されるイラストは完全ランダムに選ばれます。
+ 
+**絞り込みモード**
 
-## 使用技術
+表示されるイラストを絞り込むことができるモードです。カードの種類（モンスター・魔法・罠）や種族、属性、初収録時期など、様々な条件で絞り込むことができます。
+ 
+**My タグモード**
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+「My タグ」に登録したカードのみ表示されるモードです（事前に「My タグ」を作成し、好きなイラストを登録する必要があります）。お気に入りのイラストやこだわりのイラストだけをじっくり楽しみたい方におすすめです。
 
-### Premium Partners
+## 主な使用技術
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+バックエンド
+-   PHP (v8.2.11)
+-   Laravel (v10.28.0)
 
-## ネットワーク構成図
+フロントエンド
+-   JavaScript (ES6)
+-   React (v18.2.0)
+-   Material UI (v5.15.6)
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+データベース
+-   MySQL (v8.0.32)
 
-## ER図
+デプロイ
+-   AWS EC2
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## その他
+-   [ネットワーク構成図](/public/images/network_structure.png)
+-   [ER図](/public/images/ER.png)
