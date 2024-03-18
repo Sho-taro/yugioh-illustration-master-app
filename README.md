@@ -1,5 +1,5 @@
 # 遊戯王 ILLUST. FALL（イラストフォール）
-![ロゴ画像](/public/images/logo_bg_black.png)
+![ロゴ画像](/public/images/gallery08.png)
 ## 概要
 人気カードゲーム『遊戯王』のイラストが高画質で鑑賞できるアプリです。
 
