@@ -32,11 +32,12 @@ function CanvasMenuBar({}) {
 					</div> */}
 					<div className="mr-8 hover:opacity-50 active:scale-90">
 						<a href={route('index')} className="text-xl text-white font-bold">
-							<img
+							{/* <img
 								src="/images/close-white.svg"
 								alt="閉じるボタン"
 								className="w-10"
-							/>
+							/> */}
+							終了する
 						</a>
 					</div>
 				</div>
