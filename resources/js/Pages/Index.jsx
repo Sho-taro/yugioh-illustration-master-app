@@ -111,7 +111,7 @@ function Index({ auth }) {
 								ランダムモード
 							</Typography>
 							<img
-								src="/images/beginner_icon.svg"
+								src="/images/beginner_icon.png"
 								alt="初心者マーク"
 								className="w-5 ml-1"
 							/>
