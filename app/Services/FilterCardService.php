@@ -2,27 +2,81 @@
 
 namespace App\Services;
 
+use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Query\JoinClause;
+
 // カードの絞り込み条件に関するクラス
 class FilterCardService {
+
 
   /**
    * ユーザが入力したカードの絞り込み条件を取得し、$filtersとして返す
    *
-   * @param array $inputs $request->input('body')を渡す想定
+   * @param array $inputs $request->input()を渡す想定
    * @return array $filters
    */
   public function getRequestFilters(array $inputs)
   {
     $filters = [
-        'target' => null,
-        'card-name' => null,
-        'frame-types' => [],
-        'races' => [],
-        'attributes' => [],
-        'level-or-ranks' => [],
-        'link-values' => [],
-        'periods' => [],
-        'play-types' => [],
+      'access-type' => null,
+      'target' => null,
+      'card-name' => null,
+      'frame-types' => [],
+      'races' => [],
+      'attributes' => [],
+      'level-or-ranks' => [],
+      'link-values' => [],
+      'periods' => [],
+      'play-types' => [],
+    ];
+
+    foreach($inputs as $key => $value) {
+      if ($key === 'access-type') {
+        $filters['access-type'] = $value;
+      } elseif ($key === 'target') {
+        $filters['target'] = $value;
+      } elseif ($key === 'card-name') {
+        $filters['card-name'] = $value;
+      } elseif ($key === 'frame-types') {
+        $filters['frame-types'] = $value;
+      } elseif ($key === 'races') {
+        $filters['races'] = $value;
+      } elseif ($key === 'attributes') {
+        $filters['attributes'] = $value;
+      } elseif ($key === 'level-or-ranks') {
+        $filters['level-or-ranks'] = $value;
+      } elseif ($key === 'link-values') {
+        $filters['link-values'] = $value;
+      } elseif ($key === 'periods') {
+        $filters['periods'] = $value;
+      } elseif ($key === 'play-types') {
+        $filters['play-types'] = $value;
+      }
+    }
+
+    return $filters;
+  }
+
+
+  /**
+   * ユーザが入力したカードの絞り込み条件を取得し、$filtersとして返す
+   * FilteredCardsNumController.phpで使用する
+   *
+   * @param array $inputs $request->input('body')を渡す想定
+   * @return array $filters
+   */
+  public function getRequestFiltersForCardsNum(array $inputs)
+  {
+    $filters = [
+      'target' => null,
+      'card-name' => null,
+      'frame-types' => [],
+      'races' => [],
+      'attributes' => [],
+      'level-or-ranks' => [],
+      'link-values' => [],
+      'periods' => [],
+      'play-types' => [],
     ];
 
     foreach($inputs as $input) {
@@ -57,5 +111,96 @@ class FilterCardService {
       }
 
     return $filters;
+  }
+
+  /**
+   * released_cardsテーブルからレコードを取得するためのSQL分を組み立てる（モンスターカード用）
+   * 「ユーザが入力した絞り込み条件に合致したカードの情報のみをDBから取得する」ためのクエリをビルドする
+   *
+   * @param array $filters
+   * @return
+   */
+  public function buildReleasedCardsQueryForMonsters(array $filters)
+  {
+    // $filtersのフォーマット
+    // $filters = [
+    //   'access-type' => null,
+    //   'target' => null,
+    //   'card-name' => null,
+    //   'frame-types' => [],
+    //   'races' => [],
+    //   'attributes' => [],
+    //   'level-or-ranks' => [],
+    //   'link-values' => [],
+    //   'periods' => [],
+    //   'play-types' => [],
+    // ];
+
+    if ($filters['target'] !== 'monster') return false;
+
+    // released_cardsテーブルのクエリビルダインスタンスを取得
+    $releasedCards_query = DB::table('released_cards');
+
+    $releasedCards_query
+      ->select(
+        'released_cards.id as released_card_id',
+        'cards.id as card_id',
+        'released_cards.product_code',
+        'released_cards.list_number',
+        'products.name_ja as product_ja',
+        'products.name_en as product_en',
+        'products.release_date',
+        'periods.name as period',
+        'cards.name_ja as card_ja',
+        'cards.name_ja_kana as card_ja_kana',
+        'cards.name_en as card_en',
+        'frame_types.name_ja as frame_type_ja',
+        'frame_types.name_en as frame_type_en',
+        'archetypes.name_ja as archetype',
+        'races.name_ja as race',
+        'attributes.name_ja as attribute',
+        'monster_card_details.attack',
+        'monster_card_details.defense',
+        'monster_card_details.level_or_rank',
+        'monster_card_details.link_value',
+      )
+      ->join('products', 'released_cards.product_code', '=', 'products.product_code')
+      ->join('periods', function (JoinClause $join) {
+        $join->on('products.release_date', '>=', 'periods.start_date')
+              ->on('products.release_date', '<=', 'periods.end_date');
+      })
+      ->join('cards', 'released_cards.card_official_id', '=', 'cards.card_official_id')
+      ->join('frame_types', 'cards.frame_type_code', '=', 'frame_types.frame_type_code')
+      ->join('archetypes', 'cards.archetype_code', '=', 'archetypes.archetype_code')
+      ->join('monster_card_details', 'cards.card_official_id', '=', 'monster_card_details.card_official_id')
+      ->join('races', 'monster_card_details.race_code', '=', 'races.race_code')
+      ->join('attributes', 'monster_card_details.attribute_code', '=', 'attributes.attribute_code');
+
+    // frame_typeの条件で絞り込みするクエリを生成
+    if (!empty($filters['frame-types'])) {
+      $releasedCards_query->whereIn('frame_types.name_en', $filters['frame-types']);
+    }
+
+    // raceの条件で絞り込みするクエリを生成
+    if (!empty($filters['races'])) {
+      $releasedCards_query->whereIn('races.name_en', $filters['races']);
+    }
+
+    // attributeの条件で絞り込みするクエリを生成
+    if (!empty($filters['attributes'])) {
+      $releasedCards_query->whereIn('attributes.name_en', $filters['attributes']);
+    }
+
+    // level_or_rankの条件で絞り込みするクエリを生成
+    if (!empty($filters['level-or-ranks'])) {
+      $releasedCards_query->whereIn('monster_card_details.level_or_rank', $filters['level-or-ranks']);
+    }
+
+    // link_valueの条件で絞り込みするクエリを生成
+    if (!empty($filters['link-values'])) {
+      $releasedCards_query->whereIn('monster_card_details.link_value', $filters['link-values']);
+    }
+
+    return $releasedCards_query;
   }
 }

@@ -17,7 +17,7 @@ class FilteredCardsNumController extends Controller
     public function __invoke(Request $request, FilterCardService $filterCardService)
     {
       // ユーザが入力した絞り込み条件を取得
-      $filters = $filterCardService->getRequestFilters($request->input('body'));
+      $filters = $filterCardService->getRequestFiltersForCardsNum($request->input('body'));
 
       // カードの絞り込み対象
       $target = $filters['target'];

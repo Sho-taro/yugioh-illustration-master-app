@@ -9,15 +9,17 @@ use Illuminate\Database\Query\JoinClause;
 // use App\Models\UserTag;
 use App\Models\ReleasedCard;
 use Inertia\Inertia;
+use App\Services\FilterCardService;
 
 class FilterPlayController extends Controller
 {
     /**
      * Handle the incoming request.
      */
-    public function __invoke(Request $request)
+    public function __invoke(Request $request, FilterCardService $filterCardService)
     {
-      // $filters = $request->input();
+      // dd($request->input());  // ユーザが入力した絞り込み条件をデバック
+      $filters = $filterCardService->getRequestFilters($request->input());  // ユーザが入力した絞り込み条件を取得
       // dd($filters);
 
       // $filtersをセッションに保存
@@ -28,71 +30,13 @@ class FilterPlayController extends Controller
       // カード検索のキーワードを変数に代入
       $keyword = $request->input('card-name');
 
-      // released_cardsテーブルのクエリビルダインスタンスを取得
-      $releasedCards_query = DB::table('released_cards');
+      // released_cardsテーブルのクエリビルダインスタンス
+      $releasedCards_query = null;
 
-      // 絞り込み対象がmonsterの場合
+      // DBからレコードを取得するためのクエリをビルド
       if ($target === 'monster') {
-        $releasedCards_query
-            ->select(
-              'released_cards.id as released_card_id',
-              'cards.id as card_id',
-              'released_cards.product_code',
-              'released_cards.list_number',
-              'products.name_ja as product_ja',
-              'products.name_en as product_en',
-              'products.release_date',
-              'periods.name as period',
-              'cards.name_ja as card_ja',
-              'cards.name_ja_kana as card_ja_kana',
-              'cards.name_en as card_en',
-              'frame_types.name_ja as frame_type_ja',
-              'frame_types.name_en as frame_type_en',
-              'archetypes.name_ja as archetype',
-              'races.name_ja as race',
-              'attributes.name_ja as attribute',
-              'monster_card_details.attack',
-              'monster_card_details.defense',
-              'monster_card_details.level_or_rank',
-              'monster_card_details.link_value',
-            )
-            ->join('products', 'released_cards.product_code', '=', 'products.product_code')
-            ->join('periods', function (JoinClause $join) {
-              $join->on('products.release_date', '>=', 'periods.start_date')
-                    ->on('products.release_date', '<=', 'periods.end_date');
-            })
-            ->join('cards', 'released_cards.card_official_id', '=', 'cards.card_official_id')
-            ->join('frame_types', 'cards.frame_type_code', '=', 'frame_types.frame_type_code')
-            ->join('archetypes', 'cards.archetype_code', '=', 'archetypes.archetype_code')
-            ->join('monster_card_details', 'cards.card_official_id', '=', 'monster_card_details.card_official_id')
-            ->join('races', 'monster_card_details.race_code', '=', 'races.race_code')
-            ->join('attributes', 'monster_card_details.attribute_code', '=', 'attributes.attribute_code');
-
-
-        // frame_typeの条件で絞り込みするクエリを生成
-        if (!empty($request->input('frame-types'))) {
-          $releasedCards_query->whereIn('frame_types.name_en', $request->input('frame-types'));
-        }
-
-        // raceの条件で絞り込みするクエリを生成
-        if (!empty($request->input('races'))) {
-          $releasedCards_query->whereIn('races.name_en', $request->input('races'));
-        }
-
-        // attributeの条件で絞り込みするクエリを生成
-        if (!empty($request->input('attributes'))) {
-          $releasedCards_query->whereIn('attributes.name_en', $request->input('attributes'));
-        }
-
-        // level_or_rankの条件で絞り込みするクエリを生成
-        if (!empty($request->input('level-or-ranks'))) {
-          $releasedCards_query->whereIn('monster_card_details.level_or_rank', $request->input('level-or-ranks'));
-        }
-
-        // link_valueの条件で絞り込みするクエリを生成
-        if (!empty($request->input('link-values'))) {
-          $releasedCards_query->whereIn('monster_card_details.link_value', $request->input('link-values'));
-        }
+        // 絞り込み対象がmonsterの場合
+        $releasedCards_query = $filterCardService->buildReleasedCardsQueryForMonsters($filters);
       } else if ($target === 'spell') {
         // 絞り込み対象がspellの場合
         $releasedCards_query
@@ -244,7 +188,7 @@ class FilterPlayController extends Controller
       // dd($releasedCards_query->count());
       if ($releasedCards_query->count() === 0) {
         $released_cards_num = ReleasedCard::count();
-        return inertia('Gallery/FilterSetting', ['errorMsg' => '該当するカードがありません。絞り込み条件を変更して下さい。', 'releasedCardsNum' => $released_cards_num, 'filters' => $filters]);
+        return inertia('Gallery/FilterSetting', ['errorMsg' => '該当するカードがありません。絞り込み条件を変更して下さい。', 'releasedCardsNum' => $released_cards_num, 'filters' => $request->input()]);
       }
 
       // クエリを実行してレコードを取得
