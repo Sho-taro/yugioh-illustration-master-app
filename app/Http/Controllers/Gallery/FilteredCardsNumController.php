@@ -7,59 +7,19 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Query\JoinClause;
 use App\Models\ReleasedCard;
+use App\Services\FilterCardService;
 
 class FilteredCardsNumController extends Controller
 {
     /**
      * Handle the incoming request.
      */
-    public function __invoke(Request $request)
+    public function __invoke(Request $request, FilterCardService $filterCardService)
     {
-      $filters = [
-        'target' => null,
-        'card-name' => null,
-        'frame-types' => [],
-        'races' => [],
-        'attributes' => [],
-        'level-or-ranks' => [],
-        'link-values' => [],
-        'periods' => [],
-        'play-types' => [],
-      ];
-      // var_dump($request->input('body'));
+      // ユーザが入力した絞り込み条件を取得
+      $filters = $filterCardService->getRequestFilters($request->input('body'));
 
-      foreach($request->input('body') as $input) {
-        if ($input[0] === 'target') {
-          $filters['target'] = $input[1];
-          // echo($filters['target']);
-        } elseif ($input[0] === 'card-name') {
-          $filters['card-name'] = $input[1];
-          // echo($filters['card-name']);
-        } elseif ($input[0] === 'frame-types[]') {
-          $filters['frame-types'][] = $input[1];
-          // var_dump($filters['frame-types']);
-        } elseif ($input[0] === 'races[]') {
-          $filters['races'][] = $input[1];
-          // var_dump($filters['races']);
-        } elseif ($input[0] === 'attributes[]') {
-          $filters['attributes'][] = $input[1];
-          // var_dump($filters['attributes']);
-        } elseif ($input[0] === 'level-or-ranks[]') {
-          $filters['level-or-ranks'][] = $input[1];
-          // var_dump($filters['level-or-ranks']);
-        } elseif ($input[0] === 'link-values[]') {
-          $filters['link-values'][] = $input[1];
-          // var_dump($filters['link-values']);
-        } elseif ($input[0] === 'periods[]') {
-          $filters['periods'][] = $input[1];
-          // var_dump($filters['periods']);
-        } elseif ($input[0] === 'play-types[]') {
-          $filters['play-types'][] = $input[1];
-          // var_dump($filters['play-types']);
-        }
-      }
-
-      // カードの絞り込み対象を取得
+      // カードの絞り込み対象
       $target = $filters['target'];
       // カード検索のキーワードを変数に代入
       $keyword = $filters['card-name'];
