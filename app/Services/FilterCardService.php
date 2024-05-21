@@ -113,6 +113,7 @@ class FilterCardService {
     return $filters;
   }
 
+
   /**
    * released_cardsテーブルからレコードを取得するためのSQL分を組み立てる（モンスターカード用）
    * 「ユーザが入力した絞り込み条件に合致したカードの情報のみをDBから取得する」ためのクエリをビルドする
@@ -199,6 +200,75 @@ class FilterCardService {
     // link_valueの条件で絞り込みするクエリを生成
     if (!empty($filters['link-values'])) {
       $releasedCards_query->whereIn('monster_card_details.link_value', $filters['link-values']);
+    }
+
+    return $releasedCards_query;
+  }
+
+
+  /**
+   * released_cardsテーブルからレコードを取得するためのSQL分を組み立てる（魔法カード用）
+   * 「ユーザが入力した絞り込み条件に合致したカードの情報のみをDBから取得する」ためのクエリをビルドする
+   *
+   * @param array $filters
+   * @return
+   */
+  public function buildReleasedCardsQueryForSpells(array $filters)
+  {
+    // $filtersのフォーマット
+    // $filters = [
+    //   'access-type' => null,
+    //   'target' => null,
+    //   'card-name' => null,
+    //   'frame-types' => [],
+    //   'races' => [],
+    //   'attributes' => [],
+    //   'level-or-ranks' => [],
+    //   'link-values' => [],
+    //   'periods' => [],
+    //   'play-types' => [],
+    // ];
+
+    if ($filters['target'] !== 'spell') return false;
+
+    // released_cardsテーブルのクエリビルダインスタンスを取得
+    $releasedCards_query = DB::table('released_cards');
+
+    $releasedCards_query
+      ->select(
+        'released_cards.id as released_card_id',
+        'cards.id as card_id',
+        'released_cards.product_code',
+        'released_cards.list_number',
+        'products.name_ja as product_ja',
+        'products.name_en as product_en',
+        'products.release_date',
+        'periods.name as period',
+        'cards.name_ja as card_ja',
+        'cards.name_ja_kana as card_ja_kana',
+        'cards.name_en as card_en',
+        'frame_types.name_ja as frame_type_ja',
+        'frame_types.name_en as frame_type_en',
+        'archetypes.name_ja as archetype',
+        'spell_trap_play_types.name_ja as play_type',
+      )
+      ->join('products', 'released_cards.product_code', '=', 'products.product_code')
+      ->join('periods', function (JoinClause $join) {
+        $join->on('products.release_date', '>=', 'periods.start_date')
+              ->on('products.release_date', '<=', 'periods.end_date');
+      })
+      ->join('cards', 'released_cards.card_official_id', '=', 'cards.card_official_id')
+      ->join('frame_types', 'cards.frame_type_code', '=', 'frame_types.frame_type_code')
+      ->join('archetypes', 'cards.archetype_code', '=', 'archetypes.archetype_code')
+      ->join('spell_trap_card_details', 'cards.card_official_id', '=', 'spell_trap_card_details.card_official_id')
+      ->join('spell_trap_play_types', 'spell_trap_card_details.play_type_code', '=', 'spell_trap_play_types.play_type_code');
+
+    // frame_typeがspellのものだけに絞り込み
+    $releasedCards_query->where('frame_types.name_en', '=', 'spell');
+
+    // play-typeの条件で絞り込みするクエリを生成
+    if (!empty($filters['play-types'])) {
+      $releasedCards_query->whereIn('spell_trap_play_types.name_en', $filters['play-types']);
     }
 
     return $releasedCards_query;
