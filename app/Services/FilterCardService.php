@@ -383,4 +383,38 @@ class FilterCardService {
 
     return $query;
   }
+
+
+  /**
+   * クエリビルダにkeywordsで絞り込むクエリを追加する
+   */
+  public function addKeywordQuery($query, $filters)
+  {
+    // カード検索のキーワードを変数に代入
+    $keyword = $filters['card-name'];
+
+    if ($keyword === null) return $query;  // early return
+
+    // 全角スペースを半角スペースに変換したあと、半角スペースで区切って配列に格納
+    $arr_keywords = preg_split("/[\s,]+/", mb_convert_kana($keyword, 's'));
+
+    // 検索キーワードで中間一致検索をかける
+    // これじゃダメ（and/or条件がごちゃごちゃ）
+    // foreach ($arr_keywords as $val) {
+    //   $query->where('name_ja', 'LIKE', "%{$val}%")
+    //         ->orWhere('name_ja_kana', 'LIKE', "%{$val}%");
+    // }
+
+    // これならOK （参考: https://readouble.com/laravel/10.x/ja/queries.html の「OR WHERE句」セクション）
+    foreach ($arr_keywords as $val) {
+      $query->where(function ($q) use ($val) {
+        $q->where('cards.name_ja', 'LIKE', "%{$val}%")      // cards.name_ja のように cards.をつけることが超重要。where句を実行するときに、cardsテーブルのname_jaカラムなのかproductsテーブルのname_jaカラムなのか分からずエラーになる。
+              ->orWhere('cards.name_ja_kana', 'LIKE', "%{$val}%");  // 上のコメントと同様
+      });
+    }
+    // これは次のsql文を意味する
+    // select * from cards where (name_ja LIKE "%$val1%" or name_ja_kana LIKE "%$val1%") and (name_ja LIKE "%$val2%" or name_ja_kana LIKE "%$val2%") and (...);
+
+    return $query;
+  }
 }
