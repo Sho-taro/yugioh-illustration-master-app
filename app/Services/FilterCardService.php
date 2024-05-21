@@ -370,4 +370,17 @@ class FilterCardService {
 
     return $releasedCards_query;
   }
+
+  /**
+   * クエリビルダにperiodsで絞り込むクエリを追加する
+   */
+  public function addPeriodQuery($query, $filters)
+  {
+    if (empty($filters['periods'])) {
+      return $query;
+    }
+    $query->whereIn('periods.name', $filters['periods']);
+
+    return $query;
+  }
 }

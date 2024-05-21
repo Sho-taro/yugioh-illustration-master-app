@@ -48,9 +48,7 @@ class FilterPlayController extends Controller
       }
 
       // periodの条件で絞り込みするクエリを生成
-      if (!empty($request->input('periods'))) {
-        $releasedCards_query->whereIn('periods.name', $request->input('periods'));
-      }
+      $releasedCards_query = $filterCardService->addPeriodQuery($releasedCards_query, $filters);
 
       // キーワードで絞り込みするクエリを生成
       if ($keyword !== null) {
