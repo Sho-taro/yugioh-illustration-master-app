@@ -119,9 +119,10 @@ class FilterCardService {
    * 「ユーザが入力した絞り込み条件に合致したカードの情報のみをDBから取得する」ためのクエリをビルドする
    *
    * @param array $filters
+   * @param string $select_amount_code 'MUCH' or 'LITTLE'
    * @return
    */
-  public function buildReleasedCardsQueryForMonsters(array $filters)
+  public function buildReleasedCardsQueryForMonsters(array $filters, string $select_amount_code)
   {
     // $filtersのフォーマット
     // $filters = [
@@ -142,7 +143,8 @@ class FilterCardService {
     // released_cardsテーブルのクエリビルダインスタンスを取得
     $releasedCards_query = DB::table('released_cards');
 
-    $releasedCards_query
+    if ($select_amount_code === 'MUCH') {
+      $releasedCards_query
       ->select(
         'released_cards.id as released_card_id',
         'cards.id as card_id',
@@ -164,7 +166,16 @@ class FilterCardService {
         'monster_card_details.defense',
         'monster_card_details.level_or_rank',
         'monster_card_details.link_value',
-      )
+      );
+    } elseif ($select_amount_code === 'LITTLE') {
+      $releasedCards_query
+        ->select(
+          'released_cards.id as released_card_id',
+          'cards.id as card_id',
+        );
+    }
+
+    $releasedCards_query
       ->join('products', 'released_cards.product_code', '=', 'products.product_code')
       ->join('periods', function (JoinClause $join) {
         $join->on('products.release_date', '>=', 'periods.start_date')
@@ -211,33 +222,44 @@ class FilterCardService {
    * 「ユーザが入力した絞り込み条件に合致したカードの情報のみをDBから取得する」ためのクエリをビルドする
    *
    * @param array $filters
+   * @param string $select_amount_code 'MUCH' or 'LITTLE'
    * @return
    */
-  public function buildReleasedCardsQueryForSpells(array $filters)
+  public function buildReleasedCardsQueryForSpells(array $filters, string $select_amount_code)
   {
     if ($filters['target'] !== 'spell') return false;
 
     // released_cardsテーブルのクエリビルダインスタンスを取得
     $releasedCards_query = DB::table('released_cards');
 
+    if ($select_amount_code === 'MUCH') {
+      $releasedCards_query
+        ->select(
+          'released_cards.id as released_card_id',
+          'cards.id as card_id',
+          'released_cards.product_code',
+          'released_cards.list_number',
+          'products.name_ja as product_ja',
+          'products.name_en as product_en',
+          'products.release_date',
+          'periods.name as period',
+          'cards.name_ja as card_ja',
+          'cards.name_ja_kana as card_ja_kana',
+          'cards.name_en as card_en',
+          'frame_types.name_ja as frame_type_ja',
+          'frame_types.name_en as frame_type_en',
+          'archetypes.name_ja as archetype',
+          'spell_trap_play_types.name_ja as play_type',
+        );
+    } elseif ($select_amount_code === 'LITTLE') {
+      $releasedCards_query
+        ->select(
+          'released_cards.id as released_card_id',
+          'cards.id as card_id',
+        );
+    }
+
     $releasedCards_query
-      ->select(
-        'released_cards.id as released_card_id',
-        'cards.id as card_id',
-        'released_cards.product_code',
-        'released_cards.list_number',
-        'products.name_ja as product_ja',
-        'products.name_en as product_en',
-        'products.release_date',
-        'periods.name as period',
-        'cards.name_ja as card_ja',
-        'cards.name_ja_kana as card_ja_kana',
-        'cards.name_en as card_en',
-        'frame_types.name_ja as frame_type_ja',
-        'frame_types.name_en as frame_type_en',
-        'archetypes.name_ja as archetype',
-        'spell_trap_play_types.name_ja as play_type',
-      )
       ->join('products', 'released_cards.product_code', '=', 'products.product_code')
       ->join('periods', function (JoinClause $join) {
         $join->on('products.release_date', '>=', 'periods.start_date')
@@ -266,16 +288,18 @@ class FilterCardService {
    * 「ユーザが入力した絞り込み条件に合致したカードの情報のみをDBから取得する」ためのクエリをビルドする
    *
    * @param array $filters
+   * @param string $select_amount_code 'MUCH' or 'LITTLE'
    * @return
    */
-  public function buildReleasedCardsQueryForTraps(array $filters)
+  public function buildReleasedCardsQueryForTraps(array $filters, string $select_amount_code)
   {
     if ($filters['target'] !== 'trap') return false;
 
     // released_cardsテーブルのクエリビルダインスタンスを取得
     $releasedCards_query = DB::table('released_cards');
 
-    $releasedCards_query
+    if ($select_amount_code === 'MUCH') {
+      $releasedCards_query
       ->select(
         'released_cards.id as released_card_id',
         'cards.id as card_id',
@@ -292,7 +316,16 @@ class FilterCardService {
         'frame_types.name_en as frame_type_en',
         'archetypes.name_ja as archetype',
         'spell_trap_play_types.name_ja as play_type',
-      )
+      );
+    } elseif ($select_amount_code === 'LITTLE') {
+      $releasedCards_query
+        ->select(
+          'released_cards.id as released_card_id',
+          'cards.id as card_id',
+        );
+    }
+
+    $releasedCards_query
       ->join('products', 'released_cards.product_code', '=', 'products.product_code')
       ->join('periods', function (JoinClause $join) {
         $join->on('products.release_date', '>=', 'periods.start_date')
@@ -321,39 +354,50 @@ class FilterCardService {
    * 「ユーザが入力した絞り込み条件に合致したカードの情報のみをDBから取得する」ためのクエリをビルドする
    *
    * @param array $filters
+   * @param string $select_amount_code 'MUCH' or 'LITTLE'
    * @return
    */
-  public function buildReleasedCardsQueryForAll(array $filters)
+  public function buildReleasedCardsQueryForAll(array $filters, string $select_amount_code)
   {
     if ($filters['target'] !== 'all') return false;
 
     // released_cardsテーブルのクエリビルダインスタンスを取得
     $releasedCards_query = DB::table('released_cards');
 
+    if ($select_amount_code === 'MUCH') {
+      $releasedCards_query
+        ->select(
+          'released_cards.id as released_card_id',
+          'cards.id as card_id',
+          'released_cards.product_code',
+          'released_cards.list_number',
+          'products.name_ja as product_ja',
+          'products.name_en as product_en',
+          'products.release_date',
+          'periods.name as period',
+          'cards.name_ja as card_ja',
+          'cards.name_ja_kana as card_ja_kana',
+          'cards.name_en as card_en',
+          'frame_types.name_ja as frame_type_ja',
+          'frame_types.name_en as frame_type_en',
+          // 'archetypes.name_ja as archetype',   // 今は不要
+          'attributes.name_ja as attribute',
+          'monster_card_details.attack',
+          'races.name_ja as race',
+          'attributes.name_ja as attribute',
+          'monster_card_details.level_or_rank',
+          'monster_card_details.link_value',
+          'spell_trap_play_types.name_ja as play_type',
+        );
+    } elseif ($select_amount_code === 'LITTLE') {
+      $releasedCards_query
+        ->select(
+          'released_cards.id as released_card_id',
+          'cards.id as card_id',
+        );
+    }
+
     $releasedCards_query
-      ->select(
-        'released_cards.id as released_card_id',
-        'cards.id as card_id',
-        'released_cards.product_code',
-        'released_cards.list_number',
-        'products.name_ja as product_ja',
-        'products.name_en as product_en',
-        'products.release_date',
-        'periods.name as period',
-        'cards.name_ja as card_ja',
-        'cards.name_ja_kana as card_ja_kana',
-        'cards.name_en as card_en',
-        'frame_types.name_ja as frame_type_ja',
-        'frame_types.name_en as frame_type_en',
-        // 'archetypes.name_ja as archetype',   // 今は不要
-        'attributes.name_ja as attribute',
-        'monster_card_details.attack',
-        'races.name_ja as race',
-        'attributes.name_ja as attribute',
-        'monster_card_details.level_or_rank',
-        'monster_card_details.link_value',
-        'spell_trap_play_types.name_ja as play_type',
-      )
       ->join('products', 'released_cards.product_code', '=', 'products.product_code')
       ->join('periods', function (JoinClause $join) {
         $join->on('products.release_date', '>=', 'periods.start_date')

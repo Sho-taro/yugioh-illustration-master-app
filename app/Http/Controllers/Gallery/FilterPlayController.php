@@ -34,15 +34,15 @@ class FilterPlayController extends Controller
       // DBからレコードを取得するためのクエリをビルド
       if ($target === 'monster') {
         // 絞り込み対象がmonsterの場合
-        $releasedCards_query = $filterCardService->buildReleasedCardsQueryForMonsters($filters);
+        $releasedCards_query = $filterCardService->buildReleasedCardsQueryForMonsters($filters, 'MUCH');
       } else if ($target === 'spell') {
         // 絞り込み対象がspellの場合
-        $releasedCards_query = $filterCardService->buildReleasedCardsQueryForSpells($filters);
+        $releasedCards_query = $filterCardService->buildReleasedCardsQueryForSpells($filters, 'MUCH');
       } else if ($target === 'trap') {
         // 絞り込み対象がtrapの場合
-        $releasedCards_query = $filterCardService->buildReleasedCardsQueryForTraps($filters);
+        $releasedCards_query = $filterCardService->buildReleasedCardsQueryForTraps($filters, 'MUCH');
       } else if ($target === 'all') {
-        $releasedCards_query = $filterCardService->buildReleasedCardsQueryForAll($filters);
+        $releasedCards_query = $filterCardService->buildReleasedCardsQueryForAll($filters, 'MUCH');
       }
 
       // periodの条件で絞り込みするクエリを生成
