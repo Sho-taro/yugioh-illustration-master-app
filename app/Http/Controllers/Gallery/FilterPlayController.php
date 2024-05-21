@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Query\JoinClause;
 // use App\Models\UserTag;
-// use App\Models\ReleasedCardUserTag;
+use App\Models\ReleasedCard;
 use Inertia\Inertia;
 
 class FilterPlayController extends Controller
@@ -17,7 +17,7 @@ class FilterPlayController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $filters = $request->input();
+      // $filters = $request->input();
       // dd($filters);
 
       // $filtersをセッションに保存
@@ -244,7 +244,7 @@ class FilterPlayController extends Controller
       // dd($releasedCards_query->count());
       if ($releasedCards_query->count() === 0) {
         $released_cards_num = ReleasedCard::count();
-        return inertia('Gallery/RandomMode', ['errorMsg' => '該当するカードがありません。絞り込み条件を変更して下さい。', 'releasedCardsNum' => $released_cards_num, 'filters' => $filters]);
+        return inertia('Gallery/FilterSetting', ['errorMsg' => '該当するカードがありません。絞り込み条件を変更して下さい。', 'releasedCardsNum' => $released_cards_num, 'filters' => $filters]);
       }
 
       // クエリを実行してレコードを取得
