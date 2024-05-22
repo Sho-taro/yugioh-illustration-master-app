@@ -5,8 +5,8 @@ namespace App\Http\Controllers\UserTag\ReleasedCardUserTag;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\UserTag;
-use App\Models\ReleasedCardUserTag;
-use App\Models\Card;
+// use App\Models\ReleasedCardUserTag;
+// use App\Models\Card;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Query\JoinClause;
 use Inertia\Inertia;
@@ -93,30 +93,8 @@ class CreateController extends Controller
       // $request->session()->put('filtering', $filters);   // セッションに保存
       // dd($request->session()->get('filtering'));
 
-      $target = $request->input('target');  // カードの絞り込み対象を取得
-
-      // released_cardsテーブルのクエリビルダインスタンス
-      $releasedCards_query = null;
-
-      // DBからレコードを取得するためのクエリをビルド
-      if ($target === 'monster') {
-        // 絞り込み対象がmonsterの場合
-        $releasedCards_query = $filterCardService->buildReleasedCardsQueryForMonsters($filters, 'MUCH');
-      } else if ($target === 'spell') {
-        // 絞り込み対象がspellの場合
-        $releasedCards_query = $filterCardService->buildReleasedCardsQueryForSpells($filters, 'MUCH');
-      } else if ($target === 'trap') {
-        // 絞り込み対象がtrapの場合
-        $releasedCards_query = $filterCardService->buildReleasedCardsQueryForTraps($filters, 'MUCH');
-      } else if ($target === 'all') {
-        $releasedCards_query = $filterCardService->buildReleasedCardsQueryForAll($filters, 'MUCH');
-      }
-
-      // periodの条件で絞り込みするクエリを生成
-      $releasedCards_query = $filterCardService->addPeriodQuery($releasedCards_query, $filters);
-
-      // キーワードで絞り込みするクエリを生成
-      $releasedCards_query = $filterCardService->addKeywordQuery($releasedCards_query, $filters);
+      // released_cardsテーブルのクエリをビルド
+      $releasedCards_query = $filterCardService->buildReleasedCardsQuery($filters, 'MUCH');
 
       // dd($releasedCards_query->count());
       $filtered_cards_num = $releasedCards_query->count();

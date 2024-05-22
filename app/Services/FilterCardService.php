@@ -461,4 +461,41 @@ class FilterCardService {
 
     return $query;
   }
+
+  /**
+   * released_cardsテーブルからレコードを取得するためのSQL分を組み立てる
+   * 「ユーザが入力した絞り込み条件に合致したカードの情報のみをDBから取得する」ためのクエリをビルドする
+   *
+   * @param array $filters
+   * @param string $select_amount_code 'MUCH' or 'LITTLE'
+   * @return
+   */
+  public function buildReleasedCardsQuery(array $filters, string $select_amount_code)
+  {
+    $target = $filters['target'];
+
+    $releasedCards_query = null;
+
+    // DBからレコードを取得するためのクエリをビルド
+    if ($target === 'monster') {
+      // 絞り込み対象がmonsterの場合
+      $releasedCards_query = $this->buildReleasedCardsQueryForMonsters($filters, $select_amount_code);
+    } else if ($target === 'spell') {
+      // 絞り込み対象がspellの場合
+      $releasedCards_query = $this->buildReleasedCardsQueryForSpells($filters, $select_amount_code);
+    } else if ($target === 'trap') {
+      // 絞り込み対象がtrapの場合
+      $releasedCards_query = $this->buildReleasedCardsQueryForTraps($filters, $select_amount_code);
+    } else if ($target === 'all') {
+      $releasedCards_query = $this->buildReleasedCardsQueryForAll($filters, $select_amount_code);
+    }
+
+    // periodの条件で絞り込みするクエリを生成
+    $releasedCards_query = $this->addPeriodQuery($releasedCards_query, $filters);
+
+    // キーワードで絞り込みするクエリを生成
+    $releasedCards_query = $this->addKeywordQuery($releasedCards_query, $filters);
+
+    return $releasedCards_query;
+  }
 }
