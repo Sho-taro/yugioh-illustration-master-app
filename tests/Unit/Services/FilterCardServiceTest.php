@@ -110,4 +110,65 @@ class FilterCardServiceTest extends TestCase
             'play-types' => [],
         ]);
     }
+
+    /**
+     * ユーザが入力したカードの絞り込み条件を取得し、$filtersとして返す「getRequestFiltersForCardsNum」メソッドの単体テスト
+     *
+     */
+    public function test_getRequestFiltersForCardsNum():void
+    {
+        $filterCardService = new FilterCardService();
+
+        $inputs01 = [
+            ['target', 'monster'],
+            ['card-name', 'あい'],
+            ['frame-types[]', 'effect'],
+            ['frame-types[]', 'link'],
+            ['races[]', 'dragon'],
+            ['races[]', 'magician'],
+            ['attributes[]', 'dark'],
+            ['attributes[]', 'light'],
+            ['attributes[]', 'water'],
+            ['level-or-ranks[]', '8'],
+            ['level-or-ranks[]', '9'],
+            ['link-values[]', '2'],
+            ['link-values[]', '3'],
+            ['periods[]', '9'],
+            ['periods[]', '10'],
+            // ['play-types[]', '']
+        ];
+        $result01 = $filterCardService->getRequestFiltersForCardsNum($inputs01);
+        $this->assertEquals($result01, [
+            'target' => 'monster',
+            'card-name' => 'あい',
+            'frame-types' => ['effect', 'link'],
+            'races' => ['dragon', 'magician'],
+            'attributes' => ['dark', 'light', 'water'],
+            'level-or-ranks' => ['8', '9'],
+            'link-values' => ['2', '3'],
+            'periods' => ['9', '10'],
+            'play-types' => [],
+        ]);
+
+        $inputs02 = [
+            ['target', 'spell'],
+            ['card-name', 'マジック'],
+            ['periods[]', '9'],
+            ['periods[]', '10'],
+            ['play-types[]', 'normal'],
+            ['play-types[]', 'continuous'],
+        ];
+        $result02 = $filterCardService->getRequestFiltersForCardsNum($inputs02);
+        $this->assertEquals($result02, [
+            'target' => 'spell',
+            'card-name' => 'マジック',
+            'frame-types' => [],
+            'races' => [],
+            'attributes' => [],
+            'level-or-ranks' => [],
+            'link-values' => [],
+            'periods' => ['9', '10'],
+            'play-types' => ['normal', 'continuous'],
+        ]);
+    }
 }
