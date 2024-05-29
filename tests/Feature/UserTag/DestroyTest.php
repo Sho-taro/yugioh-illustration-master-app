@@ -18,19 +18,28 @@ class DestroyTest extends TestCase
      */
     public function test_destroy_userTag(): void
     {
-        $user = User::factory()
-                    ->has(
-                        UserTag::factory()
-                        ->count(1)
-                        // ->state(function (array $attributes, User $user) {
-                        //     return ['user_id' => $user->id];
-                        // })
-                    )
-                    ->create();
+        // 書き方１
+        // $user = User::factory()
+        //             ->has(
+        //                 UserTag::factory()
+        //                 ->count(1)
+        //                 // ->state(function (array $attributes, User $user) {
+        //                 //     return ['user_id' => $user->id];
+        //                 // })
+        //             )
+        //             ->create();
+
+        // $this->actingAs($user);
+        // $response = $this->delete("/tags/{$user->id}/{$user->userTags[0]->id}");
+
+        // 書き方２
+        $user = User::factory()->create();   // userファクトリの生成
+        $user_tag = UserTag::factory()->create([
+            'user_id' => $user->id   // user_idカラムの値を、作成したuserファクトリのidに設定
+        ]);
 
         $this->actingAs($user);
-
-        $response = $this->delete("/tags/{$user->id}/{$user->userTags[0]->id}");
+        $response = $this->delete("/tags/{$user->id}/{$user_tag->id}");
 
         $response->assertRedirect("/tags/{$user->id}");
     }
