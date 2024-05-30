@@ -46,7 +46,7 @@ jobs:
       - name: Install Dependencies (npm)
         run: npm install
       - name: Run npm
-        run: npm run dev
+        run: npm run build
       - name: Generate key
         run: php artisan key:generate --env testing
       - name: Set hostname
