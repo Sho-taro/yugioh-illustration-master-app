@@ -47,5 +47,7 @@ jobs:
         run: php artisan key:generate --env testing
       - name: Set hostname
         run: sudo echo "127.0.0.1 mysql" | sudo tee -a /etc/hosts
+      - name: Run npm
+        run: npm run dev
       - name: Execute tests (Unit and Feature tests) via PHPUnit
         run: vendor/bin/phpunit
