@@ -37,7 +37,7 @@ class FilterCardServiceTest extends TestCase
             'level-or-ranks' => ['7'],
             'link-values' => ['2'],
             'periods' => ['2', '3', '4', '5'],
-            'play-types' => [],
+            // 'play-types' => [],
         ]);
 
 
