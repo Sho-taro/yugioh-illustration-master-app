@@ -1,8 +1,7 @@
 name: Laravel-React-test
 
-on:
-  # push:
-  pull_request:
+on: pull_request
+# on: push
 
 env:
   DB_USERNAME: sail
