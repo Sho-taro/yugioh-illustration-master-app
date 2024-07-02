@@ -5,6 +5,11 @@ on:
     branches: [ "main" ]
 # on: push
 
+# デフォルトシェルを定義（パイプエラーを拾うため）
+defaults:
+  run:
+    shell: bash
+
 env:
   DB_USERNAME: sail
   DB_PASSWORD: password
@@ -15,6 +20,7 @@ jobs:
   phpunit:
 
     runs-on: ubuntu-latest
+    timeout-minutes: 5  # タイムアウトを5分に設定
 
     services:
       mysql:
