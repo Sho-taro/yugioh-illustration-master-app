@@ -17,10 +17,10 @@ class PeriodFactory extends Factory
     public function definition(): array
     {
         return [
-            'period_code' => '',
-            'name' => '',
-            'start_date', '',
-            'end_date' => ''
+            'period_code' => 'PE0001',
+            'name' => '１期',
+            'start_date', '1999-01-01',
+            'end_date' => '2000-03-31'
         ];
     }
 }

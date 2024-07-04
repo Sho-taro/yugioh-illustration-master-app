@@ -17,9 +17,10 @@ class ReleasedCardFactory extends Factory
     public function definition(): array
     {
         return [
-            'product_code' => '',
-            'list_number' => '',
-            'card_official_id' => '',
+            // ハモン
+            'product_code' => 'soi',
+            'list_number' => 'jp002',
+            'card_official_id' => '32491822',
         ];
     }
 }

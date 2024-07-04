@@ -17,9 +17,9 @@ class RaceFactory extends Factory
     public function definition(): array
     {
         return [
-            'race_code' => '',
-            'name_ja' => '',
-            'name_en' => '',
+            'race_code' => 'RA0001',
+            'name_ja' => '魔法使い族',
+            'name_en' => 'Spellcaster',
         ];
     }
 }

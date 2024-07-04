@@ -17,9 +17,9 @@ class SpellTrapPlayTypeFactory extends Factory
     public function definition(): array
     {
         return [
-            'play_type_code' => '',
-            'name_ja' => '',
-            'name_en' => '',
+            'play_type_code' => 'PL0001',
+            'name_ja' => '通常',
+            'name_en' => 'Normal',
         ];
     }
 }

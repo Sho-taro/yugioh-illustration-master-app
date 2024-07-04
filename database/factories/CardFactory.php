@@ -21,8 +21,8 @@ class CardFactory extends Factory
             'name_ja' => 'ブラック・マジシャン',
             'name_ja_kana' => 'ブラック・マジシャン',
             'name_en' => 'Dark Magician',
-            'frame_type_code' => 'FR000000',
-            'archetype_code' => 'AR000000',
+            'frame_type_code' => 'FR0001',
+            'archetype_code' => 'AR0000',
         ];
     }
 }

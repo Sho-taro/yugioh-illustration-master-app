@@ -17,9 +17,9 @@ class ArchetypeFactory extends Factory
     public function definition(): array
     {
         return [
-            'archetype_code' => '',
-            'name_ja' => '',
-            'name_en' => '',
+            'archetype_code' => 'AR0000',
+            'name_ja' => 'カテゴリ無し',
+            'name_en' => 'no archetype',
         ];
     }
 }

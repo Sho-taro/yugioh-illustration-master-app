@@ -17,9 +17,9 @@ class AttributeFactory extends Factory
     public function definition(): array
     {
         return [
-            'attribute_code' => '',
-            'name_ja' => '',
-            'name_en' => '',
+            'attribute_code' => 'AT0001',
+            'name_ja' => '闇',
+            'name_en' => 'DARK',
         ];
     }
 }

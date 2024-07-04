@@ -17,10 +17,10 @@ class ProductFactory extends Factory
     public function definition(): array
     {
         return [
-            'product_code' => '',
-            'name_ja' => '',
-            'name_en' => '',
-            'release_date' => '',
+            'product_code' => 'soi',
+            'name_ja' => 'シャドウ・オブ・インフィニティ',
+            'name_en' => '', # 空欄可
+            'release_date' => '2005-11-17',
         ];
     }
 }
