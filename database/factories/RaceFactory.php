@@ -17,7 +17,9 @@ class RaceFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'race_code' => '',
+            'name_ja' => '',
+            'name_en' => '',
         ];
     }
 }

@@ -17,7 +17,10 @@ class ProductFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'product_code' => '',
+            'name_ja' => '',
+            'name_en' => '',
+            'release_date' => '',
         ];
     }
 }

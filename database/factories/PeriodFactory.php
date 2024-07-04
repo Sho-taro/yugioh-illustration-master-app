@@ -17,7 +17,10 @@ class PeriodFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'period_code' => '',
+            'name' => '',
+            'start_date', '',
+            'end_date' => ''
         ];
     }
 }

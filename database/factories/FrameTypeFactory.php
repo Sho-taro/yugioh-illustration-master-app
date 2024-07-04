@@ -17,7 +17,9 @@ class FrameTypeFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'frame_type_code' => '',
+            'name_ja' => '',
+            'name_en' => '',
         ];
     }
 }

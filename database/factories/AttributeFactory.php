@@ -17,7 +17,9 @@ class AttributeFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'attribute_code' => '',
+            'name_ja' => '',
+            'name_en' => '',
         ];
     }
 }
